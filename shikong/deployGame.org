@@ -1,0 +1,26 @@
+* on desktop
+[[http://html5hub.com/deploying-hybrid-html5-games-on-the-desktop-using-node-webkit/][DEPLOYING HYBRID HTML5 GAMES ON THE DESKTOP USING NODE-WEBKIT
+]]
+* on mobile
+[[http://impactjs.com/ejecta][ejecta]]
+[[http://phonegap.com/][phonegap]]
+[[http://www.gameclosure.com/][Game Closure]]
+[[http://doc.ludei.com/latest/index.html][CocoonJs]]
+
+[[http://jster.net/blog/tools-to-package-your-html5-app-for-mobile-devices#.VVVi1tOqqko][Tools to Package Your HTML5 App for Mobile Devices(compare the up tool)]]
+
+
+** CocoonJs
+it is free to use for developing, but will share the profit(not confirm!).
+//but will be charged when the number of users of the game became large that it'll charge by the radio of profit
+
+can expand to support 500M size of game file by sending email to ludei.
+
+
+*** document
++ [[http://support.ludei.com/hc/en-us][cocoonjs document]]
+
+*** tips:
++ can upload empty .zip file to ludei, then replace the main url or (the game area retained for game?) of the xCode
+  project file received from ludei, so that we can just upload once in the begin, and then we can just replace it when
+  the game changes. 

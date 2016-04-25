@@ -1,0 +1,62 @@
+* TODO 今日计划
+** TODO pass DYReactive
+
+** TODO pass emit
+
+** TODO pass trigger
+
+** TODO refactor
+unify eventName
+//generic Collection,Hash
+
+    1.rename EventName to EventType
+    rename EventMouse to MouseEvent
+    rename event/dipatcher folder to dispatcher
+
+* 完成事项
+
+** DONE pass DYReactive
+CLOSED: [2015-07-19 Sun 06:54]
+
+** DONE pass emit
+CLOSED: [2015-07-19 Sun 07:04]
+
+** DONE pass trigger
+CLOSED: [2015-07-19 Sun 07:13]
+
+** DONE refactor
+CLOSED: [2015-07-19 Sun 08:17]
+unify eventName
+    1.rename EventName to EventType
+    rename EventMouse to MouseEvent
+    rename event/dipatcher folder to dispatcher
+
+
+** DONE implement event by DYReactive
+CLOSED: [2015-07-19 Sun 09:42]
+
+** DONE see the document, propose suggestions to he
+CLOSED: [2015-07-20 Mon 07:38]
+
+** DONE dev DYReactive v0.2(from event)
+CLOSED: [2015-07-21 Tue 07:26]
+
+** DONE use DYReactive to refactor
+CLOSED: [2015-07-21 Tue 08:50]
+use it to refactor event
+refactor loader
+
+* TODO 明日计划
+** TODO more event
+*** TODO finish EventCustom
+
+* TODO 未来7日计划
+** TODO more event
+*** TODO finish EventGesture(first finish mobile event)
+*** TODO finish EventCustom
+
+** TODO finish event test case
+*** TODO build unit test
+*** TODO pass the test
+
+** TODO finish EventKeyboard

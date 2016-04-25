@@ -1,0 +1,146 @@
+* DONE remote operate
+CLOSED: [2015-05-16 Sat 08:21]
+
+use tramp 
+
+* TODO code navigation(such as jump to definitions)
+** TODO front end
+** TODO auto build while save file
+
+
+record it!
+
+(Execution of GLOBAL)
+	$ export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+	$ export GTAGSLABEL=exuberant-ctags
+        $ gtags				# invokes ctags internally
+	$ global -x func		# locates tags
+	func                5 test.c           func() {
+	$ _
+  
+
+
+Homebrew on Mac OS X
+
+brew install --HEAD ctags
+brew install global --with-exuberant-ctags
+//Configuration
+//Copy gtags.conf to $HOME/.globalrc
+
+
+
+** gnu global config
+
+(Execution of GLOBAL)
+	$ export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+	$ export GTAGSLABEL=exuberant-ctags
+        $ gtags				# invokes ctags internally
+	$ global -x func		# locates tags
+	func                5 test.c           func() {
+	$ _
+
+
+
+FILES
+
+‘GTAGS’
+Tag file for definitions.
+
+‘GRTAGS’
+Tag file for references.
+
+‘GPATH’
+Tag file for source files.
+
+‘GTAGSROOT’
+If environment variable GTAGSROOT is not set and file ‘GTAGSROOT’ exists in the same directory as ‘GTAGS’ then global sets GTAGSROOT to the contents of the file.
+
+‘$HOME/.globalrc’, ‘gtags.conf’
+Global load a configuration file according to the following priority (Lower number means higher priority).
+
+		(1) $GTAGSCONF
+		(2) [project root]/gtags.conf
+		(3) $HOME/.globalrc
+		(4) /etc/gtags.conf
+		(5) [sysconfdir]/gtags.conf
+
+
+
+GTAGSLABEL
+Configuration label. The default is default.
+
+GTAGSLIBPATH
+If this variable is set, it is used as the path to search for library functions. If the given symbol is not found in the project, global also searches in these paths. Since only ‘GTAGS’ is targeted in the retrieval, this variable is ignored when ‘-r’ or ‘-s’ is specified.
+
+GTAGSLOGGING
+If this variable is set, ‘$GTAGSLOGGING’ is used as the path name of a log file. There is no default value.
+
+GTAGSROOT
+The root directory of the project. Usually, it is recognized by existence of ‘GTAGS’. Use of this variable is not recommended.
+**  my solution
+use global + exuberant-ctags(not use pygments plugin, because its typescript support is poor)
+i can add new language support very easy(write regex in .ctags)and can use global advantage on this way.
+
+*** TODO ggtags not work on this way, so i will develop a simple front end like ggtags/etags-select
+(if want to use ggtags-find-tag to jump in this way,it will throw error "compile error" " select deleted buffer"!)
+**** requirement
++ jump to definition
+  1. show definition list
+  2. click the item to jump to definition in the same buffer
+  3. when save, auto update tags file(global -u)
+
+
+
+**** TODO write blog:code navigation (blog series:build web development environment of emacs)
+refer to:
+[[http://blog.binchen.org/posts/effective-code-navigation-for-web-development.html][Effective code navigation for web development]]
+* TODO typescript support
+** TODO how to enable minor mode based on extname?(tss->package.el)
+* TODO dictionary
+* TODO bookmark
+* TODO study
+** TODO one frame one unique neotree
+
+
+* record
+** spacemacs
+*** add my package in spacemac
+The following command creates a layer in the private directory:
+
+<SPC> : configuration-layer/create-layer RET
+Any configuration layers you create must be explicitly loaded in ~/.spacemacs.
+
+Note: For your privacy, the contents of the private directory are not under source control. See the documentation for a
+discussion on how to manage your private configuration. 
+
+
+then set the package.el in the private layer. such as add helm-gtags:
+
+package.el:
+
+(defvar tagging-packages
+  '(
+    helm-gtags
+    ;; package taggings go here
+    )
+  "List of all packages to install and/or initialize. Built-in packages
+which require an initialization must be listed explicitly in the list.")
+
+(defvar tagging-excluded-packages '()
+  "List of packages to exclude.")
+
+;; For each package, define a function tagging/init-<package-tagging>
+;;
+(defun tagging/init-helm-gtags ()
+  "Initialize my package"
+  (use-package helm-gtags
+    :defer t
+    :config
+    (progn
+      (evil-leader/set-key-for-mode 'helm-gtags-mode
+        "t]" 'helm-gtags-find-tag-from-here
+        "t[" 'helm-gtags-find-rtag
+        )
+      )
+    )
+  )

@@ -1,0 +1,114 @@
+* TODO 今日计划
+** TODO demo: use light and envmap and mirror together
+
+
+
+* 完成事项
+** DONE demo: use light and envmap and mirror together
+CLOSED: [2015-11-23 Mon 17:30]
+
+////refactor shader management:
+not send duplicate data, defer send
+
+
+//finish envMap_forBasic
+
+
+//pass demo
+
+
+
+//scene.ts use scene.js
+
+
+
+
+//mirror and light
+
+
+
+//map and basic
+
+
+//pass unit test
+
+
+** DONE refactor
+CLOSED: [2015-11-23 Mon 08:55]
+////use action to control animation
+
+
+
+//refactor extend, add definition folder(move enum,type,variable,global into it)
+//rename definitions.d.ts to filePath.d.ts
+
+
+
+
+add example folder:
+example->single
+       ->multi
+
+
+add to npm
+converter use dy.DyFileType, ModelLoaderUtils
+
+change engine name:wonder, beauty, fancy, fantasy, amazing, light, sun
+
+goal:write elegant code to build modern 3d engine
+
+** DONE create orbit camera to see model
+CLOSED: [2015-11-25 Wed 08:04]
+can rotate
+
+can zoom
+can lift
+
+add contraint
+
+
+refactor
+keystate
+
+
+
+
+** DONE pass unit test
+CLOSED: [2015-11-26 Thu 16:33]
+
+
+
+
+
+** DONE refactor
+CLOSED: [2015-11-26 Thu 16:45]
+//user script should implement IScriptBehavior
+
+//move MapManager to material/
+
+
+////rename TotalShadowMapShaderLib to CommonXXX?
+
+
+//move setEnvMapShaderLib->judge out
+
+
+* TODO 明日计划
+** TODO optimize
+solve '"reflection_light" demo become more and more slow when run' problem
+solve '"dynamic_cubemap_xxx" demo become more and more slow when run' problem
+
+optimize car demo
+////can replace material
+
+
+
+** TODO mirror
+add more blend with material->color way:
+        //todo which way to mix mirror color and textureColor?
+		float blendOverlay(float base, float blend) {
+			return( base < 0.5 ? ( 2.0 * base * blend ) : (1.0 - 2.0 * ( 1.0 - base ) * ( 1.0 - blend ) ) );
+		}
+
+
+* TODO 未来7日计划

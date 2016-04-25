@@ -1,0 +1,35 @@
+* TODO 今日计划
+*** TODO finish event (mouse)
+
+* 完成事项
+*** TODO run html
+
+* TODO 明日计划
+** TODO refactor structure to {"targetUid_eventName": target.handler} ?
+
+** TODO pass off event
+
+** TODO push commits
+
+** TODO convert Collection, Hash? to generic, edit filter
+correspond modify DYReactive and DYEngine
+
+** TODO continue finish event(mouse)
+
+** TODO refactor event
+
+* TODO 未来7日计划
+*** TODO implement event by DYReactive
+dev DYReactive v0.2(from event)
+use it to refactor event
+*** TODO use DYReactive to refactor loader
+
+*** TODO more event
+**** TODO finish EventGesture(first finish mobile event)
+**** TODO finish EventCustom
+**** TODO finish EventKeyboard
+
+*** TODO finish event test case
+**** TODO build unit test
+**** TODO pass the test
+

@@ -1,0 +1,45 @@
+* reference
++ actionscript3
+  [[http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b8cbfe-7ff7.html][actionscript3 manual]]
+  
++ cocos2d 3.0
+[[http://www.cocos2d-x.org/wiki/Developers_Manual][cocos2d developers manual]]
+
++ unity3d
+[[http://docs.unity3d.com/Manual/index.html][unity3d manual]]
++ threejs
+  
++ unreal
+[[https://docs.unrealengine.com/latest/INT/Engine/Blueprints/index.html][Unreal Engine 4 Documentation]]
+
+* engine
+** TODO [#C] extract common components from 2d and 3d engine(like event system,structure,loader,sound...)
+** TODO [#C] support outer plugin developed by the user
+** TODO [#A] components architecture
+** TODO [#B] more editor tools
+*** ui editor
+*** particle editor
+*** skeleton animation editor
+*** level editor(base on rts game)
+*** 
+*** 
+**** ai editor(based on behavior tree?)
+**** task editor(based on behavior tree?)
+**** add objects pool(like animPool?)
+[[http://www.cocos2d-x.org/wiki/Objects_Pool][cocos2d-js objects pool]]
+** TODO [#B] add tween action
+** TODO [#B] optimize asset loader
+[[http://blog.sina.com.cn/s/blog_720cf2c70101i3b7.html][Cocos2D-HTML5引擎之资源加载与释放机制]]
+[[https://github.com/egret-labs/egret-core/wiki/%25E9%259B%2586%25E6%2588%2590%25E7%25AC%25AC%25E4%25B8%2589%25E6%2596%25B9-JavaScript-%25E6%25A1%2586%25E6%259E%25B6][egret-集成第三方 JavaScript 框架]]
+[[http://docs.egret-labs.org/post/manual/threelibs/module.html][项目模块化配置]]
+** TODO add scheduler
+refer to Wozlla, cocos2d
+* engine2d
+** TODO optimize[0%]
+*** TODO [#A] use components architecture to refactor, can build Sprite from config data
+** TODO [#B] use typescript
+** TODO [#A] use new event system(realise observer pattern) in Engine3D
+//refactor render, can
+** TODO [#B] refactor structure from engine3D
+** TODO [#B] import box2d
+* engine3d

@@ -1,0 +1,251 @@
+* TODO 今日计划
+** TODO build component-based architecture
+
+//discuss inhert override and instance override:
+need the latter?
+
+advantage:
+1. based on combination, it's easy for gameobjce to add another GameObject(so spriteBatch can add to layer easily)
+2. it's easy to create gameobject by the config jsondata, so we can create it through editor.
+3. 
+*** reference
+[[https://github.com/playcanvas/engine][playcanvas]]
+wozlla
+
+*** DONE move iterator method of Scene to GameObject
+CLOSED: [2015-07-27 Mon 13:53]
+
+
+*** TODO GameObject add search method(global search method, which support regex search:search name,tag,uid) :design:
+
+*** TODO add Layer
+one layer to one canvas? should refactor WebGLContext
+**** TODO rethink multi canvas vs single canvas design!
+refer to:
+[[http://www.ibm.com/developerworks/library/wa-canvashtml5layering/][Optimize HTML5 canvas rendering with layering]]
+wozlla engine(single canvas, Renderer.ts judge layer)
+need more reference...
+
+*** TODO add component
+
+*** TODO add transform
+
+*** TODO add collider
+
+*** TODO integration Action to GameObject
+
+*** TODO add Mesh, Scene's position (refer to threejs)
+
+* 完成事项
+
+** DONE change Hash,Collection to generic
+CLOSED: [2015-07-28 Tue 10:35]
+
+** DONE learn unity tutorial
+CLOSED: [2015-07-28 Tue 21:20]
+
+** TODO build component-based architecture
+
+*** TODO design
+**** DONE read articles
+CLOSED: [2015-07-27 Mon 16:10]
+**** DONE read playCanvas's component design
+CLOSED: [2015-07-27 Mon 16:11]
+**** TODO give the design online
+*** TODO create class(refer to Wozlla)
+Transform(position)
+
+Component
+
+Renderer
+Collider
+Behavior
+
+
+move shader to material
+
+
+Mesh
+
+...
+
+geometry be component?
+
+
+
+*** DONE use quat(四元数）to rotate:add math/Quat,  modify transform->rotate
+CLOSED: [2015-08-03 Mon 10:02]
+
+add frustum class
+
+
+finish Camera
+
+
+cameraToWorldMatrix(transform->matrix)
+
+worldToCameraMatrix
+
+
+pass run
+
+*** DONE add follow parent
+CLOSED: [2015-08-06 Thu 06:37]
+
+
+*** DONE add unit test
+CLOSED: [2015-08-06 Thu 06:37]
+(quatUnit, transform unit, camera spec)
+improve matrixSpec, Vector3Spec
+
+
+*** DONE refactor
+CLOSED: [2015-08-06 Thu 09:39]
+//add dirty
+//unify param, only use getter/setter(not overload)
+rename Matrix->inverseOf to invert
+remove set/get method, use setter/getter instead
+unify Matrix,Vector3,Vector4,Quaternion, all set itself
+GameObject set parent
+
+*** DONE continue to component
+CLOSED: [2015-08-08 Sat 09:15]
+//remove Scene
+//
+//Director:
+//add Stage
+//
+//where put Program?
+//
+//mesh as gameObject
+//geometry
+//renderer
+
+//add collider
+
+**** TODO use event mechanism in Director,GameObejct,Transform?
+
+//add tick mechanism, fps
+
+//refactor Rotate,Translate,Scale action
+//import tween.js
+
+*** DONE make action to be stream
+CLOSED: [2015-08-14 Fri 13:11]
+//add Tween
+
+//DYReactive add fromAction,concat,
+
+//merge
+
+//refactor
+
+//remove SubjectObserver, xxxSubject,AsyncSubject
+
+repeat
+
+delay
+
+refactor:
+unify fromAction and other stream
+classify unit tests
+
+
+add Action->toStream method
+
+pass unit test
+
+
+
+//*** TODO pass run
+test run self/world/axis
+//build renderer unit test
+
+
+
+
+//add YEngine2d->action to DYEngine
+
+//unify time(use date.now or performance.now)
+
+
+
+*** DONE refactor
+CLOSED: [2015-08-14 Fri 16:17]
+//move loader to asset folder
+//rename MeshMaterial to Material
+//change camera gameobject's transform(refer to 
+//error check:
+    //camera component can only add one
+//add name
+
+//remove redundant actions
+
+unit test filenames should be capital
+
+
+//dirty
+
+
+
+
+
+*** DONE action unit test
+CLOSED: [2015-08-14 Sat 10:00]
+complete Tween(copy,reverse)
+
+*** DONE action add pause/resume
+CLOSED: [2015-08-15 Sat 09:46]
+
+*** DONE clean up webpages
+CLOSED: [2015-08-15 Sat 10:20]
+
+
+*** DONE add Scheduler
+CLOSED: [2015-08-17 Mon 20:21]
+refact DelayTime
+
+Director add stop,pause,resume method
+pass run test
+
+
+
+
+** DONE add script component
+CLOSED: [2015-08-21 Fri 08:06]
+[[http://docs.unity3d.com/Manual/ScriptingConcepts.html][unity]]
+
+//handler empty
+
+//cancel loop
+
+//catch error not loop
+
+//remove script streams after load it!(ensure next start will not load it again)
+
+//pass DirectorSpec
+
+//fix Director->init,onEnter
+
+//pass run test
+
+
+
+
+
+//timeController add stop
+
+
+//refactor:
+extract Loader
+
+
+
+** DONE complete main unit test
+CLOSED: [2015-08-21 Fri 15:53]
+
+
+
+* TODO 明日计划
+
+* TODO 未来7日计划

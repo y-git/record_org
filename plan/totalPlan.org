@@ -1,0 +1,3 @@
+* TODO build mine blog in my website                                :angular:
++ user no need to login, just check that if it's the first time to comment that they should set the user info to save in
+  localstorage. and should add modify/delete user info mechanism.

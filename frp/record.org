@@ -1,0 +1,192 @@
+* plan
+learn rxjs,baconjs,kefir
+
+use it to refactor client(give thought)
+//use it to refactor search component in angular
+use frp library to finish mali game(refer to elm example)
+
+think how to use it in engine or in game?
+
+write simple frp library
+use it to implement:
+
+create DYReactive
+git submodule
+
+
+
+1. from promise(refactor glsl loader)
+2. event system 
+3. async communication(network, loading assets)
+4. nodejs callback(as file->exist...)
+5. convert array,promise to stream
+6. can build steam
+
+provide it to user within engine
+
+** TODO Transducers
+[[https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/transducers.md][Transducers with Observable Sequences]]
+
+
+
+
+
+User Input (Mouse/Keyboard/Touch)
+Constraints (keep player character onscreen)
+Loading Assets
+Loading From Backend Services
+Multiplayer game state synchronization (e.g. ‘Did every player in this game room click start?’)
+And much more… see Reactive Game Architectures
+
+* gold
+build min subset of rxjs which is suitable for DYEngine
+
+* feature
+** no cold and hot distinguish, all are hot
+** property?
+* todo list
+** TODO convert stream to xxx(callback,promise...)
+** TODO support yield
+[[https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/generators.md][Generators and Observable Sequences]]
+
+** TODO optimize performance
+** TODO create stream
+** TODO timer...
+** TODO implement basic stream operator
+https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/querying.md
+** TODO error handle
+    error config
+[[https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/errors.md][Error Handling in the Reactive Extensions]]
+** TODO debug support
+https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/testing.md
+long stack trace
+do
+timestamp
+** TODO lossy and loss-less(buffer) and control
+[[https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/backpressure.md][Backpressure]]
+** TODO subject
+[[https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/subjects.md][Using Subjects]]
+the subject can act as a proxy for a group of subscribers and a source.
+** TODO user can create own operator
+[[https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/operators.md][Implementing Your Own Observable Operators]]
+** TODO add property
+* road map
+//use onxxx/offxxx instead of subscribe
+
+
+
+** v0.1
+create core
+create for test
+
+create testing
+unit test
+
+
+fromArray for test
+
+create TestScheduler
+
+async generator:interval
+
+do
+
+
+
+
+refactor:
+    //add create method
+    //use definitionFile
+    //extract Disposable mechanism
+    //clean
+
+
+fromPromise
+
+
+
+
+
+map
+
+
+
+
+
+mergeAll
+
+refactor:
+//refactor map and do:wrapTarget mechanism
+//target should not share, should be specific
+
+//build:
+add watch
+
+flatMap
+
+
+refactor:
+move Collection... to common library
+//remove test logic from product logic(as Scheduler->publicxxx, FromPromise->then...)
+git submodule to use common lib
+
+
+application git submodule:
+    Loading assets
+    //Callback
+
+
+
+//update generator-typescript
+
+
+
+
+
+//release v0.1 :
+mit
+readme
+ci?
+
+//retry
+
+** v0.2.0
+async:
+    Event system with engine
+    support engine event
+    //support dom event, jquery event
+
+add more info in bower.json(like AncientWar->bower.json):
+{
+    "name": "ancient-war",
+    "version": "0.2.0",
+    "main": [
+        "dist/yEngine2D.js",
+        "dist/yEngine2D.min.js"
+    ],
+    "description": "HTML5 RTS game based on YEngine2D",
+    "ignore": [
+         xxx
+    ],
+    "keywords": [
+        "2.5D",
+        "ancient war",
+        "HTML5",
+        "YEngine2D"
+    ],
+    "authors": {
+        "name": "YYC",
+        "email": "395976266@qq.com",
+        "qq": "395976266",
+        "blog": "http://www.cnblogs.com/chaogex/"
+    },
+    "license": "MIT",
+    "homepage": "",
+    "repository": "https://github.com/yyc-git/AncientWar",
+    "dependencies": {
+         xxx
+    }
+}
+** v0.3
+property?
+from(support Collection and Hash)

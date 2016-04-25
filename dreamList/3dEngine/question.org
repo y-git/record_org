@@ -1,0 +1,9 @@
+* if set class's prototype attribute to be regex, then invoke it's exec, the result will always be null!
+e.g 
+
+GLSLParser.prototype.parse= function(content){
+    this.endFlag = /@end/g;
+
+    console.log(this.endFlag.exec("@end"));//null      fail
+
+    console.log("@end".search(this.endFlag));//0    success

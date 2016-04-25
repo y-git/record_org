@@ -1,0 +1,387 @@
+* TODO 今日计划
+** DONE demo-animation:man,窗帘(like three.js)
+CLOSED: [2015-11-22 Sun 21:03]
+层次模型
+骨骼动画，顶点动画
+key frame animation
+蒙皮动画？
+texture animation
+
+
+
+////person first-view walk
+////person third-view walk
+
+////camera control(follow person, fix, ...)
+
+
+
+* 完成事项
+** DONE write .obj to .dy converter
+CLOSED: [2015-11-06 Fri 20:18]
+//dyrt:
+window to global
+useragent
+navigator
+
+//add dyCb.d.ts to node.d.ts
+
+//add in the end:
+declare module "dyrt" {
+    export = dyRt;
+}
+
+
+
+
+//add dy->root
+
+
+//pass unit test
+
+
+
+
+
+
+
+
+//DYLoader can load .dy converted from .obj
+
+
+//pass unit test
+
+//copy resource
+
+//test male02
+
+
+
+//pass obj load run test
+
+
+//refactor
+
+
+** DONE write .md2 to .dy converter
+CLOSED: [2015-11-11 Wed 09:41]
+DYLoader can load .dy converted from .obj
+
+get texture name/url?
+
+
+
+//add option:--isComputeNormals, the default is false
+
+
+
+//compute in dy
+
+
+
+
+
+//uv is not correct(may correct after expand?)
+
+
+
+
+
+
+
+
+//remove rebundant buffer(md2)
+
+
+
+//edit .obj
+vertex/normal/uv put into container
+each child only has indices
+
+
+//pass converter test:
+DYParser test two kind of .dy
+
+
+
+//refactor
+
+
+//pass all unit test
+
+
+
+
+
+
+
+** DONE smooth shading(.obj should support "s")
+CLOSED: [2015-11-11 Wed 91:00]
+vertexNormal
+morphNormal
+
+
+//extract Face3
+//modify Geometry
+modify XXXGeometry
+
+
+
+
+
+
+
+** DONE refactor
+CLOSED: [2015-11-13 Fri 11:51]
+geometry return faces instead of indices,normals:
+ModelGeometry
+
+//pass unit test
+
+
+//remove OBJXXX
+
+//refactor:
+//DYParser -> Array<number>
+//remove ModelGeometry->"isDY"
+
+//pass unit test
+
+
+//other geometry
+
+//add cache
+
+//pass unit test
+
+
+
+
+
+//clear xxxMaterial:
+//combine EnvMapMaterial to Material
+combine MapMaterial,MirrorMaterial to Material
+
+//rename TextureManager to MapManager
+
+//rename Texture:
+Texture->TwoD,Cube
+TwoD->ImageTexture,Video,Compress
+
+////refactor TextureManager
+
+////refactor render target texture
+
+
+
+
+//sparate contract to cache
+
+
+
+
+////move enum to one file
+
+
+
+//pass unit test
+
+
+
+** DONE morph target animation
+CLOSED: [2015-11-21 Sat 22:08]
+
+            //todo
+            //make vertices correct(install other buffer reader/restore)
+            //DECIMALPRECISION(_objectsConverter use it either)
+
+
+
+        //rewrite ModelGeometry->bufferContainer, get vertices->send morph vertices(if not play animation, send static
+        vertices)  
+
+
+
+        //test compute
+
+//test get morph normals in DYParser
+
+
+//test get morph Vertice, morphNormal in shader lib
+
+
+
+//pass animation run test
+
+////each frame->each buffer
+
+//2 buffer for all frames
+
+
+//pass animation unit test
+
+
+////read from .md2
+
+//build my own
+
+
+//compute morph normals
+
+
+*** record
+**** Face3 not has "morphFaceNormals","morphVertexNormals" attri.
+because the data is huge, and it will occupy much memory.
+so just the ModelGeometry add "morphFaceNormals","morphVertexNormals" attri to save the whole data
+
+**** why don't "direct compute morphNormal(Face,Vertex normal)?"
+because when compute morph vertex normals, it need the morph face normals(read from ModelGeometry->morphFaceNormals),
+but this data may lost some face normals data,
+(
+if the vertex is not duplicate,
+(means the triangle share vertexs. e.g. the indice is like 0, 1, 2,  0, 2, 3; not like 0,1,2 ,3, 4, 5)
+then the latter face normal will rewrite the former face normal in the shared vertexs, so it will lost the former face
+normal data
+)
+
+so the vertex normal may be wrong.
+
+so here i use the "create temp ModelGeometry to compute" like threejs->Geometry->computeMorphNormals!
+
+
+
+
+*** DONE not add duplicate vertex in DYParser,OBJ Converter
+CLOSED: [2015-11-21 Sat 10:32]
+not create mass buffers when CommonBufferContainer
+
+
+
+pass loaderSpec
+
+
+refactor:
+remove _hasData
+
+
+pass all unit test
+
+*** add DYLoader to load and parse .dy asset
+
+
+*** [#A] optimize
+**** reduce morph animation buffer(optimize with batch draw)
+帧数据（位置、法线）的VBO有两套方案：一是每关键帧一个位置VBO一个法线VBO，渲染时候直接换VBO来绑定就好了；二是只生成两个位
+置VBO和两个法线VBO，在换关健帧的时候也重新给VBO传输数据。存储上的优劣是显而易见的：前者在传输完数据就可以扔掉内存中的帧
+数据了（位置和法线），但是数据都往VBO去了，一个200帧的MD2模型共需要400个VBO；后者要把帧数据都留在内存，但是同情形下只需4
+个VBO。前者利于CPU后者利于GPU。执行速度方面，后者要重传VBO数据，明显更浪费点CPU，但是这里我用的是双缓冲策略，一者在使用
+中的时候另一者可传输数据，只要关健帧之间的时间间隔不要太离谱（譬如0.1s以下），觉得FPS上不会有太大区别（模型特别巨型则另
+说）——总之两者都实现了（在Import函数参数里指定，或者后者可转为前者，逆转不能），就是按实际需求情况来了。 
+
+
+
+
+
+
+** DONE refactor
+CLOSED: [2015-11-22 Sun 07:49]
+////Morph?MorphTarget? unify the name
+
+//virtual method add @virtual flag
+
+
+////extract BothSide shader lib to refactor normal glsl, remove "define" in glsl
+
+//unify DYFile format?
+
+
+
+
+** DONE pass unit test
+CLOSED: [2015-11-22 Sun 07:49]
+
+
+////** TODO add weapon animation, can change skin and weapon
+
+
+
+** DONE free camera
+CLOSED: [2015-11-22 Sun 13:30]
+
+
+pass unit test
+
+refactor
+
+optimize 
+
+
+** DONE convert script to ts file
+CLOSED: [2015-11-22 Sun 14:46]
+
+
+* TODO 明日计划
+** TODO animation
+*** [#A] skeleton animation
+
+*** [#A] optimize
+**** reduce morph animation buffer(optimize with batch draw)
+帧数据（位置、法线）的VBO有两套方案：一是每关键帧一个位置VBO一个法线VBO，渲染时候直接换VBO来绑定就好了；二是只生成两个位
+置VBO和两个法线VBO，在换关健帧的时候也重新给VBO传输数据。存储上的优劣是显而易见的：前者在传输完数据就可以扔掉内存中的帧
+数据了（位置和法线），但是数据都往VBO去了，一个200帧的MD2模型共需要400个VBO；后者要把帧数据都留在内存，但是同情形下只需4
+个VBO。前者利于CPU后者利于GPU。执行速度方面，后者要重传VBO数据，明显更浪费点CPU，但是这里我用的是双缓冲策略，一者在使用
+中的时候另一者可传输数据，只要关健帧之间的时间间隔不要太离谱（譬如0.1s以下），觉得FPS上不会有太大区别（模型特别巨型则另
+说）——总之两者都实现了（在Import函数参数里指定，或者后者可转为前者，逆转不能），就是按实际需求情况来了。 
+
+
+
+**** use area weight to compute vertex normals
+[[http://www.iquilezles.org/www/articles/normals/normals.htm][compute vertex normals]]
+
+** record
+*** morph targets
+**** What is the difference between Morph Target and Skeletal Animation?
+Morph Targets are just where you morph a mesh directly into another shape. I.e. you will have a few shapes of the same 
+mesh defined, animating between them is simply smoothly interpolating each vertex. Great for facial animation. 
+
+Skeletal animation is where you associate a bone with a group of vertices, or more accurately, associate each vertex
+with one or more bones, defining how much each bone will affect the vertex (weight). When one of these bones moves, all
+vertices that are associated with that bone are transformed too, much like skin is 'transformed' when you move your
+arm. It also makes it easier to attach other objects - as you just attach them to a bone, depending on the engine, this
+can be as simple as: 
+
+
+
+
+Morph target animation (or per-vertex animation) is a method of 3D computer animation that is sometimes used in
+alternative to skeletal animation. Morph target animation is stored as a series of vertex positions. In each keyframe of
+the animation, the vertices are moved to a different position. 
+Depending on the renderer, the vertices will move along paths to fill in the blank time between the keyframes or the
+renderer will simply switch between the different positions, creating a somewhat jerky look. The former is used more
+commonly. 
+
+There are advantages to using morph target animation over skeletal animation. The artist has more control over the
+movements because he or she can define the individual positions of the vertices within a keyframe, rather than being
+constrained by skeletons. This can be useful for animation cloth, skin, and facial expressions because it can be
+difficult to conform those things to the bones that are required for skeletal animation. 
+
+However, there are also disadvantages. Vertex animation is usually a lot more time-consuming than skeletal animation
+because every vertex position would have to be calculated. (3D models in modern computer and video games often contain
+something to the order of 4,000-9,000 vertices.) Also, in methods of rendering where vertices move from position to
+position during in-between frames, a distortion is created that doesn't happen when using skeletal animation. This is
+described by critics of the technique as looking "shaky." Howerver, there are some who like this slightly distorted
+look. 
+
+
+
+
+** optimize
+move vertices,uvs,normals,colors,indices,morphTargets to .bin file
+https://github.com/mrdoob/three.js/issues/1778
+threejs->BufferGeometry?
+
+
+
+
+
+* TODO 未来7日计划

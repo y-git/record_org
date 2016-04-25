@@ -1,0 +1,7 @@
+* reflection
+** planar reflection(mirror)
+Instead of rendering a cube, you render the scene as normal, but with the camera flipped upside down beneath the water.
+
+To get this 'upside-down camera', you can construct a reflection matrix from the water plane and multiply that with the view matrix. You'll also want to enable a user clipping-plane so that objects below the water's surface don't show up in the reflection.
+
+Once you've rendered that to a texture, you can use the reflected view-proj matrix to project this texture onto the water (during your main pass). 

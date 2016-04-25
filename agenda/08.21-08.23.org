@@ -1,0 +1,74 @@
+* TODO 今日计划
+** TODO demo-plane, sphere and rect with texture,cube with color
+depth check,cullface
+   //add layer is the attribute
+
+
+
+
+texture(junior)(2-face texture)
+
+multi shader(add Scene.ts)
+
+
+refactor renderer:
+reoriganize Program
+geometry->compute from vertexColors(refer to threejs)
+geometry not know material, material.color is the main color
+
+rethink QuadCommand->shader, program
+
+GameObject:
+add active mechanism(modify getTopUnderPoint method)
+
+
+
+* 完成事项
+
+** DONE depth check,cullface
+CLOSED: [2015-08-23 Sun 11:49]
+
+** DONE blend
+CLOSED: [2015-08-23 Sun 20:03]
+
+refactor
+
+** DONE color mask
+CLOSED: [2015-08-23 Sun 20:51]
+
+
+** DONE refactor
+CLOSED: [2015-08-24 Mon 09:40]
+
+//all set material:cullface,polygonOffset
+
+////material add colorVertic
+
+//delete Director->gl
+
+//refactor Color
+
+
+//modify GameObject->sort
+
+
+//pass run test
+
+add unit test
+
+
+
+
+
+
+* TODO 明日计划
+
+
+** TODO texture(junior)(2-face texture)
+
+** TODO multi shader(add Scene.ts)
+
+
+
+
+* TODO 未来7日计划

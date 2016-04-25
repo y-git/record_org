@@ -1,0 +1,447 @@
+#+TAGS: { design(d) archtecture(a) feature(f)} refactor(r) note(n) { angular nodejs } 
+* TODO demo1 [80%]
+
+** DONE use DYReactive
+CLOSED: [2015-07-16 Thu 14:15]
+
+*** DONE move DYEngine utils to DYCommonLib, cut DYCommonLib and DYReactive's dist into multi functional files
+CLOSED: [2015-07-16 Thu 09:44]
+**** DONE rename YEQuery to AjaxUtils
+CLOSED: [2015-07-16 Thu 09:44]
+*** DONE use definitionFile(refer to DYReactive)
+CLOSED: [2015-07-16 Thu 11:54]
+*** DONE combine DYReactive into engine
+CLOSED: [2015-07-16 Thu 11:54]
+*** DONE update yeoman-generator
+CLOSED: [2015-07-16 Thu 14:15]
+
+** TODO add Event system[90%]
+//pass compile
+*** DONE finish event (mouse)
+CLOSED: [2015-07-21 Tue 09:20]
+**** TODO run html
+**** TODO implement: on(target, eventName, handler, priority?)
+
+//*** TODO convert Collection, Hash? to generic, edit filter
+correspond modify DYReactive and DYEngine
+
+
+*** DONE realise observer
+CLOSED: [2015-05-27 Wed 05:41]
+*** DONE add on,off, trigger
+CLOSED: [2015-05-27 Wed 05:41]
+*** DONE broadcast mechanism
+CLOSED: [2015-05-27 Wed 05:41]
+*** DONE import bowser detect
+CLOSED: <2015-04-30 Thu 06:14>
+*** DONE finish EventMouse
+CLOSED: [2015-07-19 Sun 08:53]
+*** DONE finish EventCustom
+CLOSED: [2015-07-24 Fri 18:52]
+*** DONE finish EventKeyboard
+CLOSED: [2015-07-25 Sat 15:07]
+*** DONE build bowser to engine
+CLOSED: [2015-07-14 Tue 19:20]
+*** DONE test in pc(gesture, mouse and keyboard event)
+CLOSED: [2015-07-24 Fri 18:52]
+*** TODO refactor
+
+
+    2.add interface define in the 2nd param(listener data) of EventManager.on
+    //3.add static class:LogInfo
+
+
+    //4.generic Collection,Hash?
+
+**** DONE use DYReactive to refactor loader(mine/import)
+CLOSED: [2015-07-24 Fri 18:53]
+
+
+//class/enum/interface name should define category name first(like cocos2d-js)
+(write it in js specification doc)
+
+//"reference"'s path need no .ts suffix
+
+
+**** DONE unify min number(as priority start from 1, all number should start from 1)
+CLOSED: [2015-07-25 Sat 16:17]
+**** DONE delete WebGLContext, move it to Director(should modify event system->get canvas element)
+CLOSED: [2015-07-25 Sat 16:26]
+//**** TODO Move BrowserDetector to external, add BrowserUtils in util(edit unit test, use specify case to show how to use)
+//**** TODO move enum related to class to class (like move ShaderType to Shader)
+**** DONE unify Log.info(as abstract method info...)
+CLOSED: [2015-07-25 Sat 16:42]
+*** design                                                         :design:
+**** refer to event system in: cocos2d, actionscript, puremvc 
+**** hierarchy trigger and transfer(down, up, sibling?)
+**** user can use it in combination way(not in inhert way like in wozlla.js)
+**** TODO use Event class to wrap single event, user can use event.setUserData method to add userData(not in  inhert way) 
+
+
+**** draft
+
+    design:
+
+    scene._meshes.addChilds(mesh);
+
+    director._scene = scene;
+
+
+    //the event tree can be build in 2 ways:
+    //1.directly use the display list
+    //2.use setParent method
+    manager.setParent(mesh, scene);
+
+
+
+
+    });
+
+    manager.on( 
+mesh, 
+{
+
+//target should not contain in listener. listener don't need know the target.
+//target:mesh,
+
+//define in Listener, not in Event Object(use "MouseEvent")
+//beacause this eventType is related to listener, it's listener's eventType
+
+//while trigger event should use Event Object's eventType, because it's related
+
+//should pass Event object, not only pass EventType.because it should set event data(like location...)
+to Event Object:
+manager.trigger(dom1, MouseEvent.create(EventType.CLICK));
+
+
+eventType: Listener.MOUSE
+priority: 2,
+onMouseMove:function(e){
+}
+    });
+
+
+
+
+
+
+
+
+
+//should add Listener class like cocos2d?
+//on(mesh, new EventListener(type, handler, prior))
+
+////no need now
+
+
+    //manager.on(scene, MouseEvent.ClICK, scene.onClick, &prior);
+
+//use manager.on(dom, {xxx}, &priority) instead! it's more clear and convenient, and it's abstract to event listener class.  
+
+
+
+            priority set in listener, not in binder!so priority should set in options:
+            manager.on(dom, {
+            priority:1,
+            xxx
+            })  
+
+
+
+
+
+
+
+
+
+no need to create event object when trigger system event, just specify the event type:
+    //manager.trigger(new MouseEvent(scene, EventType.CLICK));
+    //manager.broadcast(scene, new MouseEvent(EventType.CLICK));
+    //manager.emit(new MouseEvent(mesh, EventType.CLICK));
+
+
+
+trigger CustomEvent should create event Object:
+    manager.broadcast(scene, CustomEvent.create("eventName"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////target should be injected in Event Object(not in broadcast/emit method),
+    ////because the target is related to it!
+
+not injected in Event Object!
+because:
+Event objects serve two main purposes in the new event-handling system. First, event objects represent actual events by
+storing information about specific events in a set of properties. Second, event objects contain a set of methods that
+allow you to manipulate event objects and affect the behavior of the event-handling system.  
+
+    //no bubbles, canStopBubbles attr! it's decided in lisitener handler
+    Event(target, type)
+
+    //eventType is Event class's static const value, no need to add EventType(MouseEventType,KeyboardEventType...) class
+    //EventType
+    {
+        event type of below:
+        MouseEvent
+        KeyboardEvent
+        TouchEvent
+        GestureEvent
+    }
+
+    * Event Object
+
+    base:Event
+    
+    refer to cocos2d event
+
+    MouseEvent
+    KeyboardEvent
+    TouchEvent
+    GestureEvent    //support what hammer support
+    CustomEvent
+
+TODO design the implement models(draw in [[https://www.processon.com/diagraming/5553d507e4b09739f47e92f4][html5 viso]])
+
+
+
+
+
+
+
+
+
+use static const or enum?
+
+if it's related to the class, use static const(as MouseButton)
+else, extract enum (separent from class, so user not depend on the class)
+
+
+
+**** roadmap
+***** add Touch event support
+***** add more gesture event support
+***** add Drag event support?
+***** scroll event?(refer to wozlla)
+***** add dom event bind?
+***** mouse event add scroll handler(wheel scroll)
+
+
+** //TODO add queue or stack Class in structure package
+** DONE add promise
+CLOSED: [2015-07-24 Fri 18:54]
+
+** DONE finish depthCheck_faceCull
+CLOSED: [2015-07-25 Sat 16:44]
+
+
+
+
+
+
+//每完成一个演示，都进行重构
+
+
+//完成demo1的所有演示后
+
+** DONE complement the type definitions in class
+CLOSED: [2015-07-24 Fri 19:05]
+
+* DONE move to DYEngine repo(demo, src, lib, test)
+CLOSED: [2015-07-25 Sat 18:06]
+correspond modify DYReactive->fromEventPatternSpec
+
+* TODO build component-based architecture
+//discuss inhert override and instance override:
+need the latter?
+
+advantage:
+1. based on combination, it's easy for gameobjce to add another GameObject(so spriteBatch can add to layer easily)
+2. it's easy to create gameobject by the config jsondata, so we can create it through editor.
+3. 
+
+
+** TODO move iterator method of Scene to GameObject
+
+
+
+** TODO GameObject add search method(global search method, which support regex search:search name,tag,uid) :design:
+
+** TODO add Layer
+one layer to one canvas? should refactor WebGLContext
+*** TODO rethink multi canvas vs single canvas design!
+refer to:
+[[http://www.ibm.com/developerworks/library/wa-canvashtml5layering/][Optimize HTML5 canvas rendering with layering]]
+wozlla engine(single canvas, Renderer.ts judge layer)
+need more reference...
+
+** TODO add component
+
+** TODO add transform
+
+** TODO add collider
+
+** TODO integration Action to GameObject
+
+** TODO add Mesh, Scene's position (refer to threejs)
+* TODO build and pass all unit test
+* TODO add Log and error handl
+** 
+*** design
+refer to actionscript3,cocos2d,unity3d
+*** TODO enhance error,log control
+*** TODO enhance fault tolerance(use assert,log,error to judge cond in method)
+
+* TODO learn three.js arthicture, improve engine
+*** TODO Director add fps. update method get time param
+    //todo extract Repeat, Sequence action
+        //todo push,pop matrix, so need change pos, rotate angle, scale instead of changing matrix!
+        //when need push,pop matrix?
+*** TODO Director add stop/pause/resume/start method
+ 
+* TODO add scheduler
+refer to Wozlla, cocos2d
+* TODO learn shikong game, use its thought to build 3d game[0%]
+** TODO create simple mvc frame[0%]
+*** TODO use puremvc to develop one game to learn the design thought of it
+*** TODO extract observer component to be a public component that mvc frame and engine can use it
+*** use proxy instead of dataOperator(why?)                   :archtecture:
+*** stream command design                                     :archtecture:
+*** sync command,async command                                :archtecture:
+** TODO use lua
+** TODO collect const
+** TODO hot refresh
+** TODO log(both in front end and back end)
+** TODO build simple server[0%]
+*** TODO simple socket communication for chatting
+**** TODO login(token and auth?)
+*** mongodb to storage chat message data                      :archtecture:
+*** provide web service to front end                          :archtecture:
+** run task one by one(queue)                                       :design:
+** build editor                                            :angular:
+
+* TODO use gulp to build
+** TODO finish website dev auto-flow
+** TODO build work flow
+*** TODO dev and produce env switch
+*** TODO integration publish and test in mobile sh
+** TODO build ci server
+*** TODO install ci server in remote server
+    should set the config file in ci server!(such as setting isDev -> false)
+
+** TODO write build system blogs
+
+
+
+
+
+
+
+
+
+
+//finish demo2
+
+
+//add canvas render, can fall back to canvas
+//add uid?
+
+
+
+
+
+
+
+
+
+
+
+
+//重构render：
+Command
+WebglRender
+QuadBatch(batch draw(the same texture))
+canvasRender
+can fall back to canvas
+
+
+
+
+//it's time to optimize engine after finishing car demo
+//optimize, create only one buffer, auto batch
+
+
+
+
+//研究threejs->dynamic，看如何表示position
+(should add position attri, like threejs,
+    //use updateMatrix to update pos,angle,scale!)
+
+
+
+
+
+
+
+
+
+
+
+//优化
+dirty update
+
+cache
+
+render optimize:
+batch draw(the same texture)(should consider ther order of ones with the same texture)
+multi thread
+single buffer,dynamic-draw
+http://www.cocos2d-x.org/wiki/Cocos2d_v30_renderer_pipeline_roadmap
+
+
+
+
+
+
+//demo-rect,cube,sphere transform, camera view
+math basic
+translate,rotate,scale
+sphere model
+camera,first view
+
+* TODO can run on mobile(coconjs?)
+** TODO more event
+*** TODO finish EventGesture(first finish mobile event)
+**** TODO use hammer to handle demo1
+**** TODO run in pc
+**** TODO encapsulate it into engine
+**** TODO use gesture to refactor demo1
+*** TODO add mobile event support(encapsulate hammer.js)
+*** TODO build hammer to engine
+*** TODO test mobile event(gesture) in mobile
+
+** TODO run in mobile
+*** TODO run in ios8(camera to see the cubic demo)
+*** TODO run in android 5
+*** TODO use cocoonjs to pack the demo
+
+* Architecture
+** add adpter layer to encapsulate cocoonjs, so it's easy to change webview realise in the future.
+
+
+* road map
++ add dispose method?
+* note
+** no need to build js bind runtime
+1. i can use html5 game deploy platform(like cocoonjs) to pack game project(using native api)
+2. the mobile's webview will support the webgl and html5 game more and more better in the future.

@@ -1,0 +1,47 @@
+
+
+* optimize
+
+the vertex/normal/uv in .dy .md2 is not duplicate, indice in them may refer to the vertex multi times
+this will make the file be smaller
+
+then when load these files, engine will duplicate  vertex/normal/uv so that indice will not use the same vertex and each
+vertex will has its independent normal
+
+
+
+** face normal
+I didn't export normals for flat smoothing since these normals can be calculated within micro second on import. The
+advantage is that the generated obj files are smaller. 
+
+Only for the more complicated normal calculation methods the normals are exported.
+
+
+
+
+* load .obj
+face's index is related to the whole v,vn,vt, not only to v,vn,vt from the last o/g/usemtl!!! 
+
+
+
+
+
+
+* format compare
+md2 can save animation.
+
+obj is best for static models without any animation 
+
+
+
+OBJ - a lightweight geometry definition file format first developed by Wavefront Technologies which contains mesh data —
+namely, the position of each vertex, the UV position of each texture coordinate vertex, normals, and the faces that make
+each polygon defined as a list of vertices, and texture vertices. 
+
+MD2 - a model format used by id Software’s id Tech 2 engine in games such as Quake II and Soldier of Fortune. This
+format is primarily used for animated player models and uses keyframes for mesh positions, which SceneJS interpolates
+within a vertex shader to create smooth animation. 
+
+3DS - one of the file formats used by the Autodesk 3ds Max 3D modeling, animation and rendering software. This format
+has become a de facto industry standard for transferring models between 3D programs, or for storing models for 3D
+resource catalogs. 

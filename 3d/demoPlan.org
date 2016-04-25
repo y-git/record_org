@@ -1,0 +1,1311 @@
+5.1 plan:
+finish build series blog(about 1-2 day)
+1:start, arrangement, summary statement(reference to 前端构建)
+2:build js, css
+3:more...(cli, mod5...)
+
+upload to github
+
+
+finish demo1(about 2 day)
+do refactor
+
+
+
+写作安排
+1.介绍总体安排
+2.介绍准备工作，包括搭建开发环境、开发流程等
+3.开始正文（第一个demo）
+
+
+
+//总体规划
+
+
+
+
+开发安排
+//搭建开发环境(local server,karma,glsl unit test)
+完成到car texture
+完成除了car texture的前面demo的博文
+完成scene(light) demo
+finish animation demo
+finish car texture blog
+
+
+
+
+
+* 策略
+按demo来划分，先介绍demo需要的专题知识（每个专题1篇），然后使用重构的引擎，构建demo
+//晚上看引擎three.js，早上完成开发和写博客
+
+
+** 测试策略
+*** 集成测试
+报错时打印错误日志
+直接运行各个demo（后期可创建一个自动运行demo并收集错误信息的框架），查看错误日志
+不在单元测试中进行集成测试（如test/unit/shader)
+
+
+*** 单元测试
+测试单个组件／方法／属性／特性
+
+
+
+
+
+
+* 博客计划：
+** 《webgl 技术研究》系列：(junior serial)
+
+final results:
+1.demos
+2.relative special cases study
+3.one initial 3d engine
+
+
+first,introduce special case study that demo need
+1.use webgl to realise directly
+2.refact it, extract a engine, use unit test
+
+then,use engine to develop demo.
+
+
+demo参考three.js的demo，用我自己的引擎实现
+
+
+rotate(matrix, eulger, quat)
+follow parent(transform)
+
+** 《engine design seriers》
+
+
+** 《build system seriers》
+
+
+
+* support
+desktop browser:
+ie11+, chrome, firefox
+
+
+mobile browser:
+not support yet(ios 8+?)
+
+
+
+
+* bug list
+** may be bug, need verify
+*** test opacity except light
+
+*** envMap add "bothSide"?
+
+
+** problem
+*** if transparent and both side, view it in opposite side against light direction now is not visiable. should it be visiable?
+i try this to not reverse normal when view in opposite side:
+	    if(u_opacity < 1.0 && dot(viewDir, lightDir) < 0.0){
+	        return normal;
+	    }
+
+		  return normal * (-1.0 + 2.0 * float(gl_FrontFacing));
+
+but in this case, only when angle between viewDir and lightDir > 90, it can be visiable. so it can see the apparent boundary!
+
+any other solution?
+
+*** in mirror_light demo, light in verticle mirror is reduced, and the more distance from viewpoint to verticle mirror, the more light reduced!
+
+
+
+
+* demo road
+** first part
+*** DONE demo-rect,cube,sphere transform, camera view
+CLOSED: [2015-07-28 Tue 11:16]
+math basic
+cube,sphere model
+translate,rotate,scale
+camera,first view
+
+
+
+*** DONE basic render
+CLOSED: [2015-10-26 Mon 21:15]
+
+**** DONE demo-texture(junior)
+CLOSED: [2015-08-30 Sun 07:29]
+depth check,cullface
+   //add layer is the attribute
+
+
+
+
+texture(junior)(2-face texture)
+
+
+
+
+
+
+**** DONE cube map
+CLOSED: [2015-09-12 Sat 20:24]
+
+***** DONE skybox
+CLOSED: [2015-09-10 Thu 10:45]
+
+***** DONE compressed texture add cube cubic
+CLOSED: [2015-09-10 Thu 10:45]
+
+relect
+refraction
+
+envioronment map?
+
+
+
+***** DONE demo-custom shader
+CLOSED: [2015-09-12 Sat 20:24]
+multi shader
+
+skybox and cube, move while skybox not move and cube can move
+
+
+refer to playcanvas,threejs, finish texture
+
+move common glsl into engine
+user can add custom shader
+add the standard shader
+[[http://docs.unity3d.com/Manual/Shaders.html][unity]]
+refer to threejs->ShaderLib.js
+refer threejs->SimulationRenderer.js:
+var positionShader = new THREE.ShaderMaterial( {//rename ShaderMaterial to Shader
+		uniforms: {
+			time: { type: "f", value: 1.0 },
+			delta: { type: "f", value: 0.0 },
+			resolution: { type: "v2", value: new THREE.Vector2( WIDTH, WIDTH ) },
+			texturePosition: { type: "t", value: null },
+			textureVelocity: { type: "t", value: null },
+		},
+		defines: {
+			WIDTH: WIDTH.toFixed(2)
+		},
+		vertexShader: document.getElementById( 'vertexShader' ).textContent,
+		fragmentShader: document.getElementById( 'fragmentShaderPosition' ).textContent
+
+	} );
+
+
+
+
+
+polygonOffset set in custom shader like unity!
+http://answers.unity3d.com/questions/13137/blob-shadow-z-fighting-on-iphone.html
+http://docs.unity3d.com/Manual/SL-CullAndDepth.html
+
+
+
+query glsl max precision and set it
+
+
+
+refactor renderer:
+reoriganize Program(Material should has program)
+
+add Material->dispose
+
+geometry->compute from vertexColors(refer to threejs)
+geometry not know material, material.color is the main color
+
+rethink QuadCommand->shader, program
+
+
+study bufferData->dynamic_draw,stream_draw,static_draw
+
+
+GameObject:
+add active mechanism(modify getTopUnderPoint method)
+
+
+
+**** DONE demo-light house(skybox,light house)(parallell light and point light,not interact)
+CLOSED: [2015-09-18 Fri 19:42]
+light(middle)
+light(senior):雾化、阴影
+soft shadow ?
+light map
+normal map,xxxx map
+
+bump map
+
+
+point light should not pass through the wall!
+
+
+
+set light config in shader/material?
+
+
+
+
+
+**** DONE demo-dynamic (rect mirror,cube)
+CLOSED: [2015-09-29 Tue 17:54]
+realtime-render(middle):
+cube map real-render
+texture2d real-render
+moving real-render
+multi objects real-render
+
+study ray tracer 光线追踪
+
+***** TODO Dynamic textures(refer to Babylon.js)
+
+A dynamic texture uses a canvas to generate its content.
+
+Creating and affecting a dynamic texture is simple:
+
+var dynamicTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
+dynamicTexture.hasAlpha = true;
+material.diffuseTexture = dynamicTexture;
+Once the texture is created, you can updated it when you want (for instance here every time the scene is rendered) using the getContext and update functions:
+
+var count = 0;
+scene.beforeRender = function() {
+    // Dynamic
+    var textureContext = dynamicTexture.getContext();
+    var size = dynamicTexture.getSize();
+    var text = count.toString();
+
+    textureContext.save();
+    textureContext.fillStyle = "red";
+    textureContext.fillRect(0, 0, size.width, size.height);
+
+    textureContext.font = "bold 120px Calibri";
+    var textSize = textureContext.measureText(text);
+    textureContext.fillStyle = "white";
+    textureContext.fillText(text, (size.width - textSize.width) / 2, (size.height - 120) / 2);
+
+    textureContext.restore();
+
+    dynamicTexture.update();
+    count++;
+};
+The result is the following (yes I know, I’m not a designer Sourire)
+
+
+
+The getContext returns a true canvas’ context so everything you can do with a canvas is available with a dynamic texture.
+
+
+***** TODO Mirrors(refer to Babylon.js, threejs->webgl_mirror.html)
+
+Mirrors textures are another kind of dynamic textures. You can use them to simulate “mirrors” which mean that babylon.js will compute for you the reflection and fill the texture with the results. A Mirror texture must be set in the reflectionTexture channel of a standardMaterial:
+
+// Mirror
+var mirror = BABYLON.Mesh.createBox("Mirror", 1.0, scene);
+mirror.material = new BABYLON.StandardMaterial("mirror", scene);
+mirror.material.diffuseColor = new BABYLON.Color3(0.4, 0, 0);
+mirror.material.reflectionTexture = new BABYLON.MirrorTexture("mirror", 512, scene, true);
+mirror.material.reflectionTexture.mirrorPlane = new BABYLON.Plane(0, -1.0, 0, -2.0);
+mirror.material.reflectionTexture.renderList = [box, sphere];
+A mirrorTexture is created with a parameter that specify the size of the rendering buffer (512x512here). Then you have to define the reflection plane and a render list (the list of meshes to render Inside the mirror).
+
+The result is pretty convincing:
+
+
+
+
+
+
+**** DONE shadow
+CLOSED: [2015-10-18 Sun 10:46]
+shadow map
+soft shadow?
+////volumu shadow?
+
+
+***** TODO refactor
+
+
+***** TODO pass unit test
+
+
+
+
+
+//set light config in shader/material?
+
+**** DONE load model
+CLOSED: [2015-10-26 Mon 21:14]
+teapot
+
+
+multi materials:
+http://blogs.msdn.com/b/eternalcoding/archive/2013/07/10/babylon-js-using-multi-materials.aspx
+
+submesh
+http://answers.unity3d.com/questions/684995/what-is-a-submesh.html
+
+
+
+
+
+
+*** DONE demo-animation:man,窗帘(like three.js)
+CLOSED: [2015-11-22 Sun 08:00]
+层次模型
+骨骼动画，顶点动画
+key frame animation
+蒙皮动画？
+texture animation
+
+
+person first-view walk
+person third-view walk
+
+camera control(follow person, fix, ...)
+
+
+
+
+
+
+** write blogs
+begin to write blogs
+
+
+
+
+
+** DONE publish
+CLOSED: [2015-12-02 Wed 09:36]
+*** v0.1
+**** TODO [#A] build major demos
+refactor demos
+
+
+**** TODO [#A] clear engine(remove threejs,playcanvas related comment, change the code refered to them)
+remove chinese
+refactor jasmine, extract common tool, refresh yeoman
+refactor builder, refresh yeoman
+
+
+all in "var" change to "let"(except function/forEach...)
+
+all add type definition
+
+format all
+
+**** TODO [#B] add github bar, like:
+https://codecov.io/github/yyc-git
+add unit test bar
+
+
+
+** more...
+*** feature
+
+**** TODO [#B] be convenient for user to expand
+***** build plugin system?
+start
+stop
+load
+
+register
+unregister
+****** TODO refactor .obj loader as one of loader plugin(can refer to Babylon)
+
+need import plugin js file
+
+can load in LoaderManager
+or directly use OBJLoader.load
+
+
+**** TODO [#C] add CanvasRenderer
+
+**** TODO [#A] create engine asset format(like .dy?), can convert other format(like .obj .3ds .md2 .dae(Collada) .fbx...) to mine format
+***** TODO can export engine asset format to other format
+
+**** TODO [#A] add data collector
+	//refer to threejs->WebGLRenderer.js->info
+
+	this.info = {
+
+		memory: {
+
+			programs: 0,
+			geometries: 0,
+			textures: 0
+
+		},
+
+		render: {
+
+			calls: 0,
+			vertices: 0,
+			faces: 0,
+			points: 0
+
+		}
+
+	};
+
+
+
+**** TODO editor v0.1
+use angular2 to build v0.1 editor
+
+refer to unity,threejs,playcanvas,wozlla
+
+http://www.babylonjs-playground.com/#
+
+
+**** TODO run all demo in ios8:
+
+    add demo-gesture in ios8:
+        add gesture event
+        add screen auto adapter
+
+    support pvr(compressed texture format)
+
+
+        use all gesture event to control one ball with texture
+        tap to select/unselect the ball
+
+
+***** TODO refer to threejs->WebGLRenderer.js
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+
+
+
+
+
+**** TODO [#A] demo-senior scene(light)(load model), can interaction with objec model(like door)
+senior collider:
+MeshCollider
+
+optimize:
+场景管理中的八叉树算法 [[http://www.zhihu.com/question/25111128][游戏场景管理的八叉树算法是怎样的?]]   https://github.com/BabylonJS/Babylon.js/wiki/Optimizing-performances-with-octrees
+refer to threejs->webgl_octree.html
+
+
+
+resource pool
+
+LOD:
+When an object in the scene is a long way from the camera, the amount of detail that can be seen on it is greatly
+reduced. 
+
+refer to http://docs.unity3d.com/Manual/LevelOfDetail.html,
+https://github.com/BabylonJS/Babylon.js/wiki/How-to-use-level-of-details
+
+
+render layer:
+http://www.blenderguru.com/articles/how-to-render-a-complex-scene-without-crashing/
+
+
+
+
+instancing
+Instancing is a technique where we draw many objects at once with a single render call, saving us all the CPU -> GPU
+communications each time we need to render an object; this only has to be done once. To render using instancing all we
+need to do is change the render calls glDrawArrays and glDrawElements to glDrawArraysInstanced and
+glDrawElementsInstanced respectively. 
+
+
+Math optimize:
+Matrix optimize:
+http://blogs.msdn.com/b/eternalcoding/archive/2014/01/16/the-best-of-the-two-worlds-how-to-use-the-raw-power-of-c-to-improve-performance-of-your-windows-8-8-1-html5-css3-javascript-application.aspx 
+
+
+
+
+
+**** TODO demo-particles(junior)
+
+**** TODO billbords
+
+
+**** TODO memory management
+continue branch "memory"
+
+
+
+**** TODO optimize
+use BufferGeometry(refer to threejs->BufferGeometry)
+
+use cache
+
+
+***** lightmap
+use lightmap (use blende to generate lightmap?) to render static object's light or shadow
+
+
+**** TODO demo-terriain(junior)
+moutain
+grass
+
+
+Texture splatting
+
+[[http://www.linuxgraphics.cn/opengl/terrain_render_overview.html][地形渲染技术杂谈]]
+
+
+**** TODO demo-water(junior)
+
+
+
+**** TODO [#A] demo-camera
+camera can switch these modes:follow the ball, fix on the point,free view
+    add gameObject->tags,layers
+
+orth camera
+
+multi cameras
+
+multi view
+多视口
+
+add frustum class
+
+
+**** TODO [#C] Physically Based Rendering
+
+
+**** TODO [#C] post effects
+Post effects modify the final rendered image and provide an easy way for you to add some visual flare to your
+application. 
+
+refer to:
+http://developer.playcanvas.com/en/user-manual/posteffects/
+
+
+
+**** TODO [#A] Deferred Shading
+
+
+**** TODO [#C] Spherical Environment Mapping
+
+
+**** TODO volume scatter
+
+
+**** TODO [#B] light(senior)
+spot light
+area light
+hemisphere light
+volume light
+emissive light
+
+deferred light
+
+
+类镜面反射（包括水）
+任何复杂的光与物质的相互作用，像次表面散射（subsurface scattering）（比如蜡）
+各向异性材料（比如拉丝金属（brushed metal））
+追求真实感的，基于物理的着色（Physically-based shading）
+环境遮挡（Ambient Occlusion）（凹陷处显得更暗）
+辉映（Color Bleeding）（一块红色的地毯会在白色天花板上映出红色）
+透明
+各种全局光照（Global Illumination）（以上各种技术的总称）
+
+***** TODO Global Illumination
+
+
+**** TODO [#C] more bump map
+
+Parallax mapping 
+displacement map 
+
+
+
+more map:
+alpha map?
+
+
+
+**** TODO [#B] Anti aliasing 抗锯齿
+
+
+
+**** TODO [#B] more effects(refer to Babylon.js)
+refer to http://blogs.msdn.com/b/eternalcoding/archive/2015/06/08/what-s-new-in-babylon-js-v2-1.aspx
+
+
+
+decals:
+Usually used to add details on meshes (bullets hole, local details, etc...), a decal is a mesh produced from a subset of
+a previous one with a small offset in order to appear on top of it. 
+
+refer to http://doc.babylonjs.com/tutorials/17._Using_decals
+
+so shooting game can use this tech to add bullet holes
+
+
+
+
+
+**** TODO [#B] optimize:
+SIMD support
+https://software.intel.com/zh-cn/articles/SIMD-js-introduction
+http://www.oschina.net/translate/introducing-simd-js
+
+use webworker to compute collision
+https://blog.mozilla.org/research/2014/07/22/webgl-in-web-workers-today-and-faster-than-expected/
+
+
+
+lights:
+Now, some engines optimize this, by cutting out lights that are far away, combining lights, or using light maps (very
+popular, but static). But if you want dynamic lights and a lot of them, we need a better solution 
+
+
+
+culling:
+现在的HSR算法基本上可以分为四种：backface culling、frustum culling、portal culling、occlusion culling。它们的作用分别如
+下：backface culling用于剔除mesh背面的triangle，frustum culling用于剔除屏幕之外的物体，portal culling用于剔除不能通过
+portal看到的物体，而occlusion culling用于剔除场景中被自己前面的物体所遮挡的物体。  
+
+refer to http://blog.csdn.net/pizi0475/article/details/12883391
+
+
+
+
+**** TODO demo-terriain(senior)
+tree
+smooth transition between water and land
+
+**** TODO demo-particles(senior)
+
+
+
+
+
+**** TODO dynamic texture(senior)
+***** mirror
+multi mirror
+auto generate mipmap
+planar reflection with stencil buffer
+anti aliasing
+refraction,fresnel
+
+**** TODO shadow(senior)
+***** TODO shadow more
+csm
+showCameraVisible
+
+improve shadow map:
+shadow acne:
+    why "when use pcf of cubemapShadowMap, the bias should increate a lot to make the cube face not show shadow acen" ?
+    normal bias offset?
+    why "multi_directions_points_shadowMap" demo->ground will has black line?
+
+
+optimize:
+point shadowMap glsl(refer to threejs):if face's render object is not in frustum, not render
+
+
+optimize point shadow map:
+The current version of Babylon.js uses WebGL 1.0 so it requires 6 passes to generate a complete cubemap.
+
+To increase rendering output, we plan to use an extension (which is part of WebGL 2.0) named “WEBGL_draw_buffers”. This
+extension will allow us to render all faces of a cubemap in one call improving a lot the overall performance. 
+
+
+
+**** TODO [#C] simulation
+Cloth simulation
+
+**** TODO other
+***** TODO color map(add colors,morphColors demo)
+pass bird animation demo
+
+parse morph colors
+
+add areaWeight in computeVertexNormals
+*** TODO other
+**** TODO relearn webgl
+learn webgl/opengl from the begin to the end to organize the knowledge!
+
+
+** demo
+*** TODO game:car change texture(like three.js)
+//use TexturePacker to convert png to pvr(refer to timespace->build/convert_png2pvrgz.sh)
+
+use dds instead of pvr
+
+
+add ui->control panel
+
+
+use puremvc and typescript to create project
+
+
+multi materials
+
+
+
+
+**** TODO add fly camera
+solve angle shake problem
+
+**** TODO auto view camera
+encapsulate camera.js to engine
+
+**** TODO custom script can use ts file(remove "create" clause)
+
+
+**** TODO tag
+
+add find method
+
+**** TODO layers
+add a demo to show 3 meshes, use tag and layer(camera selective show)
+
+*** TODO picture show
+put jiao's art picture into it!
+multi scene, use door to switch scene
+
+
+*** TODO 3d piano
+
+
+
+*** TODO simple shooting
+ai:
+behavior tree
+hierarchy state machine
+
+some monsters, player use gun to shoot it!
+
+*** TODO pass block game 闯关游戏(run in mobile,pc)
+a people pass the block
+block can move
+player can jump,run,squat
+
+
+
+
+** upgrade plan
+*** DONE v0.1 basic engine(1.5w lines)
+CLOSED: [2015-12-01 Tue 22:00]
+
+*** TODO v0.2-1.0(2.5w lines)
+**** DONE [#A] simple functions
+CLOSED: [2016-01-21 Thu 16:24]
+***** DONE [#A] basic ui
+CLOSED: [2016-01-21 Thu 16:24]
+add some ui component(refer to Wozlla):Button,Scroller...
+
+show fps
+
+show different(multi views)
+
+can set screen size(refer to threejs)
+****** TODO refactor demo
+****** TODO add debug layer
+****** TODO can switch scene(refer to cannon)
+
+
+
+***** DONE [#A] demo-collider system
+CLOSED: [2015-12-16 Wed 09:38]
+many spheres,boxes in room
+
+user interaction(modify GameObject->getTopUnderPoint with collider)
+
+junior collide with each other:
+BoxCollider, sphereCollider ...
+
+
+control ball to move in the room(position):
+    refer to unity->physics->Rigidbody
+
+//study:
+light ray(光线追踪）
+
+***** DONE [#A] scene picking
+CLOSED: [2015-12-21 Mon 20:19]
+
+add method to focus on box, so when operate box, not trigger fly camera key event
+
+
+***** DONE [#B] demo-text
+CLOSED: [2015-12-27 Sun 10:24]
+2d text(labelTTF, textInput, refer to yengine2d,cocos2d)
+3d text(refer to threejs  [[http://mrdoob.github.io/three.js/examples/canvas_geometry_text.html][3d text with threejs ]]  [[http://blog.andrewray.me/creating-a-3d-font-in-three-js/][Creating a 3D Font in Three.js]])
+
+finish keyboard event to handle bind event on game object like textInput
+
+
+hud demo
+
+**** TODO [#B] optimize
+
+performance check
+
+cache
+SIMD support
+
+memory management
+
+
+***** TODO optimize render(batch render,combine mesh...)
+optimize renderer: [[http://docs.unity3d.com/Manual/DrawCallBatching.html][unity->batch draw]], dirty, layer(refer to Wozlla)
+combineMesh?
+add mesh/geometry merge method(refer to threejs->src->core->Geometry)
+
+***** TODO add data collector
+
+***** TODO layers
+add a demo to show 3 meshes, use tag and layer(camera selective show)
+http://docs.unity3d.com/Manual/Layers.html
+http://docs.unity3d.com/Manual/class-TagManager.html
+
+***** cubemap optimize
+• Dynamic Cube Maps don’t have to be full resolution
+• They also don’t need updating every frame
+• Allowing updates to lag behind a frame prevents stalling in some cases
+
+
+***** optimize:
+optimize renderer: [[http://docs.unity3d.com/Manual/DrawCallBatching.html][unity->batch draw]], dirty, layer(refer to Wozlla)
+combineMesh?
+add mesh/geometry merge method(refer to threejs->src->core->Geometry)
+
+***** memory management
+***** optimize Scene->update,renderer by using data locality
+refer to http://gameprogrammingpatterns.com/data-locality.html -> sample code
+
+first, get all need update/renderer components of all gameObject
+second, update/render them
+
+
+
+test the performance improvement by profile
+
+***** more
+gameObject add active flag
+
+
+
+**** TODO [#B] render outside scene
+scene graph
+场景管理中的八叉树算法 [[http://www.zhihu.com/question/25111128][游戏场景管理的八叉树算法是怎样的?]]   https://github.com/BabylonJS/Babylon.js/wiki/Optimizing-performances-with-octrees
+
+terrain(junior)
+
+height map
+
+
+water(junior)
+
+
+LOD
+
+
+
+tree
+grass
+
+
+
+load and show outer scene
+
+
+//load .gltf scene(refer to babylonjs,threejs)
+
+
+use .bin to store model data
+
+
+
+
+**** TODO [#B] render room scene
+bsp
+load and show room scene
+
+**** TODO [#C] simple functions
+1.画各种基本几何体：点、线、面几何体。
+2.model的copy
+
+**** TODO [#A] more simple functions
+***** TODO [#A] demo-particles(junior)
+***** TODO [#A] billbords
+***** TODO [#A] demo-audio
+
+2d sound
+3d sound(unity):distance
+[[http://docs.unity3d.com/Manual/class-AudioSource.html][unity]]
+
+
+
+
+
+
+**** TODO [#A] animation
+***** TODO [#A] skeleton animation
+***** TODO [#A] animation blend
+refer to threejs(webgl_animation_skinning_blending.html)
+
+
+http://www.gamedev.net/page/resources/_/technical/graphics-programming-and-theory/a-blending-animation-controller-for-a-skinned-mesh-r3592
+
+http://images.wikia.com/scratchpad/zh/images/e/ed/Animation_and_Animation_Blending.pdf
+
+http://gamedev.stackexchange.com/questions/22402/animation-blending-basics
+
+
+
+playcanvas:
+http://developer.playcanvas.com/en/tutorials/intermediate/animation-blending/
+
+
+
+
+
+***** TODO [#B] animation control
+use Action to control animation, like YEngine2D?
+
+
+animation state?
+
+unity:
+http://docs.unity3d.com/Manual/AnimatorControllers.html
+
+
+use animation tree to control?
+http://www.cnblogs.com/ixnehc/archive/2010/12/05/1896922.html
+***** TODO refactor
+refactor morph,articulated,skin animation, extract common pattern to Animation.ts
+
+move morph data(e.g. morphTarges ... in ModelGeometry) to MorphAnimation?
+
+move morph data(e.g. morphTarges ... in ModelGeometry) to MorphAnimation?
+split XXXAnimation to XXXAnimationController, XXXAnimationData?
+
+**** TODO [#C] color map(add colors,morphColors demo)
+pass bird animation demo
+
+parse morph colors
+
+pass morse model(refer to threejs)
+
+add areaWeight in computeVertexNormals
+
+
+
+**** TODO [#C] game:car change texture(like three.js)
+
+//use TexturePacker to convert png to pvr(refer to timespace->build/convert_png2pvrgz.sh)
+
+use dds instead of pvr
+
+
+add ui->control panel
+
+
+use puremvc and typescript to create project
+
+
+multi materials
+
+
+
+
+***** TODO auto view camera
+encapsulate camera.js to engine
+
+***** TODO tag
+
+add find method
+
+**** TODO [#C] picture show
+put jiao's art picture into it!
+multi scene, use door to switch scene
+
+
+
+**** TODO refactor
+//remove "pc." from comment which comes from playcanvas
+
+//clean up code from playcanvas(such as math/xxx)
+
+
+
+
+refactor dist:
+extract below files:
+xxx.all.js
+xxx.debug.js
+xxx.node.js
+
+xxx.all.min.js
+
+
+update yeoman generator
+
+
+add send message through components:
+refactor MATERIAL_CHANGE event
+
+
+GameObject add "copy" method to copy model(like md2 model)
+
+
+rename "copy" to "clone"?
+
+
+sample->wd.script name should be upper case
+
+move all attr after construstor
+
+use import to refactor wdCb,wdFrp,rsvp
+
+
+
+***** TODO refactor IScriptBehavior->handler execute order(onEnter exec after init?)
+
+refactor onEnter,init:
+init before onEnter
+init()和onEnter()这俩个方法都是CCNode的方法。其区别如下：
+
+1.其被调用的顺序是先init()，后onEnter()。
+
+2.init()在类的初始化时只会调用一次。
+
+3.onEnter在该类被载入场景的时候被调用，可能会发生多次。
+
+4.CCLayer* cclayer = new MyLayer();
+这种情况下，只会触发onEnter。
+
+5.CCLayer* cclayer = MyLayer::create();
+这样情况下，既会触发init()方法，也会触发onEnter()方法。
+
+
+remove AFTER_INIT, AFTER_INIT_xxx
+
+remove BEFORE_INIT?
+
+
+
+***** refactor:
+JSONBuilder
+Prefabs
+
+
+geometry->compute from vertexColors(refer to threejs)
+//geometry not know material, material.color is the main color
+
+rethink QuadCommand->shader, program
+
+
+study bufferData->dynamic_draw,stream_draw,static_draw
+
+
+GameObject:
+add active mechanism(modify getTopUnderPoint method)
+add "isVisible"
+
+
+
+
+all support chain invoke?
+add "return this" support chain invoke
+
+
+**** TODO solve problem
+***** solve video problem(refer to library)
+
+***** skybox_multiTextureInOneTexture demo has problem: some face texture can't fill the face!
+if use "1.jpg","2.jpg"(which size is 256 * 256), then set sourceRegion within 256m then will be normal!
+
+maybe it's related to the picture's size?(origin demo's picture is 1024*1024 size)
+
+***** TODO solve "light pass through multi objects" problem
+
+
+////** TODO alpha map(Opacity map) ?
+
+
+
+
+
+point light should not pass through the wall!
+
+
+
+
+*** TODO publish and propagate
+add js doc
+
+add head in wd.js,wd.debug.js,wd.d.ts,wd.min.js
+remove bowser head in wd.js!
+
+add document
+
+write 博客园
+
+**** TODO improve codecov
+https://github.com/SitePen/remap-istanbul
+https://www.sitepen.com/blog/2015/09/29/code-coverage-for-typescript-and-other-transpiled-languages/
+https://www.npmjs.com/package/istanbul-coverage-source-map
+
+
+
+**** TODO [#B] modify prev demo and game
+make bomber demo(炸弹人） run in blog files!
+
+optimize ancient war
+**** TODO [#C] build forum(in http://www.html5gamedevs.com/, build a frameworks->dy.js)
+
+
+**** TODO [#C] post english blog about engine in gamedev.net
+
+write blog to gamedev,html5 webgl website to propagate
+
+
+
+*** TODO take work
+**** TODO scale screen
+global screen mode
+
+In order to handle the multiple views of a Windows Store app, I had 2 choices:
+
+1 – Preserve the full screen rendering with its aspect ratio by adding black bars. There is an easy solution based on
+CSS3 Grid I’ve already detailed in this article: Modernizing your HTML5 Canvas games Part 1: hardware scaling & CSS3 
+https://blogs.msdn.microsoft.com/davrous/2012/04/06/modernizing-your-html5-canvas-games-part-1-hardware-scaling-css3/
+
+
+2 – Simply change what the camera is now viewing. For that, you just have to listen to the onresize event and change the
+size of the canvas. The BabylonJS engine will automatically reflect the changes for you. 
+
+In my case, I’ve decided to implement the 2nd solution for this tutorial
+
+
+
+
+
+
+
+
+
+*** TODO v1.1-v2.0 improve engine,optimize, add junior functions(3.5w lines)
+**** TODO [#A] defer render and post effect
+change to defer render architecture
+
+post effect
+hdr
+fog
+**** TODO [#A] advance shadow
+***** TODO problem
+point shadow has one line in the face edge
+
+instance_shadow_multiDirectionLights sample: box shadow break when rotate
+
+***** TODO Massive Number of Shadow-Casting Lights with Layered Rendering
+refer to <<OpenGL Insights>> -> 19 chapter
+use texture array, geometry shader?
+
+
+
+***** TODO improve soft shadow
+
+
+***** TODO instanced shadow map
+refer to instanced shadowmaps.pdf
+Instead of querying all per-object shadow maps for every fragment, we apply the shadow maps in a postprocess one by one,
+and restrict the shadow map queries to the pixels that can be affected by the shadow map. Compared to other per-object
+shadow map techniques, our approach can efficiently handle a large num- ber of shadow maps. It is not necessary to bind
+a large num- ber of textures at once or to pack multiple shadow maps into an atlas. Shadow maps can be reused for
+multiple instances of an object.  
+suited for large outdoor scenes with many static, instanced objects (such as vegetation)
+
+
+***** TODO The scene is split into several objects or groups, each of which gets a shadow map on its own.
+For large scenes, very high resolution is required to obtain rea- sonable shadow quality. Single moving objects require
+re- generation of the entire shadow map. To account for this, multiple shadow maps can be used [Shadow considerations, 2004. download.nvidia.com/developer/presentations/ 2004/6800_Leagues/6800_Leagues_Shadows.pdf]. The scene is
+split into several objects or groups, each of which gets a shadow map on its own. By this, each object can get an
+appropriate shadow map resolution. If some objects in the scene are dynamic, only their shadow maps need to be up-
+dated.  
+
+
+***** TODO vsm
+
+
+
+***** TODO csm
+
+
+***** TODO more
+http://http.download.nvidia.com/developer/presentations/2006/gdc/2006-GDC-Variance-Shadow-Maps.pdf
+
+http://http.download.nvidia.com/developer/presentations/2004/6800_Leagues/6800_Leagues_Shadows.pdf
+
+
+Shadow Distance
+Objects beyond this distance (from the camera) cast no shadows at all, while the shadows from objects approaching this
+distance gradually fade out. 
+
+
+
+**** TODO [#B] optimize
+mesh optimize(mesh merge ...)
+
+[[https://blogs.msdn.microsoft.com/davrous/2013/09/24/using-indexeddb-to-handle-your-3d-webgl-assets-sharing-feedbacks-tips-of-babylon-js/][Using IndexedDB to handle your 3D WebGL assets: sharing feedbacks & tips of Babylon.JS
+]]
+
+Supporting incremental loading to load very big scenee
+
+
+
+
+**** TODO [#C] support more asset format
+***** TODO [#A] create engine asset format(like .dy?), can convert other format(like .3ds .dae(Collada) .fbx .js(threejs)...) to mine format(use gulp)
+****** TODO can export engine asset format to other format
+**** more...
+***** improve texture
+multi map send map arr(so can support <= maxUnit textures)
+modify multi map sample
+
+
+*** TODO v2.1-v3.0 for application
+**** TODO [#B] v2.1 editor
+**** TODO [#A] v2.2 run on mobile(ios 8+, qq浏览器?)
+
+https://blogs.msdn.microsoft.com/eternalcoding/2013/02/20/hand-js-a-polyfill-for-supporting-pointer-events-on-every-browser/
+
+
+
+
+***** performance
+refer to <<OpenGL Insights>> 24 chapter
+
+
+****** tile-base 
+http://www.cnblogs.com/gameknife/p/3515714.html
+
+
+**** TODO [#A] support vr
+*** TODO v3.1-? add senior functions
+**** TODO [#C] physical render
+* blog series
+
+
+《webgl 游戏开发》系列：(middle serial)
+1.2-3 small 3d game(first view rpg,rts,fps)
+2.use 3d engine, improve it.
+
+
+//《webgl 构建灵活的引擎》系列：(senior serial)
+1.rebuild 3d engine, make its architect like unity(gameObject)
+2.2-3 example
+
+asset store?
+
+

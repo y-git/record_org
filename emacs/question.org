@@ -1,0 +1,7 @@
+[[http://emacswiki.org/emacs/OccurMode]]
+
+
+* why can't open auto-complete-mode after open .ts file??(set global-auto-complete-mode in private/tss/package.el not work, not work in .spacemacs either) 
+
+
+

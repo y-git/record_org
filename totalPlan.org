@@ -1,0 +1,9 @@
+* DONE [#A] finish event system
+CLOSED: [2015-12-01 Tue 17:21]
+* TODO [#A] write event system design blog                             :blog:
+* TODO [#B] finish build in develop and build in game               :orgMode:
+** TODO finish build blog(2 articles) 
+* TODO [#C] finish front end (code navagition)                        :emacs:
+** TODO finish the blog
+* TODO read actionscript3,cocos2d,unity3d manual,know its design
+* TODO finish webgl blogs

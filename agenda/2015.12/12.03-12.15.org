@@ -1,0 +1,268 @@
+* TODO 今日计划
+** TODO [#A] demo-collider system
+many spheres,boxes in room
+
+user interaction(modify GameObject->getTopUnderPoint with collider)
+
+junior collide with each other:
+BoxCollider, sphereCollider ...
+
+
+control ball to move in the room(position):
+    refer to unity->physics->Rigidbody
+
+//study:
+light ray(光线追踪）
+
+
+* 完成事项
+** DONE box collider experiment
+CLOSED: [2015-12-04 Fri 19:32]
+
+** DONE optimize and refactor
+CLOSED: [2015-12-05 Sat 06:50]
+//optimize
+
+
+refactor:
+//use _loopBody instead of _run
+
+refactor gameObject->_script to _scripts
+
+refactor:
+////add hook enum(init,onStartLoop...)
+
+
+** DONE show the bounding region for debug
+CLOSED: [2015-12-05 Sat 11:05]
+
+
+add type Table
+
+fix sample half box
+
+pass unit test
+
+
+
+refactor:
+Collider add type
+
+
+refactor Config
+
+** DONE fix bugs
+CLOSED: [2015-12-05 Sat 15:13]
+
+
+
+** DONE sphere collider experiment
+CLOSED: [2015-12-06 Sun 15:34]
+
+
+** DONE refactor
+CLOSED: [2015-12-07 Mon 08:41]
+type to enum
+
+////fix scale precision problem(5 digit)
+
+////rename sample collision_box to collision_aabb
+
+
+** DONE pass unit test
+CLOSED: [2015-12-07 Mon 08:41]
+
+
+** DONE add point collide with box/sphere method
+CLOSED: [2015-12-07 Mon 09:05]
+
+
+** DONE collision with camera
+CLOSED: [2015-12-07 Mon 09:11]
+
+
+** TODO physics
+*** DONE add basic sample
+CLOSED: [2015-12-11 Fri 19:54]
+//integration cannon.js
+
+
+////if not add rigid body but add collider, add static rigid body default
+
+
+
+
+//collision
+
+//event
+
+//type
+
+
+single test k-s, k-d, s-d collison event
+sample test event
+
+   refactor
+
+
+
+
+//friction
+//bounce
+
+//damping
+
+
+complete physicsSpec
+//edit friction,restitution,damping...
+
+
+
+
+//update from position,rotation(scale?)
+dispose
+
+
+
+*** DONE add impulse/force sample
+CLOSED: [2015-12-11 Fri 21:10]
+
+
+*** DONE add compound sample
+CLOSED: [2015-12-12 Sat 22:32]
+
+
+
+//update debug mesh
+
+//remove sequenceNumber and sort in GameObject
+
+
+*** DONE add constrain sample
+CLOSED: [2015-12-14 Mon 20:54]
+
+
+
+*** DONE refactor
+CLOSED: [2015-12-14 Mon 21:56]
+////transform event
+//refactor CannonAdapter
+
+//rename GameObjectData,MaterialData to Cannonxxx
+
+//refactor to findGameObjectDataByxxx,findMaterialByxxx
+
+
+//refactor!
+
+
+////extract CannonConstraint?
+
+
+//rigidbody->dispose
+
+
+////rename constraint to joint
+
+
+////remove velocity/angularVelocity of RigidBody?
+
+////all forEach specify context?
+
+
+** DONE optimize collider
+CLOSED: [2015-12-15 Tue 18:02]
+//aabb when rotate, not create buffer, just reset its data
+when stop rotate, still create buffer!!!??
+
+
+//not update collider if has rigid body
+
+
+** DONE improve sample
+CLOSED: [2015-12-15 Tue 23:16]
+
+//change material
+
+
+//add aabb,sphere
+
+add shadow
+
+//basic camera control
+
+
+
+//** TODO add script to control collision
+add collision event
+http://developer.playcanvas.com/en/tutorials/intermediate/collision-and-triggers/
+
+
+////** TODO refactor shadow
+not use list, just use cast and receive
+
+** DONE publish v0.2.0
+CLOSED: [2015-12-16 Wed 09:14]
+
+////bower not ignore "src/", so it can debug to .ts file
+
+
+
+* TODO 明日计划
+** TODO add more collider
+Cylinder
+Mesh
+
+
+** TODO add obb inserction for box collider
+
+** TODO optimize
+use worker for collision(refer to babylon and cannon.js?)
+
+** TODO collider with morph animation?
+need run test and unit test
+
+
+
+** TODO senior physics
+*** TODO add cloth sample
+add cloth component
+
+*** TODO add vehicle sample
+add wheel component
+
+
+
+*** TODO more
+support set contact material equation param
+
+
+support set:
+Linear Factor
+	Multiplier for a body's linear movement in each world axis. If set to 0 for any axis no movement will occur in this
+axis - useful for the creation of 2D games or 1D/2D movement.  
+Angular Factor
+	Multiplier for a body's angular (rotational) movement about each world axis. If set to 0 for any axis,
+no rotation will occur around this axis.
+
+
+support mesh(convex polyhedron) collision:
+refer to cannon->demos/convex.html, babylon->cannonJSPlugin->_createConvexPolyhedron
+http://docs.unity3d.com/Manual/class-MeshCollider.html
+http://www.gamedev.net/topic/646717-fast-3d-mesh-collision-detection/
+
+
+
+sleep
+
+spring
+
+add physics material
+
+
+*** TODO question
+**** how can i compute the aabb of a gameObject which contains children(like .obj model)?
+use dynamic aabb tree?
+
+
+* TODO 未来7日计划

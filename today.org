@@ -1,0 +1,2343 @@
+* TODO 今日计划
+**** TODO [#B] render outside scene
+scene graph
+场景管理中的八叉树算法 [[http://www.zhihu.com/question/25111128][游戏场景管理的八叉树算法是怎样的?]]   https://github.com/BabylonJS/Babylon.js/wiki/Optimizing-performances-with-octrees
+
+Collada loader
+
+
+
+
+terrain(junior)
+
+height map
+
+
+water(junior)
+
+
+LOD
+
+
+
+tree
+grass
+
+
+
+load and show outer scene
+
+
+//load .gltf scene(refer to babylonjs,threejs)
+
+
+use .bin to store model data
+
+
+
+
+**** TODO [#B] render room scene
+bsp
+load and show room scene
+
+
+
+
+
+* 完成事项
+** DONE space partitioning(v0.5.0)
+CLOSED: [2016-01-29 Fri 16:10]
+场景管理中的八叉树算法 [[http://www.zhihu.com/question/25111128][游戏场景管理的八叉树算法是怎样的?]]   https://github.com/BabylonJS/Babylon.js/wiki/Optimizing-performances-with-octrees
+
+
+*** DONE read scene manager articles
+CLOSED: [2016-01-25 Mon 19:23]
+
+*** TODO Octree
+**** DONE build
+CLOSED: [2016-01-27 Wed 17:49]
+
+optimize
+
+
+fix obj bug:
+main model should has vertices data, children model->should not contain vertices data, they just visit the data from
+their parent.
+(so that  main model collider can work)
+
+        //todo test: parent->child, both has vertices;only parent has vertices
+        private _getChildren(){
+            //after fix bug, finish this
+            //return the ones which isContainer or has vertices themself
+        }
+
+
+
+
+not update after build
+
+
+pass unit test
+
+
+**** DONE frustum culling
+CLOSED: [2016-01-28 Thu 10:49]
+////optimize
+
+////visual
+
+
+pass unit test
+
+
+**** DONE ray intersection test
+CLOSED: [2016-01-28 Thu 17:45]
+
+
+
+**** DONE collision test
+CLOSED: [2016-01-29 Fri 11:13]
+
+
+//optimize:
+Only consider pairs of shapes whose bounds overlap.
+Only consider shapes that are moving toward each other
+not judge twice
+
+
+//fix Octree bug: not judge parent
+
+
+
+**** DONE refactor
+CLOSED: [2016-01-29 Fri 11:39]
+
+
+**** DONE add debug Panel(first version)
+CLOSED: [2016-01-29 Fri 15:22]
+show statistics info:
+add DebugStatistics:
+count
+
+
+
+
+
+**** DONE publish v0.5.0
+CLOSED: [2016-01-29 Fri 16:10]
+
+
+
+** DONE support change space partition
+CLOSED: [2016-01-30 Sat 11:03]
+extract SpacePartition class
+
+
+
+
+
+** DONE gltf loader
+CLOSED: [2016-02-07 Sun 21:36]
+*** note
+GLSL shaders were automatically created from the COLLADA common profile and,
+**** fallbacks for techniques
+https://github.com/KhronosGroup/glTF/issues/84
+
+
+Here is my view: a valid glTF material could have any of the following.
+
+No shader code supplied - just technique info and param values: requires application to have an implementation of the technique;
+Shader code is supplied with the content, along with technique info; the application can use the supplied shader code or its own implementation if it has one;
+Shader only is supplied, no common technique information; the application must use the shader code supplied.
+Converters and exporters can provide options for what to output.
+
+
+We want the flexibility to use shaders in the glTF or to generate them on the client. This depends on the needs of the
+client. 
+
+
+
+Yes, technique is optional.
+
+
+
+
+
+
+
+@pjcozzi So here's my proposal for how to take both common materials and lighting out of the base spec and move them into an extension. We'll call the putative extension Basic Materials and give it the name "KHR_materials_basic"
+
+It's pretty easy, actually. 3 changes:
+
+Move the list of lights to the top-level extensions property
+Each material that uses a common technique has an extensions property with the technique name and values
+Nodes also have an extensions property, where each light is placed (lights need to be part of the scene graph to be transformed etc)
+I believe this is all we need. Please check out the example here.
+
+    "extensions": {
+
+        "KHR_materials_basic" : {
+
+            "lights": {
+                "light1": {
+                    "directional": {
+                        "color": [
+                            1,
+                            1,
+                            1
+                        ]
+                    },
+                    "type": "directional"
+                }
+            },
+
+        }
+    },
+
+    "materials": {
+            "lambert1": {
+                "extensions": {
+                    "KHR_materials_basic" : {
+                        // one of CONSTANT, BLINN, PHONG, LAMBERT
+                        "technique" : "LAMBERT",
+                        "values": {
+                            "diffuse": [0.5,0.5,0.5,1]
+                        }
+                    }
+                }
+            }
+        },
+
+    "nodes": {
+        "node1" : {
+            "children" : [
+            ],
+            "extensions": {
+                "KHR_materials_basic" : {
+                    "light" : "light1",
+                }
+            }            
+        }
+    }
+
+
+
+
+
+@pjcozzi Now for the more brief version of techniques. Would love your reaction (and anyone else following this issue!)
+
+Highlights:
+
+This removes pass and passes. As you and I discussed, since we have no multi-pass in V1 let's not make an attempt at forward compatibility. We'll get it wrong the first time out, so why bother?
+This takes out instanceProgram. The net result is collapsed by three levels: no passes.defaultPass.instanceProgram. Now attributes, program and uniforms are all at the same level as parameters.
+Also, without passes, states is at the top level of the technique.
+Here is an example:
+
+    "materials": {
+            "material1": {
+                "technique" : "technique1",
+                "values": {
+                    "diffuse": [0.7,0.7,0.7,1],
+                    "shininess": 38.4,
+                    "specular": [0.2,0.2,0.2,1]
+                }
+            }
+        },
+
+    "techniques": {
+        "technique1": {
+
+            "parameters": {
+                // Parameters details omitted for brevity; they haven't changed.
+            },
+            "attributes": {
+                "a_normal": "normal",
+                "a_position": "position",
+                "a_texcoord0": "texcoord0"
+            },
+            "program": "program_0",
+            "uniforms": {
+                "u_ambient": "ambient",
+                "u_diffuse": "diffuse",
+                "u_emission": "emission",
+                "u_light0Color": "light0Color",
+                "u_light0Transform": "light0Transform",
+                "u_modelViewMatrix": "modelViewMatrix",
+                "u_normalMatrix": "normalMatrix",
+                "u_projectionMatrix": "projectionMatrix",
+                "u_shininess": "shininess",
+                "u_specular": "specular"
+            },
+            "states": {
+                "enable": [
+                    2884,
+                    2929
+                ]
+            }
+        }
+    }
+
+
+
+
+https://github.com/KhronosGroup/glTF/tree/master/extensions/Khronos/KHR_materials_common
+
+
+
+
+
+
+
+//*** TODO convert to scene graph wd file
+
+rename LightMaterial to LightPhongMaterial
+
+
+
+
+
+
+
+*** DONE parse gltf
+CLOSED: [2016-02-07 Sun 21:35]
+//write whole framework
+
+load .gltf->get asset->
+load scene->create node->create material->load shader->create geometry->load buffer-> //load animation 
+
+
+
+//write draft
+
+
+//implement material
+
+
+
+//implement Light
+
+
+
+
+
+
+//implement camera
+
+
+
+
+
+
+
+
+//implement transform
+
+
+
+
+
+
+//loader, builder test
+
+builder:
+//(distinct blinn, phong)
+
+test it!
+
+//if no distance, range should be null(also judge in glsl)
+
+
+//support emission
+gltf:
+handle emission
+
+
+test it!!
+
+
+
+
+//support geometry->drawMode
+
+
+test it!!
+
+
+
+run test(with sample model)
+
+
+
+
+////support transparency, functions
+////test transparency model
+
+
+
+//support multi cameras
+
+
+
+
+//finish loader unit test!
+
+
+
+
+
+
+
+
+
+refactor
+//refactor GLTFParser
+//refactor LightMaterial->specular to specularColor
+////rename to PerFragmentLightMaterial
+//rename CustomMaterial to ShaderMaterial
+
+////rename WD Result->models to nodes?
+change wd/gltf file type to interface
+rename file type, remove "File"
+rename parse data->uvs to texcoords
+
+
+
+//test loader:
+test load image
+test load buffer
+
+
+
+
+
+//handle material, shader
+
+
+
+
+not handle skin,skeleton
+
+
+
+////if no technique, defaultly use LightPhongMaterial
+
+
+
+
+
+*** DONE support khr_materials_common
+CLOSED: [2016-02-07 Sun 16:57]
+gltf:
+if no technique in "materials" field, then look up this extension:
+support light
+support light model
+
+
+
+
+
+
+
+*** DONE show some inside static scene from gltf data
+CLOSED: [2016-02-07 Sun 21:35]
+
+** DONE implement Articulated Animation(v0.5.1)
+CLOSED: [2016-02-14 Sun 19:55]
+*** DONE implement Articulated Animation
+CLOSED: [2016-02-13 Sat 15:16]
+
+
+*** DONE gltf
+CLOSED: [2016-02-14 Sun 11:10]
+gltf:
+handle animation
+
+
+texture
+no anim
+
+
+*** DONE add animation control
+CLOSED: [2016-02-14 Sun 15:35]
+
+*** DONE refactor
+CLOSED: [2016-02-14 Sun 18:05]
+//remove MorphAnimation->currentTime
+
+
+//Geometry->morphTargets ->type not use DYFileParseMorphTargetsData, create new one in MorphAnimation
+
+
+
+//enum class add "E" prefix
+
+
+
+*** DONE publish v0.5.1
+CLOSED: [2016-02-14 Sun 19:55]
+
+
+** DONE revisit <<OpenGL 超级宝典>>
+CLOSED: [2016-02-15 Mon 13:53]
+
+
+** DONE optimize and show vc.gltf scene(v0.5.2)
+CLOSED: [2016-02-22 Mon 22:07]
+*** DONE show vc.gltf scene
+CLOSED: [2016-02-17 Wed 19:24]
+//transform error
+
+//animation error
+
+
+//camera error
+
+*** TODO optimize
+
+//optimize EntityObject
+
+refactor EntityObject
+
+
+//optimize RectTransform
+
+
+
+
+
+
+**** TODO benchmark test2: 10 man
+
+
+
+*** TODO improve
+remove camera box
+
+
+
+
+** DONE LOD(junior)(v0.5.3)
+CLOSED: [2016-02-25 Thu 18:14]
+LOD component
+
+switch:discrete
+selection:range-base
+
+
+
+//pass test
+
+
+
+//pass optimize
+
+
+
+
+
+
+//add isActive
+null
+
+
+
+//add octree_lod sample
+
+
+
+refactor:
+//change on to fromEvent
+
+//change SkyBox to SkyBox component
+
+////Material add "copy" method
+
+
+
+//pass all run tests
+
+
+
+
+** DONE terrain(junior)(v0.5.4)
+CLOSED: [2016-03-08 Tue 10:55]
+*** DONE height map
+CLOSED: [2016-02-28 Sun 20:13]
+**** DONE use heightmap
+CLOSED: [2016-02-28 Sun 11:09]
+refer to babylonjs
+
+
+
+
+
+**** DONE texture
+CLOSED: [2016-02-28 Sun 19:24]
+
+single texture
+
+
+
+
+//detail texture
+
+
+**** DONE light
+CLOSED: [2016-02-28 Sun 19:24]
+
+compute normals
+
+
+
+
+
+**** DONE refactor
+CLOSED: [2016-02-28 Sun 20:13]
+not toTexture() when set heightMap!
+
+
+
+
+**** DONE add unit test
+CLOSED: [2016-02-28 Sun 20:13]
+
+
+*** DONE support lightMap
+CLOSED: [2016-02-28 Sun 21:37]
+add lightMap sample
+
+
+fix bug:
+
+
+multi-texture sourceRegion,repeatRegion
+
+
+
+*** DONE procedural texture genereate(grass, dirt)
+CLOSED: [2016-03-08 Tue 10:55]
+**** TODO marble
+
+
+
+//refactor
+rename QuadCommand to RenderCommand
+
+
+
+
+
+
+
+
+**** TODO custom procedural texture
+
+
+**** TODO modify custom shader
+
+//refactor
+//modify ShaderMaterial:no shaderLib
+//modify custom_shader: directly set "vsSource", "fsSource"
+//support sampler2D
+//support semantic POSITION,TEXCOORD...
+
+
+
+//ShaderMaterial add "read" method
+
+
+//add unit test
+
+
+
+////read config file id
+
+
+
+
+//refactor
+//change Shader->public to private(e.g. judgeXXX)
+
+//refactor folder structure
+
+//extract EngineShader,CustomShader
+
+//add CommonProceduralShaderLib
+
+//support more semantic
+
+
+
+
+
+
+//pass all samples
+
+
+
+
+
+**** TODO animate procedural texture(fire)
+
+
+//custom procedural add "refreshRatio" and sample
+
+
+
+//add unit test
+
+
+////refactor:
+////rename CustomXXXUtils to ShaderLibUtils
+
+
+////antialias
+
+
+
+
+
+
+**** TODO procedural texture for terrain
+//add TerrainMaterial?
+
+////ShaderMaterial + proceduralTexture
+
+
+
+pass:
+//run
+
+//procedural texture
+
+
+
+//only send a_texCoord once(add integration test, ensure, extract new shader lib, TerrainShaderLib judge and add it)
+
+
+
+
+
+
+
+//complete terrainMaterialSpec
+
+
+
+
+
+
+//read alpha data in light_fragment.glsl
+
+
+
+
+
+
+
+//MapManager add "only bind once" test case
+
+//Program->sendUniformXXX, MapManager->sendData:not get uniform pos
+
+
+optimize:
+////if MapManager not texture dirty, not bind/update/send?
+
+
+
+
+
+
+
+
+
+
+refactor:
+
+////extract ArrayMapController
+
+
+
+
+
+**** TODO add more procedural textures:
+
+grass
+
+road
+
+wood
+
+//starField
+
+cloud
+
+brick
+
+
+
+
+
+////improve texture_layer sample
+
+
+
+optimize:
+Procedural Materials support a form of caching whereby the material is only updated if its parameters have changed since
+it was last generated. Further to this, some materials may have many properties that could theoretically be changed and
+yet only a few will ever need to change at runtime. In such cases, you can inform Unity about the variables that will
+not change to help it cache as much data as possible from the previous generation of the material. This will often
+improve performance significantly. 
+
+
+
+
+
+
+
+////** TODO projective light map
+
+
+
+
+** DONE water(junior)(v0.5.5)
+CLOSED: [2016-03-12 Sat 21:00]
+*** TODO basic water
+https://blogs.msdn.microsoft.com/eternalcoding/2013/08/06/babylon-js-creating-a-convincing-world-for-your-game-with-custom-shaders-height-maps-and-skyboxes/
+
+
+
+////search bump water texture matrix 
+////mine ?
+
+
+
+
+//mirrorTexture should support LightMaterial
+
+
+
+//rename mirrorMap to reflectionMap
+
+
+
+//disturb
+
+//bumpMap
+
+//water without refraction
+
+
+
+
+
+
+//refraction map
+
+//water add refraction
+
+
+//fresnel
+
+
+//add level
+
+
+
+
+////reflection map be BasicTexture
+
+////refraction map be BasicTexture
+
+
+
+
+add unit test
+
+
+refactor
+
+
+
+//extract MirrorMaterial
+LightMaterial,BasicMaterial shouldn't has reflection/refractionMap
+
+
+
+//extract StandardLightMaterial base class
+
+
+////extract EnvMapMaterial?
+//rename glsl
+
+
+
+////add textureMaterix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////support terrain normalMap
+
+
+
+
+////add lib->procedural unit test
+
+
+
+
+** TODO batch(v0.5.6)
+*** DONE instance tech
+CLOSED: [2016-04-22 Fri 18:00]
+//instance modelMatrix
+
+
+//make extension support
+
+
+//pass children
+
+
+//pass octree
+
+
+//add integration unit test
+
+//refactor unit test
+
+
+
+//refactor instance
+add unit test
+QuadCommand
+
+
+//extract InstanceBuffer, modify BufferContainer?(add cache)
+
+
+
+
+//extract InstanceController component
+
+//fix addToObject bug
+
+
+
+//add detail unit test
+
+//refactor:
+refactor instance detail
+add check
+
+
+
+
+//extract InstanceDrawer from QuadCommand
+
+
+
+//QuadCommand add "dispose" method
+
+
+////rename OctreeNode to NodeOctree(and all name)
+//rename LODController to LOD
+
+//move ProceduralTexture to lib/procedural_lib/
+
+
+
+
+//pass action
+
+
+//pass lod
+
+//isVisible bug
+
+////share level geo
+
+
+//lod,octree: not support
+
+
+
+
+////add ICloneable:className:string; clone():any;
+////add className(?get name directly?), add clone in base class
+
+
+
+//pass light
+
+
+//add and pass unit test(instance_light)
+
+refactor
+//rename shader lib
+
+
+
+
+(test support,not support)
+
+
+
+//pass envMap(basic,light)
+
+
+////pass custom shader
+
+
+////pass mirror
+
+//solve instance_octree rotate problem
+
+
+
+
+pass shadow(two pass shader lib?)
+- direction
+  
+
+
+
+//material create and add build shadow shader once
+
+switch to build shadow shader when build shadow map
+
+move MapManager to Shader
+
+add RenderPass class?
+
+
+
+//pass children
+getRenderList, light->shadowList
+
+pass compound
+
+
+
+
+
+
+
+
+//refactor
+shader should only know shaderData, not know material?
+add BuildShadowMapShader:should only bind build map 
+
+extract XXXMapController
+
+
+
+////optimize:send shadowMap->array map
+
+
+add,pass unit test
+shadowmap
+material
+shader
+
+
+//test multi direction lights
+////mulit direction lights render the one shadowMap
+
+
+
+//optimize:
+make object know light, not set/clear data
+
+
+
+
+
+
+//- Shadow component:
+cast/receive shadow
+
+refer to http://docs.unity3d.com/Manual/ShadowOverview.html
+
+
+
+//optimize: all lights' render list should be the same(all the objects that has Shadow component),
+so operate the logic in GameScene->ShadowManager logic once
+
+
+
+
+
+//pass shadow+octree+instance
+
+////refactor:instance share Shadow
+
+
+
+
+//fix:addChild,removeChild,dispose
+
+////SourceInstance->init check: children shouldn't has SourceInstance. not has ObjectInstance yet?
+
+
+
+////add @virtualEmpty
+
+
+
+//split shadow map to layer(direction)
+create correspond shaders in shadowmap render target renderer
+add shadow data to shader? remain in material?
+
+
+
+//solve octree bug
+
+
+
+//multi lights
+
+
+
+
+
+
+
+//bind shadowmap here
+if->cast
+//test if first level cast and children not cast, still build children(children no cast not work)
+
+
+
+
+//pass all instance,shadow unit tests
+
+
+
+
+
+
+//show model direction light shadow(.obj)
+
+
+
+
+
+//rename effect to state
+
+
+
+optimize:
+////make multi lights in one shadow map
+////only pass vertices when build shadow map
+//关闭深度读写 when build shadow map
+
+
+
+//add unit test
+//pass shader
+//pass material
+pass renderer
+
+
+//pass all unit test
+
+
+
+//refactor:
+//refactor: add InstanceUtils:not support
+////sperate MapManager->bind and update
+refactor shadow related classes
+
+//refactor check func
+
+clear code
+
+//pass shadow_direXXX samples
+
+
+
+
+
+
+
+
+
+//- point shadow
+
+
+fix bugs:
+//layer
+//light_fresnel
+////texture
+
+
+//one shader
+
+//extract ShaderManager
+
+//move EShaderKeyMap from material/ to shader/
+
+
+
+//rename ArrayMap to MapArray
+
+
+////List,Hash add "dispose" method?
+
+
+
+//pass all unit tests
+
+
+
+//clear code
+
+
+
+
+//pass shadow_point_xxx samples
+
+
+
+
+//pass all demos,samples
+
+
+
+
+
+
+
+
+
+//runtime add/remove object-> shadow refresh
+
+
+////test MapManager
+
+
+
+//support change layer after init in added object
+
+//support change layer after init
+
+
+//pass unit test
+
+
+//extract RenderTargetRendererManager scene component
+
+//CollisionDetector should be scene component
+
+
+
+//refactor:rename ArrayMapData to MapArrayData
+////rename CommonShader to BasicShader
+
+
+
+////Hash,Collection add "removeChildren" method
+
+
+
+//clear code
+
+//pass all unit test
+
+
+
+
+
+//support change cast/receive after init in added object
+
+
+//add open/close shadow config
+
+
+
+////children add Shadow to specify not receive while its parent receive(means that other children receive)
+
+
+
+//support change layer after init
+//support change layer after init in new added object
+////support change light->castShadow?
+
+
+
+
+
+////runtime add/remove light
+
+
+//runtime add/remove object-> mirror
+
+//engine logic
+when dispose, it should remove from the renderList
+
+//runtime add/remove object-> dynamic envMap
+
+
+
+//dynamic, water
+
+
+//fix light_refraction bug->light reverse
+
+
+
+
+//show model direction light shadow(.md2)
+
+
+//show gltf
+
+
+//show .obj,.md2,.gltf together
+
+
+
+
+//use instance to show butterfly(obj),truck(gltf),procedural texture
+
+
+//pass animation(morph)
+
+//pass animation(articulated)
+
+
+
+
+refactor:
+////rename instance sample to xxx_model_xxx
+
+
+
+
+
+//pass script
+instance not has script(control through source script)
+
+
+
+
+////pass reflection,refraction(water)
+
+
+
+...
+
+
+
+
+
+//pass all unit test
+
+
+
+
+
+
+
+
+//component except geometry add clone method
+
+
+//geo add clone
+//material add clone
+
+//basic texture add clone
+//procedural texture add clone
+
+
+
+//add texture to test
+
+
+
+//refactor:move CloneHelper to utils/CloneUtils
+
+
+
+////Texture,RenderTargetTexture should define default attr(BasicTexture not)
+
+
+//EntityObject add "clone" method:
+//use "clone" method show butterfly(obj),truck(gltf),procedural texture
+
+
+
+//UIObject add "clone" method
+//UI component add "clone" method(e.g. RectTransform...)
+
+
+
+//refactor:move "clone" method to base class
+
+
+
+
+
+
+
+
+//all component add copy method:
+//refactor all copy method(include event, asset, action):
+//add "cloneable" decorator
+//use "deepClone" method
+
+
+
+//add clone GameObject/UIObject samples
+
+
+//refactor:
+component(except Component) remove "clone" method 
+
+
+
+
+
+
+//check collision with instance
+
+//check physics with instance
+
+
+//check picking with instance
+
+
+
+
+////test clone physics obj
+
+////test clone collider obj
+
+
+
+
+
+
+
+
+//check dynamic add/remove instance
+//test with shadow
+
+
+
+
+
+
+
+////test GPU
+
+
+
+
+
+
+
+
+
+
+
+
+refactor:
+//rename "copy" to "clone"
+
+//add detail unit test
+
+
+//instance should be dependent?
+//change instance's transform shouldn't affect other instance
+
+
+
+refactor:
+//ActionManager,UIManager to be component/manager/
+////add @abstractAttribute
+
+
+
+//EntityObject add "clone" method
+//geometry,material add "clone" method
+
+
+
+
+//check shadow,lod,octree,script,event with instance
+
+
+
+
+
+refactor:
+//refact EntityObject, extract EntityObjectFinder, ComponentFinder...
+
+//move UIManager,ActionManager to core/EntityObject/manager/
+
+//move scene component to core/EntityObject/scene/manager/
+
+//rename EntityObject/ to entityObject/
+
+
+////dispose all manager
+
+
+
+//move city sample to demo/
+
+
+
+
+
+
+
+refactor instance samples:
+//refactor sample title
+
+
+
+
+
+
+
+*** TODO optimize:batch draw calls
+read <<OpenGL insights>>
+
+
+
+refer to bjs->sceneOptimizer.ts
+
+http://www.zhihu.com/question/36992191?from=profile_question_card
+
+https://www.nvidia.com/docs/IO/8228/BatchBatchBatch.pdf
+
+http://stackoverflow.com/questions/7505018/repeated-state-changes-in-opengl
+
+https://www.zhihu.com/question/27933010/answer/38750894
+
+http://stackoverflow.com/questions/4853856/why-are-draw-calls-expensive
+
+
+**** TODO update profiling tool
+refer to <<OpenGL Insights>> 36 chapter
+
+Intel Graphics Performance Analyzers (GPA):(can use only in windows?)
+http://www.intel.com/software/gpa
+
+WebGL Inspector shows the WebGL side, and Frame Analyzer shows the post-translation DirectX equivalent 
+
+start Intel Graphics Performance Analyzers:
+Fortunately, starting Chrome with a --no-sandbox flag allows GPA to at- tach to the correct rendering process and
+trigger frame captures.  
+
+
+**** TODO render queue sort
+http://www.cnblogs.com/clayman/archive/2010/04/07/1705901.html#3151054
+
+sort by material
+
+
+**** TODO merge mesh
+
+http://www.html5gamedevs.com/topic/13427-batching-calls/
+
+http://www.html5gamedevs.com/topic/12504-performancedraw-calls/
+
+
+
+batch the objects with the same material(and the same shader lib?)(not change shader/program, use the same one program?)
+
+
+clone
+
+merge mesh
+http://doc.babylonjs.com/tutorials/How_to_Merge_Meshes
+
+
+
+You can use multiple shaders, but to switch between them can be quite costly so the recommended practise is to draw
+every object of a shader, then switch to the next shader and draw all the objects using that one and so on. 
+
+
+
+Step 4: optimization with cloning
+Currently, in our loop, we’re creating the very same object up to 500 times. A better approach is to create the geometry
+once and then clone it. It’s better for the memory consumption and for the performance. The CPU will send a unique
+geometry to the GPU. GPU will then clone this geometry as needed without asking more information from the CPU. It could
+be an important point especially on mobile devices. It could also have an impact on the rendering performance. In my
+case, my base geometry (a cube) is far too simple to have an immediate performance boost just thanks to cloning. But
+this doesn’t mean you shouldn’t do it every time you will duplicate the very same mesh. 
+
+
+More interestingly, during a game, it’s also much faster to instantiate a clone (of an enemy for instance) rather than
+creating it again from scratch. If you’re spawning a new enemy during your game by creating it without the cloning
+mechanism, you’ll probably have some fps drops. In conclusion, this is really a best practice to use cloning if you need
+to duplicate several times the very same mesh.  
+
+Here is the code for that:
+
+var soloCube = BABYLON.Mesh.CreateBox("mainCube", BLOCK_SIZE, scene);
+soloCube.subMeshes = [];
+soloCube.subMeshes.push(new BABYLON.SubMesh(0, 0, 4, 0, 6, soloCube));
+soloCube.subMeshes.push(new BABYLON.SubMesh(1, 4, 20, 6, 30, soloCube));
+soloCube.rotationQuaternion = BABYLON.Quaternion.RotationYawPitchRoll(0, -Math.PI / 2, 0);
+soloCube.material = cubeMultiMat;
+soloCube.checkCollisions = true;
+soloCube.setEnabled(false);
+
+var cube;
+
+for (var row = 0; row < mCount; row++) {
+    for (var col = 0; col < mCount; col++) {
+        if (qrcode._oQRCode.isDark(row, col)) {
+            cube = soloCube.clone("ClonedCube" + row + col);
+            cube.position = new BABYLON.Vector3(BLOCK_SIZE / 2 + (row - (mCount / 2)) * BLOCK_SIZE,
+                                                BLOCK_SIZE / 2,
+                                                BLOCK_SIZE / 2 + (col - (mCount / 2)) * BLOCK_SIZE);
+        }
+    }
+}
+Step 5: performance optimization by merging meshes
+Maybe you’ll notice than even if we don’t have a lot of triangles currently being displayed, the performance are not stellar. This is because we have a lot of small objects and thus small operations associated to them. We’re then spending too much time between the CPU and the GPU. The CPU is doing a lot of roundtrips with the GPU to send the orders for the 500+ potential cubes to be displayed. It’s much more efficient to send a big mesh from the CPU to the GPU and then ask for specific operations on this big mesh (rotation, scaling, lights, etc.).
+
+The idea is then to merge all the generated cubes into a big mesh. It will really enhance the global rendering performance.
+
+Let’s launch the F12 UI Responsiveness tool of IE11 to check the current results before merging meshes:
+
+image
+
+The average fps is around 30 fps. And the CPU usage reaches 100% which tends to prove that the CPU is doing more work than expected.
+
+Insert the merging function into your code by copy/pasting it from our wiki: How to merge meshes.
+
+And now use this code to generate the optimized maze:
+
+var topCube = BABYLON.Mesh.CreatePlane("ground", BLOCK_SIZE, scene, false);
+topCube.material = cubeTopMaterial;
+topCube.rotation.x = Math.PI / 2;
+topCube.setEnabled(false);
+
+var cube, top;
+var cubesCollection = [];
+var cubesTopCollection = [];
+
+for (var row = 0; row < mCount; row++) {
+    for (var col = 0; col < mCount; col++) {
+        if (qrcode._oQRCode.isDark(row, col)) {
+            cube = soloCube.clone("ClonedCube" + row + col);
+            cube.position = new BABYLON.Vector3(BLOCK_SIZE / 2 + (row - (mCount / 2)) * BLOCK_SIZE,
+                                                BLOCK_SIZE / 2,
+                                                BLOCK_SIZE / 2 + (col - (mCount / 2)) * BLOCK_SIZE);
+
+            top = topCube.clone("TopClonedCube" + row + col);
+            top.position = new BABYLON.Vector3(BLOCK_SIZE / 2 + (row - (mCount / 2)) * BLOCK_SIZE,
+                                                BLOCK_SIZE + 0.05,
+                                                BLOCK_SIZE / 2 + (col - (mCount / 2)) * BLOCK_SIZE);
+
+            cubesCollection.push(cube);
+            cubesTopCollection.push(top);
+        }
+    }
+}
+
+var maze = mergeMeshes("maze", cubesCollection, scene);
+maze.checkCollisions = true;
+maze.material = cubeWallMaterial;
+
+var mazeTop = mergeMeshes("mazeTop", cubesTopCollection, scene);
+mazeTop.material = cubeTopMaterial;
+Note: as you can see, I’m creating a special merged mesh with some plane elements to put just above the merged cubes. It’s to have a simple solution to handle multi-materials in this case.
+
+
+
+
+
+
+
+
+***** TODO separate the vertex data
+separate the vertex data into ”hot” attributes that are frequently updated and ”cold” ones which are
+mostly static, and store them in separate buffers:
+
+One caveat to interleaving vertex data is if the vertex data is partially dynamic. The most common case is when only
+positions are updated. 
+A solution is to separate the vertex data into ”hot” attributes that are frequently updated and ”cold” ones which are
+mostly static, and store them in separate buffers. This avoids inefficient updates to the ”hot” attributes because of a
+large stride between vertices.  
+
+
+
+**** TODO WebGLRenderer: sort opaque objects from front to end
+
+On IMR GPUs, this extra bandwidth consumption and fragment work can be limited by sorting and rendering geometry from
+front to back (see Figure 24.4).  
+
+An additional heuristic for games is to render the player character first and the sky-box last  
+
+**** shader optimize
+
+http://www.cnblogs.com/clayman/archive/2010/05/11/1732211.html
+
+
+
+
+
+state optimize(http://www.gamedev.net/topic/349829-scene-graph-resources/ -> SC State Sorting)
+http://opengl.j3d.org/tutorials/statesorting.html
+http://www.gamedev.net/topic/183462-sorting-before-rendering/
+http://www.gamedev.net/topic/189747-sorting-shaders/
+
+
+
+An additional state-change optimizing sorting pass is applied each frame, after all visible chunks have been determined,
+and before the lists are dispatched to the shaders. It's a simple 48bit radix sort, sorting on shader ID and shader
+param pointer (so that shaders with the same parameter set are grouped). 
+
+
+
+shader_params - called each time a primitive (geometry chunk) is drawn ( like glBegin), bind textures required and
+shader specific parameters.
+Called using lazy-evaluation, ie. only if the states changed from the last geometry chunk
+(supported by the radix sorting prior to mesh dispatching). 
+
+
+
+
+
+
+
+
+
+http://www.cnblogs.com/clayman/archive/2010/07/28/1787434.html
+
+http://www.cnblogs.com/clayman/archive/2010/08/10/1796829.html
+
+
+
+
+**** TODO remove redundant call
+refer to <<OpenGL Insights>> 25.2
+
+
+redundant calls to the driver that do not change its state. These calls are hence useless and should be avoided for the
+benefit of performance on the CPU/application side. 
+
+
+***** state tracking
+The widely used alternative method called state tracking avoids redundant calls by keeping the OpenGL states up-to-date
+on the CPU side and keeping track of changes.  
+
+OpenGL states are kept in a single unsigned long value (Listing 25.1). Each bit of this double word stores whether or
+not an OpenGL state is activated. This enables the application to keep track of binary OpenGL states. 
+
+
+
+
+
+For example, the Quake 3 engine sorts meshes per material so that they are drawn in a specific order, e.g., opaque, sky
+box, then transparent geometry. This helps us apply fewer changes to states related to material such as textures or
+alpha blending. 
+
+
+***** coarse state grouping, and fine-grained state changes
+You can also group some common states together to look for state differences at a coarse level first and then apply
+fine-grained state checks. 
+
+
+**** TODO Vertex cache optimization 
+refer to <<OpenGL InSights>> 26 chapter: Indexing Multiple Vertex Arrays
+This chapter shows a simple solution to convert nonindexed data into an indexed form, allowing its use in an efficient
+way with many file formats such as OBJ, X, VRML, and COLLADA. 
+
+refactor obj,md2 indices build?
+
+
+
+A num- ber of algorithms can be found in the literature for reorganizing the indices in order to get a better
+post-transform cache usage. 
+In particular, I recom- mend nvTriStrip, which is slow but ready-to-use, and Tom Forsyth’s
+algo- rithm [Forsyth 06], which runs in linear time. 
+
+https://www.opengl.org/discussion_boards/showthread.php/167481-Vertex-cache-optimization
+
+http://tomforsyth1000.github.io/papers/fast_vert_cache_opt.html
+
+https://github.com/vivkin/forsyth
+
+
+
+**** other
+
+
+
+
+
+
+
+
+
+if the texture is the same there is NO rebinding:
+
+https://github.com/BabylonJS/Babylon.js/blob/master/Babylon/babylon.engine.ts#L1961
+
+
+
+move "create program" logic out of shader?
+
+
+
+
+
+***** TODO optimize refer to <<OpenGL Insights>>  39 chapter
+
+Group objects in buffers based on data format (type and layout) and update
+frequency.
+
+Ensure that appropriate buffer usage flags are used.
+
+Use static buffers and fully specify the contents of buffers before draw time.
+
+
+Use immutable textures when available?
+If EXT texture storage is not supported, ensure that a complete texture is
+created and consistently defined. 
+
+
+Avoid redefining the format or size of existing textures, and create a new tex- ture instead. 
+
+
+Use packed depth-stencil for combined depth and stencil support.
+
+Avoid masked clear operations.
+
+Avoid using complex conditional statements and loops with a high maximum number of iterations in shaders. 
+
+
+
+
+** TODO detail terrain(v0.5.7)
+*** TODO tree+instance+terrain+free camera collision+shadowMap sample
+http://localhost:63342/Wonder.js/reference/babylonjs_samples/Samples/Demos/Instances/index.html
+
+collision
+
+apply gravity
+
+
+tree
+
+lod tree
+
+
+
+
+*** TODO grass
+
+can set Billboard start distance
+
+
+wind
+
+
+http://docs.unity3d.com/Manual/terrain-Grass.html
+
+
+
+*** TODO TerrainMaterial add detail map
+
+https://en.m.wikipedia.org/wiki/Texture_splatting
+
+refer to bjs->extend->terrain document
+
+
+*** TODO sky
+sky dome
+
+
+cloud
+animated cloud
+
+
+
+
+*** TODO terrain collision
+http://docs.unity3d.com/Manual/class-TerrainCollider.html
+http://gamedev.stackexchange.com/questions/48182/collision-detection-with-heightmap-based-terrain
+http://www.gamedev.net/topic/597009-terrain-collision/
+https://www.opengl.org/discussion_boards/showthread.php/124274-Collision-Detection-in-Terrain-Engine
+http://www.html5gamedevs.com/topic/5385-heightmap-terrain-and-physics/
+
+
+
+add TerrainCollider
+
+**** TODO camera collision
+
+**** TODO heightmap physics
+
+
+
+
+
+* TODO 明日计划
+
+** TODO show some ouside static scene from collada data
+*** TODO EntityObject add "clone" method
+add clone sample
+
+refactor:
+rename "copy", "copyXXX" to "clone", "cloneXXX"
+
+
+** TODO build custom outer scene(octree+lod+direction light+collision+shadowmap+terrain+water(mirror reflection, refraction) + morph animation player character)
+*** TODO support physics heightmap
+add physics box,sphere
+player can collision with these box,sphere
+
+
+
+
+
+
+
+add demo:
+refer to babylonjs->Samples/Scenes/WorldMonger/
+
+refer to http://www.babylonjs-playground.com/#E6OZX#7
+add mix map, normal map
+
+layer texture(blend)(use blend map)
+
+water
+
+cloud
+
+sky dome
+
+
+add tree
+
+add grass
+
+shadow(shadowMap, lightMap)
+
+
+
+
+** TODO build custom room scene(point light+lightmap+shadowmap+cubemap reflection+articulated camera+collision)
+
+
+
+** TODO improve scene graph: refactor .wd(v0.5.7)
+refer to gltf(get .bin file/embed geometry data)
+
+refer to http://doc.babylonjs.com/generals/File_Format_Map_(.babylon)
+
+converter:
+convert .gltf, .obj, .md2
+convert .dae?
+convert from blender?
+
+** TODO optimize(v0.5.8)
+render target renderer(e.g. Mirror,Refraction,DynamicCubemap, ...) and procedural renderer, shadowMap(refer to
+babylonjs->Samples/Demos/Instances/instances.js line 100), VideoTexture,   add "refreshRate", "refresh control"(like
+stop refresh,start refresh, refresh(count):refresh the specify times
+(Math.ceil, 1->refresh every frame; 2->refresh every 2 frames;0->refresh only in the first frame, ...)
+(add refresh rate counter)
+
+
+
+data orient driven(refer to game engine germ 1/2)
+
+
+
+regard octree,lod as benchmark test
+
+
+
+https://blogs.msdn.microsoft.com/eternalcoding/2013/05/21/benchmarking-a-html5-game-html5-potatoes-gaming-bench/
+https://blogs.msdn.microsoft.com/eternalcoding/2015/01/07/javascript-shoud-i-have-to-cache-my-arrays-length/
+https://blogs.msdn.microsoft.com/eternalcoding/2015/02/02/using-user-mark-to-analyze-performance-of-your-javascript-code/
+
+
+
+
+https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/
+https://msdn.microsoft.com/en-us/library/windows/apps/hh781219.aspx
+https://channel9.msdn.com/Events/Build/2013/4-313
+http://malideveloper.arm.com/downloads/GDC14/Thursday/10.30amWebGL.pdf
+
+
+
+
+use webgl-inspector->highlights to see duplicate setting uniforms
+
+Note that uniforms are specific to programs and they are remembered by the programs, so you don't have to re-set them
+every time you switch programs! 
+
+
+
+
+not create duplicate textures
+
+
+
+
+optimize instance with octree,lod
+
+optimize:
+show 10000 spheres with 60fps(instance)
+show 20000 spheres with 60fps(instance + lod)
+show 40000 spheres with 60fps(instance + octree)
+show 60000 spheres with 60fps(instance + octree + lod)
+
+////only render visable instance
+
+////if not support instance, optimize ethier
+(refer to bjs(babylonjs))
+
+////*** TODO optimize: cache all uniform/attribute position when init(then look up the cache table to get the position when send glsl data)
+////refer to babylonjs->effect.ts, engine.ts->getUniforms/getAttributes method
+
+
+
+
+
+
+
+
+optimize octree sample: frustum(especially arcball camera), ray picking, collision
+
+bug:
+if add/remove EntityObject, will the octree rebuild?
+
+
+
+
+optimize water,terrain
+
+
+
+optimize mirrorMirror, dynamicCubemapTexture
+
+
+
+
+optimize lod
+
+reduce composite layers time(when move camera to switch geometry in lod sample):
+http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome
+http://www.html5rocks.com/en/tutorials/speed/scrolling/
+https://developer.chrome.com/devtools/docs/timeline
+http://www.html5rocks.com/zh/tutorials/speed/layers/
+
+
+
+optimize collision:
+add layers:
+http://docs.unity3d.com/Manual/LayerBasedCollision.html
+
+
+
+
+
+
+
+optimize shadow(especially point shadow)
+bug: 
+in collision_box sample, why shadow break when move box down to near the edge of screen?(not caused by light->shadowCameraXXX)
+
+test light move
+
+
+optimize:
+cache camera->vpMatrix
+shadow layer
+
+////not bind texture when build shadow map
+
+
+
+
+
+
+
+
+** TODO optimize memory, cg(v0.5.9)
+https://blogs.msdn.microsoft.com/eternalcoding/2013/09/04/reducing-the-pressure-on-the-garbage-collector-by-using-the-f12-developer-bar-of-internet-explorer-11/
+
+
+http://goocreate.com/learn/reducing-memory-usage/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
+http://www.html5rocks.com/en/tutorials/speed/static-mem-pools/
+
+
+use Array instead of Collection in the key path?
+
+memory allocate
+http://www.mystengine.com/blog/?p=59
+http://www.cnblogs.com/dreams/archive/2007/03/25/687310.html
+
+
+
+
+
+
+
+
+** TODO optimize: batch draw calls(v0.5.10)
+use stride in gl.vertexAttribPointer(refer to Wozlla Engine)
+
+
+** TODO reference
+http://www.cppblog.com/liangairan/archive/2013/03/23/198749.html
+
+
+** TODO add debug Panel(second version)
+use ui component to draw
+
+refactor:
+add DebugDrawer class
+
+
+add more info like bjs
+
+
+
+
+** TODO improve transform
+learn GPU Pro 5->managing transforms in hierarchy
+
+
+
+** TODO add more demos
+car demo
+
+jiao's picture demo
+
+
+
+** TODO refactor
+wonder-common add contractor check
+
+
+** TODO public v0.5.11
+reduce wd.js lines(modify compileTs like compileDebugTs)
+compress rvsp.js,bowser.js
+
+
+
+add Wonder.js head info
+
+update typescript to 1.8
+
+
+improve code coverage to 95%
+use map file
+
+
+
+
+register "wonderjs" domain name
+
+
+
+
+
+
+
+** TODO Occlusion culling
+refer to <<real-time rendering>>->14.6 Occlusion culling  p670
+
+http://www.cnblogs.com/clayman/archive/2013/02/18/2915796.html
+
+
+[[http://rastergrid.com/blog/2010/10/hierarchical-z-map-based-occlusion-culling/][Hierarchical-Z map based occlusion culling]]
+refer to <<OpenGL Insight>> 18 chapter
+
+
+
+进行额外的depth pass，充分利用early-z删除不可见像素。
+For batches where front-to-back object sorting is not practical, for example, with complicated, interlocking geometry or
+heavy use of alpha testing, a depth prepass can be used to eliminate redundant pixel calculations, at the cost of
+repeated vertex shading work, primitive assembly, and depth-buffer access (see Figure 24.5). 
+
+The idea of a depth prepass is to bind a trivial fragment shader and render the scene with color writes disabled. Depth
+calculation, testing, and writes proceed as normal, and the final pixel depth is resolved. The normal fragment shader is
+then bound, and the scene is rerendered. In this manner, only the final fragments that affect the scene color are
+rendered. This only works for opaque objects. 
+
+
+ 
+
+
+
+
+
+
+** TODO culling
+*** TODO pvs culling
+
+
+*** TODO portal culling
+
+http://www.fairyengine.com/articles/portals.htm
+
+
+** TODO more space parition
+*** TODO BVH
+
+*** TODO polyon-aligned BSP
+not use depth test
+
+*** TODO visual octree
+*** TODO [#A] quadtree for terrain
+
+** TODO gltf
+*** TODO [#C] support more extension
+****  TODO support KHR_binary_glTF
+
+**** TODO commit my extension
+write own extension and commit it to khr
+
+***** TODO support normal map of material
+
+***** TODO support shadow
+
+
+*** TODO [#A] support skin animation
+
+*** TODO more field
+premultipliedAlpha
+
+*** TODO [#C] support multi scenes?
+
+//*** TODO [#C] support multi material
+
+*** TODO [#C] support multi meshes?
+support:node.meshes has more than 1 mesh
+
+*** TODO [#B] support "techniques" field(use shader generated by gltf)
+
+
+*** TODO refactor
+**** TODO refactor: unify with WDXXX
+**** TODO move GLTFLoader out of engine file as a plugin?
+
+
+
+
+** TODO LOD
+*** TODO more switch way
+blend LODs
+alpha LODs
+
+*** TODO more selection way
+projected area-base
+
+*** TODO [#A] mesh simplification
+refer to http://doc.babylonjs.com/tutorials/In-Browser_Mesh_Simplification_(Auto-LOD)
+
+*** TODO more LOD
+now only support geometry lod and material lod(the material type should be the same), need support more lods.
+
+shader LOD
+https://www.zhihu.com/question/36769261
+
+texture LOD
+
+script LOD
+
+...
+
+
+** TODO advance Terrain
+*** reference 
+http://www.cnblogs.com/clayman/archive/2012/12/10/2810702.html
+
+*** TODO lod terrain
+http://www.cppblog.com/liangairan/archive/2008/08/18/59243.aspx
+http://www.cppblog.com/liangairan/archive/2009/01/10/71058.aspx
+
+
+*** TODO quadtree
+
+*** TODO roam
+
+
+
+
+
+*** TODO generate terrain
+implement midpoint displacement
+implement fault formation
+
+
+*** TODO dynamic terrain
+use slope lighting (<<focus on 3d terrain programming>> p66) to compute light shininess?
+
+
+** TODO procedural
+*** TODO advance procedural texture
+antialias
+
+*** TODO procedural planet(refer to babylonjs, book)
+
+
+*** TODO integration csg.js
+
+*** TODO support cubemap procedural texture(be Material->envMap)
+really need support?
+
+
+
+
+** TODO more realistic water
+change water geometry
+
+refer to waterMaterial demo
+http://doc.babylonjs.com/extensions/Water
+
+
+■ Real-time updating of vertex normals.
+ That way, realistic light- ing (using the API’s hardware lighting) can be achieved
+to add more “depth” to the water. 
+■ Vertex calculations to create a physically realistic series of waves and ripples.
+(It’s not technically physically realistic, but it looks that way. 
+
+
+add more control:
+du/dv map
+
+depth map
+
+
+** TODO instance
+*** TODO more instance support
+support custom shader?
+
+instance custom data:
+e.g. instance a_colors,material.color data
+
+
+* TODO 未来7日计划
+
+
+
+* TODO 疑问
+** TODO transparent obj should no shadow?

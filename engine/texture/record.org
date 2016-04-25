@@ -1,0 +1,29 @@
+* auto generateMipmaps
+This will cause the texture bound to target​ to have its mipmap levels below the base level auto-generated. Note
+that the GL_TEXTURE_BASE_LEVEL and GL_TEXTURE_MAX_LEVEL range are observed. If the max level specifies mipmap
+levels that cannot exist (for example, the base level is 16x16 in size, and the max level is 20. A 16x16 texture
+only has 5 mipmap levels), then the effective max level is clamped to the final size 1 image. 
+
+The current base level will not be changed; only all of the other levels will be generated. Any mipmap levels that are
+outside of the base/max range will not be changed by this call. 
+
+If the clamped max level specifies mipmap levels that have not yet been allocated, then they will be allocated. Recall
+that in an immutable storage texture, GL_TEXTURE_MAX_LEVEL will always specify an allocated mipmap level (and trying to
+set it outside of that range results in an error), so it isn't possible for this to happen for immutable storage
+textures. 
+
+
+
+
+
+glGenerateMipmap computes a complete set of mipmap arrays derived from the zero level array. Array levels up to and including the 1x1 dimension texture image are replaced with the derived arrays, regardless of previous contents. The zero level texture image is left unchanged.
+
+The internal formats of the derived mipmap arrays all match those of the zero level texture image. The dimensions of the derived arrays are computed by halving the width and height of the zero level texture image, then in turn halving the dimensions of each array level until the 1x1 dimension texture image is reached.
+
+The contents of the derived arrays are computed by repeated filtered reduction of the zero level array. No particular filter algorithm is required, though a box filter is recommended. glHint may be called to express a preference for speed or quality of filtering.
+
+** generateMipmaps for compressed texture
+refer to https://www.opengl.org/discussion_boards/showthread.php/184815-Manually-generate-mipmaps-for-textures-loaded-using-glCompressedTexImage2D
+
+now compressed texture shouldn't generateMipmaps default, because i think the mipmaps generated aren't compressed format!
+

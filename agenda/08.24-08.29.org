@@ -1,0 +1,288 @@
+* TODO 今日计划
+** TODO texture(junior)(2-face texture)
+
+
+* 完成事项
+
+** DONE single texture
+CLOSED: [2015-08-25 Tue 07:29]
+
+
+** DONE sphere texture
+CLOSED: [2015-08-25 Tue 08:10]
+
+** DONE mipmap
+CLOSED: [2015-08-25 Tue 08:10]
+
+
+** DONE two-face texture
+CLOSED: [2015-08-25 Tue 09:32]
+
+** DONE multi texture
+CLOSED: [2015-08-25 Tue 13:27]
+
+
+
+** DONE compressed texture
+CLOSED: [2015-08-26 Wed 22:41]
+
+support dxt5
+
+
+
+
+refactor
+
+
+
+
+check extension:
+If the extension is not supported, you'll get back NULL.
+
+should support:pvr  dxt5
+
+
+
+Each of these represents a compressed texture type that may be supported. It should be pretty apparent from the names
+which is which. Just because the symbol is defined, though, doesn't mean your system supports it. To figure that out we
+have to call: 
+var formats = gl.getParameter(gl.COMPRESSED_TEXTURE_FORMATS);
+
+This returns a list of enumerated values for the formats the current device supports. To test and see if a particular
+format is supported, you'll have to loop over it doing something like this: 
+
+var i, dxt5Supported = false;
+for(i in formats) {
+    if(formats[i] == ct.COMPRESSED_RGBA_S3TC_DXT5_EXT) {
+        dxt5Supported = true;
+    }
+}
+(Note: I previously had an "indexOf" there. That won't work, because the formats list is a Int32Array) 
+
+
+Once we know which formats are supported, we can create a texture using that format with the following calls:
+gl.compressedTexImage2D(target, level, internalFormat, width, height, border, data);
+gl.compressedTexSubImage2D(target, level, xOffset, yOffset, width, height, internalFormat, data); 
+
+This works very similarly to gl.texImage2D, with the following exceptions:
+The internalFormat must be one of the compressed texture format enums
+You must give it a width, height, and border. There's no variant of the function that will do it automatically.
+You always give it a typedArray of the raw compressed data. No passing in image elements here.
+
+
+
+
+
+Texture compression is, at it's core, algorithms built into your graphics card that let them decompress specific texture
+formats on the fly. This means that the texture actually stays compressed in your video memory and is only decompressed
+when your shader does a texture lookup. That may sound slow, but it's not. You can only use very specific formats for
+the compressed textures, and those are formats that are designed for speed rather than super high compression rates.  
+
+
+
+DXT5 offers a fixed 4:1 compression ratio. This means that for every 1 pixel of an uncompressed texture, DXT5 can
+store 4. Applying that to our above 1024x1024 texture, this would translate to 768k (1/4th of the uncompressed
+version). 
+
+
+
+A final hitch in the whole compressed texture thing is that not every device supports every compressed texture
+format. For example: Most desktop systems will support S3 compression (that's your DXT1-5 textures), but your iOS
+devices won't. They support PVR compression.  
+
+That does make things difficult for WebGL, however. Since pretty much any device has a browser nowadays, and many of
+those will probably have WebGL in the future, it means that a WebGL dev that wants to use compressed textures will have
+to keep three or four variants of their textures around, query the device for which one's it supports, and then download
+the one that meets the platforms needs. Sounds fun, right? 
+
+
+
+RGBA?
+
+
+refactor
+
+
+
+** DONE repeat-wrap/clap
+CLOSED: [2015-08-27 Thu 09:17]
+
+
+
+
+** DONE manual mipmap 
+CLOSED: [2015-08-27 Thu 09:42]
+
+
+
+
+
+** DONE multiTextureInOneTexture
+CLOSED: [2015-08-27 Thu 11:24]
+
+offset,region
+
+
+
+
+
+
+** DONE refactor
+CLOSED: [2015-08-27 Thu 13:46]
+//image to 2*
+
+
+//Texture2D->createTextureArea to setTextureArea
+//support manual add mipmap image
+
+//query max texture units, then judge TextureManager->sendData -> index <= max
+
+
+
+//refactor DeviceManager->gl
+
+
+//not exist color
+
+
+//move Texture to dy from dy.render
+
+
+
+** DONE anisotropic
+CLOSED: [2015-08-27 Thu 22:22]
+
+add PlaneGeomery
+
+
+** DONE canvasTexture
+CLOSED: [2015-08-28 Fri 08:45]
+
+
+** DONE videoTexture
+CLOSED: [2015-08-28 Fri 10:45]
+**** DONE Video textures
+CLOSED: [2015-08-28 Fri 10:45]
+
+You can also create textures that use video as content source:
+
+var ecran = scene.getMeshByName("Ecran");
+ecran.material.diffuseTexture = new BABYLON.VideoTexture("video", 
+["Scenes/Flat2009/babylonjs.mp4", "Scenes/Flat2009/babylonjs.webm"], 256, scene, true);
+The VideoTexture object accepts an array of videos (to take in account various codecs) and once a video can be loaded, it uses it as content source.
+
+The internal video DOM object is accessible via VideoTexture.video property to allow you to control the status of the video (play/pause/stop).
+
+For instance, I used this solution to simulate a TV in the Flat2009 demo:
+
+image
+
+refer to Babylon.js
+refer to http://stackoverflow.com/questions/18383470/using-video-as-texture-with-three-js 
+
+
+** DONE refactor
+CLOSED: [2015-08-29 Sat 22:00]
+ //_clampToMaxSize to Texture2D,CompressedTexture
+
+
+//refactor IMipmap(CompressedTexture,Texture2D)
+
+
+//rename Texture2D to TwoDTexture
+
+
+
+
+
+add unit test
+//pass unit test
+
+//TransformSpec add "set parent" test
+
+
+
+Stage->update,init,addChild,removeChild
+
+addChild->invoke onEnter
+removeChild->invoke onExit
+
+
+
+GameObject add "addChild, removeChild, dispose" test
+GameObject->update
+onEnter,onXxx  should trigger all children's onXXX!
+
+addComponent,removeComponent
+
+
+
+Director->buildLoadScriptStream should load all children's streams
+
+
+
+
+
+
+//add dispose event
+add Texture,Geometry dispose
+
+fix "two texture, one set texture, one don't"
+it should only show one texture, but now show two textures!
+
+
+
+add onDispose->when dispose invoke it
+
+
+
+
+
+
+refactor:find to get  
+getChild to getChildByType
+
+refactor: add "addToGameObject","removeFromGameObject" for component
+
+
+
+
+
+
+Vector3->lerp,cross,add2
+
+
+
+add texture unit test
+
+
+
+
+
+
+
+
+put enum to folder
+
+//remove rebundant getter to public attri
+
+
+
+unify "add","addChild"
+extract Container
+
+
+put main class the first place
+
+
+
+pass all demo2 run test
+
+
+* TODO 明日计划
+
+** TODO cube map
+
+
+
+* TODO 未来7日计划

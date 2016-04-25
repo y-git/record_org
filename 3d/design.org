@@ -1,0 +1,54 @@
+* Tags
+tags are marker values that can be used to identify objects in your project (see this page for further details). New
+tags can be added by typing in the empty element at the bottom of the list of tags or by increasing the Size
+value. Decreasing the size will remove tags from the end of the list. 
+
+* Sorting Layers
+Sorting Layers are used in conjunction with sprite graphics in the 2D system. The “sorting” refers to the overlay order
+of different sprites. You can add and remove sorting layers using the +/- buttons at the bottom-left of the list and
+change their order by dragging the handle at the left of each layer item. 
+
+* Layers
+Layers are used throughout Unity as a way to create groups of objects that share particular characteristics (see this
+page for further details). Layers are primarily used to restrict operations such as raycasting or rendering so that they
+are only applied to the groups of objects that are relevant. In the manager, the first eight layers are defaults used by
+Unity and are not editable. However, layers from 8 to 31 can be given custom names just by typing in the appropriate
+text box. Note that unlike tags, the number of layers cannot be increased. 
+
+* Prefabs
+It is convenient to build a GameObject in the scene by adding components and setting their properties to the appropriate
+values. This can create problems, however, when you have an object like an NPC, prop or piece of scenery that is reused
+in the scene several times. Simply copying the object will certainly produce duplicates but they will all be
+independently editable. Generally, you want all instances of a particular object to have the same properties, so when
+you edit one object in the scene, you would prefer not to have to make the same edit repeatedly to all the copies. 
+
+Fortunately, Unity has a Prefab asset type that allows you to store a GameObject object complete with components and
+properties. The prefab acts as a template from which you can create new object instances in the scene. Any edits made to
+a prefab asset are immediately reflected in all instances produced from it but you can also override components and
+settings for each instance individually. 
+
+* Mesh Collider
+Unity uses two main types of colliders: Mesh Colliders and Primitive Colliders. Mesh colliders are components that use
+imported mesh data and can be used for environment collision. 
+If you are moving the object around (a car for example), you can not use Mesh colliders. Instead, you will have to use
+Primitive colliders. In this case you should disable the Generate Colliders setting. 
+
+
+* Mesh 
+** Hints
+Merge your meshes together as much as possible. Make them share materials and textures. This has a huge performance
+benefit. 
+
+* Transform
+** parent
+the change before setting parent will not affect child
+(only when translate/rotate/setPosition... will sync hierarchy to update children's position/rotation...)
+
+
+
+refer to playCanvas->scene_graphnode.js:
+now the change before setting parent will affect child!!!
+add localToParentMatrix,localToWorldMatrix, translate,rotate... method will change the _localxxx(_localPosition...) attribute, and when invoke the localToWorldMatrix(Camera.ts need it's invert to as the vMatrix), it will update localToParentMatrix and compute the localToWorldMatrix
+(localToWorldMatrix = parent.localToWorldMatrix * this.localToParentMatrix)
+
+

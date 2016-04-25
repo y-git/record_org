@@ -1,0 +1,298 @@
+* TODO 今日计划
+
+** TODO basic light
+phong,lambert light
+direction light
+point light
+ambient light
+multi lights
+
+
+
+** TODO refactor
+
+
+
+LightManager
+
+
+
+finish demo
+
+
+
+rename "max_xxx" to "xxx_count"
+
+
+
+ShaderSourceBuilder:
+separate glsl to segments:top, head, body
+vertex add "precision"
+add "int precision"
+custom define
+add define list structure
+
+
+
+
+phong shader(fragment)
+gouraud shader(vertex)
+
+
+
+GameObject auto set MeshRenderer
+
+
+
+custom shader not set type when ENGINE
+
+
+format abstract methods(remove space line)
+
+
+fix Component:
+
+
+rename Event->innerType to p_type
+
+
+
+
+handle no light
+
+
+
+rename "toVec4/3" to "toVector4/3"
+
+
+** TODO pass unit test
+
+
+** TODO map
+normal map
+
+bump map
+
+
+
+color map
+http://www.glprogramming.com/red/chapter04.html
+refer to threejs->... colors_lookupstable.html
+
+
+
+diffuse map
+
+
+specular map
+http://learningwebgl.com/blog/?p=1778
+
+
+
+
+
+
+more map:
+alpha map?
+
+
+** TODO refactor
+
+
+
+** TODO pass unit test
+
+
+
+
+* 完成事项
+** DONE basic light
+CLOSED: [2015-09-15 Tue 19:43]
+phong,lambert light
+direction light
+point light
+ambient light
+multi lights
+
+
+** DONE refactor
+CLOSED: [2015-09-15 Tue 21:41]
+
+
+
+ShaderSourceBuilder:
+separate glsl to segments:top, head, body
+vertex add "precision"
+add "int precision"
+////custom define
+add define list structure
+
+
+
+
+phong shader(fragment)
+gouraud shader(vertex)
+
+
+
+////GameObject auto set MeshRenderer
+
+
+
+////custom shader not set type when ENGINE
+
+
+format abstract methods(remove space line)
+
+
+//fix Component:
+
+
+rename Event->innerType to p_type
+
+
+
+
+handle no light
+
+
+
+rename "toVec4/3" to "toVector4/3"
+
+
+//rename "max_xxx" to "xxx_count"
+
+
+** DONE pass unit test
+CLOSED: [2015-09-16 Wed 09:45]
+custom shader->structure
+
+
+
+Now, some engines optimize this, by cutting out lights that are far away, combining lights, or using light maps (very
+popular, but static). But if you want dynamic lights and a lot of them, we need a better solution 
+
+
+
+
+
+
+** TODO map
+*** DONE light map
+CLOSED: [2015-09-16 Wed 16:21]
+
+
+diffuse map(map)
+
+
+
+
+
+////color map
+http://www.glprogramming.com/red/chapter04.html
+refer to threejs->... colors_lookupstable.html
+
+specular map
+http://learningwebgl.com/blog/?p=1778
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2015-09-16 Wed 16:29]
+gouraud
+
+////not generate attri,uniform
+
+
+change Material->set/getEnvmap to envMap attri
+
+rename VariableTable to VariableNameTable
+
+
+
+
+*** DONE normal map
+CLOSED: [2015-09-18 Fri 13:24]
+
+
+combine to one file, use @xxx to split
+
+//auto generate function declare field
+
+variable declare field can put uniform/attribute, if already put, not generate it auto
+
+
+
+
+
+
+
+        modify phong glsl
+
+        build field here
+
+        pass unit test
+
+        variable declare field can put uniform/attribute, if already put, not generate it auto
+
+        pass noNormalmap
+
+        pass normalmap
+
+        pass gouraud
+
+        modify all other glsl
+
+        refactor
+        
+        test
+
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2015-09-18 Fri 14:10]
+//gouraud
+//fix it's bug(demo bug)
+
+//remove gouraud
+
+
+
+
+//use set mvp in light glsl
+move set mvp back to glsl
+
+
+
+
+
+////use template in ShaderLib
+
+
+////use VariableLib.xxx in addUniformVariable,addAttrixxx
+
+
+
+*** DONE pass unit test
+CLOSED: [2015-09-18 Fri 17:36]
+
+test glsl builder
+
+
+pass all demo4
+
+
+
+
+
+* TODO 明日计划
+
+** TODO demo-dynamic (rect mirror,cube)
+
+
+* TODO 未来7日计划

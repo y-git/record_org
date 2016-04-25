@@ -1,0 +1,2 @@
+* custom shader
+major attribute data is passed by engine(like a_position,mMatrix,a_texCoord)

@@ -1,0 +1,55 @@
+* TODO 今日计划
+** TODO refactor structure to {"targetUid_eventName": target.handler} ?
+
+** TODO pass off event
+
+** TODO push commits
+
+** TODO convert Collection, Hash? to generic, edit filter
+correspond modify DYReactive and DYEngine
+
+** TODO continue finish event(mouse)
+
+** TODO refactor event
+
+
+* 完成事项
+
+** DONE refactor structure to {"targetUid_eventName": target.handler} ?
+CLOSED: [2015-07-18 Sat 10:13]
+
+
+** DONE push commits to demo1!!!!
+CLOSED: [2015-07-18 Sat 18:27]
+
+** DONE pass off event
+CLOSED: [2015-07-18 Sat 21:34]
+
+
+* TODO 明日计划
+** TODO pass DYReactive
+
+** TODO pass broadcast
+
+** TODO pass trigger
+
+** TODO refactor
+unify eventName
+generic Collection,Hash
+
+
+
+* TODO 未来7日计划
+*** TODO implement event by DYReactive
+dev DYReactive v0.2(from event)
+use it to refactor event
+*** TODO use DYReactive to refactor loader
+
+*** TODO more event
+**** TODO finish EventGesture(first finish mobile event)
+**** TODO finish EventCustom
+**** TODO finish EventKeyboard
+
+*** TODO finish event test case
+**** TODO build unit test
+**** TODO pass the test

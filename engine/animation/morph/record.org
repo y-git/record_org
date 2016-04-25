@@ -1,0 +1,18 @@
+*** record
+**** Face3 not has "morphFaceNormals","morphVertexNormals" attri.
+because the data is huge, and it will occupy much memory.
+so just the ModelGeometry add "morphFaceNormals","morphVertexNormals" attri to save the whole data
+
+**** why don't "direct compute morphNormal(Face,Vertex normal)?"
+because when compute morph vertex normals, it need the morph face normals(read from ModelGeometry->morphFaceNormals),
+but this data may lost some face normals data,
+(
+if the vertex is not duplicate,
+(means the triangle share vertexs. e.g. the indice is like 0, 1, 2,  0, 2, 3; not like 0,1,2 ,3, 4, 5)
+then the latter face normal will rewrite the former face normal in the shared vertexs, so it will lost the former face
+normal data
+)
+
+so the vertex normal may be wrong.
+
+so here i use the "create temp ModelGeometry to compute" like threejs->Geometry->computeMorphNormals!

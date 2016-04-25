@@ -1,0 +1,22 @@
+* hook exec order
+global hook
+onStartLoop
+onEndLoop
+
+
+
+GameObject hook
+onEnter
+onExit
+init
+update
+onDispose
+
+
+
+the script's onEnter,onExit before the loopBody is invoked will not be invoked, because the script is not loaded into
+engine at that time  
+
+
+the execution of hook is to ensure it can get the most info, so onDispose,onExit hook is invoked first in GameObject->dispose,
+while other hook is invoked last in method(like init in GameObject->init)

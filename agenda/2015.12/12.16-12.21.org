@@ -1,0 +1,57 @@
+* TODO 今日计划
+** TODO [#A] scene picking
+add method to focus on box, so when operate box, not trigger fly camera key event
+
+* 完成事项
+
+how to "data binding" in game engine?
+
+
+** DONE refactor component
+CLOSED: [2015-12-19 Sat 17:45]
+////add send message through components and refactor ...
+
+remove GameObject->isCollided,isRigidbodyChild state
+
+
+
+** DONE [#A] scene picking
+CLOSED: [2015-12-20 Sun 21:17]
+////add method to focus on box, so when operate box, not trigger fly camera key event
+
+
+
+** DONE refactor
+CLOSED: [2015-12-21 Mon 20:17]
+//fix Repeat
+
+//refactor picking
+
+
+
+
+//solve script compile error
+
+
+refactor pick component
+remove Script->constructor's gameObject, move it to initWhenCreate
+
+
+
+refactor event:
+split to DomEvent,CustomEvent binder/register/listenerMap
+
+
+
+modify XXXCameraController
+modify sample->mouse event
+
+
+
+////** TODO change fly camera controller to full screen mode(refer to playcanvas)
+
+
+* TODO 明日计划
+
+
+* TODO 未来7日计划

@@ -1,0 +1,17 @@
+We can do this by operating GameObject->transform instance.
+* set position
+#+BEGIN_SRC js
+  gameObject.transform.position = wd.Vector3.create(10, 20, 30);   //set gameObject's position to be x:10, y:20, z:30
+  gameObject.transform.translate(10, 20, 30);   //gameObject's position will be x:10 + 10, y:20 + 20, z:30 + 30
+#+END_SRC
+* set rotation
+#+BEGIN_SRC js
+  gameObject.transform.eulerAngles = wd.Vector3.create(10, 20, 30);   //set gameObject's euler angles to be x:10, y:20, z:30
+  gameObject.transform.rotate(10, 20, 30);   //gameObject rotate 10 euler angle around x, rotate 20 euler angle around y, rotate 30 euler angle around z
+  gameObject.transform.rotateAround(50, wd.Vector3.create(0, 0, 0), wd.Vector3.create(0, 0, 1));   //gameObject rotate around (0,0,0) point and z axis by 50 euler angle
+#+END_SRC
+* set scale
+#+BEGIN_SRC js
+  gameObject.transform.scale = wd.Scale(2, 3, 4);   //set gameObject's scale to be x:2 times, y: 3 times, z: 4 times
+#+END_SRC
+

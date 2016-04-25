@@ -1,0 +1,120 @@
+* TODO 今日计划[100%]
+** TODO refactor
+
+** TODO todo errorCode? discuss with xuyang
+
+** TODO no return button!
+
+** TODO refine demo
+*** DONE 需要考虑对OpenID和OpenKey做校验 
+CLOSED: [2015-05-30 Sat 08:50]
+[[http://wiki.open.qq.com/wiki/%25E6%258A%2580%25E6%259C%25AF%25E4%25BC%2598%25E5%258C%2596%25E5%258E%259F%25E5%2588%2599#1.3_.E9.9C.80.E8.A6.81.E8.80.83.E8.99.91.E5.AF.B9.E7.99.BB.E5.BD.95.E6.80.81.E5.81.9A.E6.A0.A1.E9.AA.8C][技术优化原则]]
+*** DONE 需要考虑对登录态做校验
+CLOSED: [2015-05-30 Sat 08:49]
+
+
+
+用户登录平台后进入应用时，URL中会带有该用户的OpenID和OpenKey，该OpenKey具有2小时的有效期。
+如果用户在应用中一直在操作，但是2小时内没有触发OpenAPI的调用，则会导致OpenKey过期。因此开发者应该检查应用的代码，优化设计，采用一些简单的机制刷新用户的OpenKey，预防上述情况的出现。 
+腾讯专门提供了v3/user/is_login接口，用于登录用户的OpenKey续期。虽然应用调用任何一个OpenAPI都可以刷新用户的OpenKey，但是如果仅仅为了出于自动续期的目的而去随意调用某一个OpenAPI，则会给后台服务造成很大的压力 。因此推荐使用v3/user/is_login接口专门用于OpenKey续期的处理。
+解决方案：如果OpenKey已经过期，开发者可以调用接口fusion2.dialog.relogin让用户重新登录，获取新的有效的OpenKey。
+
+*** TODO 超时
+OpenAPI超时时间说明
+OpenAPI一般会在50ms以内返回数据，OpenAPI接口机设置的最长超时时间为3s。
+开发者可以根据上述说明自行设置OpenAPI调用的超时时间。 
+
+
+
+
+* 完成事项
+
+** DONE test online(remove host bind)
+CLOSED: [2015-06-03 Wed 12:15]
+
+** DONE refactor
+CLOSED: [2015-06-03 Wed 12:15]
+
+** DONE pass local test
+CLOSED: [2015-06-03 Wed 15:33]
+
+** DONE fix bug
+CLOSED: [2015-06-03 Wed 20:44]
+
+
+
+* TODO 明日计划
+** TODO build fiddler
+
+** TODO remote debug android,ios
+
+* TODO 未来7日计划
+
+** TODO understand typescript inherit static member(WanbaGameClient inherit HttpClient, their getInstance method all are the one of HttpClient!????) 
+[[https://github.com/Microsoft/TypeScript/issues/613][Proposal to remove inheritance of static properties]]
+[[http://stackoverflow.com/questions/16816414/extending-instance-static-functions-on-existing-prototypes-with-typescript][Extending instance/static functions on existing prototypes with TypeScript]]
+[[http://stackoverflow.com/questions/2281775/c-sharp-static-member-inheritance-why-does-this-exist-at-all][c# static inherit]]
+
+
+
+
+
+
+*** TODO website build
+**** TODO move dist_views,image... to dist dir
+dist_public
+dist_devSync
+
+***** TODO solove problem:sync.js-> recursive param not work!?
+**** TODO develop auto gulp
+**** TODO publish gulp
+**** TODO //md5 version update
+
+**** TODO modify board css(100%), publish it
+*** TODO game build
+**** TODO dev confi
+**** TODO auto-sync
+*** TODO how to agenda?multi day?                                   :emacs:
+*** TODO see mvc branch
+*** TODO optimize
+**** TODO build optimize
+***** TODO [#B] distinguish developo and produce env(add config.js to maintain the field?)
+***** TODO [#C] use gulp to realise dev and proc env switch
+***** TODO debug(add .map)
+***** TODO incremental refresh game.js file
+
+
+
+
+
+
+
+
+** TODO finish gulp blog
+*** TODO publish yyctoolbox(ci, fileOperator)
+
+
+
+//继续研究egret工具、cocostudio工具
+//掌握游戏的开发流和现有成果
+//学习游戏代码，制作demo
+
+
+
+
+//待搞清楚：
+//讨论编程规范：
+private和getter写在一起？
+
+//canvas->tranform->skew ?
+//改了后，游戏代码怎么办？不能使用新引擎了
+/Webgl如何实现帧动画？比如人物移动的动画？
+//TypeScripe_StyleGuide.md是自己定的？为什么不用private 关键字？
+//提出create方法？增加initWhenCreate方法？方便测试？
+
+
+
+
+
+
+

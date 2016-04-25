@@ -1,0 +1,44 @@
+* TODO 今日计划
+** TODO refactor
+rename to EventName, EventType
+rename EventRegister->getListenerDataList  to getEventRegisterDataList
+rename EventMouseHandler to MouseEventHandler
+rename getChilds to getChildren
+(rename _childs to _children)
+
+** TODO more event
+*** TODO finish EventGesture(first finish mobile event)
+
+
+
+* 完成事项
+
+** DONE off
+CLOSED: [2015-07-23 Thu 09:28]
+
+** DONE refactor
+CLOSED: [2015-07-23 Thu 09:48]
+rename to EventName, EventType
+rename EventRegister->getListenerDataList  to getEventRegisterDataList
+rename EventMouseHandler to MouseEventHandler
+rename getChilds to getChildren
+(rename _childs to _children)
+
+
+*** DONE fromEvent to refactor
+CLOSED: [2015-07-24 Fri 14:19]
+
+*** DONE add stopPropagation test
+CLOSED: [2015-07-24 Fri 16:14]
+
+
+** DONE finish EventKeyboard
+CLOSED: [2015-07-25 Sat 18:07]
+** DONE refactor
+CLOSED: [2015-07-25 Sat 18:07]
+
+* TODO 明日计划
+** TODO build component-based architecture
+
+* TODO 未来7日计划
+** TODO components arthicture

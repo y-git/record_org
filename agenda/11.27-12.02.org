@@ -1,0 +1,179 @@
+* TODO 今日计划
+** TODO prepare
+*** TODO [#A] build major demos
+refactor demos
+
+*** TODO [#A] clear engine(remove threejs,playcanvas related comment, change the code refered to them)
+remove chinese
+refactor jasmine, extract common tool, refresh yeoman
+refactor builder, refresh yeoman
+
+
+all in "var" change to "let"(except function/forEach...)
+
+all add type definition
+
+add declare var document
+
+all for of replace arr.forEach
+
+
+format all
+
+clear bower,npm,gitignore config
+
+** TODO publish
+*** TODO rename engine
+*** TODO register to bower,npm
+*** TODO add document
+readme
+
+jsdoc
+*** TODO [#B] add github bar, like:
+https://codecov.io/github/yyc-git
+add unit test bar
+
+*** TODO check
+
+*** TODO publish to some friends and fans(<5 人)
+
+
+* 完成事项
+** DONE build major demos
+CLOSED: [2015-11-30 Mon 10:18]
+//encapulate canvas
+
+//set full screen
+
+
+
+            //add compressed texture
+
+            //fix bug: can use texture->alpha data(not vec3!)
+
+
+
+            ////toTexture
+
+
+
+            //rename ImgLoader to ImageLoader
+
+
+////if isTest === false, not warn,debug
+
+
+//separate requireGetter, requireSetter, ...
+
+//CubemapFaceTwoTexture sourceRegionMethod ->setter only can set to DRAW_IN_CANVAS
+
+//rename FaceTwoD
+
+
+//Point change
+add point sample
+
+//add event name enum   dy_xxx
+
+////use bind to refactor event
+
+////Fly add contrain
+
+////Fly: continue from lookAt point
+            camera.transform.translate(0, 50, -20);
+            camera.transform.lookAt(0, 0, 0);
+
+
+
+////add custom geometry sample
+
+
+
+
+
+pass unit test
+
+
+refactor demos
+
+** DONE rename engine
+CLOSED: [2015-11-30 Mon 16:12]
+wonder
+
+** DONE [#A] clear engine(remove threejs,playcanvas related comment, change the code refered to them)
+CLOSED: [2015-12-01 Tue 15:20]
+*** DONE code clean
+CLOSED: [2015-12-01 Tue 15:21]
+//remove chinese
+//remove comment
+
+all in "var" change to "let"(except function/forEach...)
+
+all add type definition
+
+//add declare var document
+
+all for of replace arr.forEach
+
+
+format all
+
+
+////js doc
+
+*** DONE file clean
+CLOSED: [2015-12-01 Tue 15:20]
+clear bower,npm,gitignore config
+refactor jasmine, extract common tool, refresh yeoman
+refactor builder, refresh yeoman
+
+//move Typescript_guide
+
+*** DONE write readme.md
+CLOSED: [2015-12-01 Tue 15:20]
+
+add MIT license
+
+
+
+
+
+can build git clone
+
+push v0.1.1
+
+update bower
+
+//run in firefox
+
+
+
+rewrite build org:
+git submodule init
+git submodule update 
+
+//add converter document
+add platform
+
+*** DONE publish to some friends and fans(<5 人)
+CLOSED: [2015-12-01 Tue 21:02]
+*** DONE [#B] add github bar, like:
+CLOSED: [2015-12-02 Thu 09:22]
+
+//add travis-ci bar
+
+
+add codecov bar
+
+
+
+how to run travis-ci when push?
+
+
+* TODO 明日计划
+
+** refactor 
+forEach use let
+
+
+* TODO 未来7日计划

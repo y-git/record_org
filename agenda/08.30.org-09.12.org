@@ -1,0 +1,327 @@
+* TODO 今日计划
+
+** DONE demo3
+CLOSED: [2015-09-12 Sat 20:23]
+
+
+
+* 完成事项
+** DONE skybox
+CLOSED: [2015-09-01 Tue 10:35]
+
+To draw the skybox we're going to draw it as the first object in the scene and disable depth writing. This way the
+skybox will always be drawn at the background of all the other objects. 
+
+
+glDepthMask(GL_FALSE);
+skyboxShader.Use();
+// ... Set view and projection matrix
+glBindVertexArray(skyboxVAO);
+glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+glDrawArrays(GL_TRIANGLES, 0, 36);
+glBindVertexArray(0);
+glDepthMask(GL_TRUE);
+// ... Draw rest of the scene
+
+
+
+
+You might remember from the basic lighting tutorial that we could remove the translation section of transformation
+matrices by taking the upper-left 3x3 matrix of the 4x4 matrix, effectively removing the translation components. We can
+achieve this by simply converting the view matrix to a 3x3 matrix (removing translation) and converting it back to a 4x4
+matrix 
+
+
+
+
+If we render the skybox first we're running the fragment shader for each pixel on the screen even though only a small
+part of the skybox will eventually be visible; fragments that could have easily been discarded using early depth testing
+saving us valuable bandwidth. 
+
+So to give us a slight performance boost we're going to render the skybox last. 
+
+
+
+We do have to change the depth function a little by setting it to GL_LEQUAL instead of the default GL_LESS. The depth
+buffer will be filled with values of 1.0 for the skybox, so we need to make sure the skybox passes the depth tests with
+values less than or equal to the depth buffer instead of less than. 
+
+
+
+** DONE test cubemap sourceRegion
+CLOSED: [2015-09-02 Wed 09:54]
+only support draw_canvas
+
+//** TODO cubemap repeat
+
+
+** DONE cubemap compressed
+CLOSED: [2015-09-02 Wed 13:55]
+
+//** TODO test cubemap mipmaps
+
+
+** DONE refactor
+CLOSED: [2015-09-02 Wed 21:09]
+//refer to threejs
+
+//texture draw command
+
+skybox to be entity
+
+
+
+** DONE pass unit test
+CLOSED: [2015-09-04 Fri 17:53]
+
+cube pass
+
+
+cube generateMipmaps
+
+cube face texture draw
+
+
+videoTextureSpec
+(add VideoLoader, VideoTexture.create(asset)!)
+set minFilter?
+
+
+//move filterCallback to texture/utils
+
+
+** DONE pass demo2,demo3
+CLOSED: [2015-09-04 Fri 18:07]
+
+
+** DONE multi shader
+CLOSED: [2015-09-05 Sat 11:34]
+
+
+
+** DONE reflection
+CLOSED: [2015-09-06 Mon 11:53]
+
+
+
+** DONE refraction
+CLOSED: [2015-09-06 Mon 11:53]
+
+
+** DONE fresnel
+CLOSED: [2015-09-06 Mon 11:54]
+
+
+
+** TODO refactor
+refer to threejs,playCanvas,unity
+
+*** DONE shader system
+CLOSED: [2015-09-10 Thu 21:15]
+//add ProgramLib
+
+//build to generate js shader chunk from glsl file
+
+
+record in org
+
+
+refactor:
+//duplicates
+
+
+//map, envMap instead of textureManager?
+//Material hide TextureManager to user
+
+
+
+
+//Material->updateShader use this.shader.update(quadCmd)
+
+
+
+
+////combine Texture,Material->sendData 
+
+
+
+
+
+//snippet
+
+//add cubemap
+
+//Material add relectivity
+
+
+
+//uniform variable can auto generate(indexOf)
+
+
+
+
+
+//refactor to fs
+
+
+
+
+//add texture glsl
+
+//multi-texture
+
+//Material add combine
+//ratio
+
+
+
+refactor:
+//add precision glsl
+////rename Shader to ShaderManager?
+
+//shaderLib->more folders
+
+
+
+//Material->init set ShaderLib
+
+
+//video?
+
+//add customMaterial for custom shader
+
+
+
+*** DONE pass unit test
+CLOSED: [2015-09-11 Fri 19:45]
+////WebglRender->draw add 3 commands
+
+
+custom shader
+
+
+*** DONE other
+CLOSED: [2015-09-11 Fri 20:28]
+//All Geometry should have normal data
+
+//skybox's cullmode to be FRONT
+
+//remove instance:xxx
+
+
+//rename "CubeXXX" to "CubemapXXX"
+
+
+//remove dy.render(or user should not use it at least)
+
+
+////GameObject auto add MeshRenderer?
+
+
+
+//polygonOffset set in custom shader like unity!
+http://answers.unity3d.com/questions/13137/blob-shadow-z-fighting-on-iphone.html
+http://docs.unity3d.com/Manual/SL-CullAndDepth.html
+
+
+
+//query glsl max precision and set it
+
+
+
+
+
+
+//auto add 
+
+
+
+//split test files
+
+
+
+
+** DONE pass demo3
+CLOSED: [2015-09-11 Fri 22:23]
+
+
+** DONE update to typescript 1.6
+CLOSED: [2015-09-12 Sat 20:15]
+
+*** 1.4
+**** Type Aliases
+
+You can now define an alias for a type using the type keyword:
+
+type PrimitiveArray = Array<string|number|boolean>;
+type MyNumber = number;
+type NgScope = ng.IScope;
+type Callback = () => void;
+Type aliases are exactly the same as their original types; they are simply alternative names.
+
+
+
+to remove rebundant interface
+
+
+Generic type aliases(1.6)
+
+
+
+Local type declarations
+
+
+
+
+
+*** 1.5
+//destructuring
+
+//namespace
+
+
+
+
+//template
+
+
+////remove create<T>?
+
+
+
+
+
+*** 1.6
+
+
+//abstract classes and methods
+
+TypeScript 1.6 adds support for abstract keyword for classes and their methods. An abstract class is allowed to have methods with no implementation, and cannot be constructed.
+
+Examples
+
+abstract class Base {
+    abstract getThing(): string;
+    getOtherThing() { return 'hello'; }
+}
+
+
+
+
+
+
+
+Decorators
+
+
+ES6 generators(use in DYReactive)
+
+
+
+
+
+* TODO 明日计划
+
+
+
+* TODO 未来7日计划

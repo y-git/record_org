@@ -1,0 +1,142 @@
+* engine
+DYEngine is 2d/3d engine, 2d is for developing small game in weixin(for jiehuo), and 3d is for my dream! 
+
+3d is the major research direction, i will first finish the demo road, write webgl blogs, and finally create fly game!
+
+
+
+* game thought
+** fly game
+focus on personal fly in sky
+positive,interesting game, focus on fly experience 
+run in pc and mobile
+
+can visit multiple world(magic world,light world)
+can use prop like broom to fly(can add attribute)
+mmorpg
+
+can compete:
+1.racing(racing in sky, can drift like kadingche...)
+2....
+
+charge points:
+1.hour card
+2.buy skin
+3.buy special prop(wing, mechine...)
+...
+
+
+
+first, build single player game demo, then build multi player demo.
+need more people to do it!i just create the demo!
+
+* goal
+** cnblogs get 1000+ fans
+** WonderJs get 2000+ stars
+
+* day plan                                                             :plan:
+** morning(06:00-08:30)
+set day tasks
+finish hard task(like write blog...)
+** forenoon(09:00-12:00)
+do task
+** afternoon(02:00-05:00)
+do task
+** 05:00-06:00
+exercise
+** night(08:00-10:00)
+summary
+write blog
+* todo list
+** TODO 3d engine
+*** DONE 3d initial engine(v0.1)
+CLOSED: [2015-12-01 Thu 20:00]
+**** DONE finish event system
+CLOSED: [2015-08-29 Sat 07:59]
+support mobile event
+**** TODO screen adapter in mobile
+(refer to [[http://www.cocos2d-x.org/docs/manual/framework/html5/v2/resolution-policy-design/zh][cocos2d-js 屏幕适配]]  [[http://docs.egret-labs.org/jksubj/scalemode.html][理解Egret中的各种屏幕适配策略并做出选择]] [[http://docs.egret-labs.org/post/manual/adaptive/screenadaptive.html][如何在 Egret 中使用适合的屏幕适配策略]])
+**** DONE component arthicture
+CLOSED: [2015-08-29 Sat 07:59]
+//** 2d engine
+**** DONE frp simple library
+CLOSED: [2015-08-29 Sat 07:59]
+**** DONE pass unit test
+CLOSED: [2015-08-29 Sat 07:59]
+
+**** TODO refer to 3d.org
+*** TODO finish v1.0
+
+** TODO write engine design and webgl blogs
+*** TODO webgl blogs
+DEADLINE: <2015-08-09 Sun> SCHEDULED: <2015-08-03 Mon>
+*** TODO engine design blogs
+DEADLINE: <2015-08-16 Sun> SCHEDULED: <2015-08-10 Mon>
+
+** TODO prepare 2d game
+DEADLINE: <2015-08-31 Mon>
+//*** typescript
+//*** use event system
+//*** use component arthicture
+//*** add canvas render
+//*** pass fetch car game(in weixin)
+//*** add more effect(particle effect) based on wozlla
+//*** ui editor
+** TODO prepare work flow
+DEADLINE: <2015-09-13 Sun>
+*** TODO prepare game develop work flow
+ yo+gulp+bower+npm+ci
+*** TODO write build blogs
+** TODO write three mobile game(fetch car, other small game refer to ones in zhubajie) in weixin
+DEADLINE: <2015-09-30 Wed>
+
+
+
+** TODO publish engine
+*** TODO build a forum
+*** TODO build doc(jsdoc, ...)
+
+* step
+//** improve YEngine2D
+** finish DYEngine 
+event system
+screen adapter in mobile(refer to [[http://www.cocos2d-x.org/docs/manual/framework/html5/v2/resolution-policy-design/zh][cocos2d-js 屏幕适配]]  [[http://docs.egret-labs.org/jksubj/scalemode.html][理解Egret中的各种屏幕适配策略并做出选择]] [[http://docs.egret-labs.org/post/manual/adaptive/screenadaptive.html][如何在 Egret 中使用适合的屏幕适配策略]])
+//typescript
+component arthicture
+** finish 3d demo
+** write three mobile game(fetch car, other small game refer to ones in zhubajie) in weixin
+engine add canvas render 
+//** make san guo zhan ji  game work in pc and mobile
+
+run in weixin(android, ios)
+
+think organization way:
+puremvc?other?
+
+add more effect action(add tween?)
+
+write simple ui editor(angular)
+
+** prepare work flow
+prepare yo+gulp+bower+npm+ci
+
+** write blog drafts
+
+** prepare propaganda
+public engine and relative library(DYReactive...)
+    write doc
+    propagate it in zhihu,github,friends,qq qun...(first to friends)
+
+improve personal blog(can work in ie8)
+decorate zhubajie personal website
+create logo for dongyou
+create dongyou github
+** start fetch work(h5 game, web app)
+** more
+*** make my game work with DYEngine(sanguo,bomber, ancientWar...)
+//*** continue 3d(continue 3d demo road)
+it's my major research direction
+
+*** emacs learn
+*** create new simple 3d rts game based on ancientWar?
+*** create fly game demo?

@@ -1,0 +1,297 @@
+* TODO [#A] finish "access to wanba" requirement
+** TODO [#A] write plan report
+** TODO [#B] switch to Web branch
+
+
+** record for wanba and tencent open platform
+*** how to use api
+
+**** notice
++ should encode url param:各个参数请进行URL 编码，编码时请遵守 RFC 1738
++ app id,app key gived by xiaoming
+
+**** get public param of api
+
+save openid, openkey in localstorage?
+
+
+
+
+can get openid, openkey, pf?, platform field from CanvasUrl
+
+
+
+跳转到应用后，CanvasURL后一定会带的参数包括：openid,openkey,pf,pfkey。 
+根据场景不同可能会带的参数有：invkey,iopenid,itime,source,app_custom。
+注：Openkey长度为不固定的字符串，不能为空。建议开发者不要检查openkey的长度，也不要在后台存储openkey，否则可能会导致用户无法登录。
+
+
+5. 为何获取不到OpenID和Openkey等参数？
+原因分析：
+当登录用户从腾讯平台（朋友/QQ空间/微博等）进入应用时，平台会调用应用的CanvasURL并在CanvasURL后带上OpenID及OpenKey等参数。开发者需要解析CanvasURL，以获取OpenID和Openkey的值并保存起来，用于后续调用OpenAPI时使用。
+在V6版QQ空间中，为了对静态页面缓存优化，对应用的canvarurl是.htm或者.html后缀的url传参数是通过hash传递，即#后面传参数，这个参数不会发送到web server，通过抓包是看不到，只能前台页面获取。
+因此如果non-hosting应用其应用开发地址是以htm,html结尾，则如果用"?"来解析跳转URL，就会获取不到参数。
+对于hosting应用来说，其应用开发地址由腾讯提供，不会存在以htm,html结尾，则不会出现获取不到参数的情况。
+
+解决方案：
+应用的CanvasURL如果是以.htm或.html结尾的，请在解析时兼容"?" "#"两种传参方式。
+推荐前端可以使用这个方法获得参数：
+   function getHttpParams(name)
+   {
+        var r = new RegExp("(\\?|#|&)"+name+"=([^&#]*)(&|#|$)");
+        var m = location.href.match(r);
+        return decodeURIComponent(!m?"":m[2]);
+   }
+
+
+**** build sig
+[[http://wiki.open.qq.com/wiki/%25E8%2585%25BE%25E8%25AE%25AF%25E5%25BC%2580%25E6%2594%25BE%25E5%25B9%25B3%25E5%258F%25B0%25E7%25AC%25AC%25E4%25B8%2589%25E6%2596%25B9%25E5%25BA%2594%25E7%2594%25A8%25E7%25AD%25BE%25E5%2590%258D%25E5%258F%2582%25E6%2595%25B0sig%25E7%259A%2584%25E8%25AF%25B4%25E6%2598%258E][腾讯开放平台第三方应用签名参数sig的说明]]
+
+**** question
++ canvasUrl has no pf?
+
+has these param below:
+openid:C2FBE84EAE9167B1C7CB38BDF9F2C241
+openkey:A1A5EFE4E99FF6D2DEB15EB295DCA0CD
+platform:1
+via:touch.recentplay
+
+
+pf: "wanba_ts" ???
+
++ openkey 过期  续期？
+openkey	必须	string	session key。从平台跳转到应用时会调用应用的CanvasURL，平台会在CanvasURL后带上本参数。由平台直接传给应用，应用原样传给平台即可。
+注：
+（1）如果不知道如何解析CanvasURL以获取OpenID和Openkey，点击这里；
+（2）如果解析CanvasURL时获取不到OpenID和Openkey等参数，点击这里；
+（3）注意同一个用户如果在不同时间打开多个应用页面，页面返回的openkey是不一样的，这些openkey在各自的页面都可用。但是不要在当前页面使用另1个页面的openkey，否则会出错；
+（4）Openkey长度为不固定的字符串，不能为空。建议开发者不要检查openkey的长度，也不要在后台存储openkey，否则可能会导致用户无法登录;
+（5）openkey过期时间为两小时，需要用v3/user/is_login接口续期。
+
+
+[[http://wiki.open.qq.com/wiki/v3/user/is_login][续期]]
+
+**** 请求URL说明
+http://[域名]/[api_name] 
+
+域名和IP的说明：
+正式环境下使用域名：openapi.tencentyun.com。测试环境下使用IP：119.147.19.43。
+
+1. 应用部署前必须确保已经将程序中的测试IP换成了正式域名，才能将应用上线到正式环境。
+2. 测试环境IP仅针对调试者QQ号有用，即只有调试者QQ号对应的OpenID会通过验证，非调试者QQ号将会返回-64的错误。调试者QQ号的设置详见这里。
+   
+
+
+api_name的说明：
+[api_name]：见API列表中带API_legend_3.png 标记的接口。例如接口名称为：v3/user/get_info。 
+
+请求URL的示例：
+1. 正式环境下访问OpenAPI V3.0：
+http://openapi.tencentyun.com/v3/user/get_info 
+2. 测试环境下访问OpenAPI V3.0：
+http://119.147.19.43/v3/user/get_info 
+
+
+*** how to debug
+
+[[http://open.qq.com/tools][联调工具集]]
+
+
+basic test(use test url:119.147.19.43),then upload to server(share with xiaoming)
+
+
+
+
+1. 用你们的QQ登录玩吧:http://wanba.qq.com/
+2. 测试我们游戏的地址：http://touch.m.qzone.com/
+登录后点击 "玩吧"
+
+
+由于这个网址只响应touch事件，要请PC的浏览器转成手机模式：点
+
+
+*** how to pay
+
+4 道具8折特权的实现方式？
+
+
+front end should judge user, decide whether use 8 account?
+
+
+
+
+利用玩吧积分在游戏内购买道具或者购买二级货币时，一定要有明显示意，玩吧达人尊享8
+折，将原价和折后价作为对比。
+道具8折是针对游戏达人用户的，当用户在支付时，
+平台判断出用户的身份类型后就在扣费时执行8折的逻辑，所以8折特权的实现方式实在平台
+完成， 
+*但对用户的表现上是需要开发商完成*
+ 。
+具体关注cost这个参数。
+
+
+[[http://wanba.qq.com/wiki.html#%E7%8E%A9%E5%90%A7%E6%94%AF%E4%BB%98%E6%8E%A5%E5%85%A5%E6%8C%87%E5%AF%BC%E6%96%87%E6%A1%A3][玩吧支付接入指导文档]]
+
+
+**** steps:
+第1步：开发者签署《收益补充协议》，截屏发邮件（操作指导请见附一）
+第2步：填写玩 吧应用收费道具登记表（附二） 
+第3步：将以上两个信息邮件给wanba@tencent.com； oxtuo@tencent.com 
+第4步：玩吧给开发者开权限、邮件通知分配配置后的道具itemID；开 发者根据api接口文档（附三）调试+部署 
+第5步：邮件到wanba@tencent.com； summeroyou@tencent.com申请测试。测试通过即可正式上线玩。 
+
+
+
+
+
+积分不足时充值提示
+
+*** terminology
+[[http://wiki.open.qq.com/wiki/%25E6%25A6%2582%25E5%25BF%25B5%25E5%2592%258C%25E6%259C%25AF%25E8%25AF%25AD#OpenID][概念和术语]]
+
+
+如果您的应用是hosting应用
+hosting模式应用需要将应用部署在腾讯的服务器上。
+腾讯云平台为hosting模式应用提供了服务器、带宽、域名等资源，开发者需要：
+（1）了解如何选购云服务，详见：腾讯云平台新手指引_V2#3. 如何选购云服务？；
+（2）在云平台上部署和发布您的应用。详见：腾讯云平台新手指引_V2#4. 程序部署和发布。
+（3）应用发布后外网即可通过应用平台地址访问您的应用，但是必须提交上线申请并通过后，应用才能在应用中心可见。 
+
+如果您的应用是non-hosting应用
+non-hosting模式应用需要将应用部署在开发者自己的服务器上，因此需要自己准备服务器、域名等，并进行应用部署。腾讯不为该过程提供技术支持。
+注：应用发布后外网即可访问您的应用，但是必须提交上线申请并通过后，应用才能在应用中心可见。 
+
+*** reference
+[[http://wiki.open.qq.com/wiki/%25E6%258A%2580%25E6%259C%25AF%25E4%25BC%2598%25E5%258C%2596%25E5%258E%259F%25E5%2588%2599][技术优化原则]]
+
+[[https://192.168.1.26/xiaoming/timespace/blob/Web/QZoneTest_readme.md][QZone 测试环境说明]]
+
+[[http://wiki.open.qq.com/wiki/API3.0%25E6%2596%2587%25E6%25A1%25A3][api3.0文档]]
+
+[[http://wiki.open.qq.com/wiki/OpenAPI%25E8%25B0%2583%25E7%2594%25A8%25E7%259B%25B8%25E5%2585%25B3%25E9%2597%25AE%25E9%25A2%2598#6._.E8.B0.83.E7.94.A8OpenAPI.E6.97.B6.E9.9C.80.E8.A6.81.E4.BC.A0.E5.85.A5userip.EF.BC.8C.E5.A6.82.E4.BD.95.E8.8E.B7.E5.8F.96.EF.BC.9F][OpenAPI调用相关问题]]
+
+
+
+*** TODO need confirm
+**** DONE 先登录，然后支付?login is game's behavior, not depend on openapi!
+CLOSED: [2015-05-25 Mon 14:37]
+
+**** DONE use which way to pay?
+CLOSED: [2015-05-25 Mon 10:07]
+2
+
+
+二、应用内支付
+
+用户在应用内可通过两种方式购买道具（应用内可同时支持两种购买方式，或仅支持其中一种），分别是玩吧积分直购道具和玩吧积分购买二级货币，二级货币购买道具。
+
+1、 积分直购：用户通过积分直接购买道具。 ① 开发者填写玩吧应用收费道具登记表（附一），并邮件给wanba@tencent.com（cc：oxtuo@tencent.com、mioluo@tencent.com、ninazhou@tencent.com、yulchen@tencent.com）申请配置道具。邮件中还需包含开发者签署的《收益补充协议》（操作指导请见附二） ② 开发者根据api接口文档（附三）调试 ③ 玩吧测试验收通过，上线
+
+2、 积分兑换游戏二级货币，再通过二级货币购买道具。 ① 开发者填写玩吧应用收费道具
+登记表（需将游戏二级货币作为道具填写进道具等级表中），并邮件给wanba@tencent.com
+（cc：oxtuo@tencent.com 、mioluo@tencent.com 、ninazhou@tencent.com、
+yulchen@tencent.com）申请配置道具。邮件中还需包含开发者签署的《收益补充协议》
+（操作指导请见附二） ② 根据api接口文档调试 ③ 玩吧测试验收通过，上线 
+**** what functions of pay need?(xiaoming, dake)
+**** TODO what api will be used in front end, what in back end?(xuyang)
+**** what should other one do?
+附一：分成协议操作指导 need xiaoming do
+
+
+**** need other api?(friend relation?)
+
+
+
+*** TODO roadmap
+**** TODO 游戏达人
+三、游戏达人特权的实现方式
+
+游戏达人初期享有图标外显，每日礼包，道具8折等特权，所有特权需要在游戏内有明显展示。 1. 图标外显：游戏内要展示用户的游戏
+达人及等级图标。 a) 积分的图标 http://qzonestyle.gtimg.cn/qz-act/play-bar/star_16x16.png
+http://qzonestyle.gtimg.cn/qz-act/play-bar/star_25x25.png http://qzonestyle.gtimg.cn/qz-act/play-bar/star_45x45.png
+http://qzonestyle.gtimg.cn/qz-act/play-bar/star_90x90.png b) 等级的图标 小图标：数字表示等级
+http://qzonestyle.gtimg.cn/qz-act/play-bar/lelve-s-1.png 大图标：数字表示等级
+http://qzonestyle.gtimg.cn/qz-act/play-bar/level-b-1.png 
+
+每日礼包：游戏需要制定针对游戏达人的每日礼包，回馈给游戏达人用户
+道具8折： 利用玩吧积分在游戏内购买道具或者购买二级货币时，一定要有明显示意，玩吧达人尊享8折，将原价和折后价作为对比。
+Alt text 道具8折的后台实现方式如下： 当用户在支付时，平台判断出用户的身份类型后就在扣费时执行8折的逻辑，所以8折特权的实
+现方式实在平台完成，但对用户的表现上是需要开发者完成。具体关注cost这个参数。 
+
+
+
+
+                                type: 'appStore',
+                                environment: 'test',
+                                'receipt-data': json.receipt,
+                                _httpType: 'POST'
+
+
+* demo test
+** TODO purchase second money
+* report
+玩吧api接口列表
+
+1、open api接口（后台）
+
+接口名称 （点击接口名可查看对应wiki文档）	Api接口	备注
+玩家信息（QQ昵称、头像、性别）	// v3/user/get_info	必选
+关系链（好友列表、可区分玩过和未玩过的好友）	// /v3/relation/get_app_friends	可选
+好友基础信息（昵称，头像，性别，地理位置）	// /v3/user/get_multi_info	可选
+好友游戏积分上报	// /v3/user/set_achievement	重要，下方有特别说明
+拉取排行榜	// /v3/user/get_gamebar_ranklist	可选
+使用积分兑换道具	// /v3/user/buy_playzone_item	可选
+查询达人信息	// /v3/user/get_playzone_userinfo	可选
+发送玩吧消息	// /v3/user/send_gamebar_msg	可选
+调试详情请看这里http://wiki.open.qq.com/wiki/API%E5%88%97%E8%A1%A8
+
+游戏积分/排行榜上报接口特别说明：
+
+参数：pf: "wanba_ts"（玩吧的应用pf必须指定为wanba_ts）
+
+玩吧的私有参数
+
+参数名称	是否必须	类型	描述
+user_attr	必须	json格式	要上传的用户属性信息，只有上传的字段会更新，可上传的字段包括： 
+level：用户等级。格式为uint。 需配置 
+
+key1：自定义字段。格式为uint。 需配置 
+Key2：自定义字段。格式为uint。需配置 
+例如： {"level":10}
+玩吧的请求示例：
+
+http://openapi.tencentyun.com/v3/user/set_achievement?
+openid=B624064BA065E01CB73F835017FE96FA&
+openkey=5F154D7D2751AEDC8527269006F290F70297B7E54667536C&
+appid=2&
+pf=wanba_ts&
+format=json&
+userip=112.90.139.30&
+user_attr=%7B%22level%22%3A10%7D&
+sig=9999b41ad0b688530bb1b21c5957391c
+
+2、fusion api接口（前台）
+
+好友邀请：fusion2.dialog.invite
+
+参数名称	是否必须	类型	描述
+img	Y	String	参数描述：邀请配图的URL，用于在空间邀请feeds中展示
+msg	Y	String	参数描述：邀请好友时，发送给好友的邀请信息。请尽量简洁生动，能够吸引用户进入应用。
+长度限制：控制在35个汉字以内。
+source		String	参数描述：透传参数，由开发者自定义该参数内容。
+开发者可根据这个参数的内容，判断被邀请的用户是点击哪个好友发送的信息。
+用户通过由该接口发送的应用消息feed进入应用时Query String中的app_custom参数值即为该参数的值。
+长度限制：这里的参数会被URL编码，需要注意编码后的长度不允许超过900个字符。
+wiki文档：http://wiki.open.qq.com/wiki/fusion2.dialog.invite
+
+
+
+
+** TODO pay interface
+
+src iap/ folder has pay code
+
+
+
+
+** TODO friend relation interface

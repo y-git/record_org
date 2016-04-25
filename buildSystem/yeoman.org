@@ -1,0 +1,16 @@
+* question and solution
+** run yo when create .yo-rc.json file in project, it will throw "unexpected end of input"
+*** describe
+
+*** reason
+the yo-rc file shouldn't be empty.
+*** solution
+.yo-rc.json should contain it at least:
+{
+  "generator-yourGenerortorName": {}
+}
+
+* record
+1. use v1.8(yeoman-generator) to use new file system
+[[http://yeoman.io/blog/release-0.18.html][YEOMAN GENERATOR VERSION 0.18.0 - RELEASE ANNOUNCEMENT]]
+

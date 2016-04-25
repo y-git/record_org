@@ -1,0 +1,13 @@
+[[http://www.cnblogs.com/flashbird/p/4420426.html][组件化在游戏开发中的思考]]
+
+相比传统的基于继承的方法，这种方法带来三大优势：
+一是方便创建和修改复杂的类型，由于不再需要改动庞大的继承树，绕开了语言的静态限制，客户端可以在不修改代码的前提下，创建任意类型的对象。 
+二是由于组件是对于接口设计的，这就强迫设计者实现一些高内聚低耦合的组件，也有助于游戏层的整体设计。
+最后由于可以动态地查询组件类型信息，做一个拥有图形界面的、支持游戏内容的debugger变得可能了
+二是由于组件是对于接口设计的，这就强迫设计者实现一些高内聚低耦合的组件，也有助于游戏层的整体设计。
+最后由于可以动态地查询组件类型信息，做一个拥有图形界面的、支持游戏内容的debugger变得可能了
+
+
+when i'm  realising SpriteBatch, it's diffcult to make it to be Layer's element(Layer is designed to contain Sprite only, so need refactor
+it)  if it's designed to component, i think it will be very easy.
+

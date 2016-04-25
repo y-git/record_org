@@ -1,0 +1,459 @@
+* TODO 今日计划
+** TODO [#A] basic ui
+add some ui component(refer to Wozlla):Button,Scroller...
+
+show fps
+
+show different(multi views)
+
+can set screen size(refer to threejs)
+*** TODO add data collector
+*** TODO refactor demo
+*** TODO add debug layer
+*** TODO can switch scene(refer to cannon)
+
+
+*** TODO add Button,Pannel, Slider,Checkbox,Loading
+
+
+rect transform
+
+layout
+
+** TODO bind event
+bind font event
+bind panel,button,slider,checkbox event
+
+
+
+* 完成事项
+** DONE add progressBar
+CLOSED: [2015-12-29 Tue 19:17]
+
+
+** DONE refactor
+CLOSED: [2016-01-06 Wed 20:30]
+*** DONE extract RectTransform
+CLOSED: [2016-01-06 Wed 20:30]
+
+
+only support set position
+
+use progressBar for run test
+
+add unit test
+
+pass run test
+pass unit test
+
+
+//fix progressBar: position to be center
+
+
+//set "isXXX"
+
+                    //annotation position when rotate
+                    ////annotation scale/position along its direction
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2016-01-06 Wed 20:30]
+//UIObject extend from Object
+
+
+
+//pass progressBar
+
+//pass font
+
+//BitmapFont add height
+
+//add rotate
+
+//CharFont test width change
+
+//complete FontSpec
+
+//pass uiSpec
+
+//pass all unit test
+
+
+
+
+//rename gameObject to object
+
+
+
+//Transform extends Component?
+
+
+//refactor core structure
+
+//extract ThreeDSceneManager,TwoDSceneManager
+
+//add UIRootTransform
+
+////move EntityObject attri
+
+
+//one UIObject should only has one UI component
+
+
+
+
+//rename Scene to SceneDispatcher
+
+
+//refactor Transform
+
+//rename EntityObject->script to scriptList
+
+
+
+//use ts config like egret-3D
+
+
+//remove GameEntityObject
+//modify action/**
+
+
+//one UIObject should only has one UI component
+
+//RectTransform has width,height, it's used for draw and bind event
+
+//user can invoke transform.translate/...
+
+
+
+
+////ThreeDTransform remove get localToParentMatrix?
+
+
+////Transform add dispose method
+
+
+////add isActive state(after loading
+
+
+
+
+
+
+
+
+
+
+////UI add zIndex to set z order(sort by it)
+
+
+
+
+
+*** DONE refactor UIObject,GameObject
+CLOSED: [2016-01-06 Wed 20:30]
+
+
+
+*** DONE fix
+CLOSED: [2016-01-06 Wed 20:30]
+fix progressBar: position to be center
+
+
+** DONE refactor Font
+CLOSED: [2016-01-06 Wed 20:30]
+
+//fix: position to be center
+
+
+*** TODO pass font samples
+
+
+*** TODO improve font samples
+
+
+*** TODO refactor
+////add runOnlyOnce decorator:UIRenderer,Font,ProgressBar->init
+
+//remove UIRenderer->isClear
+
+
+
+** DONE refactor
+CLOSED: [2016-01-08 Fri 10:22]
+//update ui in UIObjectScene
+
+//UIObject and its children should has the same UIRenderer(same canvas)
+
+////remove UIManager
+
+//add defer action test
+
+
+//remove tsconfig_wd/_wd_debug.json
+
+
+** DONE UIObject add zIndex
+CLOSED: [2016-01-08 Fri 15:24]
+sort it in UIObjectScene
+
+
+////** TODO add Panel
+
+
+
+** DONE add Image
+CLOSED: [2016-01-08 Fri 20:10]
+
+
+** DONE bind event
+CLOSED: [2016-01-12 Tue 21:14]
+//add event component
+
+
+//bind more event(more mouse event
+////, keyboard event)
+
+
+//MouseEvent bind on document.body default
+
+
+
+////EntityObject add sendMessages method?
+
+
+
+//fix event->"lastX,state" bug
+
+
+////rename EventTriggerDetector to EventDetector
+
+
+
+bind font event
+bind panel,button,slider,checkbox event
+
+
+////canvas can pass event to webgl canvas according to config attri
+
+
+//get rect for bind(consider rotate)
+
+
+
+
+*** DONE use event system to refactor picking sample
+CLOSED: [2016-01-12 Tue 21:14]
+
+
+
+** DONE refactor
+CLOSED: [2016-01-12 Tue 21:14]
+
+
+
+
+
+
+** DONE add Button
+CLOSED: [2016-01-19 Tue 18:35]
+//extract DomEventManager from Director
+
+
+//pass all unit test
+
+
+//refactor SceneDispatcher:
+addComponent ...   direct add to SceneDispatcher
+forEach ... both game scene and ui scene
+
+
+
+////refactor event:
+DomEventHandler support target:EntityObject!
+remove EngineEvent->MOUSE_XXX, directly trigger MouseEvent
+
+
+
+//pass all unit test
+
+
+
+//test open wdFrp contract check in wonder
+
+
+
+//use state pattern to refactor UIRenderer
+
+
+fix bug:
+//add event script on Scene
+
+
+
+
+*** DONE refactor
+CLOSED: [2016-01-18 Mon 21:00]
+rename to mouse enter/leave
+
+
+
+*** DONE Transition Options
+CLOSED: [2016-01-19 Tue 18:28]
+//support SpriteSwap
+
+
+//Button:
+add background UIObject(Image)
+
+//SpriteSwap add target(default is background)
+Hash
+
+//add ButtonObject enum
+getObject(enum)(return fontObject/backgroundObject)
+
+
+
+
+
+
+
+//add Image:
+add color:
+mix color
+
+
+//set alpha
+
+
+
+
+
+//support color tint:
+////setColor(index)
+
+
+** DONE refactor samples
+CLOSED: [2016-01-20 Wed 17:18]
+
+*** DONE finish loading Panel
+CLOSED: [2016-01-20 Wed 10:52]
+use Font component
+use Bar component
+use Image component(loading .gif)
+
+
+
+solve loading script:
+support add script in runtime(can trigger onEnter,init)
+pass ui_load sample
+
+
+fix mirror bug
+
+
+** DONE some modify
+CLOSED: [2016-01-20 Wed 21:05]
+//use @execOnlyOnce to refactor
+
+
+
+
+
+//light_diffuseMap.html这个demo里面变量pointMterial容易引起误解。
+建议：pointMaterial-->pointSphereMaterial
+
+
+
+
+
+
+** DONE fix
+CLOSED: [2016-01-20 Wed 21:05]
+BoundingRegion->build->ensure: comment else-> asset(setModel, add BoxCollider)
+
+
+
+** DONE refactor
+CLOSED: [2016-01-21 Thu 16:23]
+*** DONE move ui_loading sample to demo->loading, add new ui_progressBar sample
+CLOSED: [2016-01-21 Thu 15:16]
+
+
+*** DONE refactor
+CLOSED: [2016-01-21 Thu 16:23]
+be getter:
+isDisable
+getCurrentState
+
+
+* TODO 明日计划
+** UI
+*** TODO [#A] add more ui
+**** TODO add Checkbox
+Image add border attr
+
+**** TODO add Slider
+
+**** TODO Input(refer to my YTextEditor)
+can get focus
+
+
+
+**** TODO refactor ProgressBar?
+add two Image Component
+
+*** TODO add dat-gui
+**** TODO refactor samples
+
+
+
+*** TODO add debug layer
+show rect transform-> border for debug
+show ui-> event rect range for debug
+
+show scene->border
+
+
+*** TODO change to 3d ui(refer to ngui,ugui)
+http://www.luzexi.com/unity3d/%E6%B8%B8%E6%88%8F%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/2013/12/14/Unity3D-%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90NGUI%E7%9A%84%E6%B8%B8%E6%88%8FUI%E6%9E%B6%E6%9E%84/
+http://blog.csdn.net/u013100250/article/details/46279463
+http://dsqiu.iteye.com/category/295721
+
+
+
+*** TODO auto layout
+http://docs.unity3d.com/Manual/UIAutoLayout.html
+
+http://www.jianshu.com/p/66ec57f99ff8
+
+zebra->samples/layouts.html
+
+*** TODO auto fit the size of their content
+http://docs.unity3d.com/Manual/UIAutoLayout.html
+http://docs.unity3d.com/Manual/HOWTO-UIFitContentSize.html
+
+
+*** TODO RectTransform anchor preset
+
+
+*** TODO Navigation Options
+http://docs.unity3d.com/Manual/script-SelectableNavigation.html
+
+*** TODO more Transition Options
+ColorTint
+Animation
+http://docs.unity3d.com/Manual/script-SelectableTransition.html
+
+//*** TODO RectTransform support pivot
+Rotations, size, and scale modifications occur around the pivot so the position of the pivot affects the outcome of a
+rotation, resizing, or scaling. When the toolbar Pivot button is set to Pivot mode, the pivot of a Rect Transform can be
+moved in the Scene View. 
+
+//**** TODO support rotate
+
+
+* TODO 未来7日计划

@@ -1,0 +1,99 @@
+* TODO 今日计划
+** TODO [#A] optimize
+
+performance check
+
+cache
+SIMD support
+
+memory management
+
+***** TODO [#A] optimize render(batch render,combine mesh...)
+
+***** TODO [#A] solve the three problem:
+solve '"reflection_light" demo become more and more slow when run' problem
+solve '"dynamic_cubemap_xxx" demo become more and more slow when run' problem
+
+optimize car demo
+
+***** TODO layers
+add a demo to show 3 meshes, use tag and layer(camera selective show)
+http://docs.unity3d.com/Manual/Layers.html
+http://docs.unity3d.com/Manual/class-TagManager.html
+***** TODO add data collector
+
+***** cubemap optimize
+• Dynamic Cube Maps don’t have to be full resolution
+• They also don’t need updating every frame
+• Allowing updates to lag behind a frame prevents stalling in some cases
+
+
+***** optimize:
+optimize renderer: [[http://docs.unity3d.com/Manual/DrawCallBatching.html][unity->batch draw]], dirty, layer(refer to Wozlla)
+combineMesh?
+add mesh/geometry merge method(refer to threejs->src->core->Geometry)
+
+***** memory management
+***** optimize Scene->update,renderer by using data locality
+refer to http://gameprogrammingpatterns.com/data-locality.html -> sample code
+
+first, get all need update/renderer components of all gameObject
+second, update/render them
+
+
+
+test the performance improvement by profile
+
+***** more
+gameObject add active flag
+
+
+
+
+
+* 完成事项
+** DONE test the performance improvement by profile
+CLOSED: [2016-01-22 Fri 16:49]
+use chrome->f12->timeline,profiler
+
+
+
+
+** DONE read optimize articles
+CLOSED: [2016-01-24 Sun 16:45]
+
+
+** DONE solve the three problem:
+CLOSED: [2016-01-23 Sat 21:31]
+
+*** DONE solve '"dynamic_cubemap_xxx" demo become more and more slow when run' problem
+CLOSED: [2016-01-23 Sat 20:05]
+**** reason
+memory leak, it causes 4 garbage collection in one frame that cost most time!
+
+
+**** where leak memory?
+
+createCamera:
+release
+
+not create every loop
+
+
+*** DONE optimize "shadow_direction_shadowMap"
+CLOSED: [2016-01-23 Sat 20:41]
+modify TwoDRenderTargetRenderer->renderFrameBufferTexture:
+dispose camera created before
+
+
+*** DONE optimize car demo
+CLOSED: [2016-01-23 Sat 21:29]
+
+disable contract check(set Main->isTest to be false)
+
+
+
+* TODO 明日计划
+
+
+* TODO 未来7日计划

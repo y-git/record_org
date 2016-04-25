@@ -1,0 +1,27 @@
+#+TAGS: editor(e) design(d)
+* TODO refactor[0%]
+** TODO build a simple mvc frame(not depend on engine, it can work with yengine2d and yengine3d), can refer to:
++ [[http://www.cnblogs.com/andyque/archive/2012/03/11/2390814.html][create mvc frame in cocos2d]]
++ [[http://blog.mutoo.im/2014/09/build-a-game-with-puremvc-and-cocos2d-js.html][使用 PureMVC 和 Cocos2d-js 构建游戏项目]]
++ [[http://puremvc.org/component/option,com_wrapper/Itemid,183][puremvc]]
+** TODO convert levelData.js to leveData.json, trigger data can also be edited in tool(using component design)
+** TODO use hsm(hierarchy state mechine), fsm, behavior tree to refactor!
+** refer to:
+[[http://xlambda.com/blog/2014/11/04/hierarchical-state-machine/][层次状态机]]
+[[http://www.aisharing.com/archives/393][层次状态机的讨论]]
+[[http://www.aisharing.com/archives/653][用行为树的方式思考]]
+* TODO optimize[0%]
+** TODO accelerate game run in chrome(now it's only 10 fps!!!)
+* TODO develop new feature[0%]
+** TODO [#B] use lua, add story?
+** TODO [#C] add plugin to outer developer, so they can expand the game!
+** TODO [#B] create ui editor                                       :editor:
+** TODO [#B] distinguish developo and produce env(add config.js to maintain the field?)
+** TODO [#B] use gulp to realise dev and proc env switch
+** TODO enhance ai system
+*** use behavior tree, state machine, layer architecture to design :design:
+*** refer to:
+[[http://www.aisharing.com/archives/86][浅谈层次化的AI架构]]
+[[http://www.aisharing.com/sitemap][经典博客：AI分享站]]
+** TODO add log to print every action/interface data
+make debug easy

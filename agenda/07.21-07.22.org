@@ -1,0 +1,33 @@
+* TODO 今日计划
+** TODO more event
+*** TODO finish EventCustom
+
+
+* 完成事项
+** DONE finish EventCustom
+CLOSED: [2015-07-22 Wed 23:20]
+
+
+add off() methdo
+correspond modify unit test
+
+
+
+* TODO 明日计划
+** TODO refactor
+rename to EventName, EventType
+rename EventRegister->getListenerDataList  to getEventRegisterDataList
+rename EventMouseHandler to MouseEventHandler
+rename getChilds to getChildren
+(rename _childs to _children)
+
+** TODO more event
+*** TODO finish EventGesture(first finish mobile event)
+
+* TODO 未来7日计划
+
+** TODO finish event test case
+*** TODO build unit test
+*** TODO pass the test
+
+** TODO finish EventKeyboard

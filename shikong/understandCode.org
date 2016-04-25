@@ -1,0 +1,18 @@
+* question
+** boot.js                                                            :done:
+
+        savedPath = xhr.cocoonSetOutputFile(dist, Cocoon.App.StorageType.EXTERNAL_STORAGE);
+
+    function getSavedPath(path) {
+        return sharedXHR.cocoonSetOutputFile(path, Cocoon.App.StorageType.EXTERNAL_STORAGE);
+    }
+** where use lua?
+** is the engine use cocoonJs api to render?                          :done:
+** how to pack(using cocoonJs)?                                       :done:
+** puremvc arthicture                                                 :done:
+* record
+** build
++ compress img, generate trigger file ...
+** debug in ios
+can only use xcode's device log  to debug(or via cocoonjs debug tool to see log info(console.log, console.info,
+console.debug, console.warn or console.error) 

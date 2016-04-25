@@ -1,0 +1,171 @@
+* TODO 今日计划
+***** TODO [#B] demo-text
+2d text(labelTTF, textInput, refer to yengine2d,cocos2d)
+3d text(refer to threejs  [[http://mrdoob.github.io/three.js/examples/canvas_geometry_text.html][3d text with threejs ]]  [[http://blog.andrewray.me/creating-a-3d-font-in-three-js/][Creating a 3D Font in Three.js]])
+
+finish keyboard event to handle bind event on game object like textInput
+
+
+hud demo
+
+* 完成事项
+** DONE hud
+CLOSED: [2015-12-26 Sat 10:39]
+
+*** DONE PlainFont
+CLOSED: [2015-12-22 Tue 20:00]
+
+**** DONE refactor
+CLOSED: [2015-12-23 Wed 11:22]
+//support auto
+
+//optimize
+
+
+//show text after load font-face
+http://www.tuicool.com/articles/Qrmmeu
+
+
+
+
+
+
+
+//add setAttribute method
+
+//rename update->time to elapsedTime
+
+
+*** DONE BitmapFont
+CLOSED: [2015-12-24 Thu 11:41]
+
+//show font
+
+//format
+
+
+//add test CharFont:
+change action
+
+
+
+//change data can update(remove old ones)
+dirty
+extract uiManager in GameObject
+
+
+*** DONE refactor
+CLOSED: [2015-12-26 Sat 10:39]
+//CharFont extends from Font
+
+
+
+//optimize:if not dirty, not update
+
+
+//CharFont should add UIRenderer of the BitmapFont
+
+//CharFont extends CanvasFont?
+
+
+
+//each UIRenderer has one canvas, so they will be independent
+//can set zIndex
+////UIRenderer can only create canvas once
+
+
+//refactor BitmapFont,CharFont
+
+//extract FntParser
+
+
+//extract ComponentContainer from ActionManager,UIManager
+
+
+//test dispose
+////dispose UIManager(GameObject->dispose)
+
+
+
+
+
+
+////add showBoarder function
+
+
+** DONE refactor 
+CLOSED: [2015-12-26 Sat 12:28]
+
+
+
+improve sample
+
+
+** DONE publish v0.3.0
+CLOSED: [2015-12-27 Sun 10:23]
+merge to master
+
+push and tag
+
+update document
+
+publish to qq group
+
+
+
+
+try pass build:
+Connected on socket karma wrong length?
+
+
+karma bug!!!
+
+
+
+refactor PlainFontSpec->change data test
+
+////not createGL
+
+
+
+* TODO 明日计划
+** TODO Screen Space - Camera
+In this mode, the Canvas is rendered as if it were drawn on a plane object some distance in front of a given camera. The
+onscreen size of the UI does not vary with the distance since it is always rescaled to fit exactly within the camera
+frustum. If the screen’s size or resolution or the camera frustum are changed then the UI will automatically rescale to
+fit. Any 3D objects in the scene that are closer to the camera than the UI plane will be rendered in front of the UI,
+while objects behind the plane will be obscured. 
+
+http://docs.unity3d.com/Manual/class-Canvas.html
+
+** TODO Screen Space - World
+This mode renders the UI as if it were a plane object in the scene. Unlike Screen Space - Camera mode, however, the
+plane need not face the camera and can be oriented however you like. The size of the Canvas can be set using its Rect
+Transform but its onscreen size will depend on the viewing angle and distance of the camera. Other scene objects can
+pass behind, through or in front of the Canvas. 
+
+** TODO bind event on font
+refer to playcanvas:
+Script Events
+If you want the rendered text to be clickable you can register an event handler for the 'click' event via script. For example attach this script on the same Entity as the font_renderer:
+
+pc.script.create('myhandler', function (context) {
+    var Myhandler = function (entity) {
+        this.entity = entity;
+    };
+
+    Myhandler.prototype = {
+        initialize: function () {
+            this.entity.script.font_renderer.on('click', this.onClick, this);
+        },
+
+        onClick: function () {
+            console.log('Click');
+        }
+    };
+
+    return MyHandler;
+});
+
+
+* TODO 未来7日计划

@@ -1,0 +1,104 @@
+* TODO 今日计划[100%]
+** DONE understand game process[66%]
+CLOSED: [2015-05-20 Wed 20:28]
+*** DONE rough read
+CLOSED: [2015-05-15 Fri 09:34]
+*** DONE learn puremv
+CLOSED: [2015-05-14 Thu 09:11]
+*** TODO learn CocoonJs
+** DONE start bulletin board
+CLOSED: [2015-05-20 Wed 20:28]
+** DONE learn emacs[100%]
+CLOSED: [2015-05-20 Wed 20:28]
+*** DONE spacemac basic operate
+CLOSED: [2015-05-14 Thu 09:11]
+*** DONE org-mode
+CLOSED: [2015-05-14 Thu 09:11]
+* 完成事项
+
+** DONE revert ancientWar
+
+CLOSED: [2015-05-14 Thu 10:12]
+
+** DONE cocoonjs
+CLOSED: [2015-05-16 Sat 09:10]
+** DONE start bulletin board
+CLOSED: [2015-05-25 Mon 09:05]
+*** DONE build a collection, can edit, open it for public board[100%]
+CLOSED: [2015-05-21 Thu 09:20]
+**** DONE test in mobile in cocoonjs
+CLOSED: [2015-05-20 Wed 18:05]
+debug in cocoonjs
+
+
+
+
+***** TODO create /game/test for game upload, so that it can be load by cocoonjs
+****** DONE use emacs to create the remote project(point "xxx/game/test" to index.html page)
+CLOSED: [2015-05-16 Sat 17:23]
+**** DONE prepare cocoonJs launcher
+CLOSED: [2015-05-21 Thu 09:20]
+**** DONE create admin in /pc/admin
+CLOSED: [2015-05-19 Tue 08:55]
+**** DONE modify with dake
+CLOSED: [2015-05-21 Thu 09:19]
+
+* TODO 明日计划
+* TODO 未来7日计划
+*** TODO website build
+**** TODO move dist_views,image... to dist dir
+dist_public
+dist_devSync
+
+***** TODO solove problem:sync.js-> recursive param not work!?
+**** TODO develop auto gulp
+**** TODO publish gulp
+**** TODO //md5 version update
+
+**** TODO modify board css(100%), publish it
+*** TODO game build
+**** TODO dev confi
+**** TODO auto-sync
+*** TODO how to agenda?multi day?                                   :emacs:
+*** TODO see mvc branch
+*** TODO optimize
+**** TODO build optimize
+***** TODO [#B] distinguish developo and produce env(add config.js to maintain the field?)
+***** TODO [#C] use gulp to realise dev and proc env switch
+***** TODO debug(add .map)
+***** TODO incremental refresh game.js file
+
+
+
+
+
+
+
+
+** TODO finish gulp blog
+*** TODO publish yyctoolbox(ci, fileOperator)
+
+
+
+//继续研究egret工具、cocostudio工具
+//掌握游戏的开发流和现有成果
+//学习游戏代码，制作demo
+
+
+
+
+//待搞清楚：
+//讨论编程规范：
+private和getter写在一起？
+
+//canvas->tranform->skew ?
+//改了后，游戏代码怎么办？不能使用新引擎了
+/Webgl如何实现帧动画？比如人物移动的动画？
+//TypeScripe_StyleGuide.md是自己定的？为什么不用private 关键字？
+//提出create方法？增加initWhenCreate方法？方便测试？
+
+
+
+
+
+

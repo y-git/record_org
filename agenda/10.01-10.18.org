@@ -1,0 +1,377 @@
+* TODO 今日计划
+** TODO shadow map
+soft shadow?
+////volumu shadow?
+
+
+* 完成事项
+
+** DONE one direction shadow map
+CLOSED: [2015-10-08 Thu 10:54]
+
+
+
+
+refer to shadow map viewer demo
+
+
+
+
+
+problem:
+//1.depth texture
+//2.transparent?
+//ortho
+
+//rebundant texture
+
+
+
+
+improve precision
+
+// Packing a float in GLSL with multiplication and mod
+vec4 packFloat(float depth) {
+    const vec4 bit_shift = vec4(256.0 * 256.0 * 256.0, 256.0 * 256.0, 256.0, 1.0);
+    const vec4 bit_mask  = vec4(0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0);
+ 
+    // combination of mod and multiplication and division works better
+    vec4 res = mod(depth * bit_shift * vec4(255), vec4(256) ) / vec4(255);
+    res -= res.xxyz * bit_mask;
+    return res;
+}
+ 
+ 
+void main(void)
+{
+    gl_FragData[0] = packFloat(gl_FragCoord.z);
+}
+
+
+
+float unpackFloat(vec4 rgbaDepth) {
+    const vec4 bitShift = vec4(1.0 / (256.0 * 256.0 * 256.0), 1.0 / (256.0 * 256.0), 1.0 / 256.0, 1.0);
+    return dot(rgbaDepth, bitShift);
+}
+
+
+
+
+//peter panning
+
+
+
+
+
+**** TODO pcf
+
+
+
+
+
+** DONE refactor
+CLOSED: [2015-10-08 Thu 11:48]
+//Stage add shadowMapType->PCF
+
+
+//Direction->direction to position
+
+
+
+//gl_FragData?
+
+
+
+
+
+
+** DONE one point shadow map(Omnidirectional Shadow Maps)
+CLOSED: [2015-10-09 Fri 20:55]
+Important to note here is the field of view parameter of glm::perspective that we set to 90 degrees. By setting this to
+90 degrees we make sure the viewing field is exactly large enough to properly fill a single face of the cubemap such
+that all faces align correctly to each other at the edges. 
+
+GLfloat aspect = (GLfloat)SHADOW_WIDTH/(GLfloat)SHADOW_HEIGHT;
+GLfloat near = 1.0f;
+GLfloat far = 25.0f;
+glm::mat4 shadowProj = glm::perspective(90.0f, aspect, near, far); 
+
+
+
+
+
+
+move createCamera to RenderTargetRenderer
+
+
+
+            //todo judge renderList.length
+
+
+
+*** show depth map
+
+
+** DONE refactor
+CLOSED: [2015-10-10 Sat 19:39]
+
+//v_worldPosition
+
+
+//optimize: //todo judge renderList.length
+
+
+//pcf
+
+
+
+////use mixin to make it both inherit shadowmap and cubemap/twoD(use decorator?)
+
+//combine with Cubemapxxx
+
+
+
+//refactor shadowMapData
+//cubemap no shadowmapsize
+
+
+//rename BuildXXX
+
+
+//extract ShadowMapShaderLib
+
+
+
+////judge renderList.length([])
+                (if renderList is null, draw all)
+
+
+
+
+
+//rename ShadowMapxxx to DirectionShadowMapxxx
+
+
+
+
+
+
+//refactor glsl, add shadowMapPCF.glsl
+
+
+TargetRenderer->light to be private
+
+clear up
+
+
+
+
+*** solve
+**** DONE getNoraml() not work?lightDir wrong?
+if(dot(normalize(getNormal()), lightDir) < 0.0)
+{
+   return vec3(0.0);
+}
+return vec3(1.0);
+CLOSED: [2015-10-08 Thu 09:19]
+
+
+////**** TODO add optimize(add config in Stage)
+
+
+
+
+
+
+
+
+
+** DONE multi lights shadow map
+CLOSED: [2015-10-12 Mon 19:56]
+add shadowMap common glsl to light(ensure not repeat)
+
+
+
+pass one point
+
+pass two points
+
+
+move shadow compute out of calcTotalLight, move it to light_fragment.glsl, compute all the shadow, multiply it with totalLight
+
+add shadowMap_fragment.glsl once in light glsl:
+LightShaderLib add shadowMap_fragment.glsl
+
+light_common.glsl add getLightDir method
+
+
+
+move CubemapS type definition to PointLight
+
+Stage add cuxxx
+
+
+LightMaterial change "cubexxx" attr to addCubexx method, pass the sampler index data
+(note that TextureManager->cubemapTexture's sampler index and texture unit index are different)
+
+LightMaterial add hasShadowMap method for it not add repeated CubemapShadowMapTexture
+
+
+separate Buildxxx and cubexxx:
+LightMaterial remove cubexxx, add BuildXXX
+CubemapShadowMapRenderTargetRenderer invoke CubeXXXUTil->setBuildShadowData instead of CubeXXX->setShadowData
+
+
+
+
+
+
+
+
+pass one point and one direction
+
+
+move shadowMapData back from PointLight to LightMaterial
+
+
+** DONE refactor
+CLOSED: [2015-10-12 Mon 21:58]
+dry:
+Utils
+
+
+** DONE pass unit test
+CLOSED: [2015-10-16 Fri 16:14]
+
+test Program->sendAttributeFromCustomShader
+
+
+
+//renderer
+
+//lightMaterial
+
+light
+//pass normalMap demo
+
+
+
+//pass renderWebGL
+
+
+shaderLib:
+pass old
+//directionLight's direction
+
+
+
+
+//move up code to light_common.glsl!
+pass all direction light
+
+
+
+
+
+
+////add new
+
+
+
+
+
+
+
+shadowTexture
+
+
+
+other
+
+
+** DONE use code contract to refactor!
+CLOSED: [2015-10-16 Fri 19:42]
+EventBinder
+
+
+
+** DONE refactor
+CLOSED: [2015-10-18 Sun 10:46]
+
+////limit max shadowMaps
+
+
+//refactor glsl->getPointLightDir/getDirectionLightDir, use getLightDir method
+not pass directionLight->direction, pass its position instead!
+
+
+//rename "PCF_SOFT" to "PCF"
+
+
+//optimize XXXShadowMapRenderTargetRenderer
+
+
+
+//move TextureManager->sendData to XXXShaderLib from Texture
+if shadowMap.enable = false, not bind and send shadowSampler data
+
+
+//optimize: not bind/active texture when buildShadowMap(judge variable exist?)
+
+
+
+
+////remove definitions.d.ts, use import
+
+//move light->files to folder
+
+//move mirror glsl to folder
+
+
+////refactor TextureManager:unify envMap, map?
+
+
+
+//shaderLib->sendUniformData type auto from VariableLib
+
+
+//use program Once
+
+
+
+
+//refer to threejs, babylonjs, playcanvas
+
+
+
+
+
+
+////refactor VariableLib
+
+
+
+
+* TODO 明日计划
+
+
+** TODO shadow more
+csm
+showCameraVisible
+
+improve shadow map:
+shadow acne:
+    why "when use pcf of cubemapShadowMap, the bias should increate a lot to make the cube face not show shadow acen" ?
+    normal bias offset?
+    why "multi_directions_points_shadowMap" demo->ground will has black line?
+
+
+optimize:
+point shadowMap glsl(refer to threejs):if face's render object is not in frustum, not render
+use one fbo in cubemap?
+
+
+use castShadow,receiveShadow(like three.js)
+
+
+* TODO 未来7日计划

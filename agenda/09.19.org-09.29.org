@@ -1,0 +1,248 @@
+* TODO 今日计划
+**** TODO demo-dynamic (rect mirror,cube)
+realtime-render(middle):
+cube map real-render
+texture2d real-render
+moving real-render
+multi objects real-render
+
+////study ray tracer 光线追踪
+
+***** TODO Dynamic textures(refer to Babylon.js)
+
+A dynamic texture uses a canvas to generate its content.
+
+Creating and affecting a dynamic texture is simple:
+
+var dynamicTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
+dynamicTexture.hasAlpha = true;
+material.diffuseTexture = dynamicTexture;
+Once the texture is created, you can updated it when you want (for instance here every time the scene is rendered) using the getContext and update functions:
+
+var count = 0;
+scene.beforeRender = function() {
+    // Dynamic
+    var textureContext = dynamicTexture.getContext();
+    var size = dynamicTexture.getSize();
+    var text = count.toString();
+
+    textureContext.save();
+    textureContext.fillStyle = "red";
+    textureContext.fillRect(0, 0, size.width, size.height);
+
+    textureContext.font = "bold 120px Calibri";
+    var textSize = textureContext.measureText(text);
+    textureContext.fillStyle = "white";
+    textureContext.fillText(text, (size.width - textSize.width) / 2, (size.height - 120) / 2);
+
+    textureContext.restore();
+
+    dynamicTexture.update();
+    count++;
+};
+The result is the following (yes I know, I’m not a designer Sourire)
+
+
+
+The getContext returns a true canvas’ context so everything you can do with a canvas is available with a dynamic texture.
+
+
+***** TODO Mirrors(refer to Babylon.js, threejs->webgl_mirror.html)
+
+Mirrors textures are another kind of dynamic textures. You can use them to simulate “mirrors” which mean that babylon.js will compute for you the reflection and fill the texture with the results. A Mirror texture must be set in the reflectionTexture channel of a standardMaterial:
+
+// Mirror
+var mirror = BABYLON.Mesh.createBox("Mirror", 1.0, scene);
+mirror.material = new BABYLON.StandardMaterial("mirror", scene);
+mirror.material.diffuseColor = new BABYLON.Color3(0.4, 0, 0);
+mirror.material.reflectionTexture = new BABYLON.MirrorTexture("mirror", 512, scene, true);
+mirror.material.reflectionTexture.mirrorPlane = new BABYLON.Plane(0, -1.0, 0, -2.0);
+mirror.material.reflectionTexture.renderList = [box, sphere];
+A mirrorTexture is created with a parameter that specify the size of the rendering buffer (512x512here). Then you have to define the reflection plane and a render list (the list of meshes to render Inside the mirror).
+
+The result is pretty convincing:
+
+
+
+
+***** refactor:
+geometry->compute from vertexColors(refer to threejs)
+geometry not know material, material.color is the main color
+
+rethink QuadCommand->shader, program
+
+
+study bufferData->dynamic_draw,stream_draw,static_draw
+
+
+GameObject:
+add active mechanism(modify getTopUnderPoint method)
+
+
+
+
+* 完成事项
+** DONE mirror
+CLOSED: [2015-09-25 Fri 16:45]
+//mirror texture
+
+
+
+
+//blend mirror color
+
+//clip plane
+////(bug:if box is inside sphere, can still see it's mirror!!!)
+
+
+add textured cubic and textured sphere to see cull/filp?
+solve filpY problem!
+
+
+
+** DONE refactor
+CLOSED: [2015-09-27 Sun 11:57]
+
+//render target texture
+
+
+//refactor size to width,height
+//judge
+
+////optimize
+
+
+
+//2 mirror(fix textureMatrix bug)
+
+
+
+
+
+//refactor FrameBufferManager:
+remove rebundant texture
+
+
+
+
+
+//minor refactor
+
+
+
+
+
+//move Director's gl,canvas to DeviceManager
+
+
+
+
+
+
+
+
+//complete framebuffer's,render target's dispose method
+
+
+
+
+
+
+
+////check frameBuffer's detail:
+optimize
+
+
+
+
+
+** DONE more
+CLOSED: [2015-09-27 Sun 13:15]
+
+
+add light
+////multi materials
+
+
+
+
+** DONE unit test
+CLOSED: [2015-09-27 Sun 15:53]
+Plane unit test
+
+////blend mirror color
+
+clip plane
+
+
+
+** DONE refactor
+CLOSED: [2015-09-28 Mon 16:19]
+
+refactor math:
+rename Matrix to Matrix4
+////refactor math->multiplyxxx to applyxxx
+
+
+
+rename MeshRenderer's texCoordsBuffer to texCoordBuffer
+
+
+
+
+translate ...     can pass x,y,z
+
+
+////rename u_mirrorColor?
+
+
+////reorder VariableLib
+
+
+
+
+
+
+** DONE dynamic envMap
+CLOSED: [2015-09-29 Tue 15:34]
+
+dynamic cubemap texture
+
+refer to:CubeCamera.js
+
+
+
+*** DONE reflection
+CLOSED: [2015-09-29 Tue 14:58]
+
+*** DONE refraction
+CLOSED: [2015-09-29 Tue 15:34]
+
+*** DONE fresnel
+CLOSED: [2015-09-29 Tue 15:34]
+
+
+
+
+** DONE refactor
+CLOSED: [2015-09-29 Tue 16:28]
+refer to threejs/playcanvas/babylonjs
+
+refact Material, combine?
+
+
+** DONE pass unit test
+CLOSED: [2015-09-29 Tue 17:52]
+
+
+
+
+
+
+
+* TODO 明日计划
+
+
+
+
+* TODO 未来7日计划

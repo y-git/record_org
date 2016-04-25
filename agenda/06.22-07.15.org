@@ -1,0 +1,61 @@
+* TODO 今日计划
+** TODO continue frp
+
+* 完成事项
+** DONE yeoman build simple typescript project
+CLOSED: [2015-06-27 Sat 19:03]
+install bower and npm
+copy file and directory,template
+compile ts
+
+run karma
+push to github
+** DONE use it as submodule in webgl project
+CLOSED: [2015-06-28 Sun 11:32]
+
+** DONE compile bowser into engine
+CLOSED: [2015-06-29 Mon 11:03]
+create definitionFile
+compile bower
+compile engine using gulp
+refactor gulpfile
+merge to demo1
+refactor structure
+
+** DONE summary webpage
+CLOSED: [2015-06-29 Mon 11:20]
+
+** DONE build a simple frp v0.1
+CLOSED: [2015-07-17 Fri 18:29]
+view rxjs,baconjs,ker document
+separe yeQuery to lib/inner
+    convert ajax to promise
+
+build simple frp
+    create core
+    //async communication(network, loading assets)
+    loading assets
+    simple DYPromise(ajax return promise)
+
+continue submodule, move it to lib/inner
+
+use it to refactor glslLoader module
+//give some simple example like elm
+
+compile it into engine
+
+
+** DONE move common to commonLib for DY(DYReactive, DYEngine...)
+CLOSED: [2015-07-17 Fri 18:29]
+Collection,Hash(add map method),
+JudgeUtils, ConvertUtils,ExtendUtils, EventUtils, YEQuery
+pass unit test
+** DONE translate DYEngine,DYReactive to my account
+CLOSED: [2015-07-17 Fri 18:29]
+fix yeoman-generator(like refresh .gitignore...)
+
+* TODO 明日计划
+
+* TODO 未来7日计划
+** TODO finish engine event system
+//compatible with rxjs

@@ -1,0 +1,88 @@
+* [#A] webgl serise(engine tutorial serise)
+      focus on the key implement webgl code, then give the related usage example of engine
+
+
+
+      1. mirror reflection
+      2. normal map
+      3. transform
+* [#B] engine design series
+      “游戏引擎(设计)之美”系列(设计系列）
+
+
+      1. [ ] event system design
+         1. propose my requirement
+         2. refer to exist design(angular,actionscript...)
+         3. dig into it, expose the thought(state machine, hsm, behaivor tree...)
+         4. give my design
+            
+         refer to bookmark->wozlla->时空->事件系统设计
+      3. [ ] component architecture
+         1. compare combination and inhert way
+            组件式架构
+
+
+      1. [ ]frp(用流的方式来思考：反应式编程）
+
+         1. write simple frp library
+
+         2. use it to build event system, loading assets...
+
+      2. [ ]render system design
+         1. shader system(chunk, snippet,custom shader...)
+
+      3. [ ]script system
+
+      4. [ ]design by contract(Dbc)
+         EventBinder->on use it
+
+
+      5. [ ]asset system
+         LoadManager
+         common asset file(dy file)
+
+            
+refer to bookmark->wozlla->时空->组件化设计
+* [#C] build series
+      result:
+      1. blogs(example:website and game build,ci)
+      2. a basic build workflow (named DYBuild) 
+         1) supports website and game build requirement
+         2) integration with ci
+         3) use yo,gulp,bower,npm,ci to build and generator new project(simple project with unit test, h5 game project,
+            website project)
+           
+
+** TODO read config file
+** TODO support pass param to task:
+(need modify gulp-sulp plugin)
+//gulp.task("xxx", gulpSync.sync/async[["xxx", arg1, arg2...], otherTasks...])
+ 
+refer to:
+[[https://github.com/orchestrator/orchestrator/issues/17][gulp Support for task parameters]]:
+
+now only support pass params in command line, and can only set variables in file: 
+(Create a variable in your gulpfile and within the task use the variable -- similar to how you'd use a sources array to pass into gulp.src)
+
+var modules = ['frontend', 'backend'];
+var async = require('async');
+
+var build = function (module, cb) {
+  gulp.src('src/' + module + '.js')
+    .pipe(browserify());
+  cb();
+};
+
+gulp.task('build', function (cb) {
+  async.each(modules, build, cb);
+});
+
+gulp.task('default', ['build'], function () {
+  modules.forEach(function (module) {
+    gulp.watch('src/' + module + '/**', function () {
+      build(module, function () {});
+    });
+  });
+});
+
+

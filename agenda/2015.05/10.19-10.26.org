@@ -1,0 +1,247 @@
+* TODO 今日计划
+** TODO load obj model
+teapot
+
+
+
+submesh
+http://answers.unity3d.com/questions/684995/what-is-a-submesh.html
+
+
+loader plugin
+
+
+* 完成事项
+
+////** TODO load no map,normal data obj model
+
+
+** DONE load map,normal data obj model
+CLOSED: [2015-10-24 Sat 21:07]
+
+load obj
+read obj file, get data
+    if has mtl, load mtl
+        read mtl, get data
+
+load map from mtl data
+create vbo, create gameObject
+
+
+
+////Material->color to be r,g,b,   Material add "alpha" attri
+
+
+//g, o
+
+
+
+dyRt:
+//add defer
+//add dispose test
+////callFunc can get next->data
+//refactor: abstract class
+
+
+
+
+//why not be the same???
+
+smooth shading:
+vertex normal
+face normal
+
+
+
+
+now can load ".bmp"
+
+OBJParser:
+now set GameObject's name by o/g xxx
+can parse f x x x
+to f x x x x, it has 2 face normals now
+
+
+glsl:
+change "normalMatrix" from mat4 to mat3
+Matrix4 add "invertTo3X3" method
+
+
+
+
+
+
+alpha:
+solve wing color!!!
+solve wing blend
+
+
+how below work?
+				gl.blendEquationSeparate( gl.FUNC_ADD, gl.FUNC_ADD );
+				gl.blendFuncSeparate( gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA );
+
+
+
+
+
+
+
+
+
+
+OBJParser:
+if no name, set it to be materialName
+
+rename Material->alpha to opacity
+move it to LightMaterial(other material now not support opacity yet)
+
+
+add support gl.blendFuncSeparate,gl.blendEquationSeparate
+
+
+if set cullMode to NONE(show both side), the normal will be reverse when render back side in light shader
+
+
+
+remove rebundant textures
+
+** DONE pass main unit test
+CLOSED: [2015-10-25 Sun 17:04]
+modify unit test:
+face's compute normal has 1 or 2 or more!
+
+f handle 3 component, 5 or more component
+f x x x
+
+OBJParser:
+//if no name, set it to be materialName
+
+test:
+f 100/1
+
+
+
+
+
+
+
+
+** DONE refactor by threejs,Babylon
+CLOSED: [2015-10-26 Mon 18:20]
+//if set blendSrc/Dst, clear blendFuncSeparate
+
+
+
+////if opacity < 1.0 && bothside && view in opposite, not reverse normal
+
+
+
+//refactor and fix OBJParser
+
+
+        ////todo extract Face3?
+
+
+        //todo all Loader use the contract
+
+
+
+//GameObject->getChildByName(support search by regex, subName)
+
+////set total gameObject's name to be id
+
+
+
+
+
+
+
+
+
+
+
+
+
+//change cullMode to side
+
+
+
+
+refactor ShaderLib:
+
+        //OtherShaderLib(except TwoDShadowShaderLib):
+        //create instead of singlon
+
+
+        //not iniprogram when shader->init(now it's on shader->update)
+
+        //pass all unit test
+
+        //pass run test
+
+        change LightShaderLib->send u_isBothSide to define
+
+
+
+vsSourceDefineList change to Hash
+rename setShaderDefinition to iniShaderDefinition
+add set definition method in each loop
+
+//change LightShaderLib->send u_isBothSide to define
+
+//change singlon to common class
+
+
+
+
+
+
+
+
+
+
+//refactor other Shaderlib->sendUniformData to this.xxx
+
+
+
+////refactor Transform->scale?
+
+
+Geometry:
+computeData only need return number[].it should create Buffer in Geometry
+
+
+
+refactor:
+rename Stage to Scene
+
+
+
+* TODO 明日计划
+
+** TODO load model
+support more format
+
+multi materials:
+http://blogs.msdn.com/b/eternalcoding/archive/2013/07/10/babylon-js-using-multi-materials.aspx
+
+
+compute vertexNormal
+
+
+use BDRF model(bidirectional reflectance distribution function) to compute specular component(refer to
+threejs->common.glsl->BRDF_BlinnPhong):
+https://github.com/mrdoob/three.js/commit/04ce05d49c9f8d2c4f29bbb824ffd60a6ceb415c#commitcomment-5195306
+https://github.com/mrdoob/three.js/issues/7252
+
+
+
+
+*** refactor
+extract Face3 from OBJParser(refer to threejs->Face3)
+
+
+
+
+
+* TODO 未来7日计划
