@@ -1,0 +1,11 @@
+* TODO modify
+AssertUtils.assert can move to @require ... 
+
+add @singleton
+
+** clean directory
+remove .vscode, bak, public(git ignore)
+move release/ to dist/
+
+
+move unused files/dir out of runtime/(to study dir?)

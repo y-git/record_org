@@ -1,0 +1,50 @@
+* TODO 今日计划
+** TODO 熟悉代码
+
+** TODO 搭建测试环境
+
+
+
+* 完成事项
+** DONE 熟悉代码
+CLOSED: [2016-06-14 Tue 17:28]
+//how to use product?
+
+//code directory
+
+
+* TODO Change
+add @singleton
+
+extract AssertUtils
+
+build task should read tsconfig.json
+
+
+
+
+* TODO 明日计划
+** TODO modify
+AssertUtils.assert can move to @require ... 
+
+add @singleton
+** TODO 搭建单元测试环境
+DEADLINE: <2016-06-16 Thu> SCHEDULED: <2016-06-14 Tue>
+*** TODO 搭建jasmine+sinon+karma测试环境
+DEADLINE: <2016-06-15 Wed> SCHEDULED: <2016-06-14 Tue>
+*** TODO 编写几个单元测试，进行初步的测试，验证单元测试的可行性
+DEADLINE: <2016-06-16 Thu> SCHEDULED: <2016-06-15 Wed>
+** TODO 熟悉 标注 模块代码
+DEADLINE: <2016-06-17 Fri> SCHEDULED: <2016-06-16 Thu>
+*** TODO 熟悉已有的模块代码
+**** TODO 熟悉gizmo
+**** TODO 熟悉view层对threejs的调用代码
+*** TODO 给出初步的模块设计方案
+
+
+
+* TODO 未来7日计划
+
+* TODO 疑问
+
+* TODO 未做事项

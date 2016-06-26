@@ -1,0 +1,15 @@
+* TODO 熟悉项目SKDesginer代码
+DEADLINE: <2016-06-14 Tue> SCHEDULED: <2016-06-13 Mon>
+* TODO 搭建单元测试环境
+DEADLINE: <2016-06-16 Thu> SCHEDULED: <2016-06-14 Tue>
+** TODO 搭建jasmine+sinon+karma测试环境
+DEADLINE: <2016-06-15 Wed> SCHEDULED: <2016-06-14 Tue>
+** TODO 编写几个单元测试，进行初步的测试，验证单元测试的可行性
+DEADLINE: <2016-06-16 Thu> SCHEDULED: <2016-06-15 Wed>
+* TODO 熟悉 标注 模块代码
+DEADLINE: <2016-06-17 Fri> SCHEDULED: <2016-06-16 Thu>
+** TODO 熟悉已有的模块代码
+*** TODO 熟悉gizmo
+*** TODO 熟悉view层对threejs的调用代码
+** TODO 给出初步的模块设计方案
+

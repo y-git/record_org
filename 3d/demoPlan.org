@@ -121,7 +121,7 @@ any other solution?
 
 
 
-* demo road
+*GL_STREAM_DRAW demo road
 ** first part
 *** DONE demo-rect,cube,sphere transform, camera view
 CLOSED: [2015-07-28 Tue 11:16]
@@ -658,6 +658,7 @@ http://www.oschina.net/translate/introducing-simd-js
 use webworker to compute collision
 https://blog.mozilla.org/research/2014/07/22/webgl-in-web-workers-today-and-faster-than-expected/
 
+refer to <<WebGL Insights>> -> 11.3 p196
 
 
 lights:
@@ -795,7 +796,7 @@ player can jump,run,squat
 *** DONE v0.1 basic engine(1.5w lines)
 CLOSED: [2015-12-01 Tue 22:00]
 
-*** TODO v0.2-1.0(2.5w lines)
+*** TODO v0.2-1.0(4w lines)
 **** DONE [#A] simple functions
 CLOSED: [2016-01-21 Thu 16:24]
 ***** DONE [#A] basic ui
@@ -1196,8 +1197,51 @@ In my case, I’ve decided to implement the 2nd solution for this tutorial
 
 
 *** TODO v1.1-v2.0 improve engine,optimize, add junior functions(3.5w lines)
-**** TODO [#A] defer render and post effect
+**** TODO [#A] support WebGL 2.0 and can fallback to WebGL 1.0
+
+- Use Immutable Textures When Available (use EXT_texture_storage extension to use texStorage* command instead of
+  texImage* command)
+Historically, OpenGL and WebGL textures had to be created one mip level at a time. OpenGL does this via glTexImage*, a
+method that allows users to cre- ate internally inconsistent textures, considered by the GL to be “incomplete.” This
+same method is what is available to developers in WebGL, as texImage*. By contrast, Direct3D requires that users define
+the dimensions and format of their entire textures at texture creation time, and it enforces internal consistency. 
+
+Because of this difference, ANGLE must do a considerable amount of bookkeep- ing and maintain system memory copies of
+all texture data. The ability to define an entire texture at creation time did later get introduced to OpenGL and its
+related APIs as immutable textures, which also enforce internal consistency and disallow changes to dimensions and
+format. Immutable textures came to OpenGL ES 2.0 with EXT_texture_storage [Khronos 13a], and they are included in the
+core OpenGL ES 3.0 specification and the WebGL 2 Editor’s Draft specifica- tion. When immutable textures are available
+via extension or core specification, some of ANGLE’s bookkeeping can be avoided by using the texStorage* com- mands to
+define textures. 
+
+
+- Use RED Textures instead of LUMINANCE(use EXT_texture_rg extension [Khronos 11] to use the RED and RG formats)
+(simply using RED textures in place of LUMINANCE and RG in place of LUMINANCE_ALPHA when using ANGLE with APIs that
+support them) 
+
+In WebGL and unextended OpenGL ES 2.0, the only option developers have for expressing single-channel textures is the
+LUMINANCE format, and LUMINANCE_ALPHA for two-channel textures. The EXT_texture_rg extension [Khronos 11] adds the RED
+and RG formats, and these formats become core functionality in OpenGL ES 3.0. The formats also appear in the WebGL 2
+Editor’s Draft specification. Meanwhile, Direct3D 11 has dropped all support for luminance textures, providing only red
+and red-green formats [MSDN 14a]. This may seem to be a trivial difference—a channel is a channel—but sampling from a
+luminance texture is performed differently than from textures of other formats. The single channel of a luminance
+texture is duplicated into the red, green, and blue channels when a sample is performed, while sampling from a RED
+texture populates only the red channel with data. Similarly, the second channel of a LUMINANCE_ALPHA and an RG texture
+will populate only the alpha and green channels in a sample, respectively. To support luminance formats against Direct3D
+11, rather than alter the swizzle behavior in shaders, ANGLE instead expands the texture data to four channels. This
+expansion, and the associ- ated additional memory and texture upload performance costs, can be avoided by developers
+keen for clock cycles by simply using RED textures in place of LUMINANCE and RG in place of LUMINANCE_ALPHA when using
+ANGLE with APIs that support them. 
+
+
+**** TODO [#A] defer render and post effect(webgl 2.0)
 change to defer render architecture
+refer to:
+threejs
+https://github.com/uber/luma.gl
+(<<WebGL Insights>> chapter 15 Deferred Shading in Luma)
+
+
 
 post effect
 hdr
@@ -1260,9 +1304,28 @@ mesh optimize(mesh merge ...)
 [[https://blogs.msdn.microsoft.com/davrous/2013/09/24/using-indexeddb-to-handle-your-3d-webgl-assets-sharing-feedbacks-tips-of-babylon-js/][Using IndexedDB to handle your 3D WebGL assets: sharing feedbacks & tips of Babylon.JS
 ]]
 
+***** TODO optimize load
 Supporting incremental loading to load very big scenee
 
+To draw the first frame, a promise indicates when all 3D geometry and
+low-resolution textures are ready. Once the first frame is drawn,
+high-resolution textures are downloaded to progressively replace
+low-resolution textures. 
 
+
+
+
+
+***** TODO parallel
+use web worker for collision
+
+SIMD
+
+
+****** TODO load optimize
+Load time can be improved by amortizing slow tasks across several frames
+
+incremental loading
 
 
 **** TODO [#C] support more asset format
@@ -1276,6 +1339,23 @@ modify multi map sample
 
 *** TODO v2.1-v3.0 for application
 **** TODO [#B] v2.1 editor
+refer to "<<WebGL Insights>> 12-Sketchfab Material Pipeline
+From File Variations to Shader Generation" to learn how to handle
+exporter file(e.g., handle vertex data...), build material pipeline
+and material editor to
+handle material, ...
+
+**** TODO [#B] use shader compiler instead of assemble shader lib
+refer to <<WebGL Insights>> 11.5 p206 (Blend4Web):
+We needed a parser, which was generated using the PEG.js* generator on the basis of the preprocessor directives
+grammar. This parser produces an abstract syntax tree (AST)—a JavaScript object containing GLSL and preprocessor
+tokens. Then, the analysis of this object is performed in order to substitute the macro values, which saves us the
+necessity to specify the #define directives. At the next stage, the shader text code is cre- ated from the AST. When an
+#include directive is met, the AST from the corresponding include file is simply inserted into the current
+tree. Finally, the shader is compiled using the standard WebGL API. As an optimization, ASTs can also be generated for
+all shaders offline and loaded at application startup as a JSON object. 
+
+
 **** TODO [#A] v2.2 run on mobile(ios 8+, qq浏览器?)
 
 https://blogs.msdn.microsoft.com/eternalcoding/2013/02/20/hand-js-a-polyfill-for-supporting-pointer-events-on-every-browser/

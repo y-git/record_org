@@ -1,0 +1,92 @@
+** TODO shader optimize
+
+http://www.cnblogs.com/clayman/archive/2010/05/11/1732211.html
+
+*** State Sorting
+We sort the call-list nodes by shader, texture, then VBO.
+Shader is our primary order because switching shaders causes
+widespread disruption of the OpenGL pipeline, necessitating the re- bind of all other states. We order on textures next
+because during development, we observed that they were slower to bind than VBOs.2 A further state sort is performed when we execute
+the call list, in which we track the ID of the last state change that we made on WebGL so that we don’t make the same
+change twice. 
+
+
+*** Texture Atlases
+
+As mentioned earlier, SceneJS sorts the draw list by shader, then by texture. As long as each of the geometry nodes
+inherits the same configuration of parent-node states and can therefore share the same shader, the draw list will bind
+the texture once for all the geometries. 
+
+
+
+*** VBO Sharing
+
+type : "geometry ",
+positions : [...], // All positions normals : [...], // All normals
+￼￼￼￼￼￼￼￼uv : [...] ,
+nodes: [{ type :
+// All UVs
+"texture",
+￼￼￼￼uri : nodes : [{
+"someTexture.jpg",
+￼￼type : "geometry",
+primitive : "triangles",
+indices : [...] // Faces for this geometry
+￼￼￼}] },
+{
+type : "texture",
+uri : "anotherTexture.jpg", nodes : [{
+type : "geometry",
+primitive : "triangles",
+indices : [...] // Faces for this geometry
+}] },
+{
+type : "texture",
+uri : "oneMoreTexture.jpg", nodes : [{
+type : "geometry",
+primitive : "triangles",
+indices : [...] // Faces for this geometry
+}] }
+￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼] }
+Listing 40.4. VBO sharing to reduce binding calls, as described in Section 40.3.2. In this example, a parent defines
+VBOs of positions, UVs, and normals that are inherited by the children, which define their primitives through index
+arrays pointing into different portions of the VBOs. Each child also applies a different texture to its portion. 
+
+This is efficient to render as long as each child geometry inherits a similar com- bination of states and thus avoids
+needing to switch generated shaders, 
+
+
+
+
+
+*** state optimize(http://www.gamedev.net/topic/349829-scene-graph-resources/ -> SC State Sorting)
+http://opengl.j3d.org/tutorials/statesorting.html
+http://www.gamedev.net/topic/183462-sorting-before-rendering/
+http://www.gamedev.net/topic/189747-sorting-shaders/
+
+
+
+An additional state-change optimizing sorting pass is applied each frame, after all visible chunks have been determined,
+and before the lists are dispatched to the shaders. It's a simple 48bit radix sort, sorting on shader ID and shader
+param pointer (so that shaders with the same parameter set are grouped). 
+
+
+
+shader_params - called each time a primitive (geometry chunk) is drawn ( like glBegin), bind textures required and
+shader specific parameters.
+Called using lazy-evaluation, ie. only if the states changed from the last geometry chunk
+(supported by the radix sorting prior to mesh dispatching). 
+
+
+
+
+
+
+
+
+
+http://www.cnblogs.com/clayman/archive/2010/07/28/1787434.html
+
+http://www.cnblogs.com/clayman/archive/2010/08/10/1796829.html
+
+
