@@ -1,6 +1,130 @@
 * TODO 今日计划
-** TODO fix city->blend bug
+** TODO add 3d ui
+** TODO use trello to manage roadmap
+https://trello.com/
+** TODO publish v0.6.0
+* 完成事项
+** DONE finish changes
+CLOSED: [2016-06-18 Sat 17:16]
+//add @singleton
 
+//solve js.map problem
+restore karma version to ^0.13.22
+
+
+//extract AssertUtils
+//use chai
+
+
+//use file glob in unit/tsconfig.json
+
+
+////build task should read tsconfig.json
+
+
+
+** DONE use trello to manage roadmap
+CLOSED: [2016-06-19 Sun 09:20]
+https://trello.com/
+
+
+
+** DONE add 3d ui
+CLOSED: [2016-07-11 Mon 08:37]
+*** DONE add line
+CLOSED: [2016-06-23 Thu 07:46]
+**** DONE pass demo
+CLOSED: [2016-06-22 Mon 07:44]
+
+**** DONE add arrow
+CLOSED: [2016-06-23 Thu 07:46]
+//create convex polygons
+
+//implement it
+
+////support cylinder
+
+////support cylinder arrow
+
+
+//modify geometry_basic sample
+
+//fix arrow sample
+
+////**** TODO add coordinates
+
+
+
+
+
+*** DONE unit test
+CLOSED: [2016-06-25 Sat 17:56]
+
+*** DONE refactor
+CLOSED: [2016-06-25 Sat 18:50]
+refactor ui,uiThreeD component folder
+
+
+*** DONE 3d font
+CLOSED: [2016-07-11 Mon 08:37]
+////threejs
+
+////unit test
+
+////refactor:
+remove un-use code
+
+
+
+
+
+**** DONE text texture
+CLOSED: [2016-07-11 Mon 08:37]
+//pass TwoDBitmapFont
+
+//pass ThreeDBitmapFont
+
+//unit test
+
+//refactor
+rename to twod ui
+rename UITwoD to TwoDUI
+refactor ThreeDBitmapFont, BitmapFontGeometry
+clear code
+
+
+
+** DONE publish v0.6.0
+CLOSED: [2016-07-12 Tue 08:07]
+//pass all unit test
+
+pass all run test
+
+
+* 明日计划
+v0.6.1
+** TODO improve 3d ui
+*** TODO improve 3d text
+**** TODO 3d bitmap font
+refer to three-bmfont-text:
+compute 3d bitmap bounding box,sphere
+support multi page
+support sdf
+
+support light material
+
+
+
+*** TODO line
+support polygons line:
+[[https://mattdesl.svbtle.com/drawing-lines-is-hard][Drawing Lines is Hard]]
+
+add dash line
+
+** TODO add billboard
+refer to bjs
+
+* TODO 未来7日计划
 ** TODO build a outdoor demo
 *** TODO tree+instance+terrain+free camera collision+shadowMap sample
 http://localhost:63342/Wonder.js/reference/babylonjs_samples/Samples/Demos/Instances/index.html
@@ -68,18 +192,7 @@ add TerrainCollider
 **** TODO heightmap physics
 
 
-*** TODO publish v0.7.0
-move examples to server(github.io?)
 
-use seajs to load js in examples
-
-* 完成事项
-** TODO fix city->blend bug
-
-
-* 明日计划
-
-* TODO 未来7日计划
 ** TODO show some ouside static scene from collada data
 *** TODO EntityObject add "clone" method
 add clone sample
@@ -444,10 +557,6 @@ use [[https://software.intel.com/en-us/gpa/details][Graphics Performance Analyze
 
 
 ** TODO optimize memory, cg(v0.5.9)
-add global Temp class, for save temp matrix,vector...
-(refer to bjs->math.ts->Temp class)
-
-
 memory optimize:
 https://www.scirra.com/blog/76/how-to-write-low-garbage-real-time-javascript
 http://blog.tojicode.com/2012/03/javascript-memory-optimization-and.html
@@ -1004,4 +1113,15 @@ support full screen(refer to babylon.engine.ts->450 line)
 * TODO 疑问
 
 * TODO 未做事项
+** control elapse time:
+增量时间：
+设置上限（p292)
+
 * TODO more
+** optimize 3d text
+[[http://wdobbie.com/post/gpu-text-rendering-with-vector-textures/][draw in gpu]]
+
+optimize:
+https://www.eventbrite.com/engineering/its-2015-and-drawing-text-is-still-hard-webgl-threejs/
+http://hack.chrons.me/opengl-text-rendering/
+[[http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf]]

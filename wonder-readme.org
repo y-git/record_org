@@ -29,6 +29,7 @@ Please learn samples in examples/samples/ to get more info.
 * Contributing
 Join us, We can create the amazing 3D world together!
 * Feature
+- Billboard
 - Batch Draw
   - Instance
   - Render Queue Sort By RenderGroup,RenderPriority,Shader,Texture,VBO
@@ -45,7 +46,11 @@ Join us, We can create the amazing 3D world together!
   - Octree
 - Event System
   - EventTriggerDetector
-- UI
+- ThreeD UI
+  - Bitmap Font
+  - Solid Line, Dash Line
+  - Arrow
+- TwoD UI
   - Ttf Font, Bitmap Font
   - ProgressBar
   - Image

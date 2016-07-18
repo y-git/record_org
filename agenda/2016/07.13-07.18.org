@@ -1,6 +1,149 @@
 * TODO 今日计划
-** TODO fix city->blend bug
+v0.6.1
+** TODO improve 3d ui
+*** TODO improve 3d text
+**** TODO 3d bitmap font
+refer to three-bmfont-text:
+compute 3d bitmap bounding box,sphere
+support multi page
+support sdf
 
+support light material
+
+
+
+*** TODO line
+support polygons line:
+[[https://mattdesl.svbtle.com/drawing-lines-is-hard][Drawing Lines is Hard]]
+
+add dash line
+
+** TODO add billboard
+refer to bjs
+
+** TODO publish v0.6.1
+
+
+
+
+* 完成事项
+** DONE finish changes
+CLOSED: [2016-06-18 Sat 17:16]
+//add @singleton
+
+//solve js.map problem
+restore karma version to ^0.13.22
+
+
+//extract AssertUtils
+//use chai
+
+
+//use file glob in unit/tsconfig.json
+
+
+////build task should read tsconfig.json
+
+
+
+** DONE use trello to manage roadmap
+CLOSED: [2016-06-19 Sun 09:20]
+https://trello.com/
+
+
+
+** DONE improve 3d text
+CLOSED: [2016-07-17 Sun 17:12]
+*** DONE 3d bitmap font
+CLOSED: [2016-07-17 Sun 10:46]
+**** DONE support sdf
+CLOSED: [2016-07-14 Wed 08:00]
+//implement
+
+
+**** DONE support light material
+CLOSED: [2016-07-15 Fri 06:52]
+//SdfBitmapFontMaterial extends StandardLightMaterial
+//add light
+
+
+//add BasicBitmapFontMaterial, BitmapFontMaterial
+
+
+//pass unit test
+
+
+
+
+
+
+
+
+
+
+refactor:
+//glsl: move to end
+//add BitmapFontMaterial, BaiscBitmapFontMaterial
+//rename SdfFontMaterial to SdfBitmapFontMaterial
+//these Material should not has map glsl(not has sourceRegion,repeatRegion field!) 
+//refactor EngineShaderLib->assert
+//rename shaderlib->quadCmd to cmd
+
+
+
+
+
+////***** TODO compute 3d bitmap bounding box,sphere
+
+line,arrow also compute?
+
+**** DONE support multi pages
+CLOSED: [2016-07-17 Sun 10:46]
+//implement
+
+//unify basic,sdf,multi pages
+
+//unit test
+
+refactor:
+//examples/asset/font folder, add bitmapFont/, ttfFont/ folder
+//remove "_lib" postfix
+//sceneTool add createCamera method
+
+//pass all unit test
+
+
+
+*** DONE line
+CLOSED: [2016-07-17 Sun 17:12]
+//add dash line
+
+////support instance
+
+//unit test
+
+//refactor:
+rename Line to SolidLine
+
+
+** DONE add billboard
+CLOSED: [2016-07-18 Mon 09:00]
+//implement:
+true
+
+unit test
+
+refactor
+
+
+** DONE publish v0.6.1
+CLOSED: [2016-07-18 Mon 09:00]
+
+
+
+* 明日计划
+
+* TODO 未来7日计划
 ** TODO build a outdoor demo
 *** TODO tree+instance+terrain+free camera collision+shadowMap sample
 http://localhost:63342/Wonder.js/reference/babylonjs_samples/Samples/Demos/Instances/index.html
@@ -73,13 +216,6 @@ move examples to server(github.io?)
 
 use seajs to load js in examples
 
-* 完成事项
-** TODO fix city->blend bug
-
-
-* 明日计划
-
-* TODO 未来7日计划
 ** TODO show some ouside static scene from collada data
 *** TODO EntityObject add "clone" method
 add clone sample
@@ -1004,4 +1140,28 @@ support full screen(refer to babylon.engine.ts->450 line)
 * TODO 疑问
 
 * TODO 未做事项
+** control elapse time:
+增量时间：
+设置上限（p292)
+
 * TODO more
+** TODO 3d text
+*** TODO generate sdf 3d text file(png, fnt)
+
+*** TODO optimize 3d text
+[[http://wdobbie.com/post/gpu-text-rendering-with-vector-textures/][draw in gpu]]
+
+optimize:
+https://www.eventbrite.com/engineering/its-2015-and-drawing-text-is-still-hard-webgl-threejs/
+http://hack.chrons.me/opengl-text-rendering/
+[[http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf]]
+
+*** TODO line
+support polygons line:
+[[https://mattdesl.svbtle.com/drawing-lines-is-hard][Drawing Lines is Hard]]
+
+** TODO Billboard
+implement:
+[[http://www.lighthouse3d.com/opengl/billboarding/index.php?billCheat2][cheat way]]
+
+[[https://cesiumjs.org/2015/10/28/Billboard-Instancing/][Billboard Instancing]]

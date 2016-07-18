@@ -1,0 +1,289 @@
+* TODO 今日计划
+** TODO modify
+AssertUtils.assert can move to @require ... 
+
+add @singleton
+** TODO 熟悉 标注 模块代码
+DEADLINE: <2016-06-17 Fri> SCHEDULED: <2016-06-16 Thu>
+*** TODO 熟悉已有的模块代码
+**** TODO 熟悉gizmo
+**** TODO 熟悉view层对threejs的调用代码
+*** TODO 给出初步的模块设计方案
+**** node
+***** [#A] need always show three lines(width,height,depth)
+this means it may need adjust the position of the line!
+
+
+* 完成事项
+** TODO 熟悉 标注 模块代码
+//*** TODO 熟悉已有的模块代码
+//**** TODO 熟悉gizmo
+//**** TODO 熟悉view层对threejs的调用代码
+
+** DONE dev demo
+CLOSED: [2016-07-04 Mon 14:01]
+//learn code flow:
+measure
+product
+
+//learn home->circle, pannel how to draw
+
+//how to use three to draw
+
+//line
+//text
+//arrow
+
+//learn projector
+
+
+//separate logic and render(so can change line draw method by only edit render)
+
+//refactor:
+clear code
+remove rebundant files
+rename Label to WglLabelxxx
+
+
+
+
+
+//check with youliang
+
+
+
+show line,text in product:
+//try use three to render
+render can show 3d text(billboard):
+//learn threejs->3d text
+
+//decide billboard plan
+
+//implement in product
+
+
+
+//billboard:
+//test demo in threejs
+//fix product
+
+
+
+
+
+//refactor WglTextGeometry
+rewrite WglDimension: use builder pattern to assemble render primitive
+move related classes to renderer/ folder
+
+
+
+
+//learn 3d text:
+drawing letter shapes via GL_LINES, create 3D meshes of letters or render character textures to 2D quads in a 3D environment.
+
+
+////- drawing letter shapes via GL_LINES
+
+- render character textures to 2D quads in a 3D environment:
+bitmap
+freetype(like vector image)
+
+- create 3D meshes of letters
+- [[http://wdobbie.com/post/gpu-text-rendering-with-vector-textures/][draw in gpu]]
+
+
+
+
+
+//need always show three lines(width,height,depth)
+check with mao: this means it may need adjust the position of the line? or like selection?
+
+
+
+
+
+
+//modify space compute:
+fix length of xyz:
+xy: 
+   //show complement line:
+   //adjust position(move outer)
+
+xy
+yz
+
+//show line in the correct position
+//show text in the correct position and direction(rotate after set billboard rotation?)
+
+
+
+
+
+
+
+
+//refactor:
+refactor Builder
+refactor data
+
+
+fix test bug:
+//not refresh 
+//not show ts file
+
+**** DONE adjust the position of the line
+CLOSED: [2016-06-29 Wed 09:49]
+//resize font size by distance between the camera and the product
+
+
+
+////fix camera position bug?(rotate mouse)
+
+//why node->box->z so small?
+
+
+
+//add xz,yz
+
+//pass unit test
+
+
+//modify xz,yz->top/end line direction:
+////billboard in vertical plan? modify in each view?
+
+
+//finish unit test
+
+
+
+//refactor:
+handle todo
+clean
+
+
+
+
+
+
+////update compute in each frame
+////if startPoint change, translate diplay.node
+
+
+////check
+
+
+////unit test compute logic
+
+**** DONE move to gzimo
+CLOSED: [2016-06-29 Wed 17:37]
+
+//change "<any>" to "as"
+
+//move to gzimo
+
+
+//modify xy position
+
+
+//fix multi entity problem!
+
+
+
+refactor:
+//add js doc
+
+
+////switch to vscode
+
+
+**** DONE more
+CLOSED: [2016-07-04 Mon 14:01]
+//fix overlook view
+
+//fix plan view
+
+
+//refactor
+
+
+////fix:update label position
+
+
+//fix: now should click twice when switch camera mode!
+
+//fix top->arrow direction
+
+
+
+//refactor:
+clear code
+class, method add js doc
+rename init to setup
+
+
+check
+
+
+
+
+
+
+* TODO Change
+** TODO implement draw line,arrow,3d text in wonder
+try use wonder to render or use independent graph code to render?
+       
+
+* Note
+** tech design
+draw line:
+line primitive
+////cylinder geometry
+more
+
+
+
+draw text:
+canvas/dom draw 2d text
+3d text + billboard
+
+** requirements
+linewidth can be 1
+can zoom text
+
+
+* TODO 明日计划
+** TODO compute uv
+** TODO solve: karma charset messy code problem
+
+only test your file(tsconfig.json, karma)
+
+
+
+** TODO optimize
+//redraw only when camera move
+
+optimize computation
+
+
+
+* TODO 未来7日计划
+
+* TODO 疑问
+what's "pdms" ?
+
+
+
+
+* TODO 未做事项
+** unit test
+*** TODO coverage
+support istanbul
+*** TODO improve
+show "it" spend time
+
+*** TODO 测试nodejs
+
+*** TODO study bower,npm
+http://www.open-open.com/lib/view/open1455411109073.html
+
+read more
