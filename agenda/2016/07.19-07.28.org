@@ -1,20 +1,141 @@
 * TODO 今日计划
-
-
-
+** TODO fix city->blend bug
+** TODO publish v0.6.2
 * 完成事项
+** DONE improve billboard
+CLOSED: [2016-07-21 Thu 07:13]
+//add text billboard
+
+*** DONE instance
+CLOSED: [2016-07-21 Thu 07:13]
+
+
+
+
+
+
+
+** DONE graphics test
+CLOSED: [2016-07-28 Thu 09:46]
+//learn:
+[[http://wscg.zcu.cz/wscg2013/program/full/E43-full.pdf][Using Image Quality Assessment to Test Rendering Algorithms]]
+
+pixel test:
+//test blend
+colormask
+
+//z fighting
+
+shadow add
+
+
+//generate correct image,and compare the scene with the image:
+
+
+
+move sample test to render test:
+test shadow_add sample,
+...
+
+
+////write "convert render scene test file to sample" gulp task
+
+
+
+refactor:
+change PixelMatcher to instance
+
+
+
+** DONE publish v0.6.2
+CLOSED: [2016-07-28 Thu 09:46]
+
 
 
 * 明日计划
 
-
 * TODO 未来7日计划
-** TODO parse fbx,dae
-*** TODO parse fbx
+** TODO build a outdoor demo
+*** TODO fix city->blend bug
 
-*** TODO parse dae
+*** TODO tree+instance+terrain+free camera collision+shadowMap sample
+http://localhost:63342/Wonder.js/reference/babylonjs_samples/Samples/Demos/Instances/index.html
 
-*** TODO show some ouside static scene from collada data
+
+show box in terrain by height
+
+
+collision
+
+apply gravity
+
+
+
+
+set framebuffer refresh rate
+
+
+use tree instead of box
+lod tree?
+
+
+*** TODO grass
+
+can set Billboard start distance
+
+
+wind
+
+
+http://docs.unity3d.com/Manual/terrain-Grass.html
+
+
+
+*** TODO TerrainMaterial add detail map
+
+https://en.m.wikipedia.org/wiki/Texture_splatting
+
+refer to bjs->extend->terrain document
+
+
+*** TODO sky
+sky dome
+
+
+cloud
+animated cloud
+
+
+
+
+*** TODO terrain collision
+http://docs.unity3d.com/Manual/class-TerrainCollider.html
+http://gamedev.stackexchange.com/questions/48182/collision-detection-with-heightmap-based-terrain
+http://www.gamedev.net/topic/597009-terrain-collision/
+https://www.opengl.org/discussion_boards/showthread.php/124274-Collision-Detection-in-Terrain-Engine
+http://www.html5gamedevs.com/topic/5385-heightmap-terrain-and-physics/
+
+
+
+add TerrainCollider
+
+**** TODO camera collision
+
+**** TODO heightmap physics
+
+
+*** TODO publish v0.7.0
+move examples to server(github.io?)
+
+use seajs to load js in examples
+
+** TODO show some ouside static scene from collada data
+*** TODO EntityObject add "clone" method
+add clone sample
+
+refactor:
+rename "copy", "copyXXX" to "clone", "cloneXXX"
+
 
 ** TODO build custom outer scene(octree+lod+direction light+collision+shadowmap+terrain+water(mirror reflection, refraction) + morph animation player character)
 *** TODO support physics heightmap
@@ -97,10 +218,6 @@ stop refresh,start refresh, refresh(count):refresh the specify times
 (add refresh rate counter)
 
 
-
-
-
-use texture matrix to replace repeat,part data
 
 
 
@@ -407,18 +524,6 @@ use [[https://software.intel.com/en-us/gpa/details][Graphics Performance Analyze
 add global Temp class, for save temp matrix,vector...
 (refer to bjs->math.ts->Temp class)
 
-use memory pool instead of Temp class?
-(refer to sk_design->MemoryUtil,MemoryPool)
-
-
-
-show memory info:
-refer to sk_design->WebGLRenderer->dump method
-
-
-
-
-
 
 memory optimize:
 https://www.scirra.com/blog/76/how-to-write-low-garbage-real-time-javascript
@@ -433,9 +538,6 @@ http://stackoverflow.com/questions/13914959/three-js-memory-management
 http://www.html5gamedevs.com/topic/6903-memory-consumption-difference-between-111-and-112-beta/
 
 
-
-
-use instance pool to re-use render commands
 
 
 
@@ -990,41 +1092,12 @@ support full screen(refer to babylon.engine.ts->450 line)
 * TODO 疑问
 
 * TODO 未做事项
-** TODO terrain
-*** TODO height map generator
-improve Fault algorithm:
-smooth distance:
-http://www.lighthouse3d.com/opengl/terrain/index.php?faultvar
 
-*** TODO create tool to generate mix map, bump map
-
-*** TODO terrain collision
-implement collision with terrain mesh
-
-refer to:
-babylonjs->collision
-http://www.gamedev.net/topic/675055-3d-model-terrain-collision/
-
-*** TODO sky
-**** TODO sky dome
-
-
-**** TODO cloud
-animated cloud
-
-
-
-**** TODO atmosphere light
-
-
-http://codeflow.org/entries/2011/apr/13/advanced-webgl-part-2-sky-rendering/
-
-http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter16.html
-
-
-support lensFlare?
 
 
 * TODO more
-
+**** TODO use teamcity
+https://www.jetbrains.com/teamcity/
+http://karma-runner.github.io/1.0/plus/teamcity.html
+http://www.blog.danmerino.com/blog/continuos-integration-ci-for-javascript-jasmine-and-teamcity
 

@@ -1,90 +1,695 @@
 * TODO 今日计划
-** TODO compute uv
-** TODO solve: karma charset messy code problem
-
-only test your file(tsconfig.json, karma)
-
-
-
-** TODO optimize
-//redraw only when camera move
-
-optimize computation
-
-
+** TODO 门板类型（空间操作添加门板）
 
 * 完成事项
-** DONE compute uv
-CLOSED: [2016-07-18 Mon 13:48]
-//finish
+** DONE 门板类型（空间操作添加门板）
+CLOSED: [2016-07-21 Thu 15:44]
+**** DONE learn requirements
+CLOSED: [2016-07-21 Thu 15:44]
+learn space compute logic:
+//see runtime data
 
-//pass convex polygon
+learn "now show space" logic:
+pick one face
+show space
 
-//study polygon clipping!
-////then use constrained delaunay?
 
 
-//pass concave polygon(ear clipping)
+以“空间操作添加门板”为例，给出整个流程的架构设计、开发流程:
+consider how to implment "add door"
+
+propose dynamic compute layer design:
+give example
+
+
+** DONE bug fix
+CLOSED: [2016-07-21 Thu 15:40]
+label bug:
+drag model->move camera target, then label position not change when not visible!
+
+
+
+
+entity position should move to center
+
+** DONE develop label demo
+CLOSED: [2016-07-28 Thu 18:12]
+*** DONE multi labels demo
+CLOSED: [2016-07-25 Mon 20:02]
+render show:
+//test whole label
+//test door label
+
+
+
+
+//use box3 to get width,height,depth:
+
+
+//test multi label: add more cases
+
+
+
+
+*** DONE label edit demo
+CLOSED: [2016-07-28 Thu 18:12]
+**** DONE edit text
+CLOSED: [2016-07-28 Thu 18:12]
+bind click event
+
+add input
+
+change label
+
+
+click elsewhere to cancel edit
+
+
+bind keydown
+
+write space change fake method
+
+
+
+
+** DONE optimize compute
+CLOSED: [2016-08-17 Wed 13:51]
+reduce time: from 1+s to < 0.05s
+
+
+
+give draft:
+give select space interface
+
+
+
+optimize drag: now only update ui when drag, and compute after drag
+
+
+
+//use graph algorithm to implement:
+
+////use plane sweep algorithm:
+assume no intersection of planks
+
+handle intersection of planks
+
+
+
+
+
+
+//compute coplane data in this algorithm
+
+//run test
+
+//fix model
+
+//fix sub chestEntity
+
+//add unit test:
+add intersect case
+add sub chestEntity case
+////add position change case
+
+
+//merge to sit
+
+
+
+
+//unit test findSelectedSpace
+
+//merge to sit
+give to sunpeng
+
+
+//query adjacent space
+
+//unit test
+
+//merge to sit
+give to sunpeng
+
+
+////fix sub chest coplane compute bug
+
+//rename findSpaceNode to findAdjacentTargets
+
+
+
+//data not rely on editor
+
+
+//handle size change
+
+optimize compute space
+
+see formula: CmdPointSelect->82
+
+add dispose to improve space
+
+fix bug:listen position
+refer to CmdChestMove->66->entity.compute, unify SpaceNode->box3 and updatedBox3?
+
+unit test
+
+
+
+////add updated box3 changed event
+
+
+//add dirty:space node dirty, coplanes dirty
 
 //unit test
 
 
-//run test
-//use wonder.js to test
+//mention sunpeng:dirty
+give document
 
 
-//refactor
-extract ClipPolygonBuilder
+//hidden flag, recompute
+
+//fix clear space node bug
 
 
-** TODO pass product run test(now no label?)
-check bug
+check SpaceEntity
+
+//test home
+
+
+
+
+
+
+
+//optimize label size update:
+hidden when change, show after change(update once)
+if text not change, not update
+
+
+
+
+
+
+
+
+
+
+
+//give deadline to mao
+
+** DONE fix
+CLOSED: [2016-08-18 Thu 18:29]
+after sun fix gerrit:
+repush [家具][重构] 修复并重构了SpaceEntity:
+fix in master, not in sit
+
+** DONE compute bug
+CLOSED: [2016-08-18 Thu 18:29]
+compute bug:
+handle: 但是背板有可能嵌入到侧板中 situation
+(这里背板、侧板怎么判断？通过name?
+板件类别
+)
+
+open assertion "the computed spaceBoxes.length should > 0"
+
+
+check devapi->组合衣柜->space compute
+
+
+
+
+make sit pass
+
+
+** TODO continue label demo
+//checkout to inner_label_demo
+
+//point sit to master
+
+
+
+//rebase branch:
+restore inner label
+restore edit label
+
+
+
+
+
+
+
+*** TODO finish multi label
+**** DONE finish surface label
+CLOSED: [2016-08-26 Fri 17:09]
+//show perspective label
+
+//show top label
+
+
+//restore size:
+size in front view
+
+
+//move front label
+
+
+fix bug:
+//scale label in front view, then can not select!
+
+//not dirty
+
+
+//merge to master
+
+//move,scale, label position wrong!
+
+//unit test
+
+//fix dimension field!
+
+
+
+fix bug:
+////scale label in perspective view, not billboard
+
+
+
+
+
+
+//restore wgllabelUtil
+//clear label when replace
+//update label
+
+
+
+fix bug:
+//top view: size label, not show label text
+//should not show front label when start(in perspective view)
+
+
+
+
+////test combined chest:dev->jia zhuang tree->cloth chest
+
+
+//confirm "size change bug, space compute" with sun
+
+
+
+
+//refactor multi label
+
+//pass all unit test
+
+
+
+**** TODO show inner label
+//if no door, show inner labels(the big chest should show inner labels)
+
+//not show too small space label
+
+
+//pass test
+
+//commit
+
+
+//consider sub chest entity:
+inner
+
+
+
+
+
+//convert inner space to front view inner space(not intersect with planks/chest)
+
+//inner labels should in left position
+
+
+//add debug space
+
+
+//rebase master:
+pass test
+push to master
+
+
+
+//find why py no targets!
+
+//mark show pannel default value to be false!
+
+//commit the debug commit!
+
+
+//fix texcoord gernerator:
+fix bug
+move math to test
+
+
+
+
+//investigation function overload(static, common)
+
+
+
+
+//fix surface labels:
+   ////consider sub chest entity:
+
+//extract from inner and surface computer
+
+
+
+//forbidden edit function
+
+
+
+
+
+fix bug:
+//bug:label position error
+http://sitdesign.skong.com/product.html?cpId=A558A65A246C4EC6A65708A125C913B6&cpType=cupboard
+
+
+//refactor SpaceNode:remove updatedBox3, only change box3
+
+
+//move -> scale, the label position error:
+1.procedural drag bug
+2.maybe add rebundant labels which not diappear
+
+
+//add unit test
+
+//refactor unit test:
+//rename TestSpec to Spec
+
+
+//push to master
+
+
+
+
+//handle change size by input
+
+
+
+fix bug:
+
+////select error:top space error
+http://alpha.skong.com/product.html?cpId=A558A65A246C4EC6A65708A125C913B6&cpType=cupboard###
+
+
+//should select small space(big chest)
+
+//checkout to sit to fix
+
+
+//solve gap problem
+
+
+//refresh label after plank operate
+
+
+
+//fix label bug:
+when switch to front view, judge dirty and rebuild label(emit event)
+
+//adjust text size
+
+remove text edit
+
 
 
 refactor:
-//judge whole entity: its parent(getParent()) should be blueproot?
+如果有 console.log 的删除掉，要么使用 LoggerUtil.debug 来输出。
 
-not handle in processBefore,After,process, instead listen Entity property change,camera change event
 
-mao add camera switch event, then listen to the event instead of in cmdchange command->onExecute
 
-not directly visit THREE.Camera, visit camera instead
+////select error:
+http://alpha.skong.com/product.html?cpId=4452996F33994A28B2377D82E60206E1&cpType=wardrobe###
 
-get camera from context.camera? or elsewhere?
 
-add comment
-
-more gizmo related refactor
+replace chest, label bug?
 
 
 
 
 
-optimize:
-WglMeasurementLabelComputer->_convertEntityToBoxHelper: not create BoxHelper each time!(cache?)
+
+
+//talk to sun:
+should emit the event when space change(CmdPlankDelete...):
+this.dispatchEvent(NodeEventEnum.SpaceChanged);
 
 
 
-record bug:
-//fix change main product bug
 
-fix change main product scale bug?
-
-fix "change to combined product->drag product, the label don't follow" bug(how to drag the whole combined product?)
-
-** TODO run test uv computer
+write document to chun
 
 
 
-** TODO optimize uv computer
+*** TODO finish label edit
 
 
+
+
+*** TODO continue label edit demo
+
+
+
+
+
+
+
+refactor: 
+not exec WglCamera->onDragEnd after execute WglEditableLabelController->onDragEnd:
+   front view gizmo->edit event bind on WglCamera;
+   CmdDimensionShowInput->onReceive return true
+
+
+modify update label text:
+
+merge master:
+
+
+
+**** TODO drag arrow to change
+arrow should be sub gizmo
+increase arrow size
+
+
+bind drag event
+
+
+
+
+
+*** TODO drag label demo
+
+
+
+
+*** TODO pass all
+fix perspective, top
+
+fix billboard
+
+refactor
+
+
+
+** TODO summary problems
+
+
+** TODO check with youliang,xu,yu
+determine requirements
+
+determine implment plan
+
+
+** TODO implement label
+build fake data to test
+
+refactor:
+front,top view label no need to set text billboard
+rename Product,Model to Entity
+
+fix bug:
+1.after edit label text, the label will hide!after camera rotate, the label then show
+
+2.after edit label text->re build label, the surface label's position not update
+
+
+
+*** TODO multi labels
+need more test case to test
+
+**** TODO door labels
+
+fix short label wrong:
+check with youliang
+
+
+update label when change entity,space
+
+
+
+
+**** TODO inner space label demo
+
+
+
+
+*** TODO edit label
+moveover show hightlight boarder?
+
+click elsewhere to switch to normal state?
+
+command add onUndo,onRedo logic:
+refer to CmdMovePoint
+
+
+refactor:
+rename label to dimension
+
+*** TODO drag label
+
+
+** TODO fix label bug
+
+
+when door is hidden or no door, should show the visible inner label
+show the inner labels which can be visible
+
+
+
+chest model, wardrobe model has different labels!
+
+
+
+door label:
+should show sub chest label!
+
+
+
+
+
+
+
+** TODO fix compute bug
+
+bug:
+description
+the coplane is wrong when the chestEntity's box3 is bigger than the actual box3(defined by its planks)
+
+sit:
+http://alpha.skong.com/product.html?cpId=1F1A65BAE15F43F2AB018647726AFC07&cpType=cupboard###
+
+
+reason
+the chestEntity's box3 contain its right plank(although the chestEntity is not link to the plank), so the plank->px
+coplane has the chestEntity!
+
+
+
+solution
+compute coplane targets by judge whether the coplane is intersected/contained by the chestEntity's box3(not by the
+chestEntity's coplane!)
+
+note: SpaceEntity use updated box3, so maybe remove the updated box3 and use SpaceEntity's box3 as the one!
+
+
+
+
+
+
+
+
+
+fix bug:
+solve coplane shouldn't contain intersected planks: use big chest to test
+
+
+
+
+
+
+
+目前存在问题
+1. 拖动板件时抽屉子柜体大小变化不正确【原因】抽屉子柜体超出柜体，coplanes计算的抽屉关联方向错误
+2. 选取空间不正确【原因】获取到的空间因横板后又缝隙等原因不正确
+   可能的解决方案
+判断选取的空间是否有效（判断width/height/depth <  20)
+如果无效，往PY方向继续找，直到找到有效的空间(如果有多个有效空间，可取空间中心点离选中点最近的空间)
+
+
+
+4. 门板大小未跟随拖动板件变化【原因】未正确标识门板类型，无法确定要更改大小的板件
+5. 背板大小未跟随拖动板件变化【原因】背板插入侧板的情况，coplanes计算的关联方向错误
+6. 拖动板件后，修改柜体大小；板件的大小未跟随拖动板件变化【原因】？？？？？？？
+
+
+
+
+** TODO refactor compute architecture
+
+
+
+
+
+** TODO door
+need set un-do, re-do command(add related data)
+
+*** TODO show door
+
+*** TODO replace door
+
+
+
+
+** TODO optimize compute
+optimize compute method:
+use plan sweep algorithm
+only compute related thing(not compute whole thing)
+
+
+
+
+
+
+
+web worker?
+
+defer to compute:
+import frp?
+behavior tree?
+
+
+optimize drag: now compute when drag, should:
+reduce compute spend method
+reduce compute interval when drag
 
 
 * TODO Change
        
 
 * Note
+add unit test cases
+
+add door:
+x,y,z <= 100?
+
+
+
+
+** add router when use vpn
+sudo route -n add -net 192.168.0.0/24 192.168.70.1
 
 
 * TODO 明日计划
@@ -96,6 +701,11 @@ fix "change to combined product->drag product, the label don't follow" bug(how t
 
 
 * TODO 未做事项
+
+** TODO run test uv computer
+
+** TODO optimize uv computer
+
 
 * TODO git commit specification
 [类型] + {[编号]} + 描述

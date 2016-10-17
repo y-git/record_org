@@ -1,0 +1,113 @@
+* TODO 今日计划
+** TODO compute uv
+** TODO solve: karma charset messy code problem
+
+only test your file(tsconfig.json, karma)
+
+
+
+** TODO optimize
+//redraw only when camera move
+
+optimize computation
+
+
+
+* 完成事项
+** DONE compute uv
+CLOSED: [2016-07-18 Mon 13:48]
+//finish
+
+//pass convex polygon
+
+//study polygon clipping!
+////then use constrained delaunay?
+
+
+//pass concave polygon(ear clipping)
+
+//unit test
+
+
+//run test
+//use wonder.js to test
+
+
+//refactor
+extract ClipPolygonBuilder
+
+
+** DONE pass product run test(now no label?)
+CLOSED: [2016-07-19 Tue 16:49]
+check bug
+
+
+refactor:
+//judge whole entity: its parent(getParent()) should be blueproot?
+
+//not handle in processBefore,After,process, instead listen Entity property change,camera change event
+
+//mao add camera switch event, then listen to the event instead of in cmdchange command->onExecute
+
+//not directly visit THREE.Camera, visit camera instead
+
+
+//add comment
+
+
+//optimize setup:
+WglMeasurementLabelComputer->_convertEntityToBoxHelper: not create BoxHelper each time!(cache?)
+
+
+
+//more gizmo related refactor
+
+//pass label test
+
+pass algorithm test
+unit test
+run test
+
+push commit
+
+
+solve chandao bug
+
+
+
+
+
+record bug:
+//fix change main product bug
+
+fix change main product scale bug?
+
+fix "change to combined product->drag product, the label don't follow" bug(how to drag the whole combined product?)
+
+
+
+* TODO Change
+       
+
+* Note
+
+
+* TODO 明日计划
+
+
+* TODO 未来7日计划
+
+* TODO 疑问
+
+
+* TODO 未做事项
+** TODO run test uv computer
+
+
+** TODO optimize uv computer
+
+
+* TODO git commit specification
+[类型] + {[编号]} + 描述
+类型：功能 | 缺陷(跟随一个或多个编号)(禅道上的bug编号) | 优化
+例如：[缺陷][1341] 拖入门窗模型到2D户型下时，门窗在墙体上没有距离显示 

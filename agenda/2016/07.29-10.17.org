@@ -1,8 +1,644 @@
 * TODO 今日计划
+** TODO build a outdoor demo
+////*** TODO fix city->blend bug
+
+*** TODO get terrain height and generate terrain
 
 
+show box in terrain by height
+
+
+
+generate terrain:
+fault
+mid
+
+generate height map
+change "read height map" method
+
+
+
+*** TODO TerrainMaterial add detail map
+
+https://en.m.wikipedia.org/wiki/Texture_splatting
+
+refer to bjs->extend->terrain document
+https://doc.babylonjs.com/extensions/Terrain
+
+
+*** TODO grass
+
+////can set Billboard start distance
+
+
+wind
+
+
+http://docs.unity3d.com/Manual/terrain-Grass.html
+
+
+*** TODO sky
+sky dome
+
+
+cloud
+animated cloud
+
+
+
+
+*** TODO terrain collision
+http://docs.unity3d.com/Manual/class-TerrainCollider.html
+http://gamedev.stackexchange.com/questions/48182/collision-detection-with-heightmap-based-terrain
+http://www.gamedev.net/topic/597009-terrain-collision/
+https://www.opengl.org/discussion_boards/showthread.php/124274-Collision-Detection-in-Terrain-Engine
+http://www.html5gamedevs.com/topic/5385-heightmap-terrain-and-physics/
+
+
+
+
+
+collision
+
+apply gravity
+
+
+
+
+////set framebuffer refresh rate
+
+
+use tree instead of box
+lod tree?
+
+
+
+
+
+add TerrainCollider
+
+**** TODO camera collision
+
+**** TODO heightmap physics
+
+*** TODO tree+instance+terrain+free camera collision+shadowMap demo
+http://localhost:63342/Wonder.js/reference/babylonjs_samples/Samples/Demos/Instances/index.html
+
+*** TODO publish v0.7.0
+move examples to server(github.io?)
+
+use seajs to load js in examples
 
 * 完成事项
+** DONE build a outdoor demo
+CLOSED: [2016-10-17 Mon 14:56]
+////*** TODO fix city->blend bug
+
+*** DONE get terrain height
+CLOSED: [2016-08-12 Fri 10:29]
+//show box in terrain by height
+
+//optimize:cache height data
+
+//fix bug:if change height map, cache miss
+
+//unit test
+
+*** DONE generate terrain
+CLOSED: [2016-08-27 Sat 13:17]
+generate terrain:
+//fault
+
+//try node-canvas
+////, phantomjs to generate height map png
+
+
+refactor: 
+//extract Converter.ts
+//refactor TextGeometry:
+//refactor range:rangeWidth,rangeHeight
+
+
+//unit test
+
+
+//note memory manage
+
+
+refactor:
+//converter: use tsconfig.json
+//pass converter
+//extract tool->gulpfile.js
+
+
+
+
+
+//mid
+
+
+
+unit test:
+//test MDP
+//try test generator again!
+
+
+//import contractor,chai in tool!
+
+
+*** DONE TerrainMaterial support mix map
+CLOSED: [2016-08-28 Sun 16:13]
+
+https://en.m.wikipedia.org/wiki/Texture_splatting
+
+refer to bjs->extend->terrain document
+https://doc.babylonjs.com/extensions/Terrain
+
+
+refactor:
+//consider repeatRegion
+////consider sourceRegion:
+////use texture matrix to replace repeat,part data
+
+
+*** DONE support terrain bump map
+CLOSED: [2016-08-28 Sun 19:05]
+
+
+
+*** DONE support layer,mix,bump map
+CLOSED: [2016-08-29 Mon 07:38]
+
+
+*** DONE refactor
+CLOSED: [2016-08-29 Mon 07:45]
+//rename TerrainBumpXXX to TerrainMixBumpXXX
+//rename terrainMix/Layer to terrain_mix/_layer
+
+
+
+
+*** DONE pass test
+CLOSED: [2016-08-30 Tue 06:37]
+//pass unit test
+
+pass render test:
+move sample to render test
+
+*** DONE refactor
+CLOSED: [2016-08-30 Tue 07:11]
+//rename v_xxx
+
+//rename TerrainMixShaderLib to ?
+
+user shouldn't need know Collection,Hash:
+public attr,method->type shouldn't be Collection,Hash
+
+
+pass test
+
+
+*** DONE grass
+CLOSED: [2016-10-11 Tue 17:25]
+
+////can set Billboard start distance
+
+
+wind
+
+
+http://docs.unity3d.com/Manual/terrain-Grass.html
+
+
+**** DONE implement texture way
+CLOSED: [2016-09-05 Mon 20:39]
+//show one grass(3 textures)(one drawcall)
+note:
+disabled back-face culling to achieve visibility on both sides
+alpha blend
+
+
+
+
+//random
+
+not repeat?
+
+
+
+//add animation
+
+
+
+//show grass on terrain
+
+
+
+refactor:
+//rename glsl(lib->glsl)->xxxTexture to xxxMap
+
+//move BitmapFontGeometry/BufferContainer/GeometryData to lib->bitmapFont
+//fix this->page to pages
+//refactor CustomData
+
+//assert:Matrix4,Matrix3->setRotate/rotate->x,y,z shouldn't all be 0
+
+
+//pass bitmapFont render test,unit test
+
+
+
+//rewrite terrainSpec,terrainMixSpec,terrainLayerSpec
+
+
+//refactor StandardBasicMaterial
+
+
+//unit test
+
+
+
+
+
+
+**** DONE implement instance way
+CLOSED: [2016-09-19 Mon 08:52]
+(custom shader support instance)
+instancing for the grass:
+//draft
+//not consider instance list 
+
+//pass two grass
+not consider instance list 
+consider instance list 
+
+
+
+
+////add unit test
+
+//support batch fallback:
+pass two grass
+
+
+
+//integrate with batch and instance
+
+
+must add unit test!
+//add unit test:
+modify customShaderSpec.js
+more test...
+
+
+
+
+//pass all unit test
+
+pass all render test
+
+
+
+fix bug:
+            //var grass2 = grass.clone({
+
+                             cloneChildren:false,
+                             shareGeometry:true,
+                             cloneGeometry:true
+            });
+//EntityObject-> pass self for target!
+
+//add unit test
+
+
+
+//fix button bug
+
+//add unit test
+
+
+
+////sort_queue bug?
+
+
+
+
+//fix clone bug:
+add test: not clone twice
+
+
+//extract GrassInstance
+
+//refactor GrassMaterial to GrassMapMaterial
+
+//extract BasicInstanceGeometry
+
+
+//pass all test
+
+
+refactor:
+//remove CustomHardwareXXXDrawer->instanceList(not consider instance list)
+////use CustomXXXDrawer replace ModelXXXDrawer, NormalModelXXXDrawer
+//rename CustomHardwareXXXDrawer to HardwareXXXDrawerForInstanceGeometry?
+////ModelXXXDrawer, NormalModelXXXDrawer use HardwareXXXDrawerForInstanceGeometry
+//refactor GrassMaterial:
+    extract map, instance
+////extract GrassInstanceGeometry
+
+//extract GrassInstanceMaterial, GrassMapMaterial
+
+//InstanceGeometry->drawer not support drawArrays!remove related code
+
+//Grass Instance Material support fallback to batch
+
+
+
+////custom shader support instance
+
+////add unit test
+
+
+
+//remove u_drawPos?
+
+
+
+
+
+//Grass field animation based on simple euler spring 
+
+////update custom shader->uniform at runtime(use script?)
+
+
+//rename test/unit/xxx_xxx to xxxXXX
+
+
+
+
+//optimize:
+add cache:
+add cache in SourceInstance
+
+
+
+
+
+**** DONE optimize grass
+CLOSED: [2016-10-05 Wed 11:28]
+refer to terra:
+https://github.com/spacejack/terra
+
+
+
+////compute vertices based on shape,offset, not pass a_shape,a_offset again:
+can't pass vertices,colors,texCoords as instance attribute data!
+(because it will exceed 256 max size limit)
+
+
+
+//update to terra(no wind, no height map, no light)
+
+//read height
+
+
+//rotate to towards +y
+
+
+
+
+
+////wind
+
+
+//light
+
+
+
+
+
+////why a_shape change when batch?
+
+
+//test in mdp height map
+
+
+
+//unit test
+
+
+
+
+
+
+//refactor grass instance glsl:
+////support width,height to control grass unit range
+clean
+more refactor...
+
+
+
+**** DONE optimize
+CLOSED: [2016-10-09 Sun 12:49]
+//fix size(rangeXXX)
+
+
+optimize:
+////frustum culling using quadtree?
+//frustum culling using octree:
+//generate vertices for colliderForFirst
+
+//bug:why grass instance change?
+
+
+
+
+
+//use lod(near show instance grass, middle show texture grass, far show billboard grass)
+
+
+//clone
+
+//octree
+
+
+refactor:
+//extract GeometryLOD?
+//clean
+
+
+//pass all unit test
+
+//pass all render test
+
+**** DONE optimize animation
+CLOSED: [2016-10-10 Mon 20:38]
+grass map:
+//animation vertex instead of texCoord
+
+
+//pass unit test
+
+
+
+//Alpha To Coverage
+http://blog.csdn.net/pizi0475/article/details/7795491
+https://www.opengl.org/discussion_boards/showthread.php/176078-Alpha-to-coverage-how-does-it-actualy-work
+https://www.zhihu.com/question/25822656
+
+
+
+
+**** DONE test
+CLOSED: [2016-10-11 Tue 17:25]
+add grass map,instance,octree?,lod? render test:
+render test SAMPLE_ALPHA_TO_COVERAGE
+
+
+pass all test
+
+pass all examples
+
+
+
+
+*** DONE terrain collision
+CLOSED: [2016-10-15 Sat 17:39]
+http://docs.unity3d.com/Manual/class-TerrainCollider.html
+http://gamedev.stackexchange.com/questions/48182/collision-detection-with-heightmap-based-terrain
+http://www.gamedev.net/topic/597009-terrain-collision/
+https://www.opengl.org/discussion_boards/showthread.php/124274-Collision-Detection-in-Terrain-Engine
+http://www.html5gamedevs.com/topic/5385-heightmap-terrain-and-physics/
+
+
+**** DONE interpolate height from quad
+CLOSED: [2016-10-15 Sat 09:28]
+
+camera move:
+//if subdivision low, interpolation height?
+//(fix grass height map too)
+
+
+//pass unit test
+
+//pass render test
+
+//refactor:
+clean
+
+
+
+////set framebuffer refresh rate
+
+
+
+
+
+
+
+////add TerrainCollider
+
+////**** TODO camera collision
+
+////**** TODO integrate with heightmap physics
+////fix custom height map bug:
+rangeWidth/rangeHeight not work!
+
+
+
+
+refer to cannon example
+
+
+
+
+unit test
+
+add to render test
+
+
+refactor
+
+
+
+*** DONE tree+instance+terrain+free camera collision+shadowMap demo
+CLOSED: [2016-10-16 Sun 10:44]
+http://localhost:63342/Wonder.js/reference/babylonjs_samples/Samples/Demos/Instances/index.html
+
+
+use tree instead of box
+////lod tree?
+
+
+refactor:
+clean code
+
+
+*** DONE publish v0.7.0
+CLOSED: [2016-10-17 Mon 14:56]
+////move examples to server(github.io?)
+
+////use seajs to load js in examples
+
+**** DONE update typescript to 2.0
+CLOSED: [2016-10-17 Mon 12:09]
+//glob
+
+////readonly
+
+//Private and Protected Constructors
+
+A class constructor may be marked private or protected. A class with private constructor cannot be instantiated outside the class body, and cannot be extended. A class with protected constructor cannot be instantiated outside the class body, but can be extended.
+
+Example
+
+class Singleton {
+    private static instance: Singleton;
+
+    private constructor() { }
+
+    static getInstance() {
+        if (!Singleton.instance) {
+            Singleton.instance = new Singleton();
+        }
+        return Singleton.instance;
+    } 
+}
+
+let e = new Singleton(); // Error: constructor of 'Singleton' is private.
+let v = Singleton.getInstance();
+
+
+
+
+
+//Abstract properties and accessors
+
+An abstract class can declare abstract properties and/or accessors. Any sub class will need to declare the abstract properties or be marked as abstract. Abstract properties cannot have an initializer. Abstract accessors cannot have bodies.
+
+Example
+
+abstract class Base {
+    abstract name: string;
+    abstract get value();
+    abstract set value(v: number);
+}
+
+class Derived extends Base {
+    name = "derived";
+
+    value = 1;
+}
+
+**** DONE pass travis
+CLOSED: [2016-10-17 Mon 14:22]
+move node-canvas to tool/package.json
+
+
+** DONE other
+CLOSED: [2016-10-17 Mon 15:18]
+refactor web page collection
+
 
 
 * 明日计划
@@ -1026,5 +1662,4 @@ support lensFlare?
 
 
 * TODO more
-
 

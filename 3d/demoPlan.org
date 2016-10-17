@@ -1197,7 +1197,7 @@ In my case, I’ve decided to implement the 2nd solution for this tutorial
 
 
 *** TODO v1.1-v2.0 improve engine,optimize, add junior functions(3.5w lines)
-**** TODO [#A] support WebGL 2.0 and can fallback to WebGL 1.0
+**** TODO [#B] support WebGL 2.0 and can fallback to WebGL 1.0
 
 - Use Immutable Textures When Available (use EXT_texture_storage extension to use texStorage* command instead of
   texImage* command)
@@ -1232,6 +1232,25 @@ will populate only the alpha and green channels in a sample, respectively. To su
 expansion, and the associ- ated additional memory and texture upload performance costs, can be avoided by developers
 keen for clock cycles by simply using RED textures in place of LUMINANCE and RG in place of LUMINANCE_ALPHA when using
 ANGLE with APIs that support them. 
+
+
+**** TODO [#A] advance collision and physics
+***** TODO collision
+****** TODO support mesh collider
+
+****** TODO terrain collision
+implement collision with terrain mesh
+
+
+refer to:
+babylonjs->collision
+http://www.gamedev.net/topic/675055-3d-model-terrain-collision/
+
+
+***** TODO physics
+****** TODO integrate with heightmap physics
+refer to cannon example
+
 
 
 **** TODO [#A] defer render and post effect(webgl 2.0)
@@ -1319,13 +1338,29 @@ low-resolution textures.
 ***** TODO parallel
 use web worker for collision
 
-SIMD
+support SIMD
 
 
 ****** TODO load optimize
 Load time can be improved by amortizing slow tasks across several frames
 
 incremental loading
+***** TODO improve cull
+http://www.quweiji.com/culling-the-battlefield-data-oriented-design-in-practice/
+CullingTheBattlefield(use brute force culling):
+http://www.frostbite.com/wp-content/uploads/2013/05/CullingTheBattlefield.pdf
+http://gamedev.stackexchange.com/questions/30151/linear-search-vs-octree-frustum-cull
+
+
+
+****** TODO occlusion
+[[http://www.humus.name/index.php?ID=255][A couple of notes about Z]]
+
+[[https://software.intel.com/en-us/articles/software-occlusion-culling?language=esSoftware%20Occlusion%20Culling][Software Occlusion Culling]]
+http://www.frostbite.com/wp-content/uploads/2013/05/CullingTheBattlefield.pdf
+
+
+hierarchy z culling
 
 
 **** TODO [#C] support more asset format

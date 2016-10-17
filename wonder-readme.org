@@ -34,14 +34,19 @@ Join us, We can create the amazing 3D world together!
   - Instance
   - Render Queue Sort By RenderGroup,RenderPriority,Shader,Texture,VBO
   - Merge GameObject
+- Grass
+  - Grass Texture
+  - Grass Instance
 - Water
 - Procedural
   - Procedural Texture
 - Terrain
   - HeightMap
-  - Layer Texture
+  - Layer Texture, Mix Texture, Bump Texture
+  - HeightMapGenerator tool
 - LOD
   - Geometry LOD
+  - GameObject LOD
 - Space Partition
   - Octree
 - Event System

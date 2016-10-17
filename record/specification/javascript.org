@@ -285,17 +285,17 @@ namespace("YE").Director = YYC.Class({
         }
 });
 Asp.net MVC
-* 	文件包名大写，Scripts中的文件包、js文件包的名称小写。如：
+* 	文件包名小写，Scripts中的文件包、js文件包的名称小写。如：
 
-	Content -> Css
+	content -> css
 
-	Scripts -> bomber
+	scripts -> bomber
 
 	jquery-* * js
 * 	Content中的资源名小写。如：
 
-	Content -> Css -> index.css
-	Content -> Image ->　index.jpg
+	content -> css -> index.css
+	content -> image ->　index.jpg
 * 	项目名大写。如：
 
 	Help

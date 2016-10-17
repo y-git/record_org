@@ -1,17 +1,100 @@
-We can do this by operating GameObject->transform instance.
-* set position
-#+BEGIN_SRC js
-  gameObject.transform.position = wd.Vector3.create(10, 20, 30);   //set gameObject's position to be x:10, y:20, z:30
-  gameObject.transform.translate(10, 20, 30);   //gameObject's position will be x:10 + 10, y:20 + 20, z:30 + 30
-#+END_SRC
-* set rotation
-#+BEGIN_SRC js
-  gameObject.transform.eulerAngles = wd.Vector3.create(10, 20, 30);   //set gameObject's euler angles to be x:10, y:20, z:30
-  gameObject.transform.rotate(10, 20, 30);   //gameObject rotate 10 euler angle around x, rotate 20 euler angle around y, rotate 30 euler angle around z
-  gameObject.transform.rotateAround(50, wd.Vector3.create(0, 0, 0), wd.Vector3.create(0, 0, 1));   //gameObject rotate around (0,0,0) point and z axis by 50 euler angle
-#+END_SRC
-* set scale
-#+BEGIN_SRC js
-  gameObject.transform.scale = wd.Scale(2, 3, 4);   //set gameObject's scale to be x:2 times, y: 3 times, z: 4 times
-#+END_SRC
+# 功能模块
+- 单元测试
+- 纹理计算
+- 标注
+- 空间计算
 
+
+## 单元测试
+搭建了karma+typescript+jasmine测试环境。
+
+## 纹理计算
+
+## 标注
+### 整体标注
+在3d视图、俯视图下，显示整体模型的标注。
+### 多标注
+在平面视图下，显示门标注和内部空间标注。
+
+
+
+## 空间计算
+### 根据板（点）计算空间
+- 算法
+先获得所有板的点；
+根据任意两点，计算所有的空间;
+剔除几乎为空的，或者与板相交的空间；
+剔除几乎相等的空间；
+
+剩下的空间就是计算的空间结果
+
+
+### 计算板、空间、子柜体的相邻关系
+- 算法
+如果互相的coplane相交，就是相邻的
+
+
+
+### 返回选中的空间
+- 算法
+根据相邻关系，并剔除太小的空间（可能是由缝隙产生的空间），返回选中的空间
+
+### 存在的问题
+- 由于是根据点来算空间的，如果组成空间的点不存在，则不能计算出空间
+e.g.: 如果上板depth较大而下板depth较小（它们的width,height都相同），则只能取出较大的空间（相当于两个上板组成的空间），而不能取到较小的空间（相当于两个下板组成的空间）。
+
+- 由于pdms数据的问题，造成子柜体的box3大于实际的由它的板组成的box3，这样会造成子柜体的相邻关系计算错误。
+e.g.: 子柜体A和px方向相邻的板B（B与组成子柜体的px方向的板相邻），这时因为如果子柜体的box3->px方向的coplane与B的px方向（正常应该是与B的nx方向）的coplane相交，则B的相邻关系为：
+px:A
+而正常情况下，B的相邻关系应该为：
+nx:A
+# 功能模块
+- 单元测试
+- 纹理计算
+- 标注
+- 空间计算
+
+
+## 单元测试
+搭建了karma+typescript+jasmine测试环境。
+
+## 纹理计算
+
+## 标注
+### 整体标注
+在3d视图、俯视图下，显示整体模型的标注。
+### 多标注
+在平面视图下，显示门标注和内部空间标注。
+
+
+
+## 空间计算
+### 根据板（点）计算空间
+- 算法
+先获得所有板的点；
+根据任意两点，计算所有的空间;
+剔除几乎为空的，或者与板相交的空间；
+剔除几乎相等的空间；
+
+剩下的空间就是计算的空间结果
+
+
+### 计算板、空间、子柜体的相邻关系
+- 算法
+如果互相的coplane相交，就是相邻的
+
+
+
+### 返回选中的空间
+- 算法
+根据相邻关系，并剔除太小的空间（可能是由缝隙产生的空间），返回选中的空间
+
+### 存在的问题
+- 由于是根据点来算空间的，如果组成空间的点不存在，则不能计算出空间
+e.g.: 如果上板depth较大而下板depth较小（它们的width,height都相同），则只能取出较大的空间（相当于两个上板组成的空间），而不能取到较小的空间（相当于两个下板组成的空间）。
+
+- 由于pdms数据的问题，造成子柜体的box3大于实际的由它的板组成的box3，这样会造成子柜体的相邻关系计算错误。
+e.g.: 子柜体A和px方向相邻的板B（B与组成子柜体的px方向的板相邻），这时因为如果子柜体的box3->px方向的coplane与B的px方向（正常应该是与B的nx方向）的coplane相交，则B的相邻关系为：
+px:A
+而正常情况下，B的相邻关系应该为：
+nx:A

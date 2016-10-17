@@ -1,0 +1,4 @@
+1. point light shadow sample has some dot lines!
+2. terrain->layer sample has some dot lines
+   
+
