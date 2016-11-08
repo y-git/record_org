@@ -1,20 +1,87 @@
-* TODO 今日计划
+* 今日计划
+** TODO prepare software
 
+
+** TODO prepare develop environment
+
+** TODO parse fbx(v0.8.0)
 
 
 * 完成事项
+//see fbx
+
+
+** DONE demo
+CLOSED: [2016-10-28 五 08:08]
+//learn python
+
+
+//prepare python environment
+
+//can parse fdx by python
+
+//pass python unit test
+
+
+improve scene graph:
+//refactor .wd, refer to gltf
+
+
+parse fbx demo:
+//import scene, export scene
+
+//test parse mesh data
+
+//convert .wd(text file) to .wd + .bin:
+
+** DONE see the gongzonghao
+CLOSED: [2016-10-27 四 20:00]
+
+
+
+** TODO 3d the race game
+//optimize event->remove
+
+//support key frame->texture
+
+//pass unit test
+
+//pass render test
+
+
+
+//support 2d audio
+
+//pass unit test
+
+////refactor:
+use frp
+
+
+
+*** DONE build server
+CLOSED: [2016-11-08 二 08:01]
+
+
+*** TODO finish front end
+integrate with 3d
+
+show canvas role name
+
+show 50+ roles
+
+////add chinese bitmap font
+
+** TODO parse fbx(v0.8.0)
+optimize:
+if texture asset same, share its texture!
 
 
 * 明日计划
 
 
 * TODO 未来7日计划
-** TODO parse fbx,dae
-*** TODO parse fbx
-
-*** TODO parse dae
-
-*** TODO show some ouside static scene from collada data
+** TODO support run in mobile(ios 8+, android 5.0+)(v0.9.0)
 
 ** TODO build custom outer scene(octree+lod+direction light+collision+shadowmap+terrain+water(mirror reflection, refraction) + morph animation player character)
 *** TODO support physics heightmap
@@ -55,15 +122,6 @@ shadow(shadowMap, lightMap)
 
 
 
-** TODO improve scene graph: refactor .wd(v0.5.7)
-refer to gltf(get .bin file/embed geometry data)
-
-refer to http://doc.babylonjs.com/generals/File_Format_Map_(.babylon)
-
-converter:
-convert .gltf, .obj, .md2
-convert .dae?
-convert from blender?
 
 
 *** TODO Vertex cache optimization 
@@ -417,6 +475,7 @@ refer to sk_design->WebGLRenderer->dump method
 
 
 
+optimize hash->removeChild
 
 
 

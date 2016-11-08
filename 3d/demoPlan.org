@@ -343,14 +343,6 @@ CLOSED: [2015-10-26 Mon 21:14]
 teapot
 
 
-multi materials:
-http://blogs.msdn.com/b/eternalcoding/archive/2013/07/10/babylon-js-using-multi-materials.aspx
-
-submesh
-http://answers.unity3d.com/questions/684995/what-is-a-submesh.html
-
-
-
 
 
 
@@ -747,9 +739,6 @@ add ui->control panel
 use puremvc and typescript to create project
 
 
-multi materials
-
-
 
 
 **** TODO add fly camera
@@ -846,56 +835,8 @@ finish keyboard event to handle bind event on game object like textInput
 
 hud demo
 
-**** TODO [#B] optimize
-
-performance check
-
-cache
-SIMD support
-
-memory management
-
-
-***** TODO optimize render(batch render,combine mesh...)
-optimize renderer: [[http://docs.unity3d.com/Manual/DrawCallBatching.html][unity->batch draw]], dirty, layer(refer to Wozlla)
-combineMesh?
-add mesh/geometry merge method(refer to threejs->src->core->Geometry)
-
-***** TODO add data collector
-
-***** TODO layers
-add a demo to show 3 meshes, use tag and layer(camera selective show)
-http://docs.unity3d.com/Manual/Layers.html
-http://docs.unity3d.com/Manual/class-TagManager.html
-
-***** cubemap optimize
-• Dynamic Cube Maps don’t have to be full resolution
-• They also don’t need updating every frame
-• Allowing updates to lag behind a frame prevents stalling in some cases
-
-
-***** optimize:
-optimize renderer: [[http://docs.unity3d.com/Manual/DrawCallBatching.html][unity->batch draw]], dirty, layer(refer to Wozlla)
-combineMesh?
-add mesh/geometry merge method(refer to threejs->src->core->Geometry)
-
-***** memory management
-***** optimize Scene->update,renderer by using data locality
-refer to http://gameprogrammingpatterns.com/data-locality.html -> sample code
-
-first, get all need update/renderer components of all gameObject
-second, update/render them
-
-
-
-test the performance improvement by profile
-
-***** more
-gameObject add active flag
-
-
-
-**** TODO [#B] render outside scene
+**** DONE [#B] render outside scene
+CLOSED: [2016-10-27 四 09:52]
 scene graph
 场景管理中的八叉树算法 [[http://www.zhihu.com/question/25111128][游戏场景管理的八叉树算法是怎样的?]]   https://github.com/BabylonJS/Babylon.js/wiki/Optimizing-performances-with-octrees
 
@@ -931,18 +872,14 @@ use .bin to store model data
 bsp
 load and show room scene
 
-**** TODO [#C] simple functions
+**** DONE [#C] simple functions
+CLOSED: [2016-10-27 四 09:52]
 1.画各种基本几何体：点、线、面几何体。
 2.model的copy
 
-**** TODO [#A] more simple functions
-***** TODO [#A] demo-particles(junior)
-***** TODO [#A] billbords
-***** TODO [#A] demo-audio
-
-2d sound
-3d sound(unity):distance
-[[http://docs.unity3d.com/Manual/class-AudioSource.html][unity]]
+**** TODO [#A] demo-particles(junior)
+**** DONE [#A] billbords
+CLOSED: [2016-10-27 四 09:52]
 
 
 
@@ -989,6 +926,18 @@ move morph data(e.g. morphTarges ... in ModelGeometry) to MorphAnimation?
 
 move morph data(e.g. morphTarges ... in ModelGeometry) to MorphAnimation?
 split XXXAnimation to XXXAnimationController, XXXAnimationData?
+
+**** TODO [#B] improve audio, video
+***** TODO improve audio
+3d audio
+
+[[https://docs.unity3d.com/Manual/Audio.html][refer to unity]]
+[[http://developer.playcanvas.com/zh/user-manual/packs/components/sound/][refer to playcanvas]]
+
+
+***** TODO improve video
+refactor to be component
+
 
 **** TODO [#C] color map(add colors,morphColors demo)
 pass bird animation demo
@@ -1234,7 +1183,7 @@ keen for clock cycles by simply using RED textures in place of LUMINANCE and RG 
 ANGLE with APIs that support them. 
 
 
-**** TODO [#A] advance collision and physics
+**** TODO [#B] advance collision and physics
 ***** TODO collision
 ****** TODO support mesh collider
 
@@ -1265,7 +1214,7 @@ https://github.com/uber/luma.gl
 post effect
 hdr
 fog
-**** TODO [#A] advance shadow
+**** TODO [#C] advance shadow
 ***** TODO problem
 point shadow has one line in the face edge
 
@@ -1363,9 +1312,6 @@ http://www.frostbite.com/wp-content/uploads/2013/05/CullingTheBattlefield.pdf
 hierarchy z culling
 
 
-**** TODO [#C] support more asset format
-***** TODO [#A] create engine asset format(like .dy?), can convert other format(like .3ds .dae(Collada) .fbx .js(threejs)...) to mine format(use gulp)
-****** TODO can export engine asset format to other format
 **** more...
 ***** improve texture
 multi map send map arr(so can support <= maxUnit textures)
@@ -1407,6 +1353,16 @@ http://www.cnblogs.com/gameknife/p/3515714.html
 
 
 **** TODO [#A] support vr
+**** TODO [#C] multi materials
+multi materials:
+http://blogs.msdn.com/b/eternalcoding/archive/2013/07/10/babylon-js-using-multi-materials.aspx
+
+submesh
+http://answers.unity3d.com/questions/684995/what-is-a-submesh.html
+
+
+
+
 *** TODO v3.1-? add senior functions
 **** TODO [#C] physical render
 * blog series
