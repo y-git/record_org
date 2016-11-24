@@ -877,7 +877,22 @@ CLOSED: [2016-10-27 四 09:52]
 1.画各种基本几何体：点、线、面几何体。
 2.model的copy
 
-**** TODO [#A] demo-particles(junior)
+**** TODO [#B] demo-particles(junior)
+**** TODO [#A] run on mobile(ios 8+ android 5.0+)
+
+https://blogs.msdn.microsoft.com/eternalcoding/2013/02/20/hand-js-a-polyfill-for-supporting-pointer-events-on-every-browser/
+
+
+
+
+***** performance
+refer to <<OpenGL Insights>> 24 chapter
+
+
+****** tile-base 
+http://www.cnblogs.com/gameknife/p/3515714.html
+
+
 **** DONE [#A] billbords
 CLOSED: [2016-10-27 四 09:52]
 
@@ -1247,12 +1262,13 @@ appropriate shadow map resolution. If some objects in the scene are dynamic, onl
 dated.  
 
 
-***** TODO vsm
+***** TODO [#A] vsm
 
 
 
-***** TODO csm
-
+***** TODO [#B] csm
+***** TODO [#C] support transparent shadow
+http://www.cs.brandeis.edu/~cs155/Lecture_18.pdf
 
 ***** TODO more
 http://http.download.nvidia.com/developer/presentations/2006/gdc/2006-GDC-Variance-Shadow-Maps.pdf
@@ -1318,6 +1334,13 @@ multi map send map arr(so can support <= maxUnit textures)
 modify multi map sample
 
 
+support rotation?
+(refer to babylonjs)
+
+
+support crop?
+Cropping - change your texture coordinates that you loading from when loading the texture; e.g. if you you want to crop the top and bottom 10% off the image load from (0.0, 0.1) to (1.0, 0.9).
+
 *** TODO v2.1-v3.0 for application
 **** TODO [#B] v2.1 editor
 refer to "<<WebGL Insights>> 12-Sketchfab Material Pipeline
@@ -1335,21 +1358,6 @@ necessity to specify the #define directives. At the next stage, the shader text 
 #include directive is met, the AST from the corresponding include file is simply inserted into the current
 tree. Finally, the shader is compiled using the standard WebGL API. As an optimization, ASTs can also be generated for
 all shaders offline and loaded at application startup as a JSON object. 
-
-
-**** TODO [#A] v2.2 run on mobile(ios 8+, qq浏览器?)
-
-https://blogs.msdn.microsoft.com/eternalcoding/2013/02/20/hand-js-a-polyfill-for-supporting-pointer-events-on-every-browser/
-
-
-
-
-***** performance
-refer to <<OpenGL Insights>> 24 chapter
-
-
-****** tile-base 
-http://www.cnblogs.com/gameknife/p/3515714.html
 
 
 **** TODO [#A] support vr

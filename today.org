@@ -39,7 +39,8 @@ CLOSED: [2016-10-27 四 20:00]
 
 
 
-** TODO 3d the race game
+** DONE 3d the race game
+CLOSED: [2016-11-11 五 16:20]
 //optimize event->remove
 
 //support key frame->texture
@@ -63,18 +64,259 @@ use frp
 CLOSED: [2016-11-08 二 08:01]
 
 
-*** TODO finish front end
-integrate with 3d
+*** DONE finish front end
+CLOSED: [2016-11-11 五 15:01]
+//integrate with 3d
 
-show canvas role name
+//show canvas role name
 
-show 50+ roles
+//show 50+ roles
+
+//uiObject handle isVisible
+
+//add end 
+
+//handle disconnect
+
+//refactor
+
+
+
+//test login
+
+mock socket(1000)
+why disconnect?(max connection:200!)
+
+
+//add game begin
+
+//add game end page
+
+
+improve:
+//remove shadow?
+
+//replace trees
+
+//replace cat
+
+//replace skybox
+
+
+//use finish
+
+//game end judge
+
+
+fix:
+//animation end
+////sort by username?
+//start no score
+//end if all finish
+////score not round
+
+
+//test more
+
+
 
 ////add chinese bitmap font
 
+////*** TODO fix frp
+fix timeout(timeout .concat() not work!)
+
+add delay
+
+
+
 ** TODO parse fbx(v0.8.0)
-optimize:
+continue parse:
+*** DONE parse material
+CLOSED: [2016-11-14 一 20:53]
+
+parse shader
+
+parse texture
+
+
+
+wd parser
+
+wd builder
+
+
+
+pass unit test
+add test:
+light map
+ambient color
+normal map
+reflective, reflectionMap
+
+basic(diffuse)
+mirror material
+
+
+test monster
+
+
+pass test x man
+
+
+*** DONE parse transform
+CLOSED: [2016-11-14 一 20:13]
+
+
+
+*** DONE use blender
+CLOSED: [2016-11-16 三 19:57]
+//create .fbx to test
+
+//support absolute path
+
+//test materials
+
+//test transform
+
+
+*** DONE optimize:
+CLOSED: [2016-11-16 三 20:38]
 if texture asset same, share its texture!
+
+
+
+
+
+*** DONE parse animation:
+CLOSED: [2016-11-24 四 19:45]
+key frame
+support transform
+
+learn blender
+pass multi animation
+
+problem:
+//get start time
+
+//why error?
+
+//get correct by test webgl.fpx
+
+//how to correct multi animations!(actions)
+
+//correct animation name
+
+
+
+
+
+test two models with key frame animations
+learn blender->action
+
+
+test downloaded fbx
+
+
+//compress anim data
+
+
+//wd:
+parse
+assemble
+
+//pass unit test
+
+//pass run test
+
+refactor:
+//remove duplicate code
+
+////texture
+
+
+//blender test:
+simple key frame
+
+
+
+////morph
+
+
+
+morph:only support wd:
+//fix md2 converter
+
+//convert multi indices->consider morphTargets
+
+//compress morphTargets
+
+//wd parser
+//wd assembler
+
+//use md2 for test
+
+
+refactor:
+//refactor tool->converter
+//refactor WDParserSpec
+////refactor WDAssemblerSpec
+//extract WDMorphDataParserUtils
+//rename src->morphTargets to morphFrames(note IWDInterface)
+
+////blender test?
+
+
+
+
+*** TODO parse camera
+
+*** TODO parse light
+support shadow:
+fbxMesh:cast/receive shadow
+light:shadow related
+
+*** TODO run test
+test more fbx models
+
+
+
+*** TODO parse meta data
+
+
+*** TODO run test
+test more fbx models
+
+
+
+
+*** TODO fix obj converter
+*** TODO fix md2 converter
+*** TODO add gltf converter(remove gltf loader)
+
+*** TODO refactor converter gulp task
+integrate with fbx python converter
+
+merge tasks
+
+refactor code
+
+*** TODO pass all unit tests
+
+** TODO update typescript to 2.1
+
+** TODO publish v0.8.0
+
+** DONE compare wonderjs and threejs
+CLOSED: [2016-11-18 五 12:00]
+//write what wonder can do and can't do
+
+//benchmark test
+
+give a speech
+
+
+
+
 
 
 * 明日计划
@@ -82,6 +324,87 @@ if texture asset same, share its texture!
 
 * TODO 未来7日计划
 ** TODO support run in mobile(ios 8+, android 5.0+)(v0.9.0)
+*** TODO test uc4->webgl support, give a report
+*** TODO discuss with jiang about engine development
+specify engine feature, priority, goal
+
+give a dev->publish timeline
+
+** TODO improve race
+use arch plane
+
+add grass(instance)
+
+change character to be LightMaterial
+
+
+** TODO finish fbx scene page on zebra
+*** TODO use blender to create fbx scene(based on exist fbx?)
+create terrain:
+https://www.blender.org/manual/editors/3dview/object/transform/transform_control/proportional_edit.html#fig-view3d-transform-landscape
+
+
+*** TODO show 3d scene by wonder.js on zebra
+use mui4.0
+
+
+
+
+** TODO optimize(v0.10.0)
+*** TODO cpu optimize
+optimize transform:
+optimize Transform->state?
+check is the same in setting position,scale,rotation, localXXX
+
+
+
+optimize shader:
+staticly compile shader param of libs to one large collection of the one entityObject
+(so no need to iterate the shader libs at runtime)
+
+
+*** TODO memory optimize
+add global Temp class, for save temp matrix,vector...
+(refer to bjs->math.ts->Temp class)
+
+use memory pool instead of Temp class?
+(refer to sk_design->MemoryUtil,MemoryPool)
+
+
+
+show memory info:
+refer to sk_design->WebGLRenderer->dump method
+
+
+
+
+optimize hash->removeChild
+
+
+
+memory optimize:
+https://www.scirra.com/blog/76/how-to-write-low-garbage-real-time-javascript
+http://blog.tojicode.com/2012/03/javascript-memory-optimization-and.html
+
+http://www.cocos2d-x.org/wiki/How_to_Optimise_Memory_Usage
+http://www.cocos2d-x.org/wiki/Memory_Management_of_JSB
+
+http://stackoverflow.com/questions/13914959/three-js-memory-management
+
+
+http://www.html5gamedevs.com/topic/6903-memory-consumption-difference-between-111-and-112-beta/
+
+
+
+
+use instance pool to re-use render commands
+
+*** TODO specific optimize
+**** TODO octree optimize
+**** TODO instance optimize
+////**** TODO shadow optimize
+
+*** TODO more?
 
 ** TODO build custom outer scene(octree+lod+direction light+collision+shadowmap+terrain+water(mirror reflection, refraction) + morph animation player character)
 *** TODO support physics heightmap
@@ -144,9 +467,6 @@ http://tomforsyth1000.github.io/papers/fast_vert_cache_opt.html
 
 https://github.com/vivkin/forsyth
 
-
-
-
 ** TODO optimize cpu(v0.5.8)
 //render target renderer(e.g. Mirror,Refraction,DynamicCubemap, ...) and procedural renderer, shadowMap(refer to
 babylonjs->Samples/Demos/Instances/instances.js line 100), VideoTexture,   add "refreshRate", "refresh control"(like
@@ -179,11 +499,6 @@ the top contenders in terms of performance as tested on a MacBook Pro
 (OS X 10.9.5, 2.4 GHz Intel Core i7, 8 GB 1333 MHz DDR3).  
 
 
-
-
-optimize shader:
-staticly compile shader param of libs to one large collection of the one entityObject
-(so no need to iterate the shader libs at runtime)
 
 
 
@@ -236,7 +551,6 @@ optimize ArticulateAnimation->_updateTargets
 
 
 
-remove Transform->state?
 
 
 ActionManager->update
@@ -462,39 +776,7 @@ use [[https://software.intel.com/en-us/gpa/details][Graphics Performance Analyze
 
 
 ** TODO optimize memory, cg(v0.5.9)
-add global Temp class, for save temp matrix,vector...
-(refer to bjs->math.ts->Temp class)
 
-use memory pool instead of Temp class?
-(refer to sk_design->MemoryUtil,MemoryPool)
-
-
-
-show memory info:
-refer to sk_design->WebGLRenderer->dump method
-
-
-
-optimize hash->removeChild
-
-
-
-memory optimize:
-https://www.scirra.com/blog/76/how-to-write-low-garbage-real-time-javascript
-http://blog.tojicode.com/2012/03/javascript-memory-optimization-and.html
-
-http://www.cocos2d-x.org/wiki/How_to_Optimise_Memory_Usage
-http://www.cocos2d-x.org/wiki/Memory_Management_of_JSB
-
-http://stackoverflow.com/questions/13914959/three-js-memory-management
-
-
-http://www.html5gamedevs.com/topic/6903-memory-consumption-difference-between-111-and-112-beta/
-
-
-
-
-use instance pool to re-use render commands
 
 
 
@@ -633,7 +915,7 @@ use stride in gl.vertexAttribPointer(refer to Wozlla Engine)
 render to target support mipmaps(refer to bjs)
 
 
-*** TODO VAO
+*** DONE VAO
 
 webgl 2? just use extension in webgl 1!
 To save a lot of API calls, use vertex array objects (VAOs) or interleave static vertex data. 
@@ -973,7 +1255,7 @@ texture = this.textures.lo; gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffers
 设置上限（p292)
 
 调试：
-开发绘制直线、坐标轴等调试绘图api
+//开发绘制直线、坐标轴等调试绘图api
 
 //研究data driven engine(p656)
 
@@ -1047,42 +1329,24 @@ support full screen(refer to babylon.engine.ts->450 line)
 
 
 * TODO 疑问
+** blender
+- how to repeat texture and export to fbx??? i can't export to fbx!!!
+- why export keyframe->rotation to fbx is wrong(error curve data:the rotation curve data components' count are different)???
+This is a known issue. When animating rotation about any axis other than the global x, y, z-axes,
+Blender tends to calculate some odd interpolation between the keyframes (actually, it is the direct
+result of the interpolation that you see in the f-curve editor). However, there is a fix/workaround
+that I use, which I would describe as "making the local axis global".  
+
+http://www.fsdeveloper.com/forum/threads/blender-local-rotation-issue.428512/
+
 
 * TODO 未做事项
-** TODO terrain
-*** TODO height map generator
-improve Fault algorithm:
-smooth distance:
-http://www.lighthouse3d.com/opengl/terrain/index.php?faultvar
+** TODO fbx parser
+*** animation
+support morph
 
-*** TODO create tool to generate mix map, bump map
-
-*** TODO terrain collision
-implement collision with terrain mesh
-
-refer to:
-babylonjs->collision
-http://www.gamedev.net/topic/675055-3d-model-terrain-collision/
-
-*** TODO sky
-**** TODO sky dome
-
-
-**** TODO cloud
-animated cloud
-
-
-
-**** TODO atmosphere light
-
-
-http://codeflow.org/entries/2011/apr/13/advanced-webgl-part-2-sky-rendering/
-
-http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter16.html
-
-
-support lensFlare?
-
+key frame:
+support more property and more interpolation,mode...(e.g. cubic interpolation)
 
 * TODO more
 
