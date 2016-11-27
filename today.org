@@ -268,15 +268,40 @@ refactor:
 
 
 
-*** TODO parse camera
+*** DONE parse camera
+CLOSED: [2016-11-27 日 15:08]
+//refactor WDParserSpec
 
-*** TODO parse light
-support shadow:
+
+fix camera + animation:
+add test scene by blender and pass(may add custom matrix class)
+(not consider pivot):
+camera + static object
+key frame object + key frame camera
+
+
+try pass duck,webgl,Ske fbx
+
+
+//commit
+
+
+
+refactor:
+//rename fbx->Xhelper to Xutils
+//refactor WDParser
+//IWDInterface->add ForAssembler
+
+*** DONE parse light
+CLOSED: [2016-11-27 日 18:36]
+////support shadow:
 fbxMesh:cast/receive shadow
 light:shadow related
 
-*** TODO run test
-test more fbx models
+
+//refactor:
+split IWDInterface to IWDAssemblerData, IWDParserData
+refactor WDAssembler->isXXX
 
 
 
@@ -290,10 +315,15 @@ test more fbx models
 
 
 *** TODO fix obj converter
-*** TODO fix md2 converter
+*** DONE fix md2 converter
+CLOSED: [2016-11-24 四 19:46]
 *** TODO add gltf converter(remove gltf loader)
 
 *** TODO refactor converter gulp task
+refactor fbx converter:
+remove threejs related code
+
+
 integrate with fbx python converter
 
 merge tasks
@@ -301,6 +331,8 @@ merge tasks
 refactor code
 
 *** TODO pass all unit tests
+
+
 
 ** TODO update typescript to 2.1
 
