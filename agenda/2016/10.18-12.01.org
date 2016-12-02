@@ -1,4 +1,409 @@
 * 今日计划
+** TODO prepare software
+
+
+** TODO prepare develop environment
+
+** TODO parse fbx(v0.8.0)
+
+
+* 完成事项
+//see fbx
+
+
+** DONE demo
+CLOSED: [2016-10-28 五 08:08]
+//learn python
+
+
+//prepare python environment
+
+//can parse fdx by python
+
+//pass python unit test
+
+
+improve scene graph:
+//refactor .wd, refer to gltf
+
+
+parse fbx demo:
+//import scene, export scene
+
+//test parse mesh data
+
+//convert .wd(text file) to .wd + .bin:
+
+** DONE see the gongzonghao
+CLOSED: [2016-10-27 四 20:00]
+
+
+
+** DONE 3d the race game
+CLOSED: [2016-11-11 五 16:20]
+//optimize event->remove
+
+//support key frame->texture
+
+//pass unit test
+
+//pass render test
+
+
+
+//support 2d audio
+
+//pass unit test
+
+////refactor:
+use frp
+
+
+
+*** DONE build server
+CLOSED: [2016-11-08 二 08:01]
+
+
+*** DONE finish front end
+CLOSED: [2016-11-11 五 15:01]
+//integrate with 3d
+
+//show canvas role name
+
+//show 50+ roles
+
+//uiObject handle isVisible
+
+//add end 
+
+//handle disconnect
+
+//refactor
+
+
+
+//test login
+
+mock socket(1000)
+why disconnect?(max connection:200!)
+
+
+//add game begin
+
+//add game end page
+
+
+improve:
+//remove shadow?
+
+//replace trees
+
+//replace cat
+
+//replace skybox
+
+
+//use finish
+
+//game end judge
+
+
+fix:
+//animation end
+////sort by username?
+//start no score
+//end if all finish
+////score not round
+
+
+//test more
+
+
+
+////add chinese bitmap font
+
+////*** TODO fix frp
+fix timeout(timeout .concat() not work!)
+
+add delay
+
+
+
+** DONE parse fbx(v0.8.0)
+CLOSED: [2016-12-01 四 19:38]
+continue parse:
+*** DONE parse material
+CLOSED: [2016-11-14 一 20:53]
+
+parse shader
+
+parse texture
+
+
+
+wd parser
+
+wd builder
+
+
+
+pass unit test
+add test:
+light map
+ambient color
+normal map
+reflective, reflectionMap
+
+basic(diffuse)
+mirror material
+
+
+test monster
+
+
+pass test x man
+
+
+*** DONE parse transform
+CLOSED: [2016-11-14 一 20:13]
+
+
+
+*** DONE use blender
+CLOSED: [2016-11-16 三 19:57]
+//create .fbx to test
+
+//support absolute path
+
+//test materials
+
+//test transform
+
+
+*** DONE optimize:
+CLOSED: [2016-11-16 三 20:38]
+if texture asset same, share its texture!
+
+
+
+
+
+*** DONE parse animation:
+CLOSED: [2016-11-24 四 19:45]
+key frame
+support transform
+
+learn blender
+pass multi animation
+
+problem:
+//get start time
+
+//why error?
+
+//get correct by test webgl.fpx
+
+//how to correct multi animations!(actions)
+
+//correct animation name
+
+
+
+
+
+test two models with key frame animations
+learn blender->action
+
+
+test downloaded fbx
+
+
+//compress anim data
+
+
+//wd:
+parse
+assemble
+
+//pass unit test
+
+//pass run test
+
+refactor:
+//remove duplicate code
+
+////texture
+
+
+//blender test:
+simple key frame
+
+
+
+////morph
+
+
+
+morph:only support wd:
+//fix md2 converter
+
+//convert multi indices->consider morphTargets
+
+//compress morphTargets
+
+//wd parser
+//wd assembler
+
+//use md2 for test
+
+
+refactor:
+//refactor tool->converter
+//refactor WDParserSpec
+////refactor WDAssemblerSpec
+//extract WDMorphDataParserUtils
+//rename src->morphTargets to morphFrames(note IWDInterface)
+
+////blender test?
+
+
+
+
+*** DONE parse camera
+CLOSED: [2016-11-27 日 15:08]
+//refactor WDParserSpec
+
+
+fix camera + animation:
+add test scene by blender and pass(may add custom matrix class)
+(not consider pivot):
+camera + static object
+key frame object + key frame camera
+
+
+try pass duck,webgl,Ske fbx
+
+
+//commit
+
+
+
+refactor:
+//rename fbx->Xhelper to Xutils
+//refactor WDParser
+//IWDInterface->add ForAssembler
+
+*** DONE parse light
+CLOSED: [2016-11-27 日 18:36]
+////support shadow:
+fbxMesh:cast/receive shadow
+light:shadow related
+
+
+//refactor:
+split IWDInterface to IWDAssemblerData, IWDParserData
+refactor WDAssembler->isXXX
+
+
+
+*** DONE parse meta data
+CLOSED: [2016-11-28 一 04:15]
+
+
+////*** TODO run test
+test more fbx models
+
+
+*** DONE fix md2 converter
+CLOSED: [2016-11-24 四 19:46]
+
+
+
+
+*** DONE fix obj converter
+CLOSED: [2016-11-28 一 19:48]
+
+
+
+//optimize:
+only remain its own primitive data
+add gulp task: only get used primitive data by indices
+////or: to obj, children share the vbo of the parent
+
+
+refactor:
+extract SingleModelConverter
+clear code(IWDXXX, ...)
+*** DONE add gltf converter
+CLOSED: [2016-11-29 二 15:19]
+
+remove gltf loader
+
+add unit test
+
+*** DONE pass all tests
+CLOSED: [2016-11-30 三 11:34]
+//pass unit tests
+
+//pass render tests
+
+//test all converters:
+test filter with fbx
+
+
+*** DONE refactor converter gulp task
+CLOSED: [2016-12-01 四 10:24]
+//integrate with fbx python converter
+
+//copy resource to dest dir
+
+//pass unit tests
+
+
+
+//merge tasks
+(gltf not use task)
+
+
+
+
+
+** DONE refactor
+CLOSED: [2016-12-01 四 11:00]
+//refactor code
+//refactor fbx converter:
+remove threejs related code
+
+
+
+
+** DONE compare wonderjs and threejs
+CLOSED: [2016-11-18 五 12:00]
+//write what wonder can do and can't do
+
+//benchmark test
+
+give a speech
+
+
+
+** DONE update typescript to 2.1
+CLOSED: [2016-12-01 四 11:07]
+
+** DONE publish v0.8.0
+CLOSED: [2016-12-01 四 19:38]
+
+
+
+
+
+
+* 明日计划
+
+
+* TODO 未来7日计划
+
+
 ** TODO publish hilo3d v0.1.0(1.1 finish)(1.18 must publish!)
 *** TODO move min files from wonder.js to wonder
 
@@ -60,60 +465,6 @@ https://www.blender.org/manual/editors/3dview/object/transform/transform_control
 use mui4.0
 
 
-
-* 完成事项
-** TODO reorganizing data
-
-** DONE ticket, screen
-CLOSED: [2016-12-02 五 09:38]
-
-** TODO learn blogs
-
-** TODO prepare hilo3d
-*** TODO move min files from wonder.js to hilo3d
-
-*** TODO prepare specification(document(english), code, test)
-*** TODO prepare join document
-environment prepare
-
-develop flow(runtime, tool):
-typescript prepare
-code quality requirements
-...
-
-*** TODO prepare develop plan(runtime, tool)(check with jiang)
-*** TODO prepare learn references(for inner runtime,tool develop)
-add hilo3d ata
-write files here
-
-
-
-*** TODO cut canvas renderer
-give interface,
-example,
-explanation,
-test cases,
-work flow,
-verify flow
-(how can pass verify)
-
-*** TODO cut tool
-give explanation,
-use case,
-test cases,
-work flow,
-verify flow
-
-
-*** TODO communicate
-communicate with jiang,mo,yuan
-
-
-
-* 明日计划
-
-
-* TODO 未来7日计划
 ** TODO optimize(v0.10.0)
 *** TODO cpu optimize
 optimize transform:
@@ -1093,12 +1444,24 @@ support full screen(refer to babylon.engine.ts->450 line)
 
 
 * TODO 疑问
+** blender
+- how to repeat texture and export to fbx??? i can't export to fbx!!!
+- why export keyframe->rotation to fbx is wrong(error curve data:the rotation curve data components' count are different)???
+This is a known issue. When animating rotation about any axis other than the global x, y, z-axes,
+Blender tends to calculate some odd interpolation between the keyframes (actually, it is the direct
+result of the interpolation that you see in the f-curve editor). However, there is a fix/workaround
+that I use, which I would describe as "making the local axis global".  
 
+http://www.fsdeveloper.com/forum/threads/blender-local-rotation-issue.428512/
 
 
 * TODO 未做事项
+** TODO fbx parser
+*** animation
+support morph
 
+key frame:
+support more property and more interpolation,mode...(e.g. cubic interpolation)
 
 * TODO more
-
 
