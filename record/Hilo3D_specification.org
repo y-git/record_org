@@ -1,0 +1,67 @@
+* class member define order
+** common member order
+static attribute
+static method
+
+constructor
+
+public getter->setter
+protected getter->setter
+private getter->setter
+
+
+public attribute
+protected attribute
+private attribute
+
+
+public method
+protected method
+private method
+
+** special member order
+abstract
+virtual 
+getter/setter
+readonly
+common member
+
+* naming
+** class
+use Pascal naming.
+e.g. 
+FirstClass
+** interface
+start with "I".
+e.g.
+IParseData
+** enum
+start with "E".
+e.g.
+EVariableData
+** folder
+use camel-case naming or "_" naming.
+e.g.
+firstFolder
+first_folder
+** variable
+use camel-case naming.
+e.g.
+firstVariable
+
+** const
+*** all upper case
+e.g.
+const NAME = "aaa";
+*** can use "_" naming
+e.g.
+const PLUGIN_NAME = "aaa";
+** test
+*** run test(.html page)
+end with "ForRunTest".
+e.g.
+sampleForRunTest.html
+*** test script with jasmine
+end with "Spec".
+e.g.
+testSpec.js

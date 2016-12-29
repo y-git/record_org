@@ -1,458 +1,353 @@
 * 今日计划
-** TODO finish nian huo jie project
+** TODO publish hilo3d v0.1.0(1.1 finish)(1.18 must publish!)
+*** TODO move min files from wonder.js to wonder
 
-* 完成事项
-** TODO 1.18 publish Hilo3D
-*** TODO share01
-confirm date (wed or thus)
 
-collect issues
+*** TODO prepare hilo3d
+create hilo3d project in gitlab
 
+discuss with wang,jiang:
+cut works(mainly with wang)
 
-write document to ata
-
-*** TODO write use document for developers(tian mao)
-
-
-** TODO nian huo jie project
-communicate with ued:(@入也, 180-7276-7533 郑仪逊)
-record needed features, optimizations(+ or -)
-
-no light
-skeleton animation
-.fbx scene(some static objects, 1 or 2 animation objects)
-play sound
-
-
-*** DONE give timeline to @zu
-CLOSED: [2016-12-13 二 08:21]
-
-
-*** DONE refactor
-CLOSED: [2016-12-13 二 10:27]
-move component back to src/component/
-
-refactor DeviceManager:use root
-
-
-*** DONE demo study
-CLOSED: [2016-12-27 二 13:51]
-**** DONE run in mobile
-CLOSED: [2016-12-20 二 09:00]
-//read references
-
-//build mobile develop environment
-
-
-//show on mobile
-
-
-support touch event(use hammer?):
-////use hammer to handle touch and mouse event
-
-//pass mouse,dom
-
-//pass event script
-
-//pass custom event test:
-////test parent-child 
-
-
-
-//add touch test:
-//not trigger POINTSCALE event
-//add touch event test
-//add touch event script test
-
-//add tap
-
-//pass arcball, fly unit test
-
-//pass button
-
-
-//refactor:
-////touch drag = touch move
-//remove listener
-//clean
-//rename p_type
-
-
-
-//pass all unit test:
-
-//pass run test
-
-//test in android
-
-//pass all samples
-
-
-
-////add touch camera(arcball? no scale)
-
-
-
-
-//update yTool->event
-
-
-
-
-////fix all.innerLib.js
-
-
-
-
-
-////refer to timespace(cp timespace to reference):
-pixel ratio?
-support orientation
-
-
-
-
-
-//test audio, model, arcball camera:
-
-***** DONE show debug panel for mobile test
-CLOSED: [2016-12-20 二 09:00]
-
-//show debug panel(Main)
-
-refactor:
-//extract builder
-//refactor PlainFont
-
-//pass all unit test
-
-//pass all render test
-
-
-
-
-**** DONE support basic skeleton animation
-CLOSED: [2016-12-27 二 13:51]
-//modify runtime:
-write ModelGeometry
-write ShaderLib
-
-//pass compile
-
-//pass unit test
-
-
-
-
-use .gltf for test:
-//.hilo3d add skin
-
-//.gltf convert to .hilo3d
-
-//fix gltf:(.gltf only can contain one skin animation?)
-//move all joint animation data to one "animation" field?
-
-
-
-//pass sample
-
-
-//add unit test
-
-
-
-//fix: if not play animation, show obj
-
-//fix mesh error
-
-fix monster->end animation
-
-//fix contract check
-
-
-
-
-
-////check model
-
-
-
-////fix end animation bug
-
-
-
-fix:
-////"JOINT"->componentType should be 5123 instead of 5126 ???
-fix unit test!
-
-
-
-//unit test
-
-
-refactor:
-//refactor GLTFToHilo3D
-//clean code
-//add unit test
-//refactor ModelGeometry(move merge out?)
-
-
-
-
-
-
-
-
-
-*** TODO support basic skeleton animation
-refactor:
-//decompose Hilo3DAssemblerSpec
-
-////refactor SkinSkeletonAnimation: use Collection instead of Array
-
-
-
-
-
-////**** TODO modify .hilo3d
-
-**** TODO modify .fbx
-//fbx support skinSkeleton
-
-//binary compress
-
-//unit test
-
-
-//test:
-JPN,
-model
-
-
-
-
-support:
-//remove primitive datas
-
-//solve load error
-
-
-//test cs4 model
-
-
-//communicate with zhen:
-img
-skeleton
-
-
-
-//use basic material
-
-
-//test in mobile(one animation)
-
-
-clone to three models to test
-
-
-optimize matrix
-
-
-combine animation data
-
-test in mobile(two animation)
-
-
-
-
-
-**** TODO pass .fbx by JPN model
-
-run test:
-pc 
-mobile
-
-
-***** TODO why can't convert the .fbx by using "gulp convert" command?
-gulp-run bug?
-
-
-**** TODO finish project
-run in ar
-
-
-play animation one time
-
-
-
-**** TODO optimize
-add basic optimize
-
-
-add render test
-
-
-optimize: 
-if bindShapeMatrix is identify, set it null and not multiply
-
-other "todo" optimizes
-
-
-optimize:
-query max uniform data arr count
-
-write to texture:
-judge vertex texture
-
-
-
-
-compute in gpu
-1) Make sure that the size of the bones array is correct. Often times, you will find that part of the mesh is skinned fine while the other parts are not skinned correctly. If so make sure the size of the bones array is correct.  
-
-There are two things that you have to be careful about.
-
-
-
-
-
-
-
-*** TODO run in mobile:
-target:
+*** TODO works
+- run in mobile:
 support ios8+
 support android 5.0+
-////test canvas renderer
 
-test on android(in tianmao, taobao)
+- give min package
+- canvas renderer
+- primary document
 
-
-test on ios(in tianmao, taobao)
-
-
-
-////buy iphone
-buy meizhu, google?
-
-
-
-**** TODO package .mobile.js for mobile
+*** target
+- support blender/maya?->engine->run flow
+- can run in mobile
+- has min feature
+give basic package:
+geometry+material+camera(need confirm with jiang)
+- publish to tian mao front developers
 
 
 
-*** TODO fix converter, scene graph, support basic material
-fix fbx converter:
-support BasicMaterial(by set command option)
+*** TODO support run in mobile(ios 8+, android 5.0+)(v0.9.0)
+**** TODO test uc4->webgl support, give a report
+**** TODO discuss with jiang about engine development
+  specify engine feature, priority, goal
+
+  give a dev->publish timeline
+
+*** TODO test
+test in ios WKWebView(@fu ding)
+
+test maya3d->fbx
 
 
-fix .hilo3d scene graph:
-support BasicMaterial
+** TODO improve race
+use arch plane
+
+add grass(instance)
+
+change character to be LightMaterial
 
 
-refactor converter:
-clean code(gulp_task)
+** TODO finish fbx scene page on zebraz
+
+*** TODO use blender to create fbx scene(based on exist fbx?)
+create terrain:
+https://www.blender.org/manual/editors/3dview/object/transform/transform_control/proportional_edit.html#fig-view3d-transform-landscape
+
+
+*** TODO show 3d scene by wonder.js on zebra
+use mui4.0
+
+
+
+* 完成事项
+** DONE reorganizing data
+CLOSED: [2016-12-02 五 10:32]
+
+** DONE ticket, screen
+CLOSED: [2016-12-02 五 09:38]
+
+** DONE learn blogs
+CLOSED: [2016-12-11 一 12:00]
+
+** DONE prepare hilo3d
+CLOSED: [2016-12-12 一 17:44]
+*** DONE move min files from wonder.js to hilo3d
+CLOSED: [2016-12-04 日 14:07]
+**** DONE push first commit
+CLOSED: [2016-12-04 日 14:07]
+//change namespace to Hilo
+
+//change .wd to .hilo
+
+//add Hilo-Commonlib
+
+//add Hilo-FRP
+
+//pass
+
+
+//show test coverage
+
+
+////separate to core/ and other/ folder
+
+
+//pass
 
 
 
 
 
-*** TODO finish project
-restore Transform->setXXXTransformState
-
-restore CompileConfig->isCompileTest to true
 
 
-switch to wonder(3 commit):
-update frp, commonLib
 
 
-package:
-animation add "skinSkeleton"(lite, custom)
+
+*** DONE prepare specification(document(english), code, test)
+CLOSED: [2016-12-04 日 14:41]
+
+
+*** DONE prepare join document
+CLOSED: [2016-12-04 日 15:17]
+environment prepare
+
+develop flow(runtime, tool):
+typescript prepare
+code quality requirements
+git flow(fetch->rebase ...)
+...
+
+*** TODO prepare develop plan(runtime, tool)(check with jiang)
+
+
+*** TODO prepare learn references(for inner runtime,tool develop)
+add hilo3d ata
+write files here
+
+
+
+*** DONE cut canvas renderer
+CLOSED: [2016-12-06 二 08:52]
+learn canvas renderer implement
+
+give interface,
+example,
+explanation,
+test cases,
+work flow,
+verify flow
+(how can pass verify)
+
+*** DONE cut tool
+CLOSED: [2016-12-06 二 08:52]
+give explanation,
+use case,
+test cases,
+work flow,
+verify flow
+
+
+*** DONE communicate
+CLOSED: [2016-12-06 二 08:52]
+communicate with jiang,mo,yuan
+
+@all
+target(mobile compatible, high performance, hudong priority, advanced(pc first demo)), quality require
+total work(canvas renderer, tool, docs, examples cases, package, mobile), everyone role/task, check point
+work flow(merge request, commit, specification, test)
+
+
+
+specific
+
+@mochuan
+canvas renderer:
+design plan
+how to develop
+how to check 
+timeline
+test
+
+
+
+
+@jiang
+examples
+target
+check point
+
+
+
+@yuan
+tool:
+need to do
+invest
+test
+check point
+
+
+
+feedback:
+question?
+needs?
+
+
+
+
+
+*** DONE reduce .min < 500kb
+CLOSED: [2016-12-12 一 16:18]
+**** DONE support package all and package lite
+CLOSED: [2016-12-08 四 11:32]
+
+//move lib/ out
+
+
+
+gulp package:
+//lite:
+   lite.js(all)
+
+
+use "name" to judge "instanceof"
+
+fix watch
+
+pass test
+
+
+
+//move unused components out
+
+//move components/ to extension/components/
+
+
+//update lite
+
+
+
+
+//move sound, video out
+
+
+
+
+move out:
+promise,
+//chai, contract check
+////(set Main.isTest = false and lock it!)
+
+
+
+
+//move shadow out:
+move glsl out
+move shadow to extension
 
 
 refactor:
-split tool->converter->conert indices->Converter
-refactor BoneMatrix with Transform
-
-
-skeleton:
-fbx:
-  parse bind shape matrix:
-  http://www.gamedev.net/topic/574309-solved-fbx-animation-problems/
-  refer to babylonjs->SkinInfo.cpp->bindPoses ?
-
-
-pass fbx->converter->multi skin animations!
+////move animation to src/component/
+//rename: lite_xxx, all_xxx
+//rename karma files
 
 
 
 
-first play background music, 
-play 5 cat with animation(skeleton)
+//set Main.isTest = false and lock it if no chai!
 
-after 10s?, show arrow ui to mention user to click
 
-when click cat, move cat and play another animation and another audio
+
+
+////move light out
+
+
+
+////update lite
 
 
 
 
 
+////move renderTarget out(can remain)
 
 
-**** TODO need confirm
-@jiang
-how to get ar data
-how to show 3d in view
 
 
-need android and ios device:
-test performance in maoke and taobao
 
 
-*** TODO refactor after finish project
-
-*** TODO publish v0.9.0
 
 
-*** TODO use blender to build skeleton example
 
 
-*** TODO fbx support morph anim
-
-**** TODO pass skin + morph(use blender)
-
-*** TODO publish v0.9.1
 
 
-*** TODO support animation blend
-
-**** TODO refactor:extract AnimationEngine
-
-*** TODO publish v0.9.2
 
 
-*** TODO use compress texture?
-support .pvr in ios
-
-**** TODO use blender to generate compress texture
-
-*** TODO optimize mobile
-
-** TODO solve render test problem(pixel?)
-http://www.html-js.com/article/Mobile-terminal-H5-mobile-terminal-HD-multi-screen-adaptation-scheme%203041
-http://miekd.com/articles/using-css-sprites-to-optimize-your-website-for-retina-displays/
-http://www.w3cplus.com/css/css-background-size-graphics.html
-http://alexthorpe.com/uncategorized/css-sprites-for-retina-display-devices/683/
+////support compress function:
+class add "className" field
 
 
-** TODO publish v0.10.0
+
+
+
+
+use closure to compress
+
+
+**** DONE support package config options
+CLOSED: [2016-12-12 一 16:18]
+
+
+add:
+//lite.debug.js+innerLib.js
+
+////update lite
+
+
+//exclude module
+
+
+//exclude package
+
+
+//exclude lib
+
+
+//add cannon
+
+
+
+refactor:
+//refactor packageLite by packageCustom
+//move all inner requires out
+//rename all to core
+//clean gulp task code
+
+
+//fix sample->js path
+
+
+//pass all unit test, render test
+
+////pass ci test
+
+
+
+
+
+
 
 * 明日计划
 
 
 * TODO 未来7日计划
-** TODO optimize(v0.11.0)
+** TODO publish hilo3d to github
+(publish bower package)
+
+
+** TODO optimize
 *** TODO read references
 https://developer.nvidia.com/nvidia-gpu-programming-guide
 
@@ -462,8 +357,7 @@ http://www.cnblogs.com/ghl_carmack/p/4107042.html
 *** TODO cpu optimize
 optimize transform:
 optimize Transform->state?
-
-check is the same in setting position,scale,rotation, localXXX(new value === old value, not set,dirty?)
+check is the same in setting position,scale,rotation, localXXX
 
 
 
@@ -485,8 +379,6 @@ show memory info:
 refer to sk_design->WebGLRenderer->dump method
 
 
-optimize Vector2/3/4:
-remove "values" attr
 
 
 optimize hash->removeChild
@@ -514,20 +406,6 @@ use instance pool to re-use render commands
 **** TODO octree optimize
 **** TODO instance optimize
 ////**** TODO shadow optimize
-
-*** TODO optimize skeleton animation
-把所有不同的角色的骨骼相关的矩阵和变换信息写入到纹理里(refer to playcanvas, threejs)
-(fallback:if not support vertex texture, pass uniform data instead)
-http://ftp.opengpu.org/forum.php?mod=viewthread&tid=18164&extra=page%3D1
-
-http://http.developer.nvidia.com/GPUGems3/gpugems3_ch02.html
-
-https://github.com/mrdoob/three.js/issues/3187
-
-
-use Skinned Instancing
-
-use quaternion for rotate skeleton
 
 *** TODO more?
 
@@ -1453,16 +1331,14 @@ support full screen(refer to babylon.engine.ts->450 line)
 
 
 
-* Record
-111111
-
-123456
-
 * TODO 疑问
+** TODO how to solve render test problem(pixel?)
+ask @mochuan:
+Hilo don't solve it too
+
 
 * TODO 未做事项
 
 
 * TODO more
-
 
