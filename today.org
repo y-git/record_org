@@ -2,8 +2,8 @@
 ** TODO finish nian huo jie project
 
 * 完成事项
-** TODO 1.18 publish Hilo3D
-*** TODO share01
+//** TODO 1.18 publish Hilo3D
+//*** TODO share01
 confirm date (wed or thus)
 
 collect issues
@@ -11,7 +11,7 @@ collect issues
 
 write document to ata
 
-*** TODO write use document for developers(tian mao)
+//*** TODO write use document for developers(tian mao)
 
 
 ** TODO nian huo jie project
@@ -216,7 +216,8 @@ refactor:
 
 ////**** TODO modify .hilo3d
 
-**** TODO modify .fbx
+**** DONE modify .fbx
+CLOSED: [2016-12-28 三 20:26]
 //fbx support skinSkeleton
 
 //binary compress
@@ -246,75 +247,504 @@ skeleton
 
 
 
+
+
+**** DONE run test
+CLOSED: [2016-12-29 四 14:11]
+
+//run test:
+pc 
+mobile
+
+
 //use basic material
 
 
 //test in mobile(one animation)
 
 
-clone to three models to test
+//clone to three models to test
+
+//not pass a_color!
 
 
-optimize matrix
+//optimize matrix
 
+//show loading
 
-combine animation data
+//test in ios,android in maoke
 
-test in mobile(two animation)
-
-
-
-
-
-**** TODO pass .fbx by JPN model
-
-run test:
-pc 
-mobile
-
-
-***** TODO why can't convert the .fbx by using "gulp convert" command?
-gulp-run bug?
 
 
 **** TODO finish project
-run in ar
+
+run in ar:
+
+//play sound in tianmao
 
 
-play animation one time
 
 
 
-**** TODO optimize
-add basic optimize
+//test files
 
 
-add render test
 
 
-optimize: 
-if bindShapeMatrix is identify, set it null and not multiply
+//how to load .hilo3d, .bin, .png(put img together):
+////add nodejs version(all, lite, custom)
 
-other "todo" optimizes
+
+
+
+//use ar(other phone) to test
+
+//load dynamic script
+
+
+
+
+
+
+test:
+play background
+
+show arrow
+
+click on one cat
+
+play other animation
+
+use device pixel ratio
+
+
+
+//stop cat1 when play cat2
+
+//play animation one time
+
+
+test models
+
+
+
+////play sound one time
+
+
+
+//pull code
+
+//test in ar
+
+
+//refactor code
+
+
+//publish
+
+
+
+
+
+
+
+
+
+//fix bainian click
+
+publish
+
+
+
+model:
+////let 01a not move?
+
+
+fix:
+//after biannian restore
+
+//when move out, invisible
+
+//scale
+
+//hidden debug
+
+
+
+
+////why android not 3d
+
+
+
+
+//support android!
+
+
+
+
+//use sound
+
+
+//use .js instead of .hilo3d
+
+
+
+
+
+////adjust yuanbao model!
+
+
+//update all.js
+
+//use js to import model
+need test online
+
+//fix ar matrix!
+
+
+
+//when move over, play again
+
+//solve slow problem
+
+
+//test code in ios,android!
+
+
+
+
+//pass android ar matrix!
+
+
+
+//random require
+
+
+//decrease 
+
+
+
+
+//fix:
+blank frame!
+
+
+
+//add light
+smooth 
+
+
+
+
+
+
+
+
+//package engine
+
+//refactor code
+
+
+solve ar dither
+ar data is dither!
+ask @jiangcheng, @xiaozu
+
+
+
+
+
+//update code
+
+
+
+
+refer to 2d:
+////yuanbao not move?
+bainian is in center?
+
+
+////ask @xiaozu, jump to bainian?
+
+
+
+//move model to center
+
+
+
+//click cat
+
+
+
+
+
+
+//use lite to test
+
+
+
+
+//test android
+
+//push
+
+
+//scale to bainian
+
+//bainian not 5s
+
+fix tips in arPage.js @xiaozu
+
+
+
+update model normal data
+fix
+
+
+
+////ar:
+only update first time
+
+
+////send ar demo to @fuding
+
+
+
+////optimize:
+load asset
+
+
+
+
+push
+
+
+
+
+fix tips (loading, duizhun) info:
+now show duizhun when success ar
+
+
+
+
+push
+
+
+
+//loading optimize(show)
+
+
+
+//forbidden touch camera
+
+//model should rotate around ar matrix
+
+
+
+fix:
+//when frequency move out/in, cat may not disappear!
+
+
+
+publish:
+comment alert
+fix RSVP
+
+
+
+
+
+
+fix yuan bao problem:
+the animation and the static model's rotation is not the same!(animation has rotate(0,-90,0)!)
+
+
+fix tool->converter:
+remove source/*.xxx when convert in isEmbedded(refer to hongbao)
+
+optimize tool->converter->isEmbedded:
+if image/buffer not exist, warn
+
+
+fix hongbao:
+box collider is wrong in ios,android(the triggered shape's position is wrong!):
+refer to lafite-54444 project -> mine -> 3d->index->collider bug!.js:
+set BasicCameraController->worldToCameraMatrix in each loop cause the problem:
+    _updateCameraMatrixByAr: function(){
+        // if(this._arMatrixUpdateCount < this._arMatrixUpdateRate){
+        //     this._arMatrixUpdateCount++;
+        //
+        //     return;
+        // }
+        //
+        // this._arMatrixUpdateCount = 0;
+
+        var data = this._arData[0],
+            pMatrix = Hilo3D.Matrix4.create(new Float32Array(
+                data.projection
+            )),
+            mMatrix = Hilo3D.Matrix4.create(new Float32Array(
+                data.modelmatrix
+            ));
+
+        var vMatrix = mMatrix;
+
+        var controller = this._camera.getComponent(Hilo3D.BasicCameraController);
+
+        controller.pMatrix =pMatrix;
+
+        //this cause bug!
+        controller.worldToCameraMatrix =vMatrix;
+    },
+
+
+
+
+
+
+
+fix:
+set collider->center in loop not update?
+
+
+
+
+restore Hilo3DLoader
+restore ShadowManager
+
+
+
+refactor:
+remove Skin animation-> isTimeExceed5000 logic
+
+refactor CommonShaderLib->data.vMatrix/pMatrix(add support set entityObject->vMatrix/pMatrix instead of camera.vMatrix/pMatrix)
+(consider has children)
+
+
+
+test Camera->isUserSpecifyThePMatrix
+
+test Billboard->directionEulerAngles
+
+test ThreeDTransform->setLocalToWorldMatrix
+
+
+
+
+
+fix:
+set pixel ratio in mobile -> set style width/height?
+         view.width = view.width * window.devicePixelRatio;
+         view.height = view.height * window.devicePixelRatio;
+         view.styleWidth = view.width + "px";
+         view.styleHeight = view.height + "px";
+
+set viewport?:
+gl && gl.viewport(
+    camera.viewPort[0] / window.devicePixelRatio,
+    camera.viewPort[1] / window.devicePixelRatio,
+    camera.viewPort[2] / window.devicePixelRatio,
+    camera.viewPort[3] / window.devicePixelRatio
+);
+
+
+
+
+
+optimize hongbao in ios(also in android?):
+parse and assemble geometry is slow
+
+skin animation first play is slow and isn't complelte!
+(refactor LayerKeyFrameController,JointKeyFrameController->_isFirst judge logic!)
+
+
+
+
+optimize model->antialias in android,ios
+
+
+
+
+optimize hongbao->03b -> cat(xxxSurface_251(66?))->normal compute:
+isn't correct!
+
+
+
+
+rewrite hongbao project!
+(use require)
+
 
 
 optimize:
-query max uniform data arr count
-
-write to texture:
-judge vertex texture
+//solve switch cat slow:
+//precompute cat2 bone matrix(update(0)?)
 
 
-
-
-compute in gpu
-1) Make sure that the size of the bones array is correct. Often times, you will find that part of the mesh is skinned fine while the other parts are not skinned correctly. If so make sure the size of the bones array is correct.  
-
-There are two things that you have to be careful about.
+//play sound after show 
 
 
 
 
+
+fix:
+removeChild still has bug!
+
+
+
+
+fix:
+
+
+
+//load random cat resource
+
+
+
+//test in phone
+
+
+//test in ar
+use new models to test in ar
+
+
+
+
+fix project:
+//remove background-color
+
+adjust style
+
+
+
+
+
+
+refactor: move Material->shading to StandardLightMaterial
+
+
+
+
+
+
+
+
+optimize:
+isCompileTest: false
+
+
+
+
+
+
+
+
+////combine animation data
+
+//test in mobile(two animation)
+
+
+//communicate:
+remove light,camera data
 
 
 
@@ -332,7 +762,7 @@ test on ios(in tianmao, taobao)
 
 
 ////buy iphone
-buy meizhu, google?
+buy iphone5, meizhu, google?
 
 
 
@@ -340,7 +770,7 @@ buy meizhu, google?
 
 
 
-*** TODO fix converter, scene graph, support basic material
+////*** TODO fix converter, scene graph, support basic material
 fix fbx converter:
 support BasicMaterial(by set command option)
 
@@ -357,42 +787,112 @@ clean code(gulp_task)
 
 
 *** TODO finish project
-restore Transform->setXXXTransformState
-
-restore CompileConfig->isCompileTest to true
-
-
 switch to wonder(3 commit):
 update frp, commonLib
 
 
-package:
+
+
+
+fix tool->converter:
+if in source/xxx/ folder, not copy to dest/xxx.hilo3d !
+
+
+
+restore Transform->setXXXTransformState
+
+restore CompileConfig->isCompileTest to true(if false, how to pass unit test?)
+
+
+
+package:(solve how to import file by user)
 animation add "skinSkeleton"(lite, custom)
+
+Cb,Frp build remove rebundant "__extend"
+
+support cmd,nodejs build:
+debug.js,innerLib.js,all.js,lite.js,custom.js should all add corresponding version
+script support cmd,nodejs version
+fix Variable.ts: fix Promise when require!
+
+Frp add core.node.js version:
+Frp.node.js require Cb.nodejs!
+
+
+Cb.node.js remove debug.map
+
+refactor packageLite:use packageCustom to rewrite
+
+
+solve how to extend by user:(refer to unity)
+how to write own component
+how to write own extension(material)
+
+
+
+
+
+
 
 
 refactor:
-split tool->converter->conert indices->Converter
-refactor BoneMatrix with Transform
+split tool->converter->convert indices->Converter
+split tool->converter->CompressorSpec
+refactor BoneMatrix with Transform(add corresponding unit test)
+
+
+test:
+test Hilo3DLoader(e.g., convert image to base64)
+
 
 
 skeleton:
+fix:
+handle JointKeyFrameController->saveZeroTimeFrameData->handle first time !== 0!
+
 fbx:
   parse bind shape matrix:
   http://www.gamedev.net/topic/574309-solved-fbx-animation-problems/
   refer to babylonjs->SkinInfo.cpp->bindPoses ?
 
 
-pass fbx->converter->multi skin animations!
+pass fbx->converter->multi skin animations!:
+use blender to add multi animations of one model in one .fbx file
+learn how to separate and combine character and its props animations!
+
+
+
+optimize: 
+not update tranlation,scale(pre handle key frame data)
+
+
+
+write to texture:
+judge vertex texture
+
+
+//add basic optimize
+
+
+add render test
+
+
+optimize: 
+//if bindShapeMatrix is identify, set it null and not multiply
+
+other "todo" optimizes
+
+
+optimize:
+query max uniform data arr count
 
 
 
 
-first play background music, 
-play 5 cat with animation(skeleton)
+compute in gpu
+1) Make sure that the size of the bones array is correct. Often times, you will find that part of the mesh is skinned fine while the other parts are not skinned correctly. If so make sure the size of the bones array is correct.  
 
-after 10s?, show arrow ui to mention user to click
-
-when click cat, move cat and play another animation and another audio
+There are two things that you have to be careful about.
 
 
 
@@ -400,58 +900,90 @@ when click cat, move cat and play another animation and another audio
 
 
 
-**** TODO need confirm
-@jiang
-how to get ar data
-how to show 3d in view
 
 
-need android and ios device:
-test performance in maoke and taobao
 
 
-*** TODO refactor after finish project
-
-*** TODO publish v0.9.0
 
 
-*** TODO use blender to build skeleton example
+
+
+
+
+
+
+fix tool->converter:
+if embedded, gltf should still be embedded!
+
+
+
+fix:
+maoke->arcball camera->roll up/down is wrong!
+
+unify Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->play->params
+refactor Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->playOneTime(move to Animation)
+
+
+optimize:
+maoke->arcball camera->roll is very slow!
+
+
+
+
+enhance mobile debug:
+rewrite console:
+http://eclipsesource.com/blogs/2012/08/14/debugging-javascript-on-android-and-ios/
+
+
+ios open log panel!
+
+android open log panel!?
+
+
+
+feat: Collider add "setFromVertices"
+
+
+
+
+
+
+
+**** TODO publish v0.9.0
+
+
 
 
 *** TODO fbx support morph anim
 
 **** TODO pass skin + morph(use blender)
 
-*** TODO publish v0.9.1
+**** TODO publish v0.9.1
 
 
 *** TODO support animation blend
 
-**** TODO refactor:extract AnimationEngine
+**** TODO refactor:extract AnimationEngine and move out to be a new project
 
-*** TODO publish v0.9.2
+**** TODO publish v0.9.2
 
-
-*** TODO use compress texture?
-support .pvr in ios
-
-**** TODO use blender to generate compress texture
-
-*** TODO optimize mobile
-
-** TODO solve render test problem(pixel?)
-http://www.html-js.com/article/Mobile-terminal-H5-mobile-terminal-HD-multi-screen-adaptation-scheme%203041
-http://miekd.com/articles/using-css-sprites-to-optimize-your-website-for-retina-displays/
-http://www.w3cplus.com/css/css-background-size-graphics.html
-http://alexthorpe.com/uncategorized/css-sprites-for-retina-display-devices/683/
-
-
-** TODO publish v0.10.0
 
 * 明日计划
 
 
 * TODO 未来7日计划
+** TODO finish phone->todo
+
+*** TODO use compress texture?
+
+support .pvr in ios
+
+**** TODO use blender to generate compress texture
+
+*** TODO audio add more control(play one time, stop...)
+
+
+*** TODO publish v0.10.0
 ** TODO optimize(v0.11.0)
 *** TODO read references
 https://developer.nvidia.com/nvidia-gpu-programming-guide
@@ -529,10 +1061,35 @@ use Skinned Instancing
 
 use quaternion for rotate skeleton
 
+*** TODO mobile optimize
+**** refer to hongbao:
+optimize:
+show other model in later(show bainian animation of another model when click on first model)
+
+optimize:
+parse and assemble hilo3d(now parse geometry is very slow)
+
+
+
+*** TODO optimize asset
+refer to hongbao:
+optimize skin animation
+optimize model geometry
+
 *** TODO more?
 
-** TODO build custom outer scene(octree+lod+direction light+collision+shadowmap+terrain+water(mirror reflection, refraction) + morph animation player character)
-*** TODO support physics heightmap
+
+** TODO add particle system(v0.12.0)
+** TODO add hdr post effect(v0.13.0)(move to extension)
+** TODO add AssetDatabase to support aync load asset(v0.14.0)(move out to be a project in wonder group)
+** TODO finish projects to apply engine
+*** TODO in pc
+**** TODO write a big demo(pc)
+refer to https://github.com/pissang/qtek-bootcamp 
+
+
+**** TODO build custom outer scene(octree+lod+direction light+collision+shadowmap+terrain+water(mirror reflection, refraction) + morph animation player character)
+***** TODO support physics heightmap
 add physics box,sphere
 player can collision with these box,sphere
 
@@ -566,32 +1123,31 @@ shadow(shadowMap, lightMap)
 
 
 
-** TODO build custom room scene(point light+lightmap+shadowmap+cubemap reflection+articulated camera+collision)
+**** TODO build custom room scene(point light+lightmap+shadowmap+cubemap reflection+articulated camera+collision)
 
 
 
 
 
-*** TODO Vertex cache optimization 
-refer to <<OpenGL InSights>> 26 chapter: Indexing Multiple Vertex Arrays
-This chapter shows a simple solution to convert nonindexed data into an indexed form, allowing its use in an efficient
-way with many file formats such as OBJ, X, VRML, and COLLADA. 
+*** TODO in mobile
+**** TODO tao fu wa
+**** TODO bainian(add more effect, show three cats)
+**** TODO simple room scene(player with skin animation to navigator)
+**** TODO simple outer scene
 
-refactor obj,md2 indices build?
+*** TODO in both
+**** TODO car demo(replace material)
+**** TODO physics demo(like tao fu wa)
+**** TODO jiao's picture demo(particle, picking, hdr, reflection)
 
 
+*** TODO fix problems
+*** TODO optimize
 
-A number of algorithms can be found in the literature for reorganizing the indices in order to get a better
-post-transform cache usage. 
-In particular, I recom- mend nvTriStrip, which is slow but ready-to-use, and Tom Forsyth’s
-algo- rithm [Forsyth 06], which runs in linear time. 
+** TODO publish v1.0.0
+increase runtime test rate from 92% to 95%
 
-https://www.opengl.org/discussion_boards/showthread.php/167481-Vertex-cache-optimization
 
-http://tomforsyth1000.github.io/papers/fast_vert_cache_opt.html
-
-https://github.com/vivkin/forsyth
-http://www.cnblogs.com/ghl_carmack/p/4107042.html
 ** TODO optimize cpu(v0.5.8)
 //render target renderer(e.g. Mirror,Refraction,DynamicCubemap, ...) and procedural renderer, shadowMap(refer to
 babylonjs->Samples/Demos/Instances/instances.js line 100), VideoTexture,   add "refreshRate", "refresh control"(like
@@ -1008,6 +1564,7 @@ http://www.cnblogs.com/dreams/archive/2007/03/25/687310.html
 
 
 ** TODO optimize gpu
+
 *** TODO optimize glsl
 https://www.opengl.org/wiki/GLSL_Optimizations
 
@@ -1038,6 +1595,26 @@ use stride in gl.vertexAttribPointer(refer to Wozlla Engine)
 
 
 render to target support mipmaps(refer to bjs)
+*** TODO Vertex cache optimization 
+refer to <<OpenGL InSights>> 26 chapter: Indexing Multiple Vertex Arrays
+This chapter shows a simple solution to convert nonindexed data into an indexed form, allowing its use in an efficient
+way with many file formats such as OBJ, X, VRML, and COLLADA. 
+
+refactor obj,md2 indices build?
+
+
+
+A number of algorithms can be found in the literature for reorganizing the indices in order to get a better
+post-transform cache usage. 
+In particular, I recom- mend nvTriStrip, which is slow but ready-to-use, and Tom Forsyth’s
+algo- rithm [Forsyth 06], which runs in linear time. 
+
+https://www.opengl.org/discussion_boards/showthread.php/167481-Vertex-cache-optimization
+
+http://tomforsyth1000.github.io/papers/fast_vert_cache_opt.html
+
+https://github.com/vivkin/forsyth
+http://www.cnblogs.com/ghl_carmack/p/4107042.html
 
 
 *** DONE VAO

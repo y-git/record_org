@@ -1170,6 +1170,12 @@ In my case, I’ve decided to implement the 2nd solution for this tutorial
 *** TODO v1.1-v2.0 improve engine,optimize, add junior functions(3.5w lines)
 
 
+**** TODO [#A] support multi-thread(maybe need rewrite runtime)
+
+
+
+support load multi part of one model?
+(refer to http://www.inka3d.com/)
 **** TODO [#B] support WebGL 2.0 and can fallback to WebGL 1.0
 
 
@@ -1223,21 +1229,6 @@ http://www.gamedev.net/topic/675055-3d-model-terrain-collision/
 ***** TODO physics
 ****** TODO integrate with heightmap physics
 refer to cannon example
-
-
-
-**** TODO [#A] defer render and post effect(webgl 2.0)
-change to defer render architecture
-refer to:
-threejs
-https://github.com/uber/luma.gl
-(<<WebGL Insights>> chapter 15 Deferred Shading in Luma)
-
-
-
-post effect
-hdr
-fog
 **** TODO [#C] advance shadow
 ***** TODO problem
 point shadow has one line in the face edge
@@ -1288,6 +1279,21 @@ http://http.download.nvidia.com/developer/presentations/2004/6800_Leagues/6800_L
 Shadow Distance
 Objects beyond this distance (from the camera) cast no shadows at all, while the shadows from objects approaching this
 distance gradually fade out. 
+
+
+
+**** TODO [#B] defer render and post effect(webgl 2.0)
+change to defer render architecture
+refer to:
+threejs
+https://github.com/uber/luma.gl
+(<<WebGL Insights>> chapter 15 Deferred Shading in Luma)
+
+
+
+post effect
+hdr
+fog
 
 
 
