@@ -501,6 +501,9 @@ fix
 
 
 
+
+
+
 ////ar:
 only update first time
 
@@ -554,6 +557,116 @@ fix RSVP
 
 
 
+
+////combine animation data
+
+//test in mobile(two animation)
+
+
+//communicate:
+remove light,camera data
+
+
+
+*** TODO run in mobile:
+target:
+support ios8+
+support android 5.0+
+////test canvas renderer
+
+test on android(in tianmao, taobao)
+
+
+test on ios(in tianmao, taobao)
+
+
+
+////buy iphone
+buy iphone5, meizhu, google?
+
+
+
+**** TODO package .mobile.js for mobile
+
+
+
+////*** TODO fix converter, scene graph, support basic material
+fix fbx converter:
+support BasicMaterial(by set command option)
+
+
+fix .hilo3d scene graph:
+support BasicMaterial
+
+
+refactor converter:
+clean code(gulp_task)
+
+
+
+
+
+*** TODO finish project
+//switch to wonder(3 commit):
+update frp, commonLib
+
+move skin sample to wonder and pass it
+
+fix tool->convert
+
+
+
+
+
+
+
+//save hongbao project:
+save JPN model
+save 6 cat models
+
+
+//save Hilo3D project:
+
+
+
+
+//summary browser collection
+push
+
+
+
+
+push github
+
+
+buy ticket(1.20-22)
+
+tell house to leave
+
+
+
+
+
+
+switch computer:
+save files
+
+install pycharm
+refer to:
+qtek
+https://github.com/pissang/qtek
+
+
+
+install blender
+
+
+
+
+
+
+
+
 fix yuan bao problem:
 the animation and the static model's rotation is not the same!(animation has rotate(0,-90,0)!)
 
@@ -563,6 +676,16 @@ remove source/*.xxx when convert in isEmbedded(refer to hongbao)
 
 optimize tool->converter->isEmbedded:
 if image/buffer not exist, warn
+
+
+
+
+
+
+fix skin animation:
+////removeChild still has bug!
+play the hongbao->animation, at the begin of the second time it will shake!
+
 
 
 fix hongbao:
@@ -620,6 +743,8 @@ refactor CommonShaderLib->data.vMatrix/pMatrix(add support set entityObject->vMa
 (consider has children)
 
 
+test or refactor event->ANIMATION_STOP
+
 
 test Camera->isUserSpecifyThePMatrix
 
@@ -651,7 +776,9 @@ gl && gl.viewport(
 
 
 optimize hongbao in ios(also in android?):
-parse and assemble geometry is slow
+
+
+
 
 skin animation first play is slow and isn't complelte!
 (refactor LayerKeyFrameController,JointKeyFrameController->_isFirst judge logic!)
@@ -670,6 +797,27 @@ isn't correct!
 
 
 
+
+
+study jiang's project(use inka3D)
+http://www.inka3d.com/
+
+how to reduce engine size
+learn useful things
+
+
+
+
+pass all unit tests
+pass render test
+
+
+
+
+summary browser collection
+
+
+
 rewrite hongbao project!
 (use require)
 
@@ -685,9 +833,6 @@ optimize:
 
 
 
-
-fix:
-removeChild still has bug!
 
 
 
@@ -738,57 +883,7 @@ isCompileTest: false
 
 
 
-////combine animation data
 
-//test in mobile(two animation)
-
-
-//communicate:
-remove light,camera data
-
-
-
-*** TODO run in mobile:
-target:
-support ios8+
-support android 5.0+
-////test canvas renderer
-
-test on android(in tianmao, taobao)
-
-
-test on ios(in tianmao, taobao)
-
-
-
-////buy iphone
-buy iphone5, meizhu, google?
-
-
-
-**** TODO package .mobile.js for mobile
-
-
-
-////*** TODO fix converter, scene graph, support basic material
-fix fbx converter:
-support BasicMaterial(by set command option)
-
-
-fix .hilo3d scene graph:
-support BasicMaterial
-
-
-refactor converter:
-clean code(gulp_task)
-
-
-
-
-
-*** TODO finish project
-switch to wonder(3 commit):
-update frp, commonLib
 
 
 
@@ -808,6 +903,8 @@ restore CompileConfig->isCompileTest to true(if false, how to pass unit test?)
 package:(solve how to import file by user)
 animation add "skinSkeleton"(lite, custom)
 
+package lite,custom should clean dist/ folder firstly
+
 Cb,Frp build remove rebundant "__extend"
 
 support cmd,nodejs build:
@@ -822,6 +919,20 @@ Frp.node.js require Cb.nodejs!
 Cb.node.js remove debug.map
 
 refactor packageLite:use packageCustom to rewrite
+
+
+add package unit tests
+
+
+
+
+
+glsl support @require mechanism
+
+
+
+
+
 
 
 solve how to extend by user:(refer to unity)
@@ -888,11 +999,22 @@ query max uniform data arr count
 
 
 
+optimize:
+hongbao-> parse and assemble geometry is slow
+(compress position,joint,weight... to one buffer)
+
+
+
+
 
 compute in gpu
 1) Make sure that the size of the bones array is correct. Often times, you will find that part of the mesh is skinned fine while the other parts are not skinned correctly. If so make sure the size of the bones array is correct.  
 
 There are two things that you have to be careful about.
+
+
+
+
 
 
 
@@ -933,6 +1055,8 @@ maoke->arcball camera->roll is very slow!
 enhance mobile debug:
 rewrite console:
 http://eclipsesource.com/blogs/2012/08/14/debugging-javascript-on-android-and-ios/
+use vconsole:
+https://www.qianduan.net/vconsole-open-source/
 
 
 ios open log panel!
@@ -942,6 +1066,11 @@ android open log panel!?
 
 
 feat: Collider add "setFromVertices"
+
+
+
+
+
 
 
 
