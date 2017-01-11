@@ -1176,7 +1176,7 @@ In my case, I’ve decided to implement the 2nd solution for this tutorial
 
 support load multi part of one model?
 (refer to http://www.inka3d.com/)
-**** TODO [#B] support WebGL 2.0 and can fallback to WebGL 1.0
+**** TODO [#A] support WebGL 2.0 and can fallback to WebGL 1.0
 
 
 - Use Immutable Textures When Available (use EXT_texture_storage extension to use texStorage* command instead of
@@ -1282,7 +1282,7 @@ distance gradually fade out.
 
 
 
-**** TODO [#B] defer render and post effect(webgl 2.0)
+**** TODO [#A] defer render and post effect(webgl 2.0)
 change to defer render architecture
 refer to:
 threejs

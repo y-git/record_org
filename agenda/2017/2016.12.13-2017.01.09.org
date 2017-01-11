@@ -1,430 +1,616 @@
 * 今日计划
-** TODO summary 
+** TODO finish nian huo jie project
 
 * 完成事项
-** TODO summary 
-*** DONE switch to my computer
-CLOSED: [2017-01-09 Mon 15:41]
-//switch to wonder(3 commit):
-update frp, commonLib
+//** TODO 1.18 publish Hilo3D
+//*** TODO share01
+confirm date (wed or thus)
 
-move skin sample to wonder and pass it
-
-fix tool->convert
+collect issues
 
 
+write document to ata
+
+//*** TODO write use document for developers(tian mao)
+
+
+** DONE nian huo jie project
+CLOSED: [2017-01-07 Sat 10:00]
+communicate with ued:(@入也, 180-7276-7533 郑仪逊)
+record needed features, optimizations(+ or -)
+
+no light
+skeleton animation
+.fbx scene(some static objects, 1 or 2 animation objects)
+play sound
+
+
+*** DONE give timeline to @zu
+CLOSED: [2016-12-13 二 08:21]
+
+
+*** DONE refactor
+CLOSED: [2016-12-13 二 10:27]
+move component back to src/component/
+
+refactor DeviceManager:use root
+
+
+*** DONE demo study
+CLOSED: [2016-12-27 二 13:51]
+**** DONE run in mobile
+CLOSED: [2016-12-20 二 09:00]
+//read references
+
+//build mobile develop environment
+
+
+//show on mobile
+
+
+support touch event(use hammer?):
+////use hammer to handle touch and mouse event
+
+//pass mouse,dom
+
+//pass event script
+
+//pass custom event test:
+////test parent-child 
+
+
+
+//add touch test:
+//not trigger POINTSCALE event
+//add touch event test
+//add touch event script test
+
+//add tap
+
+//pass arcball, fly unit test
+
+//pass button
+
+
+//refactor:
+////touch drag = touch move
+//remove listener
+//clean
+//rename p_type
+
+
+
+//pass all unit test:
+
+//pass run test
+
+//test in android
+
+//pass all samples
+
+
+
+////add touch camera(arcball? no scale)
+
+
+
+
+//update yTool->event
+
+
+
+
+////fix all.innerLib.js
 
 
 
 
 
-//save hongbao project:
-save JPN model
-save 6 cat models
-
-
-//save Hilo3D project:
+////refer to timespace(cp timespace to reference):
+pixel ratio?
+support orientation
 
 
 
 
-//summary browser collection
+
+//test audio, model, arcball camera:
+
+***** DONE show debug panel for mobile test
+CLOSED: [2016-12-20 二 09:00]
+
+//show debug panel(Main)
+
+refactor:
+//extract builder
+//refactor PlainFont
+
+//pass all unit test
+
+//pass all render test
+
+
+
+
+**** DONE support basic skeleton animation
+CLOSED: [2016-12-27 二 13:51]
+//modify runtime:
+write ModelGeometry
+write ShaderLib
+
+//pass compile
+
+//pass unit test
+
+
+
+
+use .gltf for test:
+//.hilo3d add skin
+
+//.gltf convert to .hilo3d
+
+//fix gltf:(.gltf only can contain one skin animation?)
+//move all joint animation data to one "animation" field?
+
+
+
+//pass sample
+
+
+//add unit test
+
+
+
+//fix: if not play animation, show obj
+
+//fix mesh error
+
+fix monster->end animation
+
+//fix contract check
+
+
+
+
+
+////check model
+
+
+
+////fix end animation bug
+
+
+
+fix:
+////"JOINT"->componentType should be 5123 instead of 5126 ???
+fix unit test!
+
+
+
+//unit test
+
+
+refactor:
+//refactor GLTFToHilo3D
+//clean code
+//add unit test
+//refactor ModelGeometry(move merge out?)
+
+
+
+
+
+
+
+
+
+*** DONE support basic skeleton animation
+CLOSED: [2017-01-09 Mon 12:53]
+refactor:
+//decompose Hilo3DAssemblerSpec
+
+////refactor SkinSkeletonAnimation: use Collection instead of Array
+
+
+
+
+
+////**** TODO modify .hilo3d
+
+**** DONE modify .fbx
+CLOSED: [2016-12-28 三 20:26]
+//fbx support skinSkeleton
+
+//binary compress
+
+//unit test
+
+
+//test:
+JPN,
+model
+
+
+
+
+support:
+//remove primitive datas
+
+//solve load error
+
+
+//test cs4 model
+
+
+//communicate with zhen:
+img
+skeleton
+
+
+
+
+
+**** DONE run test
+CLOSED: [2016-12-29 四 14:11]
+
+//run test:
+pc 
+mobile
+
+
+//use basic material
+
+
+//test in mobile(one animation)
+
+
+//clone to three models to test
+
+//not pass a_color!
+
+
+//optimize matrix
+
+//show loading
+
+//test in ios,android in maoke
+
+
+
+**** TODO finish project
+
+run in ar:
+
+//play sound in tianmao
+
+
+
+
+
+//test files
+
+
+
+
+//how to load .hilo3d, .bin, .png(put img together):
+////add nodejs version(all, lite, custom)
+
+
+
+
+//use ar(other phone) to test
+
+//load dynamic script
+
+
+
+
+
+
+test:
+play background
+
+show arrow
+
+click on one cat
+
+play other animation
+
+use device pixel ratio
+
+
+
+//stop cat1 when play cat2
+
+//play animation one time
+
+
+test models
+
+
+
+////play sound one time
+
+
+
+//pull code
+
+//test in ar
+
+
+//refactor code
+
+
+//publish
+
+
+
+
+
+
+
+
+
+//fix bainian click
+
+publish
+
+
+
+model:
+////let 01a not move?
+
+
+fix:
+//after biannian restore
+
+//when move out, invisible
+
+//scale
+
+//hidden debug
+
+
+
+
+////why android not 3d
+
+
+
+
+//support android!
+
+
+
+
+//use sound
+
+
+//use .js instead of .hilo3d
+
+
+
+
+
+////adjust yuanbao model!
+
+
+//update all.js
+
+//use js to import model
+need test online
+
+//fix ar matrix!
+
+
+
+//when move over, play again
+
+//solve slow problem
+
+
+//test code in ios,android!
+
+
+
+
+//pass android ar matrix!
+
+
+
+//random require
+
+
+//decrease 
+
+
+
+
+//fix:
+blank frame!
+
+
+
+//add light
+smooth 
+
+
+
+
+
+
+
+
+//package engine
+
+//refactor code
+
+
+solve ar dither
+ar data is dither!
+ask @jiangcheng, @xiaozu
+
+
+
+
+
+//update code
+
+
+
+
+refer to 2d:
+////yuanbao not move?
+bainian is in center?
+
+
+////ask @xiaozu, jump to bainian?
+
+
+
+//move model to center
+
+
+
+//click cat
+
+
+
+
+
+
+//use lite to test
+
+
+
+
+//test android
+
+//push
+
+
+//scale to bainian
+
+//bainian not 5s
+
+fix tips in arPage.js @xiaozu
+
+
+
+update model normal data
+fix
+
+
+
+
+
+
+////ar:
+only update first time
+
+
+////send ar demo to @fuding
+
+
+
+////optimize:
+load asset
+
+
+
+
 push
 
 
 
 
-//push github
-
-
-//buy ticket(1.20-22)
-
-//tell house to leave
+fix tips (loading, duizhun) info:
+now show duizhun when success ar
 
 
 
 
-
-
-//switch computer:
-save files
-
-install pycharm
-refer to:
-qtek
-https://github.com/pissang/qtek
+push
 
 
 
-install blender
+//loading optimize(show)
 
 
 
+//forbidden touch camera
 
-
-
-
-
-*** DONE fix tool->converter
-CLOSED: [2017-01-11 Wed 12:00]
-//fix tool->converter:
-remove source/*.xxx when convert in isEmbedded(refer to hongbao)
-
-//embed add unit test
-
-
-//optimize tool->converter->isEmbedded:
-if image/buffer not exist, warn
-
-
-
-fix tool->converter:
-//if embedded, gltf should warn!
-
-
-
-refactor:
-//split tool->converter->convert indices->Converter
-//split tool->converter->CompressorSpec
-//rename XXXEngine to XXXComponentContainer
-
-
-*** TODO fix skin animation
-refactor and test: save begin time
-
-
-refactor skin animation unit test
-
-
-
-refactor:
-remove Skin animation-> isTimeExceed5000 logic
-
-fix skin animation:
-////removeChild still has bug!
-play the hongbao->animation, at the begin of the second time it will shake!
-
-
-
-skeleton:
-fix:
-handle JointKeyFrameController->saveZeroTimeFrameData->handle first time !== 0!
-
-
-
-fix yuan bao problem:
-the animation and the static model's rotation is not the same!(animation has rotate(0,-90,0)!)
-
-
-
-fix hongbao:
-box collider is wrong in ios,android(the triggered shape's position is wrong!):
-refer to lafite-54444 project -> mine -> 3d->index->collider bug!.js:
-set BasicCameraController->worldToCameraMatrix in each loop cause the problem:
-    _updateCameraMatrixByAr: function(){
-        // if(this._arMatrixUpdateCount < this._arMatrixUpdateRate){
-        //     this._arMatrixUpdateCount++;
-        //
-        //     return;
-        // }
-        //
-        // this._arMatrixUpdateCount = 0;
-
-        var data = this._arData[0],
-            pMatrix = Hilo3D.Matrix4.create(new Float32Array(
-                data.projection
-            )),
-            mMatrix = Hilo3D.Matrix4.create(new Float32Array(
-                data.modelmatrix
-            ));
-
-        var vMatrix = mMatrix;
-
-        var controller = this._camera.getComponent(Hilo3D.BasicCameraController);
-
-        controller.pMatrix =pMatrix;
-
-        //this cause bug!
-        controller.worldToCameraMatrix =vMatrix;
-    },
-
-
-
-
+//model should rotate around ar matrix
 
 
 
 fix:
-set collider->center in loop not update?
+//when frequency move out/in, cat may not disappear!
 
 
 
+publish:
+comment alert
+fix RSVP
 
-restore Hilo3DLoader
-restore ShadowManager
 
 
-refactor CommonShaderLib->data.vMatrix/pMatrix(add support set entityObject->vMatrix/pMatrix instead of camera.vMatrix/pMatrix)
-(consider has children)
 
 
-test or refactor event->ANIMATION_STOP
 
 
-test Camera->isUserSpecifyThePMatrix
+////combine animation data
 
-test Billboard->directionEulerAngles
+//test in mobile(two animation)
 
-test ThreeDTransform->setLocalToWorldMatrix
 
+//communicate:
+remove light,camera data
 
 
 
+*** DONE run in mobile:
+CLOSED: [2017-01-09 Mon 12:53]
+target:
+support ios8+
+support android 5.0+
+////test canvas renderer
 
-fix:
-set pixel ratio in mobile -> set style width/height?
-         view.width = view.width * window.devicePixelRatio;
-         view.height = view.height * window.devicePixelRatio;
-         view.styleWidth = view.width + "px";
-         view.styleHeight = view.height + "px";
+test on android(in tianmao, taobao)
 
-set viewport?:
-gl && gl.viewport(
-    camera.viewPort[0] / window.devicePixelRatio,
-    camera.viewPort[1] / window.devicePixelRatio,
-    camera.viewPort[2] / window.devicePixelRatio,
-    camera.viewPort[3] / window.devicePixelRatio
-);
 
+test on ios(in tianmao, taobao)
 
 
 
+////buy iphone
+buy iphone5, meizhu, google?
 
 
 
+**** TODO package .mobile.js for mobile
 
 
-skin animation first play is slow and isn't complelte!
-(refactor LayerKeyFrameController,JointKeyFrameController->_isFirst judge logic!)
 
+////*** TODO fix converter, scene graph, support basic material
+fix fbx converter:
+support BasicMaterial(by set command option)
 
 
+fix .hilo3d scene graph:
+support BasicMaterial
 
 
+refactor converter:
+clean code(gulp_task)
 
 
 
-study jiang's project(use inka3D)
-http://www.inka3d.com/
-
-how to reduce engine size
-learn useful things
-
-
-
-
-pass all unit tests
-pass render test
-
-
-
-
-summary browser collection
-
-
-
-fix:
-
-
-
-//load random cat resource
-
-
-
-//test in phone
-
-
-//test in ar
-use new models to test in ar
-
-
-
-
-fix project:
-//remove background-color
-
-adjust style
-
-
-
-
-
-
-refactor: move Material->shading to StandardLightMaterial
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-restore Transform->setXXXTransformState
-
-//restore CompileConfig->isCompileTest to true(if false, how to pass unit test?)
-
-
-
-package:(solve how to import file by user)
-animation add "skinSkeleton"(lite, custom)
-
-package lite,custom should clean dist/ folder firstly
-
-Cb,Frp build remove rebundant "__extend"
-
-support cmd,nodejs build:(study lafite project)
-debug.js,innerLib.js,all.js,lite.js,custom.js should all add corresponding version
-script support cmd,nodejs version
-fix Variable.ts: fix Promise when require!
-
-Frp add core.node.js version:
-Frp.node.js require Cb.nodejs!
-
-
-Cb.node.js remove debug.map
-
-refactor packageLite:use packageCustom to rewrite
-
-
-add package unit tests
-
-
-
-
-
-glsl support @require mechanism
-
-
-
-
-
-
-
-solve how to extend by user:(refer to unity)
-how to write own component
-how to write own extension(material)
-
-
-
-
-
-
-
-
-refactor:
-refactor BoneMatrix with Transform(add corresponding unit test)
-
-
-test:
-test Hilo3DLoader(e.g., convert image to base64)
-
-
-
-optimize:
-hongbao-> parse and assemble geometry is slow
-(compress position,joint,weight... to one buffer)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-fix:
-maoke->arcball camera->roll up/down is wrong!
-
-unify Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->play->params
-refactor Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->playOneTime(move to Animation)
-
-
-optimize:
-maoke->arcball camera->roll is very slow!
-
-
-
-
-enhance mobile debug:
-rewrite console:
-http://eclipsesource.com/blogs/2012/08/14/debugging-javascript-on-android-and-ios/
-use vconsole:
-https://www.qianduan.net/vconsole-open-source/
-
-show profile info
-
-
-
-feat: Collider add "setFromVertices"
-
-
-
-
-
-
-
-
-rewrite hongbao project!
-(use require)
-
-
-
-optimize:
-//solve switch cat slow:
-//precompute cat2 bone matrix(update(0)?)
-
-
-//play sound after show 
-
-
-
-
-
-
-
-
-
-
-
-
-*** TODO publish
 
 * 明日计划
+** TODO summary 
+* TODO 未来7日计划
 ** TODO skin optimize
 fbx:
   parse bind shape matrix:
@@ -493,7 +679,6 @@ There are two things that you have to be careful about.
 
 
 
-* TODO 未来7日计划
 ** TODO finish phone->todo
 *** TODO use compress texture?
 
@@ -1560,5 +1745,4 @@ learn GPU Pro 5->managing transforms in hierarchy
 
 
 * TODO more
-
 
