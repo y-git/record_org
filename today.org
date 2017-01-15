@@ -89,31 +89,74 @@ refactor:
 //rename XXXEngine to XXXComponentContainer
 
 
-*** TODO fix skin animation
+*** DONE fix skin animation
+CLOSED: [2017-01-14 Sat 11:58]
 refactor and test: save begin time
+articulated also has the bug!?
+//add assertion(updateFrame?)
 
 
-refactor skin animation unit test
+//remove prepare
 
-
+//refactor playonetime
 
 refactor:
-remove Skin animation-> isTimeExceed5000 logic
+//remove Skin animation-> isTimeExceed5000 logic
 
-fix skin animation:
+//fix skin animation:
 ////removeChild still has bug!
 play the hongbao->animation, at the begin of the second time it will shake!
 
-
-
 skeleton:
 fix:
-handle JointKeyFrameController->saveZeroTimeFrameData->handle first time !== 0!
+//handle JointKeyFrameController->saveZeroTimeFrameData->handle first time !== 0!
 
 
 
-fix yuan bao problem:
-the animation and the static model's rotation is not the same!(animation has rotate(0,-90,0)!)
+//pass animation render test
+
+
+//rename removeFromEngine to removeFromComponentContainer
+//rename engine to container
+
+//test removeFromEngine
+
+
+//rename removeAllComponent to xxxs
+
+
+
+//restore skin animation logic
+
+//clean skin animation logic
+
+
+
+
+////test or refactor event->ANIMATION_STOP
+
+
+
+
+
+
+
+//refactor skin animation unit test
+
+//add skin render test
+
+
+
+pycharm:
+pass lience
+//install vim
+
+*** DONE fix others
+CLOSED: [2017-01-15 Sun 17:04]
+
+
+////fix:
+set collider->center in loop not update?
 
 
 
@@ -149,52 +192,18 @@ set BasicCameraController->worldToCameraMatrix in each loop cause the problem:
     },
 
 
+refactor: dirty
 
 
+refactor: transform->setLocalToWorldMatrix
+test ThreeDTransform->setLocalToWorldMatrix
 
-
-
-fix:
-set collider->center in loop not update?
-
-
-
-
-restore Hilo3DLoader
-restore ShadowManager
-
+test Camera->isUserSpecifyThePMatrix
 
 refactor CommonShaderLib->data.vMatrix/pMatrix(add support set entityObject->vMatrix/pMatrix instead of camera.vMatrix/pMatrix)
 (consider has children)
 
 
-test or refactor event->ANIMATION_STOP
-
-
-test Camera->isUserSpecifyThePMatrix
-
-test Billboard->directionEulerAngles
-
-test ThreeDTransform->setLocalToWorldMatrix
-
-
-
-
-
-fix:
-set pixel ratio in mobile -> set style width/height?
-         view.width = view.width * window.devicePixelRatio;
-         view.height = view.height * window.devicePixelRatio;
-         view.styleWidth = view.width + "px";
-         view.styleHeight = view.height + "px";
-
-set viewport?:
-gl && gl.viewport(
-    camera.viewPort[0] / window.devicePixelRatio,
-    camera.viewPort[1] / window.devicePixelRatio,
-    camera.viewPort[2] / window.devicePixelRatio,
-    camera.viewPort[3] / window.devicePixelRatio
-);
 
 
 
@@ -204,8 +213,19 @@ gl && gl.viewport(
 
 
 
-skin animation first play is slow and isn't complelte!
-(refactor LayerKeyFrameController,JointKeyFrameController->_isFirst judge logic!)
+////restore Hilo3DLoader
+////restore ShadowManager
+
+
+
+
+
+//test Billboard->directionEulerAngles
+
+
+
+
+//refactor: move Material->shading to StandardLightMaterial
 
 
 
@@ -214,7 +234,45 @@ skin animation first play is slow and isn't complelte!
 
 
 
-study jiang's project(use inka3D)
+////restore Transform->setXXXTransformState
+
+//restore CompileConfig->isCompileTest to true(if false, how to pass unit test?)
+
+
+
+
+
+
+
+//fix firefox test
+
+
+//refactor DeviceManager
+
+//pass ci test
+
+
+//pass examples:
+instance:
+picking
+
+
+
+//todo test more
+
+
+
+test:
+////test Hilo3DLoader(e.g., convert image to base64)
+
+
+refactor:
+////refactor BoneMatrix with Transform(add corresponding unit test)?
+
+*** DONE publish v0.9.0
+CLOSED: [2017-01-15 Sun 17:39]
+
+////study jiang's project(use inka3D)
 http://www.inka3d.com/
 
 how to reduce engine size
@@ -223,218 +281,44 @@ learn useful things
 
 
 
-pass all unit tests
-pass render test
+//summary browser collection
 
+reinstall chrome
 
 
 
-summary browser collection
-
-
-
-fix:
-
-
-
-//load random cat resource
-
-
-
-//test in phone
-
-
-//test in ar
-use new models to test in ar
-
-
-
-
-fix project:
-//remove background-color
-
-adjust style
-
-
-
-
-
-
-refactor: move Material->shading to StandardLightMaterial
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-restore Transform->setXXXTransformState
-
-//restore CompileConfig->isCompileTest to true(if false, how to pass unit test?)
-
-
-
-package:(solve how to import file by user)
-animation add "skinSkeleton"(lite, custom)
-
-package lite,custom should clean dist/ folder firstly
-
-Cb,Frp build remove rebundant "__extend"
-
-support cmd,nodejs build:(study lafite project)
-debug.js,innerLib.js,all.js,lite.js,custom.js should all add corresponding version
-script support cmd,nodejs version
-fix Variable.ts: fix Promise when require!
-
-Frp add core.node.js version:
-Frp.node.js require Cb.nodejs!
-
-
-Cb.node.js remove debug.map
-
-refactor packageLite:use packageCustom to rewrite
-
-
-add package unit tests
-
-
-
-
-
-glsl support @require mechanism
-
-
-
-
-
-
-
-solve how to extend by user:(refer to unity)
-how to write own component
-how to write own extension(material)
-
-
-
-
-
-
-
-
-refactor:
-refactor BoneMatrix with Transform(add corresponding unit test)
-
-
-test:
-test Hilo3DLoader(e.g., convert image to base64)
-
-
-
-optimize:
-hongbao-> parse and assemble geometry is slow
-(compress position,joint,weight... to one buffer)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-fix:
-maoke->arcball camera->roll up/down is wrong!
-
-unify Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->play->params
-refactor Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->playOneTime(move to Animation)
-
-
-optimize:
-maoke->arcball camera->roll is very slow!
-
-
-
-
-enhance mobile debug:
-rewrite console:
-http://eclipsesource.com/blogs/2012/08/14/debugging-javascript-on-android-and-ios/
-use vconsole:
-https://www.qianduan.net/vconsole-open-source/
-
-show profile info
-
-
-
-feat: Collider add "setFromVertices"
-
-
-
-
-
-
-
-
-rewrite hongbao project!
-(use require)
-
-
-
-optimize:
-//solve switch cat slow:
-//precompute cat2 bone matrix(update(0)?)
-
-
-//play sound after show 
-
-
-
-
-
-
-
-
-
-
-
-
-*** TODO publish
 
 * 明日计划
 ** TODO skin optimize
+*** TODO use blender to build skin animation
+
+
+fix yuan bao problem:
+the animation and the static model's rotation is not the same!(animation has rotate(0,-90,0)!)
+(
+gltf is correct(monster is correct)(by compare with threejs)
+
+but fbx is wrong!(xsi_man_skinning.fbx)(compare with threejs->webgl_loader_fbx.html)
+maybe the bind shape matrix is wrong? need parse!?
+# parse bind shape matrix:
+# http://www.gamedev.net/topic/574309-solved-fbx-animation-problems/
+# refer to babylonjs->SkinInfo.cpp->bindPoses ?)
+
+
+
+
+*** TODO support multi animations in one fbx
+pass fbx->converter->multi skin animations!:
+use blender to add multi animations of one model in one .fbx file
+learn how to separate and combine character and its props animations!
+
+
+*** TODO optimize skin
 fbx:
   parse bind shape matrix:
   http://www.gamedev.net/topic/574309-solved-fbx-animation-problems/
   refer to babylonjs->SkinInfo.cpp->bindPoses ?
 
-
-pass fbx->converter->multi skin animations!:
-use blender to add multi animations of one model in one .fbx file
-learn how to separate and combine character and its props animations!
 
 
 
@@ -473,6 +357,7 @@ There are two things that you have to be careful about.
 
 
 
+*** TODO publish
 
 
 
@@ -487,10 +372,16 @@ There are two things that you have to be careful about.
 
 ** TODO support animation blend
 
+*** TODO publish
+
+** TODO support animation control(using action to control)
+support time limit logic(e.g. isTimeExceed5000)
+
+support frame control
+
 *** TODO refactor:extract AnimationEngine and move out to be a new project
 
 *** TODO publish
-
 
 
 * TODO 未来7日计划
@@ -582,35 +473,12 @@ use Skinned Instancing
 
 use quaternion for rotate skeleton
 
-*** TODO mobile optimize
-**** refer to hongbao:
-optimize:
-show other model in later(show bainian animation of another model when click on first model)
 
-optimize:
-parse and assemble hilo3d(now parse geometry is very slow)
-
-
-
-optimize hongbao in ios(also in android?):
-optimize model->antialias in android,ios
-
-
-
-
-optimize hongbao->03b -> cat(xxxSurface_251(66?))->normal compute:
-isn't correct!
-
-
-*** TODO optimize asset
-refer to hongbao:
-optimize skin animation
-optimize model geometry
 
 *** TODO more?
 
 
-** TODO add particle system(v0.12.0)
+** TODO add cpu particle system
 ** TODO add hdr post effect(v0.13.0)(move to extension)
 ** TODO add AssetDatabase to support aync load asset(v0.14.0)(move out to be a project in wonder group)
 ** TODO finish projects to apply engine
@@ -661,10 +529,141 @@ shadow(shadowMap, lightMap)
 
 
 *** TODO in mobile
+
+**** TODO rewrite bainian project(add more effect, show three cats)(use require:cmd/nodejs)
+***** TODO fix in mobile
+build mobile test environment
+
+
+
+fix:
+set pixel ratio in mobile -> set style width/height?
+         view.width = view.width * window.devicePixelRatio;
+         view.height = view.height * window.devicePixelRatio;
+         view.styleWidth = view.width + "px";
+         view.styleHeight = view.height + "px";
+
+set viewport?:
+gl && gl.viewport(
+    camera.viewPort[0] / window.devicePixelRatio,
+    camera.viewPort[1] / window.devicePixelRatio,
+    camera.viewPort[2] / window.devicePixelRatio,
+    camera.viewPort[3] / window.devicePixelRatio
+);
+
+
+
+optimize:
+hongbao-> parse and assemble geometry is slow
+(compress position,joint,weight... to one buffer)
+
+
+
+
+
+fix:
+maoke->arcball camera->roll up/down is wrong!
+
+unify Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->play->params
+refactor Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->playOneTime(move to Animation)
+
+
+optimize:
+maoke->arcball camera->roll is very slow!
+
+
+
+
+enhance mobile debug:
+rewrite console:
+http://eclipsesource.com/blogs/2012/08/14/debugging-javascript-on-android-and-ios/
+use vconsole:
+https://www.qianduan.net/vconsole-open-source/
+
+show profile info
+
+
+
+feat: Collider add "setFromVertices"
+
+
+
+
+
+
+
+
+
+
+
+
+run in mobile environment:
+fix skin animation:(first animation is not play completely)
+(due to elapsed !== _beginElapsedxxx at the first update!)
+refactor and test: save begin time
+articulated also has the bug!?
+
+
+
+
+
+optimize:
+//solve switch cat slow:
+//precompute cat2 bone matrix(update(0)?)
+
+
+//play sound after show 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** TODO mobile optimize
+http://www.cnblogs.com/ghl_carmack/p/5401906.html
+
+***** refer to hongbao:
+optimize:
+show other model in later(show bainian animation of another model when click on first model)
+
+optimize:
+parse and assemble hilo3d(now parse geometry is very slow)
+
+
+
+optimize hongbao in ios(also in android?):
+optimize model->antialias in android,ios
+
+
+
+
+optimize hongbao->03b -> cat(xxxSurface_251(66?))->normal compute:
+isn't correct!
+
+
+**** TODO optimize asset
+refer to hongbao:
+optimize skin animation
+optimize model geometry
+
+
 **** TODO tao fu wa
-**** TODO bainian(add more effect, show three cats)
 **** TODO simple room scene(player with skin animation to navigator)
 **** TODO simple outer scene
+
+
+
+
 
 *** TODO in both
 **** TODO car demo(replace material)
@@ -676,6 +675,74 @@ shadow(shadowMap, lightMap)
 *** TODO optimize
 
 ** TODO publish v1.0.0
+*** TODO support .json(.wd) loader
+
+*** TODO support nodejs, cmd
+package:(solve how to import file by user)
+////animation add "skinSkeleton"(lite, custom)
+
+package lite,custom should clean dist/ folder firstly
+
+Cb,Frp build remove rebundant "__extend"
+
+
+
+support cmd,nodejs build:(study lafite project)
+debug.js,innerLib.js,all.js,lite.js,custom.js should all add corresponding version
+script support cmd,nodejs version
+fix Variable.ts: fix Promise when require!
+
+Frp add core.node.js version:
+Frp.node.js require Cb.nodejs!
+
+
+Cb.node.js remove debug.map
+
+refactor packageLite:use packageCustom to rewrite
+
+
+add package unit tests
+
+
+
+
+
+glsl support @require mechanism
+
+
+
+
+
+
+
+solve how to extend by user:(refer to unity)
+how to write own component
+how to write own extension(material)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** TODO other
+
+
+
+nodejs:
+publish wdcb, wdfrp new version
+
+
+
 increase runtime test rate from 92% to 95%
 
 

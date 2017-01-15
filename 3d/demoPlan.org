@@ -459,7 +459,9 @@ se angular2 to build v0.1 editor
 
 efer to unity,threejs,playcanvas,wozlla
 
-ttp://www.babylonjs-playground.com/#
+http://www.babylonjs-playground.com/#
+
+https://github.com/pissang/qtek-playground
 
 
 *** TODO run all demo in ios8:
@@ -1168,14 +1170,36 @@ In my case, I’ve decided to implement the 2nd solution for this tutorial
 
 
 *** TODO v1.1-v2.0 improve engine,optimize, add junior functions(3.5w lines)
-
-
 **** TODO [#A] support multi-thread(maybe need rewrite runtime)
+http://www.bennychen.cn/2011/01/%E5%85%B3%E4%BA%8E%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E6%95%B4%E7%90%86%E5%92%8C%E6%80%9D%E8%80%83/
+http://www.cppblog.com/flagship/archive/2009/03/25/77886.html
+
+***** TODO multi-thread load asset
 
 
 
 support load multi part of one model?
 (refer to http://www.inka3d.com/)
+***** TODO multi-thread collision(refer to babylonjs->worker)
+***** TODO multi-thread render
+http://www.cnblogs.com/ixnehc/archive/2008/09/04/1284708.html
+
+
+
+**** TODO [#A] defer render and post effect(webgl 2.0)
+change to defer render architecture
+refer to:
+threejs
+https://github.com/uber/luma.gl
+(<<WebGL Insights>> chapter 15 Deferred Shading in Luma)
+
+
+
+post effect
+hdr
+fog
+
+
 **** TODO [#A] support WebGL 2.0 and can fallback to WebGL 1.0
 
 
@@ -1279,21 +1303,6 @@ http://http.download.nvidia.com/developer/presentations/2004/6800_Leagues/6800_L
 Shadow Distance
 Objects beyond this distance (from the camera) cast no shadows at all, while the shadows from objects approaching this
 distance gradually fade out. 
-
-
-
-**** TODO [#A] defer render and post effect(webgl 2.0)
-change to defer render architecture
-refer to:
-threejs
-https://github.com/uber/luma.gl
-(<<WebGL Insights>> chapter 15 Deferred Shading in Luma)
-
-
-
-post effect
-hdr
-fog
 
 
 
