@@ -425,7 +425,8 @@ r directly use OBJLoader.load
 
 *** TODO [#C] add CanvasRenderer
 
-*** TODO [#A] create engine asset format(like .dy?), can convert other format(like .obj .3ds .md2 .dae(Collada) .fbx...) to mine format
+*** DONE [#A] create engine asset format(like .dy?), can convert other format(like .obj .3ds .md2 .dae(Collada) .fbx...) to mine format
+CLOSED: [2017-01-19 Thu 11:22]
 **** TODO can export engine asset format to other format
 
 *** TODO [#A] add data collector
@@ -464,7 +465,8 @@ http://www.babylonjs-playground.com/#
 https://github.com/pissang/qtek-playground
 
 
-*** TODO run all demo in ios8:
+*** DONE run all demo in ios8:
+CLOSED: [2017-01-19 Thu 11:22]
 
  add demo-gesture in ios8:
      add gesture event
@@ -529,7 +531,8 @@ ttp://blogs.msdn.com/b/eternalcoding/archive/2014/01/16/the-best-of-the-two-worl
 
 *** TODO demo-particles(junior)
 
-*** TODO billbords
+*** DONE billbords
+CLOSED: [2017-01-19 Thu 11:23]
 
 
 *** TODO memory management
@@ -547,7 +550,8 @@ se cache
 se lightmap (use blende to generate lightmap?) to render static object's light or shadow
 
 
-*** TODO demo-terriain(junior)
+*** DONE demo-terriain(junior)
+CLOSED: [2017-01-19 Thu 11:23]
 outain
 rass
 
@@ -557,7 +561,8 @@ exture splatting
 [http://www.linuxgraphics.cn/opengl/terrain_render_overview.html][地形渲染技术杂谈]]
 
 
-*** TODO demo-water(junior)
+*** DONE demo-water(junior)
+CLOSED: [2017-01-19 Thu 11:23]
 
 
 
@@ -887,7 +892,8 @@ CLOSED: [2016-10-27 四 09:52]
 2.model的copy
 
 **** TODO [#B] demo-particles(junior)
-**** TODO [#A] run on mobile(ios 8+ android 5.0+)
+**** DONE [#A] run on mobile(ios 8+ android 5.0+)
+CLOSED: [2017-01-19 Thu 11:24]
 
 https://blogs.msdn.microsoft.com/eternalcoding/2013/02/20/hand-js-a-polyfill-for-supporting-pointer-events-on-every-browser/
 
@@ -897,9 +903,6 @@ https://blogs.msdn.microsoft.com/eternalcoding/2013/02/20/hand-js-a-polyfill-for
 ***** performance
 refer to <<OpenGL Insights>> 24 chapter
 
-
-****** tile-base 
-http://www.cnblogs.com/gameknife/p/3515714.html
 
 
 **** DONE [#A] billbords
@@ -911,7 +914,8 @@ CLOSED: [2016-10-27 四 09:52]
 
 
 **** TODO [#A] animation
-***** TODO [#A] skeleton animation
+***** DONE [#A] skeleton animation
+CLOSED: [2017-01-19 Thu 11:25]
 ***** TODO [#A] animation blend
 refer to threejs(webgl_animation_skinning_blending.html)
 
@@ -1005,7 +1009,8 @@ multi scene, use door to switch scene
 
 
 
-**** TODO refactor
+**** DONE refactor
+CLOSED: [2017-01-19 Thu 11:25]
 //remove "pc." from comment which comes from playcanvas
 
 //clean up code from playcanvas(such as math/xxx)
@@ -1169,24 +1174,13 @@ In my case, I’ve decided to implement the 2nd solution for this tutorial
 
 
 
-*** TODO v1.1-v2.0 improve engine,optimize, add junior functions(3.5w lines)
-**** TODO [#A] support multi-thread(maybe need rewrite runtime)
-http://www.bennychen.cn/2011/01/%E5%85%B3%E4%BA%8E%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E6%95%B4%E7%90%86%E5%92%8C%E6%80%9D%E8%80%83/
-http://www.cppblog.com/flagship/archive/2009/03/25/77886.html
-
-***** TODO multi-thread load asset
+*** TODO v1.1-v2.0 improve engine,optimize, add junior functions(6w lines)
 
 
 
-support load multi part of one model?
-(refer to http://www.inka3d.com/)
-***** TODO multi-thread collision(refer to babylonjs->worker)
-***** TODO multi-thread render
-http://www.cnblogs.com/ixnehc/archive/2008/09/04/1284708.html
+**** TODO [#A] defer render and post effect(webgl 2.0)(use new render loop!)
+should support fallback to forward render
 
-
-
-**** TODO [#A] defer render and post effect(webgl 2.0)
 change to defer render architecture
 refer to:
 threejs
@@ -1236,6 +1230,7 @@ will populate only the alpha and green channels in a sample, respectively. To su
 expansion, and the associ- ated additional memory and texture upload performance costs, can be avoided by developers
 keen for clock cycles by simply using RED textures in place of LUMINANCE and RG in place of LUMINANCE_ALPHA when using
 ANGLE with APIs that support them. 
+**** TODO [#B] study WebVR
 **** TODO [#B] volume light
 **** TODO [#B] advance collision and physics
 ***** TODO collision
@@ -1255,7 +1250,9 @@ http://www.gamedev.net/topic/675055-3d-model-terrain-collision/
 refer to cannon example
 **** TODO [#C] advance shadow
 ***** TODO problem
-point shadow has one line in the face edge
+point shadow has one line in the face edge:
+在世界空间连续，在uv空间不连续?
+用最近的点颜色填充背景?
 
 instance_shadow_multiDirectionLights sample: box shadow break when rotate
 
@@ -1304,7 +1301,15 @@ Shadow Distance
 Objects beyond this distance (from the camera) cast no shadows at all, while the shadows from objects approaching this
 distance gradually fade out. 
 
+**** TODO [#C] glsl optimizer
+[[https://github.com/aras-p/glsl-optimizer][glsl optimizer(unity used)]]
+A C++ library that takes GLSL shaders, does some GPU-independent optimizations on them and outputs GLSL or Metal source
+back. Optimizations are function inlining, dead code removal, copy propagation, constant folding, constant propagation,
+arithmetic optimizations and so on. 
 
+
+**** TODO [#C] shader compress
+http://aras-p.info/blog/2016/09/13/Shader-Compression-Some-Data/
 
 **** TODO [#B] optimize
 mesh optimize(mesh merge ...)
