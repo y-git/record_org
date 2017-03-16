@@ -1252,7 +1252,7 @@ refer to cannon example
 ***** TODO problem
 point shadow has one line in the face edge:
 在世界空间连续，在uv空间不连续?
-用最近的点颜色填充背景?
+
 
 instance_shadow_multiDirectionLights sample: box shadow break when rotate
 

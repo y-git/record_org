@@ -1,4 +1,722 @@
 * 今日计划
+* 完成事项
+////** TODO support .json(.wd) loader
+
+////** TODO rewrite hongbao project(add more effect, show three cats)
+** DONE use browserify + typescript(cmd)
+CLOSED: [2017-02-06 Mon 07:09]
+*** DONE support nodejs, cmd
+CLOSED: [2017-02-04 Sat 11:20]
+//fix cb,frp(add module.exports; add require; use browser)
+
+//handle cannon(require it!)
+
+
+
+
+
+
+package:(solve how to import file by user)
+////animation add "skinSkeleton"(lite, custom)
+
+////package lite,custom should clean dist/ folder firstly
+
+
+
+
+//support cmd,nodejs build:(study lafite project)
+debug.js,innerLib.js,all.js,lite.js,custom.js should all add corresponding version
+script support cmd,nodejs version
+fix Variable.ts: fix Promise when require!
+
+
+
+
+//Frp.node.js require Cb.nodejs!
+Frp add core.node.js version
+
+
+
+
+
+
+
+
+update cb,frp->nodejs package(test tool->converter)
+//add node.d.ts
+(ignore lib/, test/, build/, src/)
+
+//rename wdxxx to wonder-xxx
+
+
+//wonder.js: add author,email(packcage, banner)
+
+
+//wdfrp->node add node_modules->wdcb,wonder-package
+
+//wdfrp->require("wdcb")
+
+
+use npm instead(if no npm, remain submodule)(Wonder-Package only npm)
+////(.gitignore: not contain Wonder-xxx submodule)
+(browserify contain debug? innerLib)
+(innerLib get from npm)
+
+
+
+
+
+
+
+////use import:
+study webpack
+
+code split
+
+typescript
+
+sourcemap
+
+gulp
+
+
+
+
+
+
+
+
+
+
+
+fix:
+////wdFrp add .core.js
+//wonderjs->combineInnerLib should use xxx.node.js(should judge require) file to combineInnerLib wd.xxx.innerLib.js
+
+
+//refactor wonder:require
+
+//rename browserify: "wd" to "wonder"
+
+////can browserify singleon export wd,wdCb,wdFrp?
+
+
+
+//move bowser,rsvp,chai,cannon to npm(remove from lib)
+////using Typings to install d.ts file
+
+//publish wdcb,wdfrp, rsvp,cannon d.ts
+
+
+//tsconfig.json->filesGlob not need contain @types/xxx.d.ts?
+
+
+
+
+*** DONE refactor package link point in src
+CLOSED: [2017-01-22 Sun 18:19]
+see references
+
+
+
+////- add className
+- 
+
+
+
+////assemble logic to component?(need more abstract)
+
+////e.g. move ModelGeometry->MorphBufferContainer logic to MorphAnimation?
+(MorphAnimationData?)
+
+
+////**** TODO add buildForCI(not browserify) and ci use it
+
+
+
+////**** TODO packageCustom:move light out
+
+
+////** TODO publish to README.org(move to Wonder-Application project)(need replace model!)
+
+** DONE begin rewrite engine(v1.0.0-alpha.1)
+CLOSED: [2017-02-26 Mon 18:00]
+*** DONE extract min size of engine
+CLOSED: [2017-02-06 Mon 07:19]
+can draw multi boxes
+
+
+*** DONE wonder-commonlib use es6 import
+CLOSED: [2017-02-19 Sun 10:10]
+**** DONE write script:
+CLOSED: [2017-02-17 Fri 13:49]
+remove module
+
+//get all exports
+(
+decorator
+
+
+)
+////(write export)
+//save file paths
+
+
+//write imports:
+//compute relative path
+//if has same name of different files, record to one file, and manual fix it
+//merge imports from the same file
+
+
+//pass src
+
+//generate index.ts
+
+//commit
+
+
+//to be gulp task
+
+
+
+////umd->typescript sourcemap?
+
+
+//todo: move to npm(can exec "wonder-tool-convertNamespaceToES2015 --xxx)
+
+
+//format generated es2015 files
+
+//can install -g when npm install this published package(preinstall?prepublish?)
+
+
+
+//commit
+
+
+
+
+
+
+
+////publish npm(bin?)
+e.g.
+wonder-tool-convertNamespaceToES2015
+
+move to wonder-package as gulp task
+
+
+refactor
+
+
+
+
+**** DONE handle wonder-commonlib
+CLOSED: [2017-02-19 Sun 10:10]
+//generate two dts
+
+//rollup->node resolve
+
+
+//test
+
+//update definite dts
+
+
+//add gulp task for rollup,compile ts
+//remove old build
+
+
+
+//add format typescript gulp task when build
+(move to wonder-package)
+
+
+
+
+//update npm
+(add module/jsnext and test it!)
+
+//add d.ts for namespace
+
+////test xxx.umd.js->commonjs(by browserify)
+
+
+//publish to npm
+
+
+*** DONE wonder-frp use es6 import
+CLOSED: [2017-02-21 Tue 20:36]
+script support:
+////decorator
+//nodejs package
+
+//handle "import xxx = wdCb.xxx;"
+
+//handle:
+    export class JudgeUtils extends wdCb.JudgeUtils{
+
+
+//refactor
+
+
+//fix wonder-commonlib:
+mv .ts to dist/es2015
+use rollup-typescript
+
+
+////refactor:
+move "define rollup.config.js" to wonder-package
+
+
+
+//remove submodule, use wonder-commonlib npm package instead
+
+//publish npm
+
+*** DONE wonderjs use es6 module
+CLOSED: [2017-02-26 Sun 19:46]
+use es6 import:
+use Rollup
+
+
+Similarly, the various cases of object instanceof THREE.Mesh and so on have been replaced with object && object.isMesh
+(and the relevant constructors have been augmented such that this.isMesh is true for all instances of Mesh. This also
+eliminates some nasty cyclical dependencies. 
+
+
+
+
+pass tsc:
+//add bowser->json data
+
+//remove wdCb.$BREAK
+
+//handle clone.ts->wd:
+//add @registerClass by convert
+//ClassUtils add "getClass" by class name
+//ClassUtils add "classMap"
+//fix clone->wd
+
+//fix wonder-package->tsfmt:
+limit file?
+use glob?
+
+//fix wonder-commonlib,wonder-frp
+
+
+//commit
+
+
+
+//fix export type
+
+////tsconfig.json add "lib" field?
+
+
+
+pass run test:
+//pass rollup
+
+
+//fix wonder-frp->index.d.ts:not import module
+
+
+//fix chai:
+convert chai from commonjs to es2015?(use rollup plugin)
+
+//npm install @types/node --save
+
+
+
+//only import wonder-commonlib one time!
+
+//pass run test
+
+
+//fix chrome:
+//reinstall chrome
+
+
+//solve typescript and duplicate problem!
+
+//fix ClassUtils->getClassName
+
+
+//add ENDLOOP,STARTLOOP,Transform event
+
+
+//fix gulp task
+execute prepareForRollup.js in "rollup" gulp task
+
+support compress function name
+
+////add compress task
+
+
+//fix ShaderChunk
+remove ShaderChunk->"body:xxx," the last comma!
+
+
+//fix wonder-commonlib,wonder-frp->formatTs
+
+
+
+
+
+
+
+
+//commit
+
+
+
+//add es2015 sample test
+
+//wonder-frp:not bundle dependencies wonder-commonlib!
+
+
+
+
+
+////continue reduce src file!
+should reduce wd.js lines < 15000
+
+
+
+
+//write script to auto generate:
+remove module
+class: export, import
+decorator
+lib(cannon,expect,rsvp,bowser,wonder-xxx)
+glsl
+
+
+
+
+
+
+
+
+//remove test
+
+//remove rebundant examples->demos,samples,asset
+
+wonder-xxx add nodejs dist files:
+
+//add wonder-commonlib,wonder-frp -> xxx.commonjs.d.ts
+
+//wonder-tool-converter,-common: add typeRoots:wonder-commonlib,wonder-frp
+
+
+
+//Wonder.js,wonder-tool-converter:
+rename @require,@requireInNodejs to @requireCheck
+
+//wonder-tool-converter,-common:
+change chai to expect.js
+
+
+//npm publish wonder-tool-converter and pass -g test
+
+
+
+//update wonder-xxx package
+
+
+//clear package.json
+
+
+
+
+
+////refactor wonder-tool
+
+
+
+
+manual fix:
+need use local instead global(e.g. rewrite Variable.ts)
+
+
+//strip glsl
+See this demo vs this one (note the import * and individual export var declarations) for an example of how shaders could
+be refactored to permit tree-shaking.  
+
+//rebuild ShaderChunk.ts
+each shader lib only import its glsl from ShaderChunk.ts
+
+
+
+
+
+
+
+////how to refactor assembler?
+
+
+refactor link point:
+remove ClassUtils
+
+user should register light parser to LoaderManager?
+(so can avoid import light related code from WDParser/Assembler?)
+
+////or user should register xxx module/xxx lib?
+////(if not register, use the default import)
+(register exclude_module/lib? just strip it fromm defaultly all registered)
+
+
+
+extension:
+move shadow back to src/
+
+
+
+refactor isXXX(is class):
+judge className
+
+
+
+
+
+
+
+
+
+
+////add className(use script)(use compile api?)
+regard it as abstract attribute in Object,Component
+
+refactor clone->get class Name
+refactor uglify: compress function name
+
+
+
+
+
+
+integrate tsc,rollup to gulp
+
+
+use one command to prepare all environment!
+
+
+
+
+
+
+
+
+
+
+
+
+implement conditional import when typescript support "Proposal: Conditional Compilation":
+https://github.com/Microsoft/TypeScript/issues/3538
+
+e.g. user can run "gulp packageES6 --excludeModules action,animation --excludeLibs contract
+in WDAssembler.ts:
+#if !EXCLUDE_MODULE_ANIMATION:
+import {MorphAnimation} from "./MorphAnimation"
+import {SkinSkeletonAnimation} from "./SkinSkeletonAnimation"
+#endif
+
+
+
+
+use typescript compile api:
+remove @require/xxx code if exclude contract lib
+
+
+
+
+
+
+
+
+
+
+
+
+add wonderjs->npm,jspm package
+package.json add "--typeRoots" field
+pass d.ts file to Definitely repository
+
+
+
+
+
+
+
+
+
+
+
+
+try remove innerLib file:
+
+
+
+fix combine dts 
+(not commbine dts?)
+
+
+remove keyword
+remove containDTS(manage exlude module lib)
+
+fix packageLite,packageCustom
+
+refactor Wonder-FRP->combineInnerLib
+
+
+remove Wonder-commonlib/FRP->xxx.node.d.ts
+
+wonder-package:
+add d.ts->add reference typings!(wonder-frp, wonderjs)
+/// <reference types="wonder-commonlib" />
+
+
+
+fix browserify:now contain nodejs content
+
+
+
+move converter, render test
+
+
+
+install wonderjs package for wonder.js
+add types field
+(test Typings)
+
+
+
+filter files instead of fileGlobs?
+
+
+
+(bundleXXX)(chai move to bundle)
+
+fix package:
+remame module->chai to contractCheck
+if not contain module->contractCheck, set isCompileTest to be false
+(move to func logic)
+
+
+
+runtime use require? how to package?
+(refer to threejs, hilo)
+(google: package)
+
+
+
+
+
+add wd.xxx.node.js(only export wd)
+wonder->node add node_modules->wonder-cb,wonder-frp,wonder-package
+(ignore lib/, test/, build/, src/)
+
+
+refactor:
+clean Variable.ts
+
+
+test in project
+(typescript->commonjs)
+
+
+
+
+
+
+
+refactor packageLite:use packageCustom to rewrite
+
+
+Cb,Frp build remove rebundant "__extend"
+
+Cb.node.js remove debug.map
+
+
+
+//extract compile common code to new submodule project from wdcb,wdfrp,wonder
+
+
+
+
+
+
+*** TODO update wonder-xxx definite dts
+
+update d.ts to definite repo:
+add wonder-expect.js d.ts
+add wonder-core d.ts
+update wonder-xxx
+
+
+////*** TODO contract check:change to "it"
+
+*** DONE move tool to npm/submodule
+CLOSED: [2017-02-26 Sun 19:31]
+//fix wdfrp->global type
+
+
+**** TODO pass tool->converter
+**** TODO pass tool->terrain
+
+
+
+
+*** DONE publish(v1.0.0-alpha.1)
+CLOSED: [2017-02-26 Mon 18:00]
+
+////explain nodejs version(import {wd,wdCb,wdFrp} = require("wd.all.js");)
+
+**** DONE publish npm package(wonderjs?wonder-runtime?wonder-core?)
+CLOSED: [2017-02-26 Sun 19:46]
+
+
+//move tool->converter,terrain to npm!
+
+**** DONE fix bower version
+CLOSED: [2017-02-26 Sun 19:46]
+ignore wd.xxx.node.xxx
+
+make it work
+
+
+
+
+**** TODO update document(es6 module!)
+write why not import from "npm package"
+(
+if index.ts export the class which extend parent class,
+__extend func cause tree shake not work! 
+
+"
+(function(){
+}) 
+"
+can cause it!
+)
+
+
+write how to import from "npm package"
+(add "types" in tsconfig to refer to "xxx.noDelcareModule.d.ts)
+
+write how to import from "sub package"
+
+
+
+* 明日计划
+
+//buy 《代码大全2》
+
+//buy 灵性书籍
+
+
+* TODO 未来7日计划
 ** TODO demo test(in new branch to test)(no unit test,render test)
 *** TODO Data-Driven Design(v)
 learn http://www.dataorienteddesign.com/dodmain/dodmain.html
@@ -17,147 +735,7 @@ cull
 
 
 **** TODO add benchmark(refer to threejs,babylonjs)
-
-
-* 完成事项
-** TODO Data-Driven Design(v)
-learn http://www.dataorienteddesign.com/dodmain/dodmain.html
-
-component 
-https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/
-http://www.danielsefton.com/2016/05/developing-a-data-oriented-game-engine-part-1/
-
-
-
-
-not use Collection/Hash, use Array/table instead
-
-
-//upload 3d references to wonder
-
-
-finish references learning
-
-begin component rewrite
-
-
-
-*** DONE entity rewrite
-CLOSED: [2017-03-09 Thu 12:10]
-The idea here is that the index part directly gives us the index of the entity in a lookup array.
-The generation part is used to distinguish entities created at the same index slot. As we create and destroy entities we
-will at some point have to reuse an index in the array. By changing the generation value when that happens we ensure
-that we still get a unique ID.  
-
-entity use free list+array(packed array?) to store components
-
-entity,component->interact with id
-
-can cache pointer to component when get component in one frame(because in next frame, the actual component data may be
-moved otherwhere)
-
-entity stores:
-an array of component Ids 
-an corresponding array of component types
-(
-TypeToId is the class template I use for that purpose, TypeToId<T>::ID yields a unique integer for every type T.
-
-When retrieving a component T you can simply search the array of component types until you find TypeToId<T>::ID, and
-return the corresponding component, which is cast into T. 
-And that’s about it.
-
-)
-
-
-I find it rather elegant how it deals with generic components without a common base class, and only stores simple
-integers internally. 
-
-
-You can also hold on to pointers to components during a frame, but need to grab the pointer at least once a frame
-because the elements in the ID array may have changed their order. 
-
-
-
-non-growable, fixed-size arrays.
-(use typed array for soa?)
-
-
-
-
-//todo: remove data
-
-
-*** TODO component rewrite
-use one typed array to store all components' data
-compute index(all sub dataview?) to get each one
-
-
-component data
-component system -> manage component data
-
-world which manage entitys and system?
-
-**** DONE update @types
-CLOSED: [2017-03-11 Sat 09:20]
-
-
-**** DONE add gulp task to generate index.ts
-CLOSED: [2017-03-11 Sat 10:20]
-
-**** TODO camera component rewrite
-
-
-optimize dirty
-
-
-
-*** TODO transform rewrite
-extract 4×4 transformation matrix
-
-http://bitsquid.blogspot.it/2014/10/building-data-oriented-entity-system.html
-
-
-optimize set global/local state:
-use weak reference like EntityMannager?
-
-*** How do you handle Systems which use multiple components:
-So every system really only has one responsibility, and if the resulting data is needed by other systems, I simply pass
-along a contiguous block of data that holds exactly that data – nothing less, nothing more. 
-
-
-because systems are only concerned with one kind of component, and know how to provide the data for other systems (if
-they even have to).  
-
-
-*** TODO create entitys rewrite
-http://bitsquid.blogspot.it/2014/10/building-data-oriented-entity-system_10.html
-
-
-*** TODO optimize data structure
-
-*** TODO refactor
-
-
-*** TODO renderer rewrite
-https://www.slideshare.net/tobias_persson/bstech-gdc2011
-
-**** TODO geometry(mesh)rewrite
-
-* 明日计划
-
-
-* TODO 未来7日计划
-** TODO demo test(in new branch to test)(no unit test,render test)
 *** TODO multi thread(v)
-study references:
-https://en.wikipedia.org/wiki/Task_parallelism
-http://www.dataorienteddesign.com/dodmain/node13.html
-https://www.researchgate.net/publication/271271298_Data_Structures_and_Algorithms_for_Data-Parallel_Computing_in_a_Managed_Runtime
-https://www.researchgate.net/publication/281740929_Conc-Trees_for_Functional_and_Parallel_Programming
-
-http://bitsquid.blogspot.it/2015/03/multithreaded-gameplay.html
-
-
 job
 
 terrain geometry process
@@ -184,34 +762,17 @@ deferred context
 2. Renderer has list of all draw calls we want to do for each
 rendering “layer” of the frame
 3. Split draw calls for each layer into chunks of ~256 and
-4. Render to immediate context & execute command lists
-5. Profit! 
-   
-
 dispatch in parallel to the deferred contexts
  Each chunk generates a command list
-**** TODO web worker
-**** TODO render multi thread
-**** TODO SIMD
+4. Render to immediate context & execute command lists
+5. Profit! 
 
 
 **** TODO add benchmark(refer to threejs,babylonjs)
 *** TODO render rewrite(v)
 *** TODO finish the way which user can extend by npm/github repo
-need use other instead of npm?
-(learn http://bitsquid.blogspot.it/2016/01/introducing-stingray-package-manager-spm.html)
 
 
-*** TODO define schema for editor and hot loading data in editor
-The entity-component architecture uses external descriptions for all its components, stored in so-called “Schema” files.
-Schemas and their properties/fields are treated completely generically, and hence are used for exposing properties to
-the editor. Additionally, schemas have a few more other advantages over serialization- or reflection-based approaches,
-which is what I wanted to talk about in a future post. 
-
-refer to:
-https://blog.molecular-matters.com/2014/02/21/schema-based-entity-component-data-for-fast-iteration-times/
-https://blog.molecular-matters.com/2012/01/31/a-content-pipeline-for-fast-iteration-times/
-http://bitsquid.blogspot.com/2016/01/hot-reloadable-javascript-batman.html
 
 *** TODO refactor
 refactor getComponent->paradigms
@@ -226,11 +787,6 @@ mateiral add to meshrenderer
 
 use es5,es6->Object added method to refactor:
 use assign instead of extend?
-
-optimize deep clone:
-http://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript?rq=1
-http://stackoverflow.com/questions/728360/how-do-i-correctly-clone-a-javascript-object?rq=1
-
 use keys in Hash->getKeys?
 
 
@@ -263,14 +819,6 @@ Be aware of the overhead of virtual functions, pointers to functions, and pointe
 
 
 study "virtual function"
-
-
-**** TODO loader,asset data driven
-refer to https://blog.molecular-matters.com/2013/05/17/adventures-in-data-oriented-design-part-3b-internal-references/:
- you can still make sure that the scripts themselves are contiguous in memory by allocating them with a suitable
- allocator. As an example, I use a linear/stack-based allocator for all resources being loaded, and resources are sorted
- inside their resource bundles. This means that in memory, all script code (also meshes, textures, etc.) will be right
- next to each other, with pointers to scripts stored elsewhere. 
 
 
 
@@ -649,7 +1197,6 @@ logic component and render component
 *** TODO add unit test
 
 *** TODO enhance render test
-
 ci can run render test
 
 can generate correct image in the debug page of render
@@ -667,11 +1214,6 @@ todo: add compare in two way:
 - get diff pixel img
 
 **** TODO add render test
-
-*** TODO add benchmark auto test
-build basic test scenes
-
-compare with time
 
 *** TODO solve how to extend by user:(refer to unity)
 
@@ -727,33 +1269,6 @@ high-level:c#   extensible
 *** TODO study script(integrate with engine?)
 *** TODO move event manager to be npm package
 *** TODO build simple world editor(v)
-
-
-*** TODO optimize sort render command(WebglRenderer.ts)
-use radix sort?
-
-refer to:
-https://www.byvoid.com/zhs/blog/sort-radix
-http://www.dataorienteddesign.com/dodmain/node10.html
-
-
-use web worker to parallel sort?
-It is possible to make this last stage of the process parallel by having each sorter ignore any values that it reads
-that are outside its working set, meaning that each worker reads through the entire set of values gathering for their
-bucket, but there is still a small chance of non-linear performance due to having to write to nearby memory on different
-threads. During the time the worker collects the elements for its bucket, it could be generating the counts for the next
-radix in the sequence, only requiring a summing before use in the next pass of the data, mitigating the cost of
-iterating over the whole set with every worker. 
-
-If your data is not simple enough to radix sort, you might be better off using a merge sort or a quick sort, but there
-are other sorts that work very well if you know the length of your sortable buffer at compile time, such as sorting
-networks. Through merge-sort is not itself a concurrent algorithm, the many early merges can be run in parallel, only
-the final merge is serial, and with a quick pre-parse of the to-be-merged data, you can finalise with two threads rather
-than one by starting from both ends (you need to make sure that the mergers don't run out of data). Though quick sort is
-not a concurrent algorithm each of the sub stages can be run in parallel. These algorithms are inherently serial, but
-can be turned into partially parallelisable algorithms with O(log n) latency. 
-
-
 
 *** TODO add collision(v) 
 **** TODO multi thread
@@ -2129,22 +2644,119 @@ learn GPU Pro 5->managing transforms in hierarchy
 
 
 * Record
-** benchmark compare
-before do:
-5000 basic boxes: 25 fps
-
-
-
-
+** rollup
+*** if use rollup-plugin-typescript, then
+rollup.config.js should in the dir of node_modules
+or
+the imported ts file should under current project dir
 
 * TODO unsolved problem
+** npm
+*** TODO install wonder-tool-height_map_generator fail!
+description
+when exec:
+npm install -g wonder-tool-height_map_generator
+
+error:
+npm ERR! enoent ENOENT: no such file or directory, chmod
+'/usr/local/lib/node_modules/wonder-tool-height_map_generator/bin/generateHeightMap' 
+
+
+
+
+reason
+maybe the wonder-tool-height_map_generator->canvas npm cause the problem!
+(canvas use node-gyp, and it cause the problem?)
+
+
+
+
+
+current solution
+these solution don't work:
+1. 
+npm cache clean
+2. 
+brew uninstall node
+brew install node
+rm -rf ~/.npm
+npm install -g wonder-tool-height_map_generator
+
+
+this solution work:
+npm install -g --no-bin-links wonder-tool-height_map_generator
+
+but the bin isn't work then!
+(command "generateHeightMap" not found!)
+
+
+
+more can refer to:
+https://github.com/npm/npm/issues/9633
+http://stackoverflow.com/questions/17990647/npm-install-errors-with-error-enoent-chmod
+
+
 
 
 
 * TODO need improve
+** rollup
+*** TODO tree shake don't work well
+description
+in wonder-frp, we expect:
+import { DomQuery } from "wonder-commonlib";
+
+but it will include "Collection" code from "wonder-commonlib"!
+
+
+reason
+wonder-commonlib->index.ts export Collection, and the "__extend" function->
+"(function(){xxx})()"
+ cause the problem!
+
+
+solution
+import DomQuery from submodule:
+import { Collection } from "wonder-commonlib/dist/es2015/Collection";
+
+
+expection
+import DomQuery from whole module:
+import { DomQuery } from "wonder-commonlib";
+
+
+so if the DomQuery's file path change, the user which import it can not do any change!
+
+
+
+*** DONE the imported npm module will be included multi times if parent and submodule both import it
+CLOSED: [2017-02-25 Sat 13:18]
+refer to https://github.com/rollup/rollup-plugin-node-resolve/issues/80
+
+
+description
+Wonder.js import wonder-commonlib,wonder-frp, and wonder-frp import wonder-commonlib, so the wonder-commonlib's code
+will be imported two times in the bundled file in Wonder.js by rollup!
+
+
+current solution
+so maybe we must ensure that the 'plugin-test1','plugin-test2' npm package shouldn't has the 'base-library' in "dependencies" field in package.json!
+that means remove the 'base-library' from "node_modules" dir in 'plugin-test1' and 'plugin-test2' npm package!
+
+
+expection
+remain wonder-frp dependent on wonder-commonlib!
+
+
+
+new solution
+wonder-frp remove package.json->bundledDependencies->wonder-commonlib, so that the wonder-frp/node_modules will not
+contain wonder-commonlib! 
+
+so it's no need to remove wonder-commonlib manually!
+
 
 
 
 * TODO more
-
 
