@@ -104,21 +104,99 @@ CLOSED: [2017-03-11 Sat 09:20]
 **** DONE add gulp task to generate index.ts
 CLOSED: [2017-03-11 Sat 10:20]
 
-**** TODO camera component rewrite
-
-
-optimize dirty
 
 
 
-*** TODO transform rewrite
-extract 4×4 transformation matrix
+
+
+**** TODO transform rewrite
+//extract 4×4 transformation matrix
 
 http://bitsquid.blogspot.it/2014/10/building-data-oriented-entity-system.html
 
 
 optimize set global/local state:
 use weak reference like EntityMannager?
+
+***** DONE defer compute
+CLOSED: [2017-03-17 Fri 16:46]
+
+***** DONE add,remove,dispose component 
+CLOSED: [2017-03-17 Fri 19:25]
+
+
+***** TODO write a demo(only defer transform, no render) with do,fp,frp,worker,simd,unit test,offscreencanvas
+****** DONE fp
+CLOSED: [2017-03-28 Mon 11:33]
+****** DONE worker
+CLOSED: [2017-04-10 Mon 10:49]
+
+
+***** TODO jest test
+
+
+***** TODO Property-based testing
+use https://github.com/jsverify/jsverify
+
+
+***** TODO add unit test
+****** TODO migrate from jasmine to jest
+
+use typescript/babel to write test
+
+
+
+
+
+
+
+***** TODO use fp?
+choose what?
+elm, purescript, ghcjs, or use typescript?
+
+
+
+
+functional at the top and data-oriented at the bottom
+
+
+
+
+****** TODO use rxjs 5 instead of wonder-frp
+https://github.com/ReactiveX/rxjs
+
+
+
+
+
+
+***** TODO use yarn
+
+
+
+***** TODO add bundle d.ts to wonder-xxx
+wonder-expect.js
+wonder.js
+wonder-xxx
+
+
+
+***** TODO immediate compute
+
+***** TODO add unit test
+
+***** TODO clone
+generate new index and copy data in ThreeDTransformData
+
+***** TODO add unit test
+
+***** TODO pass run test
+
+***** TODO supply transform(e.g. add "translate" ... methods)
+
+***** TODO rename "addDataOrientedComponent", ... to "addComponent", ...
+
+*** TODO refactor Hash,Collection-> xxx<T>()
 
 *** How do you handle Systems which use multiple components:
 So every system really only has one responsibility, and if the resulting data is needed by other systems, I simply pass
@@ -143,12 +221,17 @@ https://www.slideshare.net/tobias_persson/bstech-gdc2011
 
 **** TODO geometry(mesh)rewrite
 
+*** TODO install @types/wonder-expect.js and update package.json
+update package.json:
+change @types/expect.js -> @types/wonder-expect.js
 * 明日计划
 
 
 * TODO 未来7日计划
 ** TODO demo test(in new branch to test)(no unit test,render test)
 *** TODO multi thread(v)
+use immutable.js
+
 study references:
 https://en.wikipedia.org/wiki/Task_parallelism
 http://www.dataorienteddesign.com/dodmain/node13.html
@@ -189,14 +272,34 @@ rendering “layer” of the frame
    
 
 dispatch in parallel to the deferred contexts
- Each chunk generates a command list
-**** TODO web worker
+ Each chunk generates a command 
+
+
+**** TODO add "action" as one woker thread
+
+**** TODO thread pool
+http://www.smartjava.org/content/html5-easily-parallelize-jobs-using-web-workers-and-threadpool
+http://stackoverflow.com/questions/13574158/number-of-web-workers-limit
+
+
+
+
 **** TODO render multi thread
 **** TODO SIMD
 
 
 **** TODO add benchmark(refer to threejs,babylonjs)
+*** TODO try use webAssembly in engine for cpu compute
+**** TODO write a webAssembly demo
+use https://github.com/01alchemist/TurboScript to compile js to webAssembly
+use webAssembly js api to invoke it in js in demo
 *** TODO render rewrite(v)
+**** TODO transient Resource System
+https://www.slideshare.net/DICEStudio/framegraph-extensible-rendering-architecture-in-frostbite
+memory pool for textures
+
+
+
 *** TODO finish the way which user can extend by npm/github repo
 need use other instead of npm?
 (learn http://bitsquid.blogspot.it/2016/01/introducing-stingray-package-manager-spm.html)
@@ -655,6 +758,10 @@ ci can run render test
 can generate correct image in the debug page of render
 
 
+use headless-gl + jest + ci to test!!!???
+
+
+
 **** TODO solve "render test not pass in outer screen" problem
 
 **** TODO move render test to npm/submodule
@@ -775,6 +882,8 @@ https://www.reddit.com/r/Unity3D/comments/56r2h6/unity_technologies_postprocessi
 
 refer to babylonjs
 
+*** TODO support webp image format
+https://isux.tencent.com/introduction-of-webp.html
 
 
 ** TODO use optimize-js to package
