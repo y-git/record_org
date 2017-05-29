@@ -1,6 +1,560 @@
 * 今日计划
+** TODO demo test(in new branch to test)(no unit test,render test)
+*** TODO Data-Driven Design(v)
+learn http://www.dataorienteddesign.com/dodmain/dodmain.html
 
-** TODO multi thread(v)
+component 
+https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/
+http://www.danielsefton.com/2016/05/developing-a-data-oriented-game-engine-part-1/
+
+//collision
+
+//rigid body
+
+//skin
+
+cull
+
+
+**** TODO add benchmark(refer to threejs,babylonjs)
+
+
+* 完成事项
+** TODO Data-Driven Design(v)
+learn http://www.dataorienteddesign.com/dodmain/dodmain.html
+
+component 
+https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/
+http://www.danielsefton.com/2016/05/developing-a-data-oriented-game-engine-part-1/
+
+
+
+
+not use Collection/Hash, use Array/table instead
+
+
+//upload 3d references to wonder
+
+
+finish references learning
+
+begin component rewrite
+
+
+
+*** DONE entity rewrite
+CLOSED: [2017-03-09 Thu 12:10]
+The idea here is that the index part directly gives us the index of the entity in a lookup array.
+The generation part is used to distinguish entities created at the same index slot. As we create and destroy entities we
+will at some point have to reuse an index in the array. By changing the generation value when that happens we ensure
+that we still get a unique ID.  
+
+entity use free list+array(packed array?) to store components
+
+entity,component->interact with id
+
+can cache pointer to component when get component in one frame(because in next frame, the actual component data may be
+moved otherwhere)
+
+entity stores:
+an array of component Ids 
+an corresponding array of component types
+(
+TypeToId is the class template I use for that purpose, TypeToId<T>::ID yields a unique integer for every type T.
+
+When retrieving a component T you can simply search the array of component types until you find TypeToId<T>::ID, and
+return the corresponding component, which is cast into T. 
+And that’s about it.
+
+)
+
+
+I find it rather elegant how it deals with generic components without a common base class, and only stores simple
+integers internally. 
+
+
+You can also hold on to pointers to components during a frame, but need to grab the pointer at least once a frame
+because the elements in the ID array may have changed their order. 
+
+
+
+non-growable, fixed-size arrays.
+(use typed array for soa?)
+
+
+
+
+//todo: remove data
+
+
+*** TODO component rewrite
+
+use one typed array to store all components' data
+compute index(all sub dataview?) to get each one
+
+
+component data
+component system -> manage component data
+
+world which manage entitys and system?
+
+**** DONE update @types
+CLOSED: [2017-03-11 Sat 09:20]
+
+
+**** DONE add gulp task to generate index.ts
+CLOSED: [2017-03-11 Sat 10:20]
+
+
+
+
+
+
+**** TODO write a demo(only defer transform, no render) with do,fp,frp,worker,simd,unit test,offscreencanvas
+***** DONE fp
+CLOSED: [2017-03-28 Mon 11:33]
+***** DONE worker
+CLOSED: [2017-04-10 Mon 10:49]
+
+
+
+
+**** TODO transform rewrite
+//extract 4×4 transformation matrix
+
+http://bitsquid.blogspot.it/2014/10/building-data-oriented-entity-system.html
+
+
+optimize set global/local state:
+use weak reference like EntityMannager?
+
+***** DONE defer compute
+CLOSED: [2017-03-17 Fri 16:46]
+
+***** DONE add,remove,dispose component 
+CLOSED: [2017-03-17 Fri 19:25]
+
+***** TODO use fp to rewrite
+
+
+***** TODO pass unit test
+****** TODO migrate from jasmine to jest
+
+use typescript/babel to write test
+
+
+
+
+
+
+
+***** TODO use yarn
+
+
+
+***** TODO add bundle d.ts to wonder-xxx
+wonder-expect.js
+wonder.js
+wonder-xxx
+
+
+
+***** TODO immediate compute
+
+***** TODO add unit test
+
+***** TODO clone
+generate new index and copy data in ThreeDTransformData
+
+***** TODO add unit test
+
+***** TODO pass run test
+
+***** TODO supply transform(e.g. add "translate" ... methods)
+
+***** TODO rename "addDataOrientedComponent", ... to "addComponent", ...
+
+*** TODO refactor Hash,Collection-> xxx<T>()
+
+*** How do you handle Systems which use multiple components:
+So every system really only has one responsibility, and if the resulting data is needed by other systems, I simply pass
+along a contiguous block of data that holds exactly that data – nothing less, nothing more. 
+
+
+because systems are only concerned with one kind of component, and know how to provide the data for other systems (if
+they even have to).  
+
+
+*** TODO create entitys rewrite
+http://bitsquid.blogspot.it/2014/10/building-data-oriented-entity-system_10.html
+
+
+*** TODO optimize data structure
+
+*** TODO refactor
+
+
+*** TODO renderer rewrite
+https://www.slideshare.net/tobias_persson/bstech-gdc2011
+
+**** TODO geometry(mesh)rewrite
+
+*** TODO install @types/wonder-expect.js and update package.json
+update package.json:
+change @types/expect.js -> @types/wonder-expect.js
+
+
+
+** DONE jest test
+CLOSED: [2017-04-10 Mon 14:37]
+
+
+** DONE Property-based testing
+CLOSED: [2017-04-11 Tue 12:03]
+use https://github.com/jsverify/jsverify
+
+
+** TODO use fp + do to rewrite all
+choose what?
+elm, purescript, ghcjs, or use typescript?
+
+answer:
+use typescript
+
+
+
+
+functional at the top and data-oriented at the bottom
+
+
+
+
+////****** TODO use rxjs 5 instead of wonder-frp
+https://github.com/ReactiveX/rxjs
+
+
+
+*** TODO implement quad demo by fp
+**** DONE show quad
+CLOSED: [2017-04-13 Thu 17:19]
+**** DONE move quad(game loop)
+CLOSED: [2017-04-13 Thu 21:15]
+**** DONE support record and rePlay
+CLOSED: [2017-04-14 Fri 11:22]
+**** DONE support multi thread render
+CLOSED: [2017-04-14 Fri 18:46]
+
+**** DONE add action, collision component logic, move them to worker
+CLOSED: [2017-04-14 Fri 10:05]
+
+
+/*!
+here show two generate data way(action worker; set position), one limit data way(collision worker).
+
+limit way should get generated data in highest priority way(set-position > action-worker)
+ */
+
+
+
+**** TODO support simd
+
+
+**** TODO support record and rePlay
+
+
+
+**** TODO improve worker rollup flow, build custom plugin
+use blob
+
+
+https://github.com/rollup/rollup/wiki/JavaScript-API
+use api to bundle worker file
+
+
+refer to:
+https://github.com/andyearnshaw/rollup-plugin-bundle-worker
+https://gitlab.com/IvanSanchez/rollup-plugin-file-as-blob
+
+
+*** TODO pass run test
+*** TODO unit test transform
+*** TODO pass ci test + code coverage
+
+
+remove jasmine
+
+remove karma?
+
+
+** DONE use fp+do rewrite engine
+CLOSED: [2017-05-29 Mon 16:00]
+////how to define interface of module?
+(e.g. define interface of xxxSystem.ts file while it's all functions?)
+
+now find no way!
+
+
+
+
+
+//babel should transform files from node_module!!!!???????
+
+
+//add Either,Maybe
+
+
+//change wonder-es2015,Wonder.js project->jest
+
+
+
+
+*** DONE finish Main
+CLOSED: [2017-04-24 Mon 16:24]
+//finish setScreen!!!
+
+
+//see fp-snake project
+
+
+////move to XXXSystem class to be static method!
+
+
+finish detect!!!
+
+
+add Maybe,Either
+
+
+
+
+*** DONE finish Director
+CLOSED: [2017-04-24 Mon 18:10]
+
+*** DONE finish EntityObject,GameObject
+CLOSED: [2017-04-24 Mon 18:10]
+
+*** DONE refactor
+CLOSED: [2017-04-24 Mon 19:00]
+use compose
+
+*** DONE finish Transform
+CLOSED: [2017-05-04 Thu 21:49]
+**** DONE pass do draft
+CLOSED: [2017-05-02 Tue 12:02]
+
+**** DONE continue finish do
+CLOSED: [2017-05-04 Thu 21:49]
+//rename "remove" to "dispose"
+
+//fix Entity->uid bug
+
+
+
+//fix wonder-es6-project
+
+
+
+//pass parent
+
+
+//fix xxxSystem->require,ensure
+
+
+*** DONE add other parts, show boxes sample!
+CLOSED: [2017-05-05 Fri 11:00]
+
+
+save package.json
+
+*** DONE benchmark
+CLOSED: [2017-05-07 Sun 11:32]
+
+//compare parent reference vs parent UInt16Array
+
+
+//transform:
+test cache
+position,localPosition add cache
+
+
+//remove all IO
+
+//optimize parent
+
+
+//add setBatchPositions/LocalPositions methods!
+
+//add setBatchTransformDatas method
+
+
+//test
+
+//test children cache
+
+
+
+
+*** DONE refactor ThreeDTransformSystem
+CLOSED: [2017-05-07 Sun 21:08]
+////notUsedIndexArr to be Stack
+
+////refactor DataUtils
+
+
+
+*** DONE revert
+CLOSED: [2017-05-07 Sun 22:03]
+need optimize:
+getIsTest
+
+
+*** DONE rewrite EntityObject,Entity,Component
+CLOSED: [2017-05-12 Fri 17:15]
+//test uid(find prev test files?)
+
+
+
+*** DONE fix
+CLOSED: [2017-05-14 Sun 14:22]
+//fix dispose
+
+//optimize hasChild
+
+//fix uid, isAlive
+
+*** DONE add Tag component
+CLOSED: [2017-05-15 Mon 15:16]
+
+*** DONE finish Geometry,renderer
+CLOSED: [2017-05-24 Wed 14:41]
+//write geometry,render draft
+
+//pass compile
+
+//pass geometry unit test
+
+//pass material unit test
+
+//pass meshRenderer unit test
+
+//pass render unit test:
+define attribute,uniform variables
+
+
+refactor:
+//shaderSystem: extract to source builder / program / GLSLSender system
+//extract duplicate code from component system(e.g. disposeComponent, create, ...)
+//move Material,MeshRenderer to Component(remove RenderComponent)
+
+
+*** DONE finish camera
+CLOSED: [2017-05-25 Thu 10:48]
+add camera draft
+
+pass unit test
+
+
+*** DONE refactor system
+CLOSED: [2017-05-26 Fri 07:00]
+//ensure each system's length <= 200
+
+////can specify whether to use 16 or 32 in render config file
+
+////change DeviceManager to functions
+
+
+*** DONE pass render test:
+CLOSED: [2017-05-26 Fri 12:11]
+show box
+////show transparent box
+////show transparent box + opaque box
+
+
+*** DONE benchmark
+CLOSED: [2017-05-29 Mon 16:00]
+benchmamrk:
+//transform
+create/remove entityObject:
+////optimize curry!
+solve memory leak:
+release transform cache map
+release gameobject map 
+(swap last?)
+not use curry
+
+
+
+//optimize in firefox:
+
+
+//continue solve memory leak
+
+reduce map count:
+//material use swap
+//merge tempxxxMaps, xxxCacheMaps?
+
+
+
+//optimize notUsedIndexArr:
+use link list
+
+//use Object.create(null) to create {}
+
+//solve wraper:
+execHandle
+execInitHandle
+
+
+refactor:
+////rename count to maxCount
+//refactor geometry->indices(new Uint16/32)
+
+
+////CameraController use Set to store dirty index?
+
+
+////dispose transform
+
+tag:
+//refactor:
+//move tag -> isalive check to Tag.ts
+
+//not remove uid->data(add isAliveMap for contract check)
+
+
+
+
+
+
+
+
+** DONE pass firefox unit test
+CLOSED: [2017-05-29 Mon 19:09]
+
+** DONE refactor
+CLOSED: [2017-05-29 Mon 22:00]
+//refactor rollup.config
+
+merge to master
+
+
+** DONE give benchmark report
+CLOSED: [2017-05-29 Mon 22:00]
+
+
+** DONE publish v1.0.0-alpha2
+CLOSED: [2017-05-29 Mon 22:00]
+pass build
+
+write release
+
+
+ 
+
+
+
+* 明日计划
+*** TODO multi thread(v)
 use immutable.js
 
 study references:
@@ -46,28 +600,21 @@ dispatch in parallel to the deferred contexts
  Each chunk generates a command 
 
 
+**** TODO add "action" as one woker thread
 
-
-*** TODO multi thread render
-
-
-*** TODO add "action" as one woker thread
-
-*** TODO thread pool
+**** TODO thread pool
 http://www.smartjava.org/content/html5-easily-parallelize-jobs-using-web-workers-and-threadpool
 http://stackoverflow.com/questions/13574158/number-of-web-workers-limit
-*** TODO SIMD
-
-
-*** TODO add benchmark(refer to threejs,babylonjs)
-
-
-* 完成事项
-** TODO multi thread render
 
 
 
-* 明日计划
+
+**** TODO render multi thread
+**** TODO SIMD
+
+
+**** TODO add benchmark(refer to threejs,babylonjs)
+
 *** TODO add clone method
 
 *** TODO add Data component
@@ -86,7 +633,7 @@ publish wonder-fantancy-land types
 (update wonder.js)
 
 *** TODO Wonder.js/wonder-package not post install global packages!
-"postinstall": "sudo npm install -g typescript@next && sudo npm install -g rollup && sudo npm install -g typescript-formatter",
+
 
 * TODO 未来7日计划
 ** TODO demo test(in new branch to test)(no unit test,render test)
@@ -2125,5 +2672,4 @@ change package.json->"jest"->"moduleFileExtensions", put "js" firstly:
 
 
 * TODO more
-
 
