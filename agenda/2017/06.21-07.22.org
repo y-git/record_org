@@ -1,4 +1,290 @@
 * 今日计划
+** TODO finish demo(dao hang)
+** TODO defer render(v)
+*** TODO add light
+*** TODO add defer render pipeline
+*** TODO support switch defer/front pipeline by config data
+**** TODO add alpha blend
+
+** TODO run in mobile
+*** TODO add mobile render pipeline
+
+
+** TODO support basic webgl2
+*** TODO add webgl2 render pipeline
+
+** TODO refactor: data driven renderer
+
+** TODO publish
+
+
+* 完成事项
+** TODO finish demo(dao hang)
+*** TODO fix obj model
+//fix usemtl
+
+
+//fix indices bug!
+
+fix texture blend
+
+
+** DONE add light
+CLOSED: [2017-07-15 Sat 15:23]
+add normal
+
+
+add sample
+
+
+
+*** DONE edit basic material
+CLOSED: [2017-06-28 Wed 14:04]
+
+
+
+*** DONE add light material + ambient, direction light
+CLOSED: [2017-07-08 Sat 11:35]
+//draft
+
+//pass compile
+
+//pass run test
+
+*** DONE fix
+CLOSED: [2017-07-10 Mon 14:41]
+////fix geometry,material:
+////BasicMaterial,LightMaterial has own index,count(refer to light)
+////remove MaterialData
+
+//separate componentID from typeID
+
+////move specifyMaterial method(setColor...) to SpecifyMaterialSystem
+
+
+//pass run test
+
+
+
+*** DONE unit test
+CLOSED: [2017-07-11 Tue 12:38]
+//pass current test
+
+//pass light material test
+test basic + light boxes
+shaderLib_generator:
+use utils only
+
+//commit
+
+
+
+//test geometry->normal buffer
+
+//commit
+
+
+
+test ambient light
+
+test direction light
+
+commit
+
+////*** TODO fix
+fix light,geometry
+light,geometry use one buffer(LightData.buffer, Geometry.buffer)
+
+////*** TODO unit test
+
+
+*** DONE fix
+CLOSED: [2017-07-11 Tue 17:14]
+set init state:
+enable cull face
+
+unit test
+
+
+*** DONE fix
+CLOSED: [2017-07-11 Tue 17:55]
+finish todo
+
+*** DONE unit test
+CLOSED: [2017-07-11 Tue 17:55]
+
+
+*** DONE pass worker
+CLOSED: [2017-07-14 Fri 17:11]
+//pass basic 
+
+//unit test
+
+//pass benchmark test
+
+
+//pass light material 
+
+//pass run test!!!
+
+
+
+//unit test
+pass no worker test
+add color test
+
+
+fix:
+//arraybuffer->bufferDataMap(vertex/normalBufferDataMap)
+//set render worker->MainData.isTest:
+test in render worker
+
+
+
+
+////only when light change, send data
+
+
+
+//pass basic_light run test
+
+
+*** DONE refactor
+CLOSED: [2017-07-14 Fri 17:26]
+//Material be abstract class
+
+//XXXMaterial->create: not pass materialClassName!
+
+////extract EngineMaterial(SpecifyMaterial)
+move logic from MaterialSystem to SpecifyMaterialSystem
+
+//rename ThreeDTransformData->indexInArrayBuffer to index
+
+//rename "canvasId" to "canvasID"
+
+////check: not allow create light after init renderer
+
+
+*** DONE point light
+CLOSED: [2017-07-15 Sat 12:14]
+
+*** DONE unit test
+CLOSED: [2017-07-15 Sat 13:03]
+
+*** DONE pass worker
+CLOSED: [2017-07-15 Sat 15:23]
+test type array count
+
+*** DONE worker unit test
+CLOSED: [2017-07-15 Sat 15:23]
+
+
+** DONE optimize
+CLOSED: [2017-07-16 Sun 10:54]
+//optimize basic samples
+
+
+//optimize worker
+
+
+
+
+** DONE add texture
+CLOSED: [2017-07-21 Fri 15:52]
+*** DONE basic material texture
+CLOSED: [2017-07-17 Mon 13:59]
+
+*** DONE unit test
+CLOSED: [2017-07-18 Tue 10:49]
+
+
+
+
+*** DONE refactor:
+CLOSED: [2017-07-18 Tue 10:55]
+rename verticeBuffers to vertexBuffers
+
+rename:
+        "VerticeCommonShaderLib": {
+            "send": {
+                "attribute": [
+                    {
+                        "name": "a_position",
+                        "buffer": "vertice",
+
+to "vertex"
+
+fix programUtils->197
+
+remove Shader.ts?
+
+
+*** DONE pass worker
+CLOSED: [2017-07-20 Thu 10:00]
+source can send to worker?
+
+*** DONE unit test
+CLOSED: [2017-07-20 Thu 17:44]
+unit test
+
+
+*** DONE light material texture
+CLOSED: [2017-07-21 Fri 15:24]
+
+
+
+
+*** DONE pass worker
+CLOSED: [2017-07-21 Fri 15:39]
+//source can send to worker?
+
+
+*** DONE unit test
+CLOSED: [2017-07-21 Fri 15:52]
+
+** DONE fix
+CLOSED: [2017-07-21 Fri 18:55]
+texture benchmark test:
+//fix custom
+//create and dispose: memory
+
+
+
+
+
+** DONE publish alpha.4
+CLOSED: [2017-07-22 Sat 10:46]
+//update typescript to 2.4:
+type Sports = "Football" "Baseball";
+　　在引入了新的字符串枚举之后，上述的样例可以更加自然地改写为：
+
+enum Sports { Football = "FOOTBALL"， Baseball = "BASEBALL"}
+
+
+//fix frp->Stream import:
+import MapStream, ... in Stream.ts???
+
+
+////change global package to local!
+
+//pass test
+
+//pass in firefox
+
+
+////clean code
+
+//pass travi ci
+
+
+
+
+build github
+
+build document project
+
+
+* 明日计划
 ** TODO defer render(v)
 *** TODO add defer render demo
 
@@ -27,13 +313,6 @@ optimize worker
 
 ** TODO publish alpha.5
 
-
-* 完成事项
-
-
-
-
-* 明日计划
 ** TODO run in mobile
 *** TODO add mobile render pipeline
 
@@ -2179,5 +2458,4 @@ return fromPromise(createImageBitmap(blob, {
 
 
 * TODO more
-
 
