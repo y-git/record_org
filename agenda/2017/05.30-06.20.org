@@ -1,5 +1,240 @@
 * 今日计划
-** TODO finish demo(dao hang)
+** TODO multi thread(v)
+use immutable.js
+
+study references:
+https://en.wikipedia.org/wiki/Task_parallelism
+http://www.dataorienteddesign.com/dodmain/node13.html
+https://www.researchgate.net/publication/271271298_Data_Structures_and_Algorithms_for_Data-Parallel_Computing_in_a_Managed_Runtime
+https://www.researchgate.net/publication/281740929_Conc-Trees_for_Functional_and_Parallel_Programming
+
+http://bitsquid.blogspot.it/2015/03/multithreaded-gameplay.html
+
+
+job
+
+terrain geometry process
+
+collision
+
+skin bone matrix compute
+
+cull
+
+shadow build?
+
+
+
+command buffer generation(work in offcanvas?):
+Dispatch draw calls and state to multiple command buffers in parallel
+
+First class citizen in DX11
+ Killer feature for reducing CPU overhead & latency
+ ~90% of our rendering dispatch job time is in D3D/driver
+1. DX11 deferred device context per core
+ Together with dynamic resources (cbuffer/vbuffer) for usage on that
+deferred context
+2. Renderer has list of all draw calls we want to do for each
+rendering “layer” of the frame
+3. Split draw calls for each layer into chunks of ~256 and
+4. Render to immediate context & execute command lists
+5. Profit! 
+   
+
+dispatch in parallel to the deferred contexts
+ Each chunk generates a command 
+
+
+
+
+*** TODO multi thread render
+
+
+*** TODO add "action" as one woker thread
+
+*** TODO thread pool
+http://www.smartjava.org/content/html5-easily-parallelize-jobs-using-web-workers-and-threadpool
+http://stackoverflow.com/questions/13574158/number-of-web-workers-limit
+*** TODO SIMD
+
+
+*** TODO add benchmark(refer to threejs,babylonjs)
+
+
+* 完成事项
+** DONE multi thread render
+CLOSED: [2017-06-20 Tue 22:15]
+*** DONE implement
+CLOSED: [2017-06-02 Fri 17:35]
+
+*** DONE benchmark
+CLOSED: [2017-06-05 Mon 18:20]
+**** DONE optimize: use SharedArrayBuffer
+CLOSED: [2017-06-05 Mon 14:40]
+optimize: vMatrix,pMatrix only has one data
+
+
+**** DONE optimize uniformMatrix4f
+CLOSED: [2017-06-05 Mon 15:14]
+
+**** DONE optimize init
+CLOSED: [2017-06-05 Mon 18:20]
+optimize SharedArrayBuffer?
+
+optimize:
+//initShader
+
+postMessage
+
+draw->actual move
+
+**** TODO optimize memory
+
+*** DONE refactor, fix
+CLOSED: [2017-06-10 Sat 12:55]
+//decouple update rate
+
+
+//pass vertices,indices(cache them):
+//pass compile
+//pass run test
+//finish dispose
+//pass compile
+//pass createAndDispose benchmark
+
+
+//restore indexType
+
+//restore MaterialSystem:
+//color
+opacity
+alphaTest
+
+//fix MaterialSystem->disposeComponent
+
+
+
+////optimize createAndDispose benchmark 
+
+
+*** DONE support no worker version?
+CLOSED: [2017-06-11 Sun 13:12]
+
+////WorkerConfig add "notUseWorker" config
+
+//move device/DeviceManagerxxx to renderer/device/
+
+//finish draft
+
+//pass compile
+
+//pass not support run test
+
+refactor:
+//move to worker_file, main_file
+////rename programxxx,... to ProgramNoWorkerXXX, ...
+
+
+
+
+*** TODO unit test
+//pass test
+
+pass createAndDispose benchmark:
+//test geometry, material
+//dispose arraybuffer,index buffer
+//fix transform bug
+////test material,geometry default value(set when create)
+////set children?
+
+//optimize: buffer min count
+
+//optimize contract test:
+implement expect?
+
+//pass other except Material,BasicMaterial:
+optimize contract test
+optimize: buffer min count
+
+
+
+
+
+//check max count when create:
+check DrawxxxBufferSystem
+
+//test draw
+
+
+
+
+
+
+
+
+
+test worker:
+//pass Main test(worker, noWorker)
+//fix geometry dispose buffer
+//test send draw data
+//rename: Draw Render Buffer
+
+
+
+//fix viewport and unit test
+
+
+WorkerConfig add "useSingleThread" config
+
+** DONE optimize
+CLOSED: [2017-06-20 Tue 15:30]
+optimize benchmark with worker
+
+
+
+optimize:
+////buffer data
+
+test:
+////no need to remove hierarchy children?
+
+//fix createAndDispose->color in worker
+
+//optimize createAndDispose in worker
+
+//optimize benchmark with contract test
+
+
+////give benchmark report
+
+** DONE refactor
+CLOSED: [2017-06-20 Tue 22:15]
+finish todo
+
+refactor: move renderer->Worker logic to renderer->worker/
+
+extract memoryUtils
+
+
+** DONE rollup support work
+CLOSED: [2017-06-20 Tue 20:31]
+//add "rollup renderWorker" to "rollup"
+
+
+////import worker code to main?
+blob
+only one rollup config file?
+
+////build worker/no worker package?(refer to bjs)
+
+
+** DONE publish alpha3
+CLOSED: [2017-06-20 Tue 22:15]
+pass Wonder.js -> npm install:
+//fix:dist/es2015/ should not has src/, node_modules/ !
+
+
+* 明日计划
 ** TODO defer render(v)
 *** TODO add light
 *** TODO add defer render pipeline
@@ -15,12 +250,6 @@
 ** TODO refactor: data driven renderer
 
 ** TODO publish alpha4
-
-
-* 完成事项
-
-
-* 明日计划
 
 * TODO 未来7日计划
 ** TODO add clone method
@@ -2108,6 +2337,27 @@ learn GPU Pro 5->managing transforms in hierarchy
 
 
 * Record
+** jest->ts-jest
+*** fix: fix ts-jest->the "import" in "import List" is "unExpected token" bug!(if .ts file import Collection from wonder-commonlib)
+description
+if .ts file->import { Collection } from "wonder-commonlib/dist/commonjs/Collection";
+
+then it will error
+
+
+reason
+jest import wonder-commonlib/dist/commonjs/Collection.ts file instead of .js file!!!
+
+because jest judge the extname of file based on package.json->"jest"->"moduleFileExtensions"!
+
+solution
+change package.json->"jest"->"moduleFileExtensions", put "js" firstly:
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx"
+    ]
+
 
 
 
@@ -2125,5 +2375,4 @@ should coverage both wd.js and wd.renderWorker.js!
 
 
 * TODO more
-
 
