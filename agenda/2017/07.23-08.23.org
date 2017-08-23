@@ -1,30 +1,568 @@
 * 今日计划
-** TODO work with editor
-*** TODO refactor
-move contract.ts to new project
+** TODO defer render(v)
+*** TODO add defer render demo
 
-*** TODO define schema for editor and hot loading data in editor
-The entity-component architecture uses external descriptions for all its components, stored in so-called “Schema” files.
-Schemas and their properties/fields are treated completely generically, and hence are used for exposing properties to
-the editor. Additionally, schemas have a few more other advantages over serialization- or reflection-based approaches,
-which is what I wanted to talk about in a future post. 
+*** TODO add defer render pipeline
 
-refer to:
-https://blog.molecular-matters.com/2014/02/21/schema-based-entity-component-data-for-fast-iteration-times/
-https://blog.molecular-matters.com/2012/01/31/a-content-pipeline-for-fast-iteration-times/
-http://bitsquid.blogspot.com/2016/01/hot-reloadable-javascript-batman.html
+** TODO optimize
+*** give report (compare with pre version, threejs )
+target: fast 50% than threejs
 
+texture benchmark test(front render, defer render)
 
-refer to:
-http://bitsquid.blogspot.com/2010/04/our-tool-architecture.html
-
+light benchmark test(front render, defer render)
+add:
+multi direction lights
+multi point lights
+dynamic direction light
+dynamic point light
 
 
+
+
+optimize worker
+
+
+** TODO publish alpha.5
 
 
 * 完成事项
+** DONE give storys
+CLOSED: [2017-07-22 Sat 14:39]
+big
+small
 
 
+
+** DONE give bussiness report
+CLOSED: [2017-07-22 Sat 15:45]
+
+
+** DONE give project plan in iteration
+CLOSED: [2017-07-22 Sat 15:45]
+
+** DONE give report
+CLOSED: [2017-07-22 Sat 17:26]
+iteration plan:
+first iteration prepare
+phase goals
+
+project report(date, ...):
+total time
+
+
+bussiness report
+
+
+** TODO go through storys with arvin
+confirm story
+
+priority
+
+
+publish storys to trello:
+current iteration detailly
+other roughly estimate
+
+
+
+** TODO discuss report,plan with arvin
+
+
+** TODO publish
+send email
+
+publish in weixin
+
+
+
+
+** TODO defer render(v)
+*** TODO demo
+**** DONE defer shading
+CLOSED: [2017-07-26 Wed 17:42]
+only pass position, normal, diffuse color(specular, emission not pass)
+
+
+
+but we store color and specular intensity data combined in a single RGBA texture; this saves us from having to declare
+an additional colorbuffer texture. As your deferred shading pipeline gets more complex and needs more data you'll
+quickly find new ways to combine data in individual textures. 
+
+
+(use OES_texture_float, OES_texture_float_linear)
+For the position and normal texture we'd preferably use a high-precision texture (16 or 32-bit float per component) and
+albedo and specular values we'll be fine with a default texture (8-bit precision per component).a 
+
+
+
+use webgl2(hard code)!!!
+
+
+
+
+**** TODO fix
+
+fix "camera in light volume":
+
+- we enable culling of the front face polygons. The reason why we do that is because the camera may be inside the light
+  volume and if we do back face culling as we normally do we will not see the light until we exit its volume. After that
+  we render the bounding sphere as usual.
+
+
+glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
+
+    Pipeline p;
+    p.WorldPos(m_pointLight[PointLightIndex].Position);
+    float BBoxScale = CalcPointLightBSphere(m_pointLight[PointLightIndex].Color, 
+                                            m_pointLight[PointLightIndex].DiffuseIntensity);
+    p.Scale(BBoxScale, BBoxScale, BBoxScale);	
+    p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
+    p.SetPerspectiveProj(m_persProjInfo); 
+    m_DSPointLightPassTech.SetWVP(p.GetWVPTrans());
+    m_DSPointLightPassTech.SetPointLight(m_pointLight[PointLightIndex]);
+    m_bsphere.Render(); 
+    glCullFace(GL_BACK);
+
+
+
+
+
+fix "ambient light, direction light":
+render full screen quad
+
+
+**** DONE scissor optimize
+CLOSED: [2017-07-28 Fri 17:08]
+
+**** TODO benchmark
+
+
+**** TODO deferred lighting?
+
+
+*** DONE implement by hard code(webgl2)
+CLOSED: [2017-08-04 Fri 15:05]
+**** DONE pass one point light
+CLOSED: [2017-08-04 Fri 15:05]
+
+compute point light radius
+
+
+refactor:
+shaderlib with shader
+texture with shader
+
+
+
+//finish draft
+
+
+pass compile
+
+
+pass run test
+
+
+*** DONE get vpn
+CLOSED: [2017-08-04 Fri 15:43]
+
+
+*** DONE separate webgl2, webgl1 render mode
+CLOSED: [2017-08-06 Sun 12:37]
+webgl1 add front render
+
+pass run test
+
+*** DONE unit test(no worker)
+CLOSED: [2017-08-07 Mon 18:45]
+////pass all unit test
+//pass front render test
+
+//commit
+
+
+//pass other test(except basic)
+
+
+//add defer shading unit test
+
+//commit
+
+//test use shader
+
+
+
+*** DONE pass render worker
+CLOSED: [2017-08-08 Tue 20:40]
+**** DONE separate webgl2, webgl1
+CLOSED: [2017-08-08 Tue 20:40]
+
+**** DONE pass front render
+CLOSED: [2017-08-08 Tue 16:54]
+
+**** DONE pass defer shading
+CLOSED: [2017-08-08 Tue 20:40]
+
+
+*** DONE unit test
+CLOSED: [2017-08-10 Thu 10:05]
+//rename
+
+//separate PointLightSystem,Data in no worker!
+
+
+//pass front render test
+
+//pass defer shading test
+
+
+*** DONE refactor defer shading
+CLOSED: [2017-08-11 Fri 09:08]
+//optimize init shader:
+//remove shaderLibWholeNameMap?(at least need rename)
+
+
+//pass unit tests
+
+
+//gpu:
+separate
+pass render worker
+
+
+
+
+*** DONE continue separate webgl2, webgl1 render mode
+CLOSED: [2017-08-13 Sun 17:44]
+//handle basic
+
+//extract basic draw?
+
+refactor:
+//move front,defer to render/ folder
+//move basic to render/ folder
+
+
+
+//pass defer shading
+
+
+unit test:
+pass all unit test
+
+//pass extract basicRenderSpec from BasicMaterialSpec
+
+//test:
+should only clear one time in one frame!
+
+
+//clear must after depth mask true in defer shading?
+
+
+
+
+unit test:
+//move sendAttributeData to render/, draw/
+
+
+
+
+
+//test:
+gameObject not add to scene, but add MeshRenderer component, will be draw!
+
+
+
+
+
+//refactor
+
+
+
+*** DONE pass render worker->basic
+CLOSED: [2017-08-14 Mon 17:11]
+
+
+
+
+
+
+
+*** DONE unit test
+CLOSED: [2017-08-14 Mon 17:39]
+
+refactor:
+move webgl1/,webgl2/ to render_worker/
+
+
+
+*** DONE refactor
+CLOSED: [2017-08-15 Tue 11:53]
+//refactor front render,defer shading(extract repeat code)
+
+//change lightCommon_xxx.glsl to light_common_xxx.glsl
+
+//change lightEnd_xxx.glsl to light_end_xxx.glsl
+
+//merge: 
+noNormalMap_light_xxx and noNormalMap_xxx
+
+
+//rename shaderSourceBuilderSystem(WorkerSystem) to ShaderXXX
+
+
+//rename render->data->material_config, shaderLib_generator to IXXX
+
+
+
+//refactor extract common code from webgl1, webgl2
+
+
+//finish todos
+
+
+//clean code
+
+//update webstorm
+
+
+
+*** TODO continue separate webgl2, webgl1 render mode
+**** DONE ubo
+CLOSED: [2017-08-18 Fri 13:00]
+https://stackoverflow.com/questions/38841124/updating-uniform-buffer-data-in-webgl-2
+https://www.gamedev.net/forums/topic/655969-speed-gluniform-vs-uniform-buffer-objects/
+http://www.realtimerendering.com/blog/webgl-2-new-features/
+
+
+//remove "gameObject", initBufferDataFunc
+
+//remove ubo_light_model
+
+//lightModel to be float?vec4?
+
+//pass basic render
+
+
+optimize:
+//pointlight add isDirty:
+webgl2
+
+
+//pass run test
+
+
+unit test
+
+//finish dispose component
+
+
+//refactor:
+split deferShadingSpec.js
+
+
+//pass render worker:
+pass webgl2
+pass webgl1
+
+
+
+
+//optimize:
+light add isDirty:
+webgl1
+
+
+
+//unit test
+
+//fix last component index bug
+
+
+refactor
+
+
+unit test
+
+
+
+**** DONE vao
+CLOSED: [2017-08-20 Sun 08:12]
+//webgl2
+
+add location
+refactor arrayBufferUtils
+
+
+//webgl1
+
+
+
+//unit test
+
+
+
+
+//render worker
+
+
+
+//support sharedComponent
+
+test it!
+
+
+//refactor test:
+//rename xxxID to xxXId
+//rename xxxWebGLxxxTool to xxxTool
+
+
+**** DONE glsl 3.0(location)
+CLOSED: [2017-08-20 Sun 10:30]
+glsl 3.0:
+use in, out
+add attribute to glsl
+
+render worker
+
+
+*** DONE finish todo
+CLOSED: [2017-08-20 Sun 17:46]
+refactor:
+rename command_buffer
+
+
+
+
+
+
+
+*** DONE benchmark
+CLOSED: [2017-08-21 Mon 20:13]
+//unit test
+
+//rename
+
+pass render worker:
+pass run in firefox:
+webgl1 can pass
+webgl2 error!
+render worker not support webgl2?
+
+
+solve in chrome: flash problem(>= 2000)!
+webgl1 may better!
+why?
+
+
+
+
+//refactor test:
+rename one time to once
+refactor common data
+
+
+
+
+
+//pass benchmark_light_xxx
+
+//solve bufferData!
+
+
+
+benchmark defer light test
+
+
+check:
+why drop fps?
+
+//cache data
+
+
+test draw sphere vs full quad
+
+
+//add scissor optimize
+
+
+
+//make some point light move
+
+
+
+
+
+
+//test in firefox
+
+
+
+*** DONE implement
+CLOSED: [2017-08-23 Wed 09:15]
+**** DONE pass one direction light
+CLOSED: [2017-08-22 Tue 19:04]
+//support
+
+//test
+
+//refactor
+
+//test
+
+render worker
+
+test
+
+
+**** DONE pass one ambient light
+CLOSED: [2017-08-22 Tue 21:20]
+
+
+test:
+direction + point:
+only bind camera ubo once
+only bind light ubo once
+
+test: fix ubo index 0 bug
+
+
+**** DONE add gl state manage
+CLOSED: [2017-08-23 Wed 09:15]
+
+
+
+*** TODO refactor
+**** DONE render worker not import component->xxx code?
+CLOSED: [2017-08-23 Wed 09:20]
+
+**** TODO fix
+////not export abstract class to index.ts
+
+
+////solve test disconnect/slow problem
+
+** DONE give benchmark report
+CLOSED: [2017-08-23 Wed 17:30]
+test defer+direction,ambient benchmark
+
+////test render worker benchmark
+
+give report
+
+
+
+
+** DONE publish
+CLOSED: [2017-08-23 Wed 21:24]
+//pass ci
+
+
+
+** DONE publish product report
+CLOSED: [2017-08-23 Wed 21:24]
 
 
 * 明日计划
@@ -89,6 +627,27 @@ need user render script?
 
 
 * TODO 未来7日计划
+** TODO work with editor
+*** TODO refactor
+move contract.ts to new project
+
+*** TODO define schema for editor and hot loading data in editor
+The entity-component architecture uses external descriptions for all its components, stored in so-called “Schema” files.
+Schemas and their properties/fields are treated completely generically, and hence are used for exposing properties to
+the editor. Additionally, schemas have a few more other advantages over serialization- or reflection-based approaches,
+which is what I wanted to talk about in a future post. 
+
+refer to:
+https://blog.molecular-matters.com/2014/02/21/schema-based-entity-component-data-for-fast-iteration-times/
+https://blog.molecular-matters.com/2012/01/31/a-content-pipeline-for-fast-iteration-times/
+http://bitsquid.blogspot.com/2016/01/hot-reloadable-javascript-batman.html
+
+
+refer to:
+http://bitsquid.blogspot.com/2010/04/our-tool-architecture.html
+
+
+
 
 ** TODO summary
 *** TODO add clone method
@@ -2273,6 +2832,13 @@ http://ogldev.atspace.co.uk/www/tutorial37/tutorial37.html
 
 
 * TODO unsolved problem
+** DONE Wonder-Sample-ES2015 project: why "generateDTS" gulp task will generate dist/es2015/src and node_module files!!!???
+CLOSED: [2017-08-10 Thu 15:47]
+
+*** answer
+because src files import node_module/ files!
+
+
 ** TODO how to ts compile worker file code?
 
 ** TODO codecov
@@ -2283,11 +2849,28 @@ only coverage wd.js
 *** TODO how to exclude third party lib code from coverage???
 
 
+** DONE render worker
+CLOSED: [2017-07-20 Thu 09:59]
+description
+//not worker in render worker!
+gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+
+reason
+
+
+solution
+set "imageOrientation" options of "createImageBitmap" in render worker:
+TextureWorkerSystem:
+return fromPromise(createImageBitmap(blob, {
+        imageOrientation: flipY === true ? "flipY" : "none"
+}))
+
+
 
 * TODO need improve
 
 
 
 * TODO more
-
 
