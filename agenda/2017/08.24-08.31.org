@@ -1,88 +1,100 @@
 * 今日计划
-** TODO integrate with editor
+** TODO work with editor
+*** TODO refactor
+move contract.ts to new project
 
-refactor config:
-rename?
+*** TODO define schema for editor and hot loading data in editor
+The entity-component architecture uses external descriptions for all its components, stored in so-called “Schema” files.
+Schemas and their properties/fields are treated completely generically, and hence are used for exposing properties to
+the editor. Additionally, schemas have a few more other advantages over serialization- or reflection-based approaches,
+which is what I wanted to talk about in a future post. 
 
-
-
-pass main
-
-pass "draw box"
-
-unit test
-
-
-
-
-** TODO add dispose logic
-use lazy dispose???
-////(so that no need to addDisposeHandle!!!)
-remove "isAlive" logic?
-memoryUtils=>transform optimize:
-reallocate 0-( firstIndex - 1 ), reset transformData.index!
+refer to:
+https://blog.molecular-matters.com/2014/02/21/schema-based-entity-component-data-for-fast-iteration-times/
+https://blog.molecular-matters.com/2012/01/31/a-content-pipeline-for-fast-iteration-times/
+http://bitsquid.blogspot.com/2016/01/hot-reloadable-javascript-batman.html
 
 
-
-
-gpu optimize:
-memory pool:
-texture 
-buffer
-
-(define pool in render setting)
+refer to:
+http://bitsquid.blogspot.com/2010/04/our-tool-architecture.html
 
 
 
 
 
-** TODO implement batch
-support batch create:
-batch add components
+* 完成事项
+** DONE add engine to editor
+CLOSED: [2017-08-28 Mon 20:45]
+*** TODO define schema for editor and hot loading data in editor
+The entity-component architecture uses external descriptions for all its components, stored in so-called “Schema” files.
+Schemas and their properties/fields are treated completely generically, and hence are used for exposing properties to
+the editor. Additionally, schemas have a few more other advantages over serialization- or reflection-based approaches,
+which is what I wanted to talk about in a future post. 
+
+refer to:
+https://blog.molecular-matters.com/2014/02/21/schema-based-entity-component-data-for-fast-iteration-times/
+https://blog.molecular-matters.com/2012/01/31/a-content-pipeline-for-fast-iteration-times/
+http://bitsquid.blogspot.com/2016/01/hot-reloadable-javascript-batman.html
 
 
-test batch benchmark in benchmark test:
-use bs-benchmark.js?
-
-https://segmentfault.com/a/1190000003486676
-https://johnresig.com/blog/javascript-benchmark-quality/
-https://calendar.perfplanet.com/2010/bulletproof-javascript-benchmarks/
+refer to:
+http://bitsquid.blogspot.com/2010/04/our-tool-architecture.html
 
 
+** DONE refactor
+CLOSED: [2017-08-31 Thu 17:00]
 
 
+add dev branch:
 
-////support batch dispose:
+//MainEditor.tsx ui test:
+1.add canvas dom
+2.canvas id should be webgl
 
+// add setViewPort
 
-** TODO implement clone
-
-
-** TODO implement "restore from state"
-
-
-
-
-////**** TODO add hasChild,removeChild logic
+i wonder.js
 
 
-
-** TODO rollup: generate index.re
-
-
-
-////**** TODO implement "clone"
+//ci:
+add: npm run ui
 
 
+//write to document
 
 
-rollup-plugin-bucklescript: https://www.npmjs.com/package/rollup-plugin-bucklescript
+//solve drag bug
+
+//add fromEvent
+
+
+//move common code to new project:
+move contract.ts to new project
 
 
 
+* 明日计划
+how to export ui code for contribute?
+
+** TODO add load asset(v)
+*** TODO learn
 
 
+*** TODO support obj model
 
+*** TODO do
+http://bitsquid.blogspot.ch/2014/10/building-data-oriented-entity-system_10.html
+
+*** TODO add AssetDatabase to support aync load asset
+(move out to be a project in wonder group?)
+
+
+*** TODO support hot loading
+https://blog.molecular-matters.com/2012/01/31/a-content-pipeline-for-fast-iteration-times/
+https://www.youtube.com/watch?v=BQPpZkRk6y4
+
+
+** TODO write editor demo: edit and run(hot loading)
 
 
 ** TODO publish
@@ -91,457 +103,7 @@ rollup-plugin-bucklescript: https://www.npmjs.com/package/rollup-plugin-bucklesc
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* 完成事项
-** TODO integrate with editor
-
-refactor config:
-rename?
-
-
-
-pass main
-
-pass "draw box"
-
-unit test
-
-
-
-
-
-* 编辑器计划
-
-//how to export ui code for contribute?
-
-//resize canvas and viewport 
-
-** TODO add "set basic material color of current gameObject" after finish scene tree
-//merge color branch
-
-
-//add "getMaterial" in GameObjectAdaptor.ts
-
-
-solve run test=>colorUtils bug:
-wait arvin push, then fetch and try
-after solve, push
-
-
-** TODO other
-//add set parent
-
-
-//solve rollup bug!
-
-//solve parent,child now show bug!
-
-//refactor setParent
-
-
-////** TODO solve viewport not scaled
-////set viewport and aspect?
-
-* 中期研究
-
-* 明日计划
-*** TODO support render worker
-
-use module functors?
-
-
-conditional compile:
-https://github.com/facebook/reason/issues/1359
-use bsb-native?
-
-
-
-
-*** TODO publish
-
-
-
-
-
-
 * TODO 未来7日计划
-*** TODO support webgl2
-
-
-
-
-
-*** TODO publish
-
-
-
-
-
-*** TODO add light,texture
-
-
-
-
-**** TODO optimize
-webgl1->v/pMatrix should has cache, while mMatrix should not has!
-
-
-*** TODO publish
-
-
-
-
-*** TODO add load asset(v)
-
-
-
-
-**** DONE learn
-CLOSED: [2017-09-17 Sun 15:51]
-Game Engine Gems 1=> chapter 2 The Game Asset Pipeline
-
-***** DONE optimize resource management
-CLOSED: [2017-09-17 Sun 15:51]
-https://developer.nvidia.com/gpugems/GPUGems2/gpugems2_chapter05.html
-https://developer.nvidia.com/gpugems/GPUGems2/gpugems2_chapter33.html
-https://www.gamedev.net/forums/topic/449794-opengl-multi-streaming-with-vbos/
-Game Engine Gems 1=> chapter 11 A GPU-Managed Memory Pool
-https://developer.nvidia.com/gpugems/GPUGems2/gpugems2_chapter29.html
-**** DONE study
-CLOSED: [2017-09-18 Mon 11:02]
-Cooperative Scheduling of Background Tasks API:
-implement library
-use it to load
-
-use fetch
-
-
-streams api?
-
-
-////3d tiles?
-
-
-learn es6
-
-
-**** DONE load image
-CLOSED: [2017-09-21 Thu 19:43]
-
-load
-read//set?
-
-//preload?
-
-
-
-//test load image when loopBody
-
-//TextureAsset add "toTexture"
-
-//unit test
-
-fix worker
-
-
-//checkout to editor:
-fix .gitignore: dist
-
-
-
-////fix wonder-frp bug
-
-//unit test:
-test: not init map manager when init, init new need textures when draw!
-test: TextureWorkerData.index
-test: TextureWorkerData.sourceMap(update?)
-pass other tests!
-
-
-//test webgl1
-
-
-//refactor:
-sendDrawData
-
-
-
-//support change map at runtime:
-basic
-light
-
-
-//unit test
-
-
-refactor:
-////rename addMap to setMap
-rename SpecifyXXX to SpecificXXX(and handle lower cases!)
-
-
-
-
-////implement streamLoad
-
-
-//test set image when loopBody
-
-//unit test
-
-
-//refactor:
-clean todo
-
-**** DONE refactor
-CLOSED: [2017-09-22 Fri 12:06]
-//use task API
-
-
-//wonder-frp:
-solve duplicate files bug!
-Operator.ts=>import cause?
-
-
-//move task to new project
-
-
-
-**** TODO load sceneGraph .wd
-
-refactor:
-////upper case:
-material_config
-shaderLib_generator
-
-
-***** TODO upgrade .wd to gltf2.0
-////support .wdglb
-
-not support glb
-
-
-TEXCOORD_0, TEXCOORD_1, COLOR_0. 
-Client implementations must support at least two UV texture coordinate sets ////, one vertex color, and one joints/weights set.  
-
-now not support COLOR
-
-
-new geometry:
-TANGENT(not support yet)
-
-
-Images
-a reference to a bufferView; in that case mimeType must be defined.
-
-{
-    "images": [
-        {
-            "uri": "duckCM.png"
-        },
-        {
-            "bufferView": 14,
-            "mimeType": "image/png" 
-        }
-    ]
-}
-
-
-////not support image bufferView
-
-
-////use fetch to refactor load image
-
-
-
-add batch functions:
-pass transform
-batch update texture
-batch set geometry data
-...
-
-
-finish tranform
-
-
-pass unit test
-
-
-
-test batch benchmark in unit test:
-to decide use which createBatch?
-
-
-
-
-
-
-
-
-finish more component:
-geometry,
-camera,
-light,
-material,
-tag?
-
-
-
-
-
-***** TODO use fp refactor loader, AssetDatabase
-
-
-***** TODO converter:
-support convert .obj, .fbx, .gltf to .wd v2.0
-
-use .gltf 2.0 model to test wd 2.0!
-
-
-
-
-////use stream api to load model:
-https://github.com/AVGP/streaming-webgl-demo
-
-***** TODO do
-http://bitsquid.blogspot.ch/2014/10/building-data-oriented-entity-system_10.html
-
-
-
-**** TODO add AssetDatabase to support aync load asset
-move out to be a project in wonder group for wonder-editor use!
-
-
-**** TODO support hot loading
-https://blog.molecular-matters.com/2012/01/31/a-content-pipeline-for-fast-iteration-times/
-https://www.youtube.com/watch?v=BQPpZkRk6y4
-
-
-
-*** TODO write editor demo: edit and run(hot loading)
-
-**** TODO replace wonder-frp with most.js
-should test benchmark!
-(test from array(sync) and from event(async)!)
-
-
-refer to:
-https://github.com/cujojs/most/tree/master/test/perf
-https://survivejs.com/blog/most-interview/
-
-
-
-***** TODO editor use redux-most?
-https://github.com/joshburgess/redux-most
-
-
-
-**** TODO give loading asset performance report
-
-
-
-*** TODO publish
-
-
-
-
-*** TODO add event and picker
-
-*** TODO publish
-
-
-
-*** TODO improve debug and test
-**** TODO debug panel
-profile can be defined in render config json!
-
-
-
-compute:
-fps
-
-render time:
-cpu time
-gpu time
-
-
-
-memory:
-cpu memory:
-total
-typeArray
-...
-
-
-gpu memory:
-total
-textures
-vertex buffers
-index buffers
-GBuffer
-
-
-frame counters:
-vertices count
-triangles count
-
-
-
-show these if setMainConfig=>showDebugPanel:true
-
-
-
-
-**** TODO add benchmark test
-
-http://taobaofed.org/blog/2016/01/13/measuring-fps/
-http://wicg.github.io/frame-timing/
-https://segmentfault.com/a/1190000011516068
-
-
-
-
-https://github.com/zploskey/bs-puppeteer
-https://github.com/GoogleChrome/puppeteer
-
-**** TODO add render test
-
-
-**** TODO publish
-
-
-*** TODO add tag
-
-*** TODO publish
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ** TODO summary
 *** TODO add clone method
 
@@ -554,181 +116,15 @@ https://github.com/GoogleChrome/puppeteer
 *** TODO ie11
 
 
-
-
 ** TODO add event
 *** TODO move event manager to be npm package
 *** TODO add dom event
 **** TODO add ray picking
 
 
-** TODO camera
-ortho camera
 
-arcball camera controller
-fly camera controller
 
-
-
-** TODO add render test
-*** TODO enhance render test
-
-ci can run render test
-
-can generate correct image in the debug page of render
-
-
-use headless-gl + jest + ci to test!!!???
-https://github.com/socialtables/webgl-test-ci
-
-
-
-**** TODO solve "render test not pass in outer screen" problem
-
-**** TODO move render test to npm/submodule
-move more samples there
-
-
-add README.org:
-todo: add compare in two way:
-- overlap yours and correct img
-- get diff pixel img
-
-**** TODO add render test
-
-*** TODO add benchmark auto test
-use benchmarkjs:
-https://github.com/glennsl/bs-benchmarkjs
-
-
-build basic test scenes
-
-compare with time
-
-
-
-** TODO extend
-*** TODO finish the way which user can extend by npm/github repo
-need use other instead of npm?
-(learn http://bitsquid.blogspot.it/2016/01/introducing-stingray-package-manager-spm.html)
-
-*** TODO add script
-
-
-
-*** TODO add custom material+custom shader
-*** TODO user can write own .glsl can register to npm
-modify render config(shader config json?), support build npm->glsl to ShaderChunk.ts?
-
-
-
-** TODO Voxel
-*** TODO voxel terrain
-marching cube
-destruct, dig hole
-lod
-multi materials(multi layer)
-
-voxel billboard?(for tree, grass)
-
-triplanar mapping
-
-
-
-
-*** TODO voxel model(which can be destruct)(static?)
-marching cube
-
-**** TODO generate a new uv map of a new polygon model generated by a voxel model(marching cube?) which can map the same texture of the origin polyon model's
-voxel farm:
-
-http://procworld.blogspot.com/2016/05/applying-textures-to-voxels.html
-***** We had to write voxelization routines that captured the UV data with no ambiguities.
-
-
-
-***** we had to make sure our dual contouring methods could output the UV data back into triangle form.
-
-The realtime compression had to be now aware of the UV space, and remain fast enough for realtime use.
-And last but not least we knew voxel content would be edited and modified in many sorts of cruel ways. We had to understand how the UV data would survive (or not) all these
-transformations. 
-
-***** internal voxels do not have UV info, but a regular material that is exposed when the surface voxels are gone.
-***** Only the surface voxels have UVs.
-
-
-
-
-
-
-Rethinking Texture Mapping:
-http://www.cemyuksel.com/courses/conferences/siggraph2017-rethinking_texture_mapping/rethinking_texture_mapping_course_notes.pdf
-
-
-
-volume-encoded-uv-maps
-http://vcg.isti.cnr.it/volume-encoded-uv-maps/volume-encoded-uv-maps.pdf
-http://vcg.isti.cnr.it/volume-encoded-uv-maps/volume-encoded-uv-maps_additional.pdf
-http://vcg.isti.cnr.it/volume-encoded-uv-maps/
-
-
-
-tileTrees
-https://www-sop.inria.fr/reves/Basilic/2007/LD07/LD07.pdf
-https://www-sop.inria.fr/reves/Basilic/2008/DL08/
-
-
-
-octree texture
-http://www.antexel.com/sylefeb/octreetex/
-http://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/DeBry02.pdf
-http://www.cs.jhu.edu/~misha/ReadingSeminar/Papers/Benson02.pdf
-
-
-
-Examining Automatic Texture Mapping of Arbitrary Terrains: https://www.diva-portal.org/smash/get/diva2:422722/FULLTEXT01.pdf
-
-
-should learn from book:
-《TEXTURING And MODELING A Procedural Approach》
-
-
-polycube map:
-http://vcg.isti.cnr.it/polycubemaps/
-
-
-Perfect Spatial Hashing:
-http://hhoppe.com/perfecthash.pdf
-https://github.com/Jinxit/psh
-
-
-
-
-need study:
-Unified Texture Management for Arbitrary Meshes: http://evasion.inrialpes.fr/Publications/2004/LDN04/RR-5210.pdf
-
-
-
-
-
-
-***** TODO references
-https://emnh.github.io/rts-blog/2017/04/25/10_voxelization.html
-Examining Automatic Texture Mapping of Arbitrary Terrains: https://www.diva-portal.org/smash/get/diva2:422722/FULLTEXT01.pdf
-
-
-**** TODO construct examples in game
-In Infinity: Battlescape, we designed our space stations, bases and factories to be modular. This means that we model &
-texture independant modules, which can get attached together in various configuration layouts. Here's one of such
-layouts for a space station: https://www.gamedev.net/blogs/entry/2262351-patch-0160-screenshots/
-
-https://www.youtube.com/watch?v=DQg6mpjQMRo&feature=youtu.be
-
-
-
-
-
-
+** TODO add script
 
 
 
@@ -741,28 +137,8 @@ https://www.youtube.com/watch?v=DQg6mpjQMRo&feature=youtu.be
 support use forward shading to draw transparent objects
 
 
-
-** TODO study how to texture by using tool
-https://www.youtube.com/watch?v=p4ngVoGIj1Q
-https://www.youtube.com/watch?v=LcCQKuWPhXk
-https://www.youtube.com/watch?v=u2GAHnDaUpU
-
-
-
-uv map:
-https://www.youtube.com/watch?v=f2-FfB9kRmE
-https://www.youtube.com/watch?v=W-ZmDKuB6HI
-
-
-
-texture painting:
-https://www.youtube.com/watch?v=Hr_itixx0Yo
-
-
-
-
 ** TODO refactor: add defer render pipeline
-refer to stingray=>renderer
+refer to stingray->renderer
 
 
 user can expand pipeline:
@@ -801,23 +177,6 @@ need user render script?
 ////** TODO publish alpha.6
 
 
-
-
-
-** TODO use glsl-optimizer
-optimize:
-wonder-glsl-compiler should read shader_libs.re and generate completely vs,fs source(buildGLSLSouce)
-
-
-
-use it to generate optimized glsl code when gl.shaderSource:
-http://aras-p.info/blog/2010/09/29/glsl-optimizer/
-https://github.com/aras-p/glsl-optimizer
-
-
-
-
-
 ** TODO refactor: data driven renderer
 
 ** TODO publish alpha.8
@@ -826,9 +185,6 @@ https://github.com/aras-p/glsl-optimizer
 
 ** TODO add pbr?
 http://bitsquid.blogspot.com/2017/07/validating-materials-and-lights-in.html
-
-https://cesium.com/blog/2017/08/08/physically-based-rendering-in-cesium/
-https://github.com/KhronosGroup/glTF-WebGL-PBR
 
 ** TODO publish
 
@@ -851,7 +207,7 @@ lighting pass之前加一个shadowing pass，仅仅查询shadow map和计算阴�
 map那样做一次blur，在让lighting pass使用。 
 
 
-https://newq.net/publications/more/s2015-many-lights-course => Part 3: Efficient Shadows from Many Lights
+https://newq.net/publications/more/s2015-many-lights-course -> Part 3: Efficient Shadows from Many Lights
 
 
 
@@ -891,8 +247,13 @@ memory pool for textures
 
 
 
+*** TODO finish the way which user can extend by npm/github repo
+need use other instead of npm?
+(learn http://bitsquid.blogspot.it/2016/01/introducing-stingray-package-manager-spm.html)
+
+
 *** TODO refactor
-refactor getComponent=>paradigms
+refactor getComponent->paradigms
 
 
 
@@ -902,14 +263,14 @@ add "compilerOptions" to tsconfig.json(add to base tsconfig.json, others extend 
 mateiral add to meshrenderer
 
 
-use es5,es6=>Object added method to refactor:
+use es5,es6->Object added method to refactor:
 use assign instead of extend?
 
 optimize deep clone:
 http://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript?rq=1
 http://stackoverflow.com/questions/728360/how-do-i-correctly-clone-a-javascript-object?rq=1
 
-use keys in Hash=>getKeys?
+use keys in Hash->getKeys?
 
 
 upgrade typescript to 2.2
@@ -936,9 +297,6 @@ http://www.randygaul.net/2015/12/11/preprocessed-strings-for-asset-ids/
 Scene streaming management:
 Easily create vast worlds by streaming objects in and out of your scenes. Divide your world into subscenes to avoid
 editing conflicts. 
-
-https://stackoverflow.com/questions/25823729/large-3d-scene-streaming
-https://forum.unity.com/threads/released-sectr-stream-seamless-scene-streaming.229907/
 
 ** TODO continue rewrite(keep engine size min)(1.0.0-alpha.xxx)
 *** TODO use Data-Driven Design?
@@ -1004,7 +362,7 @@ https://github.com/Unity-Technologies/ScriptableRenderLoop
 
 support load multi part of one model?
 (refer to http://www.inka3d.com/)
-**** TODO multi-thread collision(refer to babylonjs=>worker)
+**** TODO multi-thread collision(refer to babylonjs->worker)
 *** TODO rewrite render loop(refer to unity)
 **** TODO refactor?
 refactor: move material to renderer?
@@ -1344,6 +702,36 @@ logic component and render component
 
 *** TODO add unit test
 
+*** TODO enhance render test
+
+ci can run render test
+
+can generate correct image in the debug page of render
+
+
+use headless-gl + jest + ci to test!!!???
+https://github.com/socialtables/webgl-test-ci
+
+
+
+**** TODO solve "render test not pass in outer screen" problem
+
+**** TODO move render test to npm/submodule
+move more samples there
+
+
+add README.org:
+todo: add compare in two way:
+- overlap yours and correct img
+- get diff pixel img
+
+**** TODO add render test
+
+*** TODO add benchmark auto test
+build basic test scenes
+
+compare with time
+
 *** TODO solve how to extend by user:(refer to unity)
 
 
@@ -1387,7 +775,7 @@ wonder should read this field and register it
 
 
 public component:
-(refer to typescript=>d.ts)
+(refer to typescript->d.ts)
 user should send it to public github repository
 in ci, it will check and run unit test
 
@@ -1457,12 +845,12 @@ refer to babylonjs
 https://isux.tencent.com/introduction-of-webp.html
 
 
-** TODO fix bug(refer to mine/Wonder.js=>commits)
+** TODO fix bug(refer to mine/Wonder.js->commits)
 //UIRenderer support set canvas size(left,top,width,height)
 
 
-//fix OBJ converter=>ObjectsConverter:
-refer to threejs=>OBJMTLLoader.js
+//fix OBJ converter->ObjectsConverter:
+refer to threejs->OBJMTLLoader.js
 use 0419.obj model
 (children should be 448, but mine is 300+!)
 (the g group is wrong! maybe all should rewrite!)
@@ -1607,17 +995,17 @@ the animation and the static model's rotation is not the same!(animation has rot
 (
 gltf is correct(monster is correct)(by compare with threejs)
 
-but fbx is wrong!(xsi_man_skinning.fbx)(compare with threejs=>webgl_loader_fbx.html)
+but fbx is wrong!(xsi_man_skinning.fbx)(compare with threejs->webgl_loader_fbx.html)
 maybe the bind shape matrix is wrong? need parse!?
 # parse bind shape matrix:
 # http://www.gamedev.net/topic/574309-solved-fbx-animation-problems/
-# refer to babylonjs=>SkinInfo.cpp=>bindPoses ?)
+# refer to babylonjs->SkinInfo.cpp->bindPoses ?)
 
 
 
 
 *** TODO support multi animations in one fbx
-pass fbx=>converter=>multi skin animations!:
+pass fbx->converter->multi skin animations!:
 use blender to add multi animations of one model in one .fbx file
 learn how to separate and combine character and its props animations!
 
@@ -1626,7 +1014,7 @@ learn how to separate and combine character and its props animations!
 fbx:
   parse bind shape matrix:
   http://www.gamedev.net/topic/574309-solved-fbx-animation-problems/
-  refer to babylonjs=>SkinInfo.cpp=>bindPoses ?
+  refer to babylonjs->SkinInfo.cpp->bindPoses ?
 
 
 
@@ -1698,7 +1086,7 @@ support frame control
 *** TODO publish
 
 
-** TODO finish phone=>todo
+** TODO finish phone->todo
 *** TODO use compress texture?
 
 support .pvr in ios
@@ -1721,7 +1109,7 @@ optimize clone,extend,deepextend:
 https://cnodejs.org/topic/56c49662db16d3343df34b13
 use Object.assign()
 https://github.com/Microsoft/TypeScript/issues/3429
-( typescript2.2=>extend)
+( typescript2.2->extend)
 https://github.com/Microsoft/TypeScript/pull/13604
 
 
@@ -1730,7 +1118,7 @@ https://github.com/Microsoft/TypeScript/pull/13604
 
 
 optimize transform:
-optimize Transform=>state?
+optimize Transform->state?
 
 check is the same in setting position,scale,rotation, localXXX(new value === old value, not set,dirty?)
 
@@ -1743,22 +1131,22 @@ staticly compile shader param of libs to one large collection of the one entityO
 
 *** TODO memory optimize
 add global Temp class, for save temp matrix,vector...
-(refer to bjs=>math.ts=>Temp class)
+(refer to bjs->math.ts->Temp class)
 
 use memory pool instead of Temp class?
-(refer to sk_design=>MemoryUtil,MemoryPool)
+(refer to sk_design->MemoryUtil,MemoryPool)
 
 
 
 show memory info:
-refer to sk_design=>WebGLRenderer=>dump method
+refer to sk_design->WebGLRenderer->dump method
 
 
 optimize Vector2/3/4:
 remove "values" attr
 
 
-optimize hash=>removeChild
+optimize hash->removeChild
 
 
 
@@ -1829,7 +1217,7 @@ player can collision with these box,sphere
 
 
 add demo:
-refer to babylonjs=>Samples/Scenes/WorldMonger/
+refer to babylonjs->Samples/Scenes/WorldMonger/
 
 refer to http://www.babylonjs-playground.com/#E6OZX#7
 add mix map, normal map
@@ -1874,7 +1262,7 @@ build mobile test environment
 
 
 fix:
-set pixel ratio in mobile => set style width/height?
+set pixel ratio in mobile -> set style width/height?
          view.width = view.width * window.devicePixelRatio;
          view.height = view.height * window.devicePixelRatio;
          view.styleWidth = view.width + "px";
@@ -1891,7 +1279,7 @@ gl && gl.viewport(
 
 
 optimize:
-hongbao=> parse and assemble geometry is slow
+hongbao-> parse and assemble geometry is slow
 (compress position,joint,weight... to one buffer)
 
 
@@ -1899,14 +1287,14 @@ hongbao=> parse and assemble geometry is slow
 
 
 fix:
-maoke=>arcball camera=>roll up/down is wrong!
+maoke->arcball camera->roll up/down is wrong!
 
-unify Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation=>play=>params
-refactor Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation=>playOneTime(move to Animation)
+unify Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->play->params
+refactor Animation,SingleLayerKeyFrameAnimation,MultiLayerKeyFrameAnimation->playOneTime(move to Animation)
 
 
 optimize:
-maoke=>arcball camera=>roll is very slow!
+maoke->arcball camera->roll is very slow!
 
 
 
@@ -1982,12 +1370,12 @@ parse and assemble hilo3d(now parse geometry is very slow)
 
 
 optimize hongbao in ios(also in android?):
-optimize model=>antialias in android,ios
+optimize model->antialias in android,ios
 
 
 
 
-optimize hongbao=>03b => cat(xxxSurface_251(66?))=>normal compute:
+optimize hongbao->03b -> cat(xxxSurface_251(66?))->normal compute:
 isn't correct!
 
 
@@ -2020,11 +1408,7 @@ optimize model geometry
 author be company name
 author: add company website
 
-banner=>@link change to company repo link
-
-
-not use multi thread render defaultly(close it)
-(engine in editor should close it too!)
+banner->@link change to company repo link
 
 
 *** TODO publish types to definition repo
@@ -2033,7 +1417,7 @@ publish wonder-fantancy-land types
 
 update wonder-commonlib, wonder-frp types
 
-*** TODO pass run in windows=>ie11
+*** TODO pass run in windows->ie11
 fix:
 instance_xxx_shadow_xxx
 merge_model
@@ -2066,14 +1450,14 @@ write document, tutorials:
 
 
 
-support full screen(refer to babylon.engine.ts=>450 line)
+support full screen(refer to babylon.engine.ts->450 line)
 
 
 ** TODO optimize cpu(v0.5.8)
 //render target renderer(e.g. Mirror,Refraction,DynamicCubemap, ...) and procedural renderer, shadowMap(refer to
-babylonjs=>Samples/Demos/Instances/instances.js line 100), VideoTexture,   add "refreshRate", "refresh control"(like
+babylonjs->Samples/Demos/Instances/instances.js line 100), VideoTexture,   add "refreshRate", "refresh control"(like
 stop refresh,start refresh, refresh(count):refresh the specify times
-(Math.ceil, 1=>refresh every frame; 2=>refresh every 2 frames;0=>refresh only in the first frame, ...)
+(Math.ceil, 1->refresh every frame; 2->refresh every 2 frames;0->refresh only in the first frame, ...)
 (add refresh rate counter)
 
 
@@ -2127,7 +1511,7 @@ http://malideveloper.arm.com/downloads/GDC14/Thursday/10.30amWebGL.pdf
 
 
 
-use webgl-inspector=>highlights to see duplicate setting uniforms
+use webgl-inspector->highlights to see duplicate setting uniforms
 
 Note that uniforms are specific to programs and they are remembered by the programs, so you don't have to re-set them
 every time you switch programs! 
@@ -2143,20 +1527,20 @@ not create duplicate textures
 
 
 
-BufferContainer=>getChild=>apply:
+BufferContainer->getChild->apply:
 remove @cache
 use {} instead of Hash
 
 
 
-optimize ArticulateAnimation=>_updateTargets
+optimize ArticulateAnimation->_updateTargets
 
 
 
 
 
-ActionManager=>update
-script=>update
+ActionManager->update
+script->update
 
 
 
@@ -2185,7 +1569,7 @@ show 60000 spheres with 60fps(instance + octree + lod)
 (refer to bjs(babylonjs))
 
 ////*** TODO optimize: cache all uniform/attribute position when init(then look up the cache table to get the position when send glsl data)
-////refer to babylonjs=>effect.ts, engine.ts=>getUniforms/getAttributes method
+////refer to babylonjs->effect.ts, engine.ts->getUniforms/getAttributes method
 
 
 
@@ -2262,7 +1646,7 @@ http://docs.unity3d.com/Manual/LayerBasedCollision.html
 
 optimize shadow(especially point shadow)
 bug: 
-in collision_box sample, why shadow break when move box down to near the edge of screen?(not caused by light=>shadowCameraXXX)
+in collision_box sample, why shadow break when move box down to near the edge of screen?(not caused by light->shadowCameraXXX)
 
 test light move
 
@@ -2277,7 +1661,7 @@ not bind and send uniform when build shadow map
 
 
 optimize:
-cache camera=>vpMatrix
+cache camera->vpMatrix
 shadow layer
 
 ////not bind texture when build shadow map
@@ -2641,7 +2025,7 @@ texture(sampler, uv.xy/uv.w)
 
 
 
-**** TODO ANGLE optimize(refer to <<WebGL Insights>>=>chapter 1):
+**** TODO ANGLE optimize(refer to <<WebGL Insights>>->chapter 1):
 - Avoid use of gl.TRIANGLE_FAN, as it may be emulated in software.
 
 - Create new textures, rather than changing the dimensions or format of old ones.
@@ -2772,7 +2156,7 @@ instead, then OpenGL ES 3.0 would not be avail- able on this hardware at all.
 
 
 
-**** TODO firefox implement webgl(refer to <<WebGL Insights>>=>chapter 2):
+**** TODO firefox implement webgl(refer to <<WebGL Insights>>->chapter 2):
 
 - Each drawElements call can only work with one index
 type anyway. Keep separate index types in separate element array
@@ -2796,14 +2180,14 @@ it takes to render it, but also a lot of inter- nal compositing work
 and synchronization. So if you don’t need to update a frame, don’t
 touch it, don’t even call clear. 
 
-**** TODO refer to <<WebGL Insights>>=>chapter 4:
+**** TODO refer to <<WebGL Insights>>->chapter 4:
 This means that if we want to expose a property on an object, it’s
 faster to make it a public field rather than abstract it behind get
 and set methods 
 
 
 
-**** TODO refer to <<WebGL Insights>>=>chapter 8(mobile chapter):
+**** TODO refer to <<WebGL Insights>>->chapter 8(mobile chapter):
 
 An application should not have unnecessary “get” calls of any kind,
 especially getError, or frequent calls requiring synchronization like
@@ -2833,7 +2217,7 @@ for each tile [Merry 12]. Optimizing models to minimize the vertex and
 triangle count helps on these GPUs. 
 
 
-**** TODO refer to <<WebGL Insights>>=>chapter 10(Turbulenz Engine):
+**** TODO refer to <<WebGL Insights>>->chapter 10(Turbulenz Engine):
 
 cull lights:
 For lights, we may go an extra step by projecting the bounding box
@@ -2842,7 +2226,7 @@ discarding the light or disabling its shadows’ maps depending on its
 contribution to the scene. 
 
 
-**** TODO refer to <<WebGL Insights>>=>chapter 14:
+**** TODO refer to <<WebGL Insights>>->chapter 14:
 
 When the user spins the model around its turntable using a touch
 interface, a smooth frame rate is achieved by rendering to a
@@ -2882,7 +2266,7 @@ texture = this.textures.lo; gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffers
 
 //研究data driven engine(p656)
 
-//改进GameObject=>update:
+//改进GameObject->update:
 use batch update(p679)
 
 
@@ -2907,7 +2291,7 @@ add more info like bjs
 
 
 ** TODO improve transform
-learn GPU Pro 5=>managing transforms in hierarchy
+learn GPU Pro 5->managing transforms in hierarchy
 
 
 
@@ -2990,10 +2374,41 @@ http://ogldev.atspace.co.uk/www/tutorial37/tutorial37.html
 
 * Record
 
+** TODO editor need to do
+//extract transform component folder!
+//move eletronic to Wonder-Editor
+
+//rename project
+//change author to DreamForest
+
+
+
+//show initCanvasSpec:now add/remove dom
+
+
+//translationSpec: should not test rotate!
+//forUnitTest: should separate export with one line
+
+editor state use basic value
+
+use wonder-frp instead of rxjs
+
+
+
+use merge to master(e.g. git merge --no-ff tree when in master branch)
+merge --no-ff回master
 
 
 * TODO unsolved problem
 ** TODO how to ts compile worker file code?
+
+** TODO codecov
+should coverage both wd.js and wd.renderWorker.js:
+only coverage wd.js
+
+
+*** TODO how to exclude third party lib code from coverage???
+
 
 
 * TODO need improve
@@ -3001,3 +2416,4 @@ http://ogldev.atspace.co.uk/www/tutorial37/tutorial37.html
 
 
 * TODO more
+

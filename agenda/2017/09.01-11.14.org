@@ -1,127 +1,663 @@
 * 今日计划
-** TODO integrate with editor
-
-refactor config:
-rename?
-
-
-
-pass main
-
-pass "draw box"
-
-unit test
-
-
-
-
-** TODO add dispose logic
-use lazy dispose???
-////(so that no need to addDisposeHandle!!!)
-remove "isAlive" logic?
-memoryUtils=>transform optimize:
-reallocate 0-( firstIndex - 1 ), reset transformData.index!
-
-
-
-
-gpu optimize:
-memory pool:
-texture 
-buffer
-
-(define pool in render setting)
-
-
-
-
-
-** TODO implement batch
-support batch create:
-batch add components
-
-
-test batch benchmark in benchmark test:
-use bs-benchmark.js?
-
-https://segmentfault.com/a/1190000003486676
-https://johnresig.com/blog/javascript-benchmark-quality/
-https://calendar.perfplanet.com/2010/bulletproof-javascript-benchmarks/
-
-
-
-
-
-////support batch dispose:
-
-
-** TODO implement clone
-
-
-** TODO implement "restore from state"
-
-
-
-
-////**** TODO add hasChild,removeChild logic
-
-
-
-** TODO rollup: generate index.re
-
-
-
-////**** TODO implement "clone"
-
-
-
-
-rollup-plugin-bucklescript: https://www.npmjs.com/package/rollup-plugin-bucklescript
-
-
-
-
-
-
-
-
-** TODO publish
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+** DONE rewrite in reason: show box in webgl1
+CLOSED: [2017-11-14 Tue 16:01]
 
 
 
 
 * 完成事项
-** TODO integrate with editor
-
-refactor config:
-rename?
-
+** DONE refactor
+CLOSED: [2017-09-03 Sun 08:07]
+refactor examples/js/, separate functions for test
 
 
-pass main
 
-pass "draw box"
+** DONE study voxel
+CLOSED: [2017-09-12 Tue 22:30]
+*** TODO learn
 
-unit test
+////*** TODO demo
 
 
+
+
+(u, v) = f(p) f : R^3 → Ω
+
+81, 99, 121
+
+
+
+planar parameterizations
+
+
+
+
+study PolycubeMaps!
+
+
+
+   
+////*** TODO add to engine
+
+remove geometry data after add to vbo?
+
+
+e [Christensen
+and Batali 2004; Lefebvre and Dachsbacher 2007; Yuksel
+et al. 2010; Burley and Lacewell 2008]
+
+
+grid-preserving UV-maps, which, as
+shown in [Ray et al. 2010], c
+
+
+*** TODO summary
+write a blog to share
+
+
+
+
+
+
+** DONE rewrite in reason
+CLOSED: [2017-11-15 Wed 15:59]
+*** DONE study reason
+CLOSED: [2017-10-04 Wed 19:22]
+
+*** DONE learn project
+CLOSED: [2017-10-06 Fri 19:03]
+
+
+auto generate .rei?
+
+
+
+*** DONE use vscode
+CLOSED: [2017-10-07 Sat 08:17]
+
+
+*** TODO rollup
+
+
+*** DONE unit test:
+CLOSED: [2017-10-10 Tue 20:18]
+//bs-jest
+https://jaketrent.com/post/unit-testing-in-reasonml/
+
+
+
+//use sinon
+
+////configuration jest(output)
+
+//expand jest matcher(e.g. toCalledWith)
+
+
+
+//add code snippet
+
+*** DONE use dbc
+CLOSED: [2017-10-11 Wed 21:06]
+
+
+*** DONE use rei
+CLOSED: [2017-10-12 Thu 09:48]
+
+
+////**** TODO monad?
+
+
+*** DONE summary
+CLOSED: [2017-10-12 Thu 11:30]
+
+//publish version
+
+//publish tag after pass ci
+
+*** DONE write a box demo(webgl1)( should reach to 95% coverage )
+CLOSED: [2017-11-11 Sat 15:35]
+add ffi:
+add wonder-reasongl-web, wonder-reasongl-interface project?
+
+
+
+//change license
+
+
+//commit
+
+
+//pass unit test
+//createGLSpec.js
+
+//add coverage
+
+**** DONE implement ecs(component only has threeDTransform, cameraController, meshRenderer,geometry)
+CLOSED: [2017-10-26 Thu 21:15]
+
+
+
+//implement parenet-child
+
+
+optimize:
+//remove by swap(benchmark)
+
+//remove parent-child in gameObject(use threeDTransform's relation instead):
+user should directly operate on threeDTransform's relation!
+
+//remove componentMap, gameObjectData add transformMap, geometryMap...
+
+
+
+
+
+add components:
+threeDTransform:
+//no uid
+
+//parent-child
+
+
+
+//update
+
+
+
+//optimize:
+transform: use temp data(need benchmark test!)
+
+
+//get/set position,mat:
+only remain local api!
+
+optimize: no cache?(use subarray)
+not use cache, because this method is rarely used in engine(mostly used by user, so user need add cache by themselves), so not affect performance 
+
+
+
+optimize: no matrix4,vec3..., use system instead to operate type arr data!
+
+
+
+//addComponent
+
+
+
+
+
+
+//unit test:
+director
+ecs
+
+
+//coverage should > 95%
+
+
+
+
+//refactor: move addIt... out HierachySystem.re
+
+
+////optimize: change to cps
+
+
+
+
+//refactor:
+use more ocaml feature:
+use module and functors?
+
+more functional
+
+
+
+
+
+
+
+
+
+add components:
+//cameraController
+
+//unit test
+
+
+
+
+
+//remove addAddComponentHandle:
+can addAddComponentHandle in addXXXComponent(GameObject.re)
+
+
+
+
+
+
+
+
+
+
+**** DONE implement render
+CLOSED: [2017-11-09 Thu 10:29]
+
+
+data driven renderer:
+support all platforms
+
+support specific pass
+(select platform: pc or mobile; backend: webgl1 or webgl2; )
+(should check whether support backend and renderWorker, if not, fallback)
+(use front Render or defer render)
+(use_instanced)
+
+
+read config => gpu detect, decide whether fallback
+
+
+
+fallback:
+define pass/fail
+
+
+refactor:
+change shaderLib_xxx.ts, material_config.ts to .json!
+
+
+
+
+
+render_config.json:
+Defines simple stuff like
+– Quality settings & device capabilities
+–Shader libraries to load
+– Global resource sets
+–Render Targets, LUT textures & similar
+–But it also drives the entire renderer
+–Ties together all rendering sub-systems
+– Dictates the flow of a rendered frame
+
+
+render_settings:
+
+hardware settings?:
+renderWorker
+backend: webgl1 or webgl2
+instanced
+...
+pass/fail
+
+
+limit
+
+
+
+global_resources(render target(gbuffer), ...)
+set are allocated as the renderer boots up and not released until the renderer is closed
+
+
+allocate texture,buffer(memory pool?),render target?
+
+
+
+
+
+
+layer_configs(render flow config):
+simple_defered(can use front render pass to render transparency gameObjects!)
+(can decide use tile-defer or stencil or ...)
+simple_front
+
+
+
+(define use what global_resources!)
+
+
+resource generators:
+sub-systems/module
+jobs!
+(no depend on hardware(webgl1/webgl2/instanced...))
+
+e.g.:
+defered_shading
+tiled_defered_shading
+front
+basic
+transparency
+
+
+light can define support which lights: ambient/direction/point ...
+
+
+inputs, outputs
+
+
+specify shader
+
+
+ResourceContexts??? can spawn workers!!!???
+
+
+
+
+shader_lib.json?
+
+
+shader_libs(define shaderLib?)
+
+
+
+
+
+//pass test
+//try curry
+//finish init draft
+
+
+
+
+//add: from "camera"?
+
+
+
+
+
+
+//pass compile
+
+
+
+
+
+
+
+
+
+
+
+
+
+//finish render draft:
+
+optimize:
+no need geometry indexs!
+
+
+
+
+
+//pass compile
+
+
+
+
+
+component:
+mateiral=>basicMaterial
+geometry:
+
+geometry->getXXX can use lazy???
+
+
+meshRenderer
+
+
+
+//refactor:
+change to shaderIndexMap
+
+
+
+
+
+finish init:
+
+unit test:
+
+pass all
+
+//test init
+
+
+
+//pass material
+
+//pass meshRenderer
+
+
+
+//test init vbo
+
+
+
+
+//finish render:
+
+//unit test:
+test render
+
+
+//fix transform bug!
+
+//pass getCameraData test
+//refactor getCameraData test with getRenderList test
+
+//test CameraControllerSystem->getCurrentCameraController
+
+
+
+refactor:
+////rename job to "get xxx to state"
+//rename get/setGL  to get/setGl
+//rename setReturn to "returns"
+
+
+
+
+refactor:
+//rename state->initConfigData to "initConfig"
+//move render->data to render->config->data?
+//clean code
+
+
+
+//optimize sendMatrix4: 
+use cache(by judge references? matrix4 array references? immutable?)???
+or Transform->getLocalToWorldMatrices add cache(return Cached(array(float)) / New(array(float)), then judge the type!?)
+
+
+test:
+//remove cameraController cache
+////Transform->getLocalToWorldMatrices add cache
+//sendMatrix4 judge cache
+
+
+
+//camera->pMatrix judge dirty
+
+
+//transform:
+////test not need sort parent?
+
+
+
+
+
+
+
+
+
+
+**** DONE benchmark test
+CLOSED: [2017-11-10 Fri 19:44]
+
+
+
+//fix:
+transform default localToWorldMatrix should be identity!
+
+
+
+//optimize: 
+judge last vbo buffer
+
+
+
+fix:
+//create multi gameObjects
+
+(should only one program!)
+
+
+
+//remove send cache!
+
+
+
+
+//optimize: restore "send uniform data"  curry ???
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+benchmark test:
+5000 boxes
+10000 boxes
+
+
+
+////optimize forEach
+
+
+update:
+1.move data
+2.only move index map
+
+
+
+
+
+//pass run in firefox
+
+
+
+//refactor: move option param last
+
+
+////optimize: 
+reduce int to string:
+method param specify indexStr or index!?
+
+
+
+//add scheduler
+
+//unit test
+
+
+
+
+
+//contract fail throw stack???
+
+refactor:
+//use make instead of Float32Array.create 
+//rename data->xxxList to xxxArray
+
+////pass warning!
+
+
+
+
+
+////test: share geometry
+
+
+
+
+optimize:
+//optimize ArraySystem.reduceState
+
+
+////test use Hashtbl instead of HashMapSystem
+
+
+
+
+
+
+
+
+
+
+
+*** DONE publish
+CLOSED: [2017-11-11 Sat 13:03]
+
+////test coverage rate >= 95%
+
+give benchmark report!
+
+
+
+
+*** DONE finish glsl compiler
+CLOSED: [2017-11-14 Tue 09:44]
+//implement
+
+
+
+//unit test
+
+//clean code
+
+
+//fix wonder-bs-jest:
+pass wonder.js
+//fix sinon.re
+
+
+////refactor:
+more fp:
+   use rec instead of while
+   remove "ref"
+
+
+
+move src=>compiler to new project: Wonder-GLSL-Compiler
+v0.1 only support import * from "xxx"
+v0.2 should support export and import {xxx, ...} from "xxx"
+
+
+
+
+add "generateShaderChunk" gulp task
+add "build" gulp task
+change ci
+
+
+
+
+//refactor:
+//extract wonder-bs-sinon(based on glsl-compiler => sinon)
+update wonder-commonlib:
+move HashMapSystem, ArraySystem, DebugUtils, ...?
 
 
 
@@ -160,6 +696,116 @@ after solve, push
 * 中期研究
 
 * 明日计划
+
+
+*** TODO integrate with editor
+
+refactor config:
+rename?
+
+
+
+pass main
+
+pass "draw box"
+
+unit test
+
+
+
+
+*** TODO add dispose logic
+use lazy dispose???
+////(so that no need to addDisposeHandle!!!)
+remove "isAlive" logic?
+memoryUtils=>transform optimize:
+reallocate 0-( firstIndex - 1 ), reset transformData.index!
+
+
+
+
+gpu optimize:
+memory pool:
+texture 
+buffer
+
+(define pool in render setting)
+
+
+
+
+
+*** TODO implement batch
+support batch create:
+batch add components
+
+
+test batch benchmark in benchmark test:
+use bs-benchmark.js?
+
+https://segmentfault.com/a/1190000003486676
+https://johnresig.com/blog/javascript-benchmark-quality/
+https://calendar.perfplanet.com/2010/bulletproof-javascript-benchmarks/
+
+
+
+
+
+////support batch dispose:
+
+
+*** TODO implement clone
+
+
+*** TODO implement "restore from state"
+
+
+
+
+////**** TODO add hasChild,removeChild logic
+
+
+
+*** TODO rollup: generate index.re
+
+
+
+////**** TODO implement "clone"
+
+
+
+
+rollup-plugin-bucklescript: https://www.npmjs.com/package/rollup-plugin-bucklescript
+
+
+
+
+
+
+
+
+*** TODO publish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* TODO 未来7日计划
 *** TODO support render worker
 
 use module functors?
@@ -177,9 +823,6 @@ use bsb-native?
 
 
 
-
-
-* TODO 未来7日计划
 *** TODO support webgl2
 
 
@@ -2990,10 +3633,44 @@ http://ogldev.atspace.co.uk/www/tutorial37/tutorial37.html
 
 * Record
 
+** DONE editor need to do
+CLOSED: [2017-09-12 Tue 20:57]
+//extract transform component folder!
+//move eletronic to Wonder-Editor
+
+//rename project
+//change author to DreamForest
+
+
+
+//show initCanvasSpec:now add/remove dom
+
+
+//translationSpec: should not test rotate!
+//forUnitTest: should separate export with one line
+
+editor state use basic value
+
+use wonder-frp instead of rxjs
+
+
+
+use merge to master(e.g. git merge --no-ff tree when in master branch)
+merge --no-ff回master
 
 
 * TODO unsolved problem
 ** TODO how to ts compile worker file code?
+
+** DONE codecov
+CLOSED: [2017-11-15 Wed 15:55]
+should coverage both wd.js and wd.renderWorker.js:
+only coverage wd.js
+
+
+*** DONE how to exclude third party lib code from coverage???
+CLOSED: [2017-11-15 Wed 15:55]
+use jest instead of jasmine
 
 
 * TODO need improve
@@ -3001,3 +3678,4 @@ http://ogldev.atspace.co.uk/www/tutorial37/tutorial37.html
 
 
 * TODO more
+
