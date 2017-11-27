@@ -1,34 +1,90 @@
 * 今日计划
+** TODO integrate with editor
+
+refactor config:
+rename?
+
+
+
+pass main
+
+pass "draw box"
+
+unit test
+
+
+
+
+** TODO add dispose logic
+use lazy dispose???
+////(so that no need to addDisposeHandle!!!)
+remove "isAlive" logic?
+memoryUtils=>transform optimize:
+reallocate 0-( firstIndex - 1 ), reset transformData.index!
+
+
+
+
+gpu optimize:
+memory pool:
+texture 
+buffer
+
+(define pool in render setting)
+
+
+
+
+
+** TODO implement batch
+support batch dispose
+
+
+
+
+
+
+
+** TODO implement clone
+
+
 ** TODO implement "restore from state"
 
 
 
 
+////**** TODO add hasChild,removeChild logic
+
+
+
+** TODO rollup: generate index.re
+
+
+
+////**** TODO implement "clone"
+
+
+
+
+rollup-plugin-bucklescript: https://www.npmjs.com/package/rollup-plugin-bucklescript
 
 
 
 
 
 
-
-
-
-
-
-** TODO support render worker
-
-use module functors?
-
-
-conditional compile:
-https://github.com/facebook/reason/issues/1359
-use bsb-native?
-
-
-file names end with "ReWo" instead of "Utils"?
 
 
 ** TODO publish
+increase test coverage to 95%
+
+
+
+change README.org:
+a functional, high performance webgl 3d engine
+
+
+
 
 
 
@@ -43,18 +99,395 @@ file names end with "ReWo" instead of "Utils"?
 
 
 * 完成事项
+** DONE integrate with editor
+CLOSED: [2017-11-16 Thu 18:38]
+
+refactor config:
+rename?
+
+
+
+//pass main
+
+//pass "draw box"
+
+unit test:
+//pass app_test
+
+////resize canvas
+
+////unit test
+
+//adaptor add more
+
+//refactor
+
+
+** DONE add dispose logic
+CLOSED: [2017-11-23 Thu 10:42]
+use lazy dispose???
+////(so that no need to addDisposeHandle!!!)
+remove "isAlive" logic?
+memoryUtils=>transform optimize:
+reallocate 0-( firstIndex - 1 ), reset transformData.index!
+
+//add isAlive
+
+//test transform
+
+
+
+//dispose gameObject:
+//need reallocate? yes!
+
+//test
+
+
+
+//test: 
+test init gameObject
+
+
+
+
+//pass benchmark test!
+
+
+
+benchmark test:
+only test dispose gameObject and its transform
+
+
+//fix: 
+fix benchmark test bug: create 2000 boxes, dispose 1000 , bug!!!
+test render
+////test get buffer->getVertices/getIndices
+
+
+
+
+////finish indexOf optimize:
+pass unit test
+pass render test
+
+
+
+
+
+//todo check shouldn't dispose geometry before init
+
+
+
+
+
+
+optimize:
+//clean gameobject->componentMap
+//clean meshRenderer,transform->disposeIndexArray
+////reallocate material,transform,meshRenderer,cameraController? or not (limit max count < 10000?)
+////meshRenderer: add render gameObject map!
+
+cache finded shaderLibDataArray!
+
+
+////geomemtry-> configMap, disposeUidMap?indexMap? 
+
+
+////job should only get once
+
+//solve memory leak!
+
+
+
+
+
+
+
+dispose geometry:
+//gpu optimize:
+memory pool:
+texture 
+buffer
+
+(define pool in render setting)
+
+
+
+//test:
+use pool:
+add buffer  to pool after dispose
+not create new buffer
+
+bind pooled element array buffer before draw
+
+
+
+
+
+
+
+//pass unit:
+//feat: add reallocate geometry logic
+//feat: add geometry->indexMap to map index to allocated new index!
+//reallocate gameObject->meshRenderer,... map
+//test ComponentSystem->generateIndex
+//GameObject_test: test dispose geometry,... component
+//test reallocate geometry:
+data.indicesCountCacheMap = newIndicesCountCacheMap;
+data.verticesCountCacheMap = newVerticesCountCacheMap;
+
+//test "optimize: ShaderSystem->_init->addAttributeSendData,addUniformSendData, addDrawPointsFunc: if shader index exist,
+not add"
+
+//fix: buffer,indicesCount,verticesCount should be out(per for geometryIndex)!
+
+
+
+
+
+//optimize geometry->indexMap: reduce call count of get mapped index
+(not get mapped index in geometry system/utils)
+
+
+
+
+//fix:
+todo check shouldn't dispose xxx before init
+
+////decrease geometryPointDataBufferCount?(source is too large)
+
+
+
+
+//fix:
+////component not check isAlive(add test cases: can't check!)
+component check isAlive(add test cases: check!)(geometry should check)
+gameObject still check isAlive
+
+
+finish todo:
+//check isAlive
+
+
+
+
+
+refactor:
+//remove geometryDataBufferCount
+////ensure->should exist: can use Obj.magic and judge undefine!???
+//rename box.html to benchmark_basic_boxes.html
+
+//test->getGl move to tool
+//rename IndexBuffer to ElementArrayBuffer
+////rename GLSL to Glsl
+
+
+
+
+
+
+refactor: 
+//rename TransformXXXUtils to transformXXXUtils
+//rename UId to Uid
+////rename bufferConfig: rename meshRendererDataBufferCount to meshRendererCount
+//clean code
+
+
+
+
+//finish todo
+
+
+
+
+
+//finish other components
+
+** DONE batch dispose
+CLOSED: [2017-11-23 Thu 18:48]
+//support batch dispose:
+need optimize meshrenderer->dispose->remove gameObject from renderGameObjectArray
+
+optimize:
+dispose->meshRenderer->renderGameArray
+
+
+
+** DONE implement clone
+CLOSED: [2017-11-26 Sun 16:52]
+batch clone
+
+//can reuse:
+material's shaderLib/shaderIndex
+geometry's vertices/indices
+...
+
+//pass compile
+
+//commit:
+geometry: distinguish index and mappedIndex
+
+
+//pass unit test
+
+
+add material:
+////shader optimize
+
+
+
+
+//pass unit test
+
+
+
+
+//optimize memory:
+isClonedMap
+buffer map
+
+
+//fix geometry:
+gameObjectMap?(use mappedIndex?)
+
+
+//refactor:
+rename geometry->configData to computeConfigData
+remove Geometry.re->getXXXConfigData
+
+
+
+//pass benchmark test:
+//fill type arr with type arr:
+//use set instead of for?(geometry->setVertices/setIndices, reallocate geometry)
+(computeFunc return arr instead of typeArr; when clone geometry, make typeArr from source geometery's arr!!!???)
+
+
+
+
+//optimize clone material:
+shader optimize
+
+
+
+//optimize:
+hashmap whose key in number should not int:
+use sparse array map instead!(array with int key)
+
+
+//add cameraController
+
+
+//pass unit test
+
+
+
+
+////test:
+test BoxGeometry->setConfigData, getConfigData after reallocate geometry
+//reallocate geometry: test isClonedMap
+
+
+
+
+////compare:
+update or 
+
+
+
+
+
+
+refactor:
+//rename MainSystem->configStateXXX to configXXX
+//clean code
+
+
+
+//finish todo
+
+
+//refactor:
+package.json: 
+remove:
+    "jest": "^21.2.1",
+    "jest-cli": "^21.2.1",
+
+
+upgrade to 0.2.1:
+    "wonder-bs-jest": "0.2.0",
+
+
+
+
+
+
+//fix glsl-compiler: 
+not ignore lib/src, ignore lib/test
+update wonder.js->package.json
+
+
+
+
+
+** DONE publish
+CLOSED: [2017-11-26 Sun 18:00]
+
+
+increase test coverage to 95%
+
+
+give performance report
+
+//change README.org:
+a functional, high performance webgl 3d engine
+
+
+
+
 
 
 * 编辑器计划
+
+//how to export ui code for contribute?
+
+//resize canvas and viewport 
+
+** TODO add "set basic material color of current gameObject" after finish scene tree
+//merge color branch
+
+
+//add "getMaterial" in GameObjectAdaptor.ts
+
+
+solve run test=>colorUtils bug:
+wait arvin push, then fetch and try
+after solve, push
 
 
 
 * 中期研究
 
 * 明日计划
+*** TODO implement "restore from state"
 
 
 
+
+*** TODO support render worker
+
+use module functors?
+
+
+conditional compile:
+https://github.com/facebook/reason/issues/1359
+use bsb-native?
+
+
+file names end with "ReWo" instead of "Utils"?
+
+
+*** TODO publish
 
 
 
@@ -329,22 +762,6 @@ move out to be a project in wonder group for wonder-editor use!
 **** TODO support hot loading
 https://blog.molecular-matters.com/2012/01/31/a-content-pipeline-for-fast-iteration-times/
 https://www.youtube.com/watch?v=BQPpZkRk6y4
-
-
-
-
-
-*** TODO rollup: generate index.re
-
-
-
-////**** TODO implement "clone"
-
-
-
-
-rollup-plugin-bucklescript: https://www.npmjs.com/package/rollup-plugin-bucklescript
-
 
 
 
