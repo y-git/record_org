@@ -1,21 +1,5 @@
 * 今日计划
-
-
-** TODO optimize transform
-
-////fix parent bug:
-a->b->c
-c,b,a should be a,b,c
-
-
-
-change to immediately update:
-use dirtyLocal,dirtyWorld?
-
-
-
-** TODO fix: setLocalPosition,getLocalPosition precision problem
-need test!!!
+** TODO use webAssembly?
 
 
 
@@ -25,16 +9,8 @@ need test!!!
 
 
 
-** TODO implement instanced
-https://blog.tojicode.com/2013/07/webgl-instancing-with.html
 
-http://www.jiazhengblog.com/blog/2017/03/20/3104/
-
-
-optimize: static, dynamic.
-and support convert between each other
-
-
+** TODO implement "restore from state"
 
 
 ** TODO publish
@@ -46,23 +22,102 @@ and support convert between each other
 
 
 
+
+
+
+
+
 * 完成事项
-** TODO optimize transform
+** DONE optimize
+CLOSED: [2017-12-01 Fri 11:09]
+//finish bufferData optimize
 
-////fix parent bug:
-a->b->c
-c,b,a should be a,b,c
+//reallocate
 
 
 
-change to immediately update:
-use dirtyLocal,dirtyWorld?
+refactor:
+////rename geomemtry to geometry
 
+
+
+*** DONE geometry add group
+CLOSED: [2017-11-30 Thu 22:13]
+////gameObject add group
+
+////material add group
+
+////render sort by group
+
+
+////group is [0, 64]
+
+
+same dataGroup use the same buffer!
+same dataGroup use the same vertices,indices,...!
+
+
+
+
+refactor:
+rename dataGroup to group
+
+
+
+optimize clone:
+////set gameObject,material,geometry the same group
+set geometry the same group
+
+////clone(gameObject, [0,1,2,0])
+clone(gameObject)
+
+
+
+
+
+
+
+////solve memory leak!
+
+
+
+
+
+*** DONE add last send buffer opitimize
+CLOSED: [2017-11-30 Thu 22:21]
+
+
+
+
+*** DONE optimize memory
+CLOSED: [2017-12-01 Fri 08:26]
+
+
+*** DONE webgl1->v/pMatrix should has cache, while mMatrix should not has!
+CLOSED: [2017-12-01 Fri 11:09]
+
+
+////** TODO refactor 2.1.0 mapping 
+refactor MainSystem:
+Mapping JS objects to OCaml records (@since 2.1.0)
+
+
+
+
+
+////** TODO solve memory leak
+clear_color
+
+clear_buffer
 
 
 
 
 * 编辑器计划
+** TODO publish
+remove public/, sass-cache/ folder!
+
+make ocaml first!
 
 ** TODO use app version
 use electron or Progressive Web App on destop?
@@ -100,16 +155,64 @@ how can user create custom gameObject component?
 * 明日计划
 
 
+** TODO optimize transform
+
+////fix parent bug:
+a->b->c
+c,b,a should be a,b,c
+
+
+
+change to immediately update:
+use dirtyLocal,dirtyWorld?
+
+
+
+** TODO fix: setLocalPosition,getLocalPosition precision problem
+need test!!!
+
+
+
+
+** TODO publish v10
+//finish todo
+
+
+clean code
+
+
+//test coverage
+
+
+
+//give benchmark report
+
+
+summary browser
+
+
+
+
+
+
+** TODO implement instanced
+https://blog.tojicode.com/2013/07/webgl-instancing-with.html
+
+http://www.jiazhengblog.com/blog/2017/03/20/3104/
+
+
+optimize: static, dynamic.
+and support convert between each other
+
+
+
+
+** TODO publish
 
 
 
 
 * TODO 未来7日计划
-
-
-*** TODO extend
-
-
 
 *** TODO implement "restore from state"
 
