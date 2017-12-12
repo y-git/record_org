@@ -1,21 +1,40 @@
 * 今日计划
 
-** TODO learn editor extend
 
-** TODO support shared material
+** TODO optimize transform
 
-*** TODO cloneGameObject add isSharedMaterial
-cloneGameObject = (gameObject: gameObject, count: int, isSharedMaterial:bool, state: StateDataType.state)
-
-
-
-** TODO implement "restore from state"
-*** TODO implement "whole restore from state"
-
-*** TODO implement "partial restore from component(data)"
+////fix parent bug:
+a->b->c
+c,b,a should be a,b,c
 
 
-** TODO add benchmark test
+
+change to immediately update:
+use dirtyLocal,dirtyWorld?
+
+
+
+** TODO fix: setLocalPosition,getLocalPosition precision problem
+need test!!!
+
+
+
+
+
+
+
+
+
+** TODO implement instanced
+https://blog.tojicode.com/2013/07/webgl-instancing-with.html
+
+http://www.jiazhengblog.com/blog/2017/03/20/3104/
+
+
+optimize: static, dynamic.
+and support convert between each other
+
+
 
 
 ** TODO publish
@@ -26,17 +45,319 @@ cloneGameObject = (gameObject: gameObject, count: int, isSharedMaterial:bool, st
 
 
 
-
 * 完成事项
-** TODO learn editor extend
+** DONE optimize transform
+CLOSED: [2017-12-04 Mon 20:15]
+
+////fix parent bug:
+a->b->c
+c,b,a should be a,b,c
 
 
 
+//change to immediately update:
+use dirtyLocal,dirtyWorld?
+
+//unit test
+
+//continue optimize
+
+
+** DONE fix: setLocalPosition,getLocalPosition precision problem
+CLOSED: [2017-12-04 Mon 20:29]
+need test!!!
+
+** DONE refactor
+CLOSED: [2017-12-04 Mon 21:06]
+rename component utils to component system
+
+merge component utils:
+merge XXXCreateUtils, ...
+
+
+** DONE implement instanced
+CLOSED: [2017-12-12 Tue 18:49]
+https://blog.tojicode.com/2013/07/webgl-instancing-with.html
+
+http://www.jiazhengblog.com/blog/2017/03/20/3104/
+
+//not support draw array
+
+//finish draft:
+pass compile
+
+//add instance component
+
+////extract render command
+
+
+
+
+//use detect to decide highp,mediump,lowp
+
+
+
+render config
+
+
+
+
+
+//unit test:
+//shader build->precision
+//render
+//pass all test
+
+
+//add benchmark test
+
+
+//refactor:
+//extract in render
+//rename instanceBuffer to modelMatrixInstanceBuffer
+
+
+//optimize:
+//getLocalToWorldMatrix add cache
+
+//static, dynamic:
+    and support convert between each other
+
+
+////for static:
+use bufferData instead of bufferSubData???:
+    use accurate buffer capacity
+
+
+
+//other optimize
+
+
+
+//fix: bind deleted buffer(40w)
+
+
+//handle children:
+benchmark test
+
+
+
+//optimize:
+optimize set data and set parent
+clear cache map 
+
+//not setLocalToWorldMatricesTypeArr?
+////remove localToWorldMatrices, send localPosition
+
+
+
+//test use typearray
+
+//remove transform->buffer, maxCount
+
+
+//fix invert,buildPerxxx
+
+
+//finish ecs refactor:
+//material
+meshRenderer
+instance
+
+
+
+//refactor:
+default getData
+
+//utils
+
+//system
+
+
+//geometry:
+use map instead of buffer???
+
+
+
+//unit test:
+box geometry -> create : use disposed index
+
+
+//dispose disposed one: should add  to buffer
+
+
+
+
+
+//should clean when dispose:
+transform
+meshRenderer
+material
+geometry
+cameraController
+
+
+
+
+////test shared type arr
+
+
+
+
+//optimize:
+solve "dispose new geometry gameObject too slow" problem
+
+
+
+
+
+
+
+
+
+
+
+
+
+//use unsafeGetTransformComponent instead of getTransformComponent
+
+
+
+
+
+
+
+
+////for static:
+accurate capacity
+STATIC_DRAW
+
+
+
+
+
+dispose:
+////check should be dynamic
+//dispose instance buffer
+//dispose source instance
+
+
+//optimize:
+benchmark test optimize
+
+
+//test case
+
+
+//optimize: 
+geometry pool float32,uint16 of count(re-set when use old one from pool)
+
+
+
+
+
+//optimize batch dispose sourceInstance
+
+
+
+dispose object instance
+
+batch dispose sourceInstance
+
+
+
+//test dispose children
+
+
+
+
+
+
+
+
+
+
+
+
+
+//refactor:
+extract ecs/, move admin, component in it
+extract GameObjectAdmin,ObjectInstanceDisposexXx ->build disposedUidMap logic to ecs/utils/ECSDisposeUtils.re
+////move DisposeUtils.re to ecs/utils/ECSDisposeUtils.re
+
+
+
+
+
+//handle clone:
+not support clone(check)
+
+
+
+
+
+//fallback:
+batch draw
+
+
+
+
+
+
+
+
+check:
+////createInstance: should only create once
+//check alive
+
+
+
+////unit test:
+test sourceInstance, objectInstance component
+
+
+
+
+refactor:
+//finish all todo
+
+
+
+
+optimize:
+////unbind: add history record?
+
+
+
+
+refactor:
+//transform remove Tuple, TypeArray api?
+
+
+
+
+
+
+** DONE publish
+CLOSED: [2017-12-12 Tue 20:37]
+//95%
+
+
+//give benchmark report
+
+
+////update editor->engine version
 
 
 
 * 编辑器计划
 
+** DONE use app version
+CLOSED: [2017-12-09 Sat 11:56]
+use electron or Progressive Web App on destop?
+
+//Progressive Web App:
+//how to use nodejs tool?
 
 
 ** TODO extend editor
@@ -116,6 +437,27 @@ wd.renderWorker.js, wd.webgl1.js, ...))
 
 
 * TODO 未来7日计划
+
+** TODO support shared material
+
+*** TODO cloneGameObject add isSharedMaterial
+cloneGameObject = (gameObject: gameObject, count: int, isSharedMaterial:bool, state: StateDataType.state)
+
+
+
+** TODO implement "restore from state"
+*** TODO implement "whole restore from state"
+
+*** TODO implement "partial restore from component(data)"
+
+
+** TODO add benchmark test
+
+
+** TODO publish
+
+
+
 ** TODO support render worker
 
 use module functors?
