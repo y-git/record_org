@@ -1,5 +1,4 @@
 * 今日计划
-
 ** TODO learn editor extend
 
 ** TODO support shared material
@@ -19,7 +18,9 @@ cloneGameObject = (gameObject: gameObject, count: int, isSharedMaterial:bool, st
 
 
 ** TODO publish
+95% up
 
+benchmark report
 
 
 
@@ -28,82 +29,54 @@ cloneGameObject = (gameObject: gameObject, count: int, isSharedMaterial:bool, st
 
 
 * 完成事项
-** TODO learn editor extend
+** DONE support shared material
+CLOSED: [2017-12-14 Thu 08:22]
+*** DONE cloneGameObject add isSharedMaterial
+CLOSED: [2017-12-13 Wed 12:18]
+cloneGameObject = (gameObject: gameObject, count: int, isSharedMaterial:bool, state: StateDataType.state)
+
+
+test:
+dispose groupCountMap
+
+
+*** DONE add color
+CLOSED: [2017-12-14 Thu 08:22]
+//draft
+
+//unit test:
+glsl
+send u_color
+send cache
+//mateiral:
+    default color
+    get/set color
+
+
+//pass run test
+
+//refactor
+
+
+//pass run test
+
+
+test:
+only send uniform color once
 
 
 
+** DONE learn editor extend
+CLOSED: [2017-12-14 Thu 22:00]
+
+
+** TODO implement "restore from state"
+*** TODO implement "whole restore from state"
+
+*** TODO implement "partial restore from component(data)"
 
 
 
-* 编辑器计划
-
-
-
-** TODO extend editor
-download cocos-creator
-
-
-https://docs.unity3d.com/Manual/ExtendingTheEditor.html
-
-http://forum.china.unity3d.com/thread-18683-1-1.html
-
-http://jingpin.jikexueyuan.com/article/30041.html
-
-
-
-
-
-use can:
-create custom editor component
-use exist editor component(main_editor, inspector, number_input, ...)
-...
-
-
-
-how can user create custom gameObject component?
-
-
-*** TODO add plugin store
-user can publish, install plugin!
-
-
-
-*** TODO extend in editor
-refer to http://www.cocos.com/1061
-
-
-prefab
-
-data driven
-
-plugin:
-前面提到，Cocos Creator的架构完全是可扩展的插件式，我们自己开发Creator功能的时候，也是按照插件接口标准来做的，左边这张图
-就是我们自己开发的核心插件。当然你也可以把这些核心插件停用甚至卸载了，因为我们是完全按照插件接口标准来开发的。这样的插件
-开发方式，就允许开发者和我们引擎团队一样，自己开发编辑器扩展、定制Creator，以符合自己喜欢的工作流方式。如果你愿意公开自
-己开发的Creator插件，那么就可以把它发布到我们的扩展商店里面，分享给社区里的几十万开发者使用。 
-
-
-- 可以对Creator底下使用的开源引擎进行修改，并且指定工作目录到你修改后的引擎框架路径
-
-////- AnySDK多渠道打包功能，这里面包含了上百个原生渠道和几十个H5渠道SDK，方便你快速地发布游戏，省去集成渠道SDK的烦恼
-
-- 引擎的模块化裁剪，在这里可以可视化地反选掉你用不到的引擎功能，有效减小包体积高达30%
-
-  
-
-
-
-more...
-
-
-*** TODO extend in engine
-
-
-
-
-** TODO package
-support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corresponding engine package file(e.g.
-wd.renderWorker.js, wd.webgl1.js, ...))
 
 
 * 中期研究
@@ -140,6 +113,7 @@ gameObject add basicMaterialMap, lightMaterialMap(add addBasicMaterialComponent,
 
 *** TODO support normal matrix instance
 
+*** TODO support hot load texture
 
 *** TODO optimize
 
@@ -476,6 +450,15 @@ https://github.com/joshburgess/redux-most
 
 ** TODO add event and picker
 *** TODO add event
+**** TODO discrete system???not use EventManager? 
+refer to cocos creator
+http://docs.cocos.com/creator/manual/zh/scripting/events.html
+
+这样的事件分发方式从集中由 cc.eventManager 分发，变为了拥有事件的节点本身分发自己的事件，可以说是集中式事件系统向离散式事件系统的转变。
+
+
+
+
 **** TODO move event manager to be npm package
 **** TODO add dom event
 ***** TODO add ray picking
@@ -494,6 +477,7 @@ profile can be defined in render config json!
 
 compute:
 fps
+[[http://www.cnblogs.com/coco1s/p/8029582.html][【前端性能】Web 动画帧率（FPS）计算]]
 
 render time:
 cpu time
@@ -723,7 +707,7 @@ dynamic instance can cull each instance
 
 
 
-** TODO publish v1.0.0
+** TODO publish v1.0.0-beta.1
 (may not contain all feature of v0.x version!)
 
 author be company name
@@ -755,7 +739,7 @@ BaaS服务平台有哪些？
 https://www.zhihu.com/question/22098754
 
 *** TODO change license
-wonder-editor: use gpl?bsd?
+wonder-editor: use gpl?bsd?mit?
 
 *** TODO publish types to definition repo
 publish wonder.js types
@@ -783,143 +767,7 @@ can work from the scratch
 (commonLib, frp)
 
 
-add wonderjs website
-
-add wonderjs blog
-
-add wonderjs forum
-
-add wonderjs online demo
-
-
-write document, tutorials:
-
-
-
 support full screen(refer to babylon.engine.ts=>450 line)
-
-
-
-** TODO extend
-*** TODO solve how to extend by user:(refer to unity)
-
-
-how to write own component
-how to write own extension(material)
-build component repository?
-
-
-**** TODO extend script
-user can write local script component
-
-**** TODO extend material
-user can add custom material, custom glsl, custom shaderLib_generate, custom render module(like defer, front render
-module/system)
-(but how to handle render worker?)
-
-
-
-
-**** TODO extend glsl
-
-***** TODO glsl use require,include?
-@bhouston what about a custom webpack loader for the glsl files instead of using the raw-loader? The loader could take care of recursively resolving any #include lines in the root shader file. Any shader could be required in with e.g.:
-
-var vert = require('three-glsl!../shaders/my-shader.vert')
-var frag = require('three-glsl!../shaders/my-shader.frag')
-just a thought
-
-**** TODO extend component
-user can write local/public component
-
-add wonder_component_config.json, add "components" field.
-e.g.
-{
-components:[
-"wonder-component-aaa"
-]
-}
-
-wonder should read this field and register it
-
-
-public component:
-(refer to typescript=>d.ts)
-user should send it to public github repository
-in ci, it will check and run unit test
-
-after pass ci and merge it, it will be published to @wonder-components/xxx npm package 
-
-
-
-
-
-
-*** TODO finish the way which user can extend by npm/github repo
-need use other instead of npm?
-(learn http://bitsquid.blogspot.it/2016/01/introducing-stingray-package-manager-spm.html)
-
-*** TODO extend render config
-*** TODO add script
-
-refer to https://developer.playcanvas.com/en/user-manual/scripting/
-
-
-
-**** TODO support Hot Reloading 
-https://developer.playcanvas.com/en/user-manual/scripting/hot-reloading/
-
-https://developer.playcanvas.com/zh/user-manual/introduction/
-
-
-*** TODO add custom component
-can integrate with editor(editor can add custom component to gameObject)
-
-
-*** TODO add custom material+custom shader
-**** TODO custom glsl can support instance
-**** TODO user can write own .glsl can register to npm
-modify render config(shader config json?), support build npm->glsl to ShaderChunk.ts?
-
-
-** TODO editor
-
-*** TODO extend in editor
-refer to http://www.cocos.com/1061
-
-
-prefab
-
-data driven
-
-plugin:
-前面提到，Cocos Creator的架构完全是可扩展的插件式，我们自己开发Creator功能的时候，也是按照插件接口标准来做的，左边这张图
-就是我们自己开发的核心插件。当然你也可以把这些核心插件停用甚至卸载了，因为我们是完全按照插件接口标准来开发的。这样的插件
-开发方式，就允许开发者和我们引擎团队一样，自己开发编辑器扩展、定制Creator，以符合自己喜欢的工作流方式。如果你愿意公开自
-己开发的Creator插件，那么就可以把它发布到我们的扩展商店里面，分享给社区里的几十万开发者使用。 
-
-
-- 可以对Creator底下使用的开源引擎进行修改，并且指定工作目录到你修改后的引擎框架路径
-
-////- AnySDK多渠道打包功能，这里面包含了上百个原生渠道和几十个H5渠道SDK，方便你快速地发布游戏，省去集成渠道SDK的烦恼
-
-- 引擎的模块化裁剪，在这里可以可视化地反选掉你用不到的引擎功能，有效减小包体积高达30%
-
-  
-
-
-
-more...
-
-*** TODO support publish to native platform(ios, ..)
-compile reason to native?bsb-native?
-
-
-*** TODO improve performance 
-benchmark test
-
-
-optimize memory 
 
 
 
@@ -1166,7 +1014,157 @@ optimize model geometry
 
 
 
+** TODO extend
+*** TODO solve how to extend by user:(refer to unity)
 
+
+how to write own component
+how to write own extension(material)
+build component repository?
+
+
+
+
+
+
+
+
+**** TODO extend material
+user can add custom material, custom glsl, custom shaderLib_generate, custom render module(like defer, front render
+module/system)
+(but how to handle render worker?)
+
+
+
+
+**** TODO extend glsl
+
+***** TODO glsl use require,include?
+@bhouston what about a custom webpack loader for the glsl files instead of using the raw-loader? The loader could take care of recursively resolving any #include lines in the root shader file. Any shader could be required in with e.g.:
+
+var vert = require('three-glsl!../shaders/my-shader.vert')
+var frag = require('three-glsl!../shaders/my-shader.frag')
+just a thought
+
+*** TODO extend component
+/*
+user can write local/public component
+
+add wonder_component_config.json, add "components" field.
+e.g.
+{
+components:[
+"wonder-component-aaa"
+]
+}
+
+wonder should read this field and register it
+
+
+public component:
+(refer to typescript=>d.ts)
+user should send it to public github repository
+in ci, it will check and run unit test
+
+after pass ci and merge it, it will be published to @wonder-components/xxx npm package 
+*/
+
+**** TODO add script
+http://docs.cocos.com/creator/manual/zh/scripting/
+
+now one script is one component(the type is user script component)
+
+editor should show it in inspector(the component name should be defined by script json)
+
+one gameObject can has multiple user script components!
+
+
+
+refer to:
+https://developer.playcanvas.com/en/user-manual/scripting/
+
+
+
+***** TODO support Hot Reloading 
+https://developer.playcanvas.com/en/user-manual/scripting/hot-reloading/
+
+https://developer.playcanvas.com/zh/user-manual/introduction/
+
+
+
+***** TODO support import other script
+http://docs.cocos.com/creator/manual/zh/scripting/modular-script.html
+
+*** TODO extend render config
+**** TODO add custom material+custom shader
+***** TODO custom glsl can support instance
+
+
+
+**** TODO user can write own .glsl can register to npm
+modify render config(shader config json?), support build npm->glsl to ShaderChunk.ts?
+
+
+
+
+
+
+
+
+
+** TODO support mobile
+*** TODO engine
+**** TODO 多分辨率适配
+http://docs.cocos.com/creator/manual/zh/ui/multi-resolution.html
+
+
+**** TODO add mobile render pipeline
+
+////** TODO publish alpha.6
+
+
+
+*** TODO editor
+使用手机扫描二维码，可以立即在手机上预览游戏。
+
+
+
+
+
+
+
+** TODO publish v1.0.0
+
+
+
+
+*** TODO other
+
+
+
+increase runtime test rate from 92% to 95%
+
+
+can work from the scratch
+(runtime, package, test, converter, height generater)
+(commonLib, frp)
+
+
+add wonderjs website
+
+add wonderjs blog
+
+add wonderjs forum
+
+add wonderjs online demo
+
+
+write document, tutorials(use gitbook):
+https://www.gitbook.com/
+
+
+
+support full screen(refer to babylon.engine.ts=>450 line)
 
 
 
@@ -1342,11 +1340,6 @@ need user render script?
 
 
 ** TODO publish
-
-** TODO run in mobile
-*** TODO add mobile render pipeline
-
-////** TODO publish alpha.6
 
 
 

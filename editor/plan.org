@@ -1,0 +1,235 @@
+* TODO before v1.0.0
+** TODO extend editor
+//download cocos-creator
+
+
+
+package.json
+
+
+load,unload callback
+
+
+
+如果你的插件会自动完成工作，别忘记通过 Editor.log, Editor.success 接口（上述接口可以在 Console API 查看详情），来告诉用户刚刚完成了哪些工作。
+
+
+
+示例中使用到的 Editor.projectPath 接口会返回当前打开项目的绝对路径，详情可以在 Editor API 中找到。
+
+
+
+入口程序除了可以在主进程执行 Node.js 所有标准接口以外，还可以打开编辑器面板、窗口，并通过 IPC 消息在主进程的入口程序和渲染进程的编辑器面板间进行通讯，通过编辑器面板和用户进行复杂的交互，并在相关的进程中完成业务逻辑的处理。
+
+要通过入口程序打开一个编辑器面板：
+
+  messages: {
+    'open' () {
+      // open entry panel registered in package.json
+      Editor.Panel.open('myPackage');
+    }
+  }
+
+
+
+
+
+扩展主菜单
+http://docs.cocos.com/creator/manual/zh/extension/extends-main-menu.html
+
+
+
+
+
+
+面板类型：
+dockable
+
+simple
+http://docs.cocos.com/creator/manual/zh/extension/define-simple-panel.html
+
+
+
+
+
+
+
+https://docs.unity3d.com/Manual/ExtendingTheEditor.html
+
+http://forum.china.unity3d.com/thread-18683-1-1.html
+
+http://jingpin.jikexueyuan.com/article/30041.html
+
+
+
+
+
+use can:
+create custom editor component
+use exist editor component(main_editor, inspector, number_input, ...)
+...
+
+
+
+how can user create custom gameObject component?
+
+
+*** TODO add plugin store
+user can publish, install plugin!
+
+
+*** TODO 多语言化
+http://docs.cocos.com/creator/manual/zh/extension/i18n.html
+
+http://docs.cocos.com/creator/manual/zh/advanced-topics/i18n.html
+
+*** TODO extend in editor
+refer to http://www.cocos.com/1061
+
+
+
+data driven
+
+plugin:
+前面提到，Cocos Creator的架构完全是可扩展的插件式，我们自己开发Creator功能的时候，也是按照插件接口标准来做的，左边这张图
+就是我们自己开发的核心插件。当然你也可以把这些核心插件停用甚至卸载了，因为我们是完全按照插件接口标准来开发的。这样的插件
+开发方式，就允许开发者和我们引擎团队一样，自己开发编辑器扩展、定制Creator，以符合自己喜欢的工作流方式。如果你愿意公开自
+己开发的Creator插件，那么就可以把它发布到我们的扩展商店里面，分享给社区里的几十万开发者使用。 
+
+
+- 可以对Creator底下使用的开源引擎进行修改，并且指定工作目录到你修改后的引擎框架路径
+
+////- AnySDK多渠道打包功能，这里面包含了上百个原生渠道和几十个H5渠道SDK，方便你快速地发布游戏，省去集成渠道SDK的烦恼
+
+- 引擎的模块化裁剪，在这里可以可视化地反选掉你用不到的引擎功能，有效减小包体积高达30%
+
+  
+
+
+
+more...
+
+
+*** TODO 调用引擎 API 和项目脚本???
+http://docs.cocos.com/creator/manual/zh/extension/scene-script.html
+
+not use?
+(can directly use wded.xxx api to get gameObject,children,components...)
+
+*** TODO extend in engine
+
+
+** TODO assert manager
+http://docs.cocos.com/creator/manual/zh/extension/asset-management.html
+
+
+** TODO package
+support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corresponding engine package file(e.g.
+wd.renderWorker.js, wd.webgl1.js, ...))
+
+** TODO add canvas ui component
+http://docs.cocos.com/creator/manual/zh/components/canvas.html
+
+** TODO Dashboard
+启动 Cocos Creator 并使用 Cocos 开发者帐号登录以后，就会打开 Dashboard 界面，在这里你可以新建项目、打开已有项目或获得帮
+助信息。 
+
+http://docs.cocos.com/creator/manual/zh/getting-started/dashboard.html
+
+
+** TODO public package
+http://docs.cocos.com/creator/manual/zh/publish/publish-web.html
+
+build:
+compress texture
+...
+
+
+*** TODO publish to store
+http://docs.cocos.com/creator/manual/zh/extension/submit-to-store.html
+
+NPM 第三方库
+目前扩展包安装系统中没有包括安装 NPM 等包括管理系统的工作流程，因此使用了第三方库的扩展包应该将 node_modules 等文件夹也一起加入到 zip 包中。
+
+
+
+
+* TODO after v1.0.0
+
+** TODO 数据统计
+http://docs.cocos.com/creator/manual/zh/sdk/cocos-analytics.html
+https://analytics.cocos.com/docs/
+
+** TODO sdk
+AnySDK为 CP 提供一套第三方 SDK 接入解决方案，整个接入过程，不改变任何 SDK 的功能、特性、参数等，对于最终玩家而言是完全透
+明无感知的。 目的是让 CP 商能有更多时间更专注于游戏本身的品质，所有 SDK 的接入工作统统交给我们吧。第三方 SDK 包括了渠道
+SDK、用户系统、支付系统、广告系统、统计系统、分享系统等等。 
+
+http://docs.cocos.com/creator/manual/zh/sdk/anysdk-overview.html
+http://docs.cocos.com/creator/manual/zh/sdk/anysdk/anysdk-framework.html
+http://docs.anysdk.com/
+
+
+
+can offer pwa feature to user according to sdk?:
+push message
+offline
+...
+
+
+
+** TODO prefab
+http://docs.cocos.com/creator/manual/zh/asset-workflow/prefab.html
+http://docs.cocos.com/creator/manual/zh/getting-started/basics/editor-panels/node-library.html
+
+https://docs.unity3d.com/560/Documentation/Manual/Prefabs.html
+
+
+
+
+** TODO engine script
+
+*** TODO support change property in inspector(editor)
+
+在代码中我们不需要关心这些数值是多少，因为我们之后会直接在 属性检查器 中设置这些数值。
+
+这些数值都是建议，一会等游戏运行起来，您完全可以按照自己的喜好随时在 属性检查器 中修改这些数值，不需要改动任何代码，很方
+便吧！ 
+
+
+
+http://docs.cocos.com/creator/manual/zh/scripting/use-component.html
+
+
+*** 扩展 Inspector
+http://docs.cocos.com/creator/manual/zh/extension/extends-inspector.html
+
+editor can extend user script component's inspector!
+
+
+
+
+** TODO support publish to native platform(ios, ..)
+compile reason to native?bsb-native?
+
+
+** TODO improve performance 
+benchmark test
+
+
+optimize memory 
+
+
+** TODO reuse user resource
+
+*** TODO 资源导入导出
+http://docs.cocos.com/creator/manual/zh/asset-workflow/import-export.html
+
+already support?(use .wd,.css,.js,.json package data files?)
+
+
+*** TODO  开发者可以将常用的控件、游戏架构以插件形式封装在一起，并在多个项目之间共享
+http://docs.cocos.com/creator/manual/zh/extension/extension-workflow.html -> 插件只提供组件和资源
+
+** TODO public package
+*** TODO md5 to avoid cache
