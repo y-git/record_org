@@ -1,4 +1,291 @@
 * 今日计划
+** TODO learn editor extend
+
+** TODO support shared material
+
+*** TODO cloneGameObject add isSharedMaterial
+cloneGameObject = (gameObject: gameObject, count: int, isSharedMaterial:bool, state: StateDataType.state)
+
+
+
+** TODO implement "restore from state"
+*** TODO implement "whole restore from state"
+
+*** TODO implement "partial restore from component(data)"
+
+
+** TODO add benchmark test
+
+
+** TODO publish
+95% up
+
+benchmark report
+
+
+
+
+
+
+
+* 完成事项
+** DONE support shared material
+CLOSED: [2017-12-14 Thu 08:22]
+*** DONE cloneGameObject add isSharedMaterial
+CLOSED: [2017-12-13 Wed 12:18]
+cloneGameObject = (gameObject: gameObject, count: int, isSharedMaterial:bool, state: StateDataType.state)
+
+
+test:
+dispose groupCountMap
+
+
+*** DONE add color
+CLOSED: [2017-12-14 Thu 08:22]
+//draft
+
+//unit test:
+glsl
+send u_color
+send cache
+//mateiral:
+    default color
+    get/set color
+
+
+//pass run test
+
+//refactor
+
+
+//pass run test
+
+
+test:
+only send uniform color once
+
+
+
+** DONE learn editor extend
+CLOSED: [2017-12-14 Thu 22:00]
+
+
+** DONE implement "restore from state"
+CLOSED: [2017-12-18 Mon 21:16]
+*** DONE implement "whole restore from state"
+CLOSED: [2017-12-18 Mon 20:49]
+//pass unit test
+
+//pass run test
+
+
+
+
+geometry
+
+vbo buffer
+
+
+
+
+benchmark test:
+////setData
+create and dispose(random):
+
+
+//shader->join
+
+
+
+
+
+//copyUtils->typeArray,buffer
+
+
+
+//test
+
+
+//clear lastSendXXX
+
+
+
+
+optimize:
+//when restore: move current buffer,typeArr to pool?
+(copy from pool)
+
+
+
+//test
+
+
+
+//material
+
+
+
+//shader
+
+//program
+
+//glslXXX
+
+
+
+
+//refactor: 
+upgrade wonder-commonlib
+
+
+
+//optimize:
+instance: add pool(refactor with geometry)
+
+
+
+instance
+
+
+
+
+
+
+                  //fix: shader restore: add index
+
+
+//finish test:
+not disable if no enable(0)
+
+////fix:
+when restore, why buffer 72 arraybuffer and 36 index buffer?
+
+//pass: benchmark_redo_undo
+
+
+////test: now clean all shader related data when restore
+
+
+fix bug:
+//isSend
+//AllAliveMaterial
+
+
+//test: add instance test
+
+
+
+
+
+
+
+
+
+
+//fix different shader bug: 
+test(use program):
+send each shader's data
+disable
+
+
+
+
+
+
+
+
+
+
+//gameObject
+
+
+
+test
+
+
+
+//memory leak:
+gameObject data->component,dispose
+
+
+
+test
+
+
+
+
+//handle other data
+
+test
+
+
+
+
+
+
+
+
+
+benchmark test(test shader)
+
+
+optimize:
+//use getShaderParameter only when contract check
+
+//collect program, shader to pool?
+(at least dispose program?)
+
+
+
+
+//geometry: not deep copy(only shallow copy) verticesMap, indicesMap
+////cameraController, transform: not deep copy(only shallow copy) type arr?
+
+
+
+
+
+
+//refactor: rename restoreFromState to restore
+
+//refactor: split Redo_undo_test.re
+
+
+
+refactor: 
+//rename deepCopyState to deepCopyStateForRestore
+
+////change to array(Js.Undefined.t(xxx))
+////remove Obj.magic when dispose related
+
+//refactor: rename RedoUndo_test to redoUndo_test?
+
+
+////*** TODO implement "partial restore from component(data)"
+
+
+
+
+
+
+
+** DONE add sinon_test.re for wonder-editor
+CLOSED: [2017-12-18 Mon 10:35]
+
+
+
+** DONE publish
+CLOSED: [2017-12-18 Mon 21:16]
+//95% up
+
+//benchmark report
+
+
+* 中期研究
+
+* 明日计划
+
+
 ** TODO add benchmark test
 test time
 
@@ -98,12 +385,7 @@ todo: add compare in two way:
 
 
 
-
-
-
-
-
-
+* TODO 未来7日计划
 ** TODO support render worker
 
 use module functors?
@@ -118,20 +400,6 @@ file names end with "ReWoShare" instead of "Utils"?
 
 
 ** TODO publish
-
-* 完成事项
-
-
-
-
-
-
-* 中期研究
-
-* 明日计划
-
-
-* TODO 未来7日计划
 
 
 ** TODO add light,texture
