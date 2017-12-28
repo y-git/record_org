@@ -1,4 +1,317 @@
 * 今日计划
+** TODO add benchmark test
+test time
+
+test memory!!!
+
+
+https://github.com/bestiejs/benchmark.js/
+
+https://beachape.com/blog/2016/11/02/rust-performance-testing-on-travis-ci/
+
+*** TODO add benchmark test
+
+http://taobaofed.org/blog/2016/01/13/measuring-fps/
+http://wicg.github.io/frame-timing/
+https://segmentfault.com/a/1190000011516068
+
+
+
+
+https://github.com/zploskey/bs-puppeteer
+https://github.com/GoogleChrome/puppeteer
+
+
+
+use benchmarkjs:
+https://github.com/glennsl/bs-benchmarkjs
+
+
+build basic test scenes
+
+compare with time
+
+
+*** TODO add render test
+**** TODO enhance render test
+
+ci can run render test
+
+can generate correct image in the debug page of render
+
+
+use headless-gl + jest + ci to test!!!???
+https://github.com/socialtables/webgl-test-ci
+
+
+
+
+
+use web:
+https://developers.google.com/web/fundamentals/instant-and-offline/web-storage/offline-for-pwa
+
+[[https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API][File and Directory Entries API]]
+
+https://github.com/WICG/writable-files/blob/master/EXPLAINER.md
+
+
+
+
+
+
+
+***** TODO solve "render test not pass in outer screen" problem
+
+***** TODO move render test to npm/submodule
+move more samples there
+
+
+add README.org:
+todo: add compare in two way:
+- overlap yours and correct img
+- get diff pixel img
+
+***** TODO add render test
+
+
+
+
+**** TODO publish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO publish
+
+* 完成事项
+
+//pass build
+
+//test:
+//test pool size 
+//restore hardware test
+** DONE learn test
+CLOSED: [2017-12-19 Tue 20:04]
+
+refactor:
+//change to upper case
+
+** DONE add benchmark test
+CLOSED: [2017-12-28 Thu 21:54]
+test time
+
+test memory!!!
+
+
+https://github.com/bestiejs/benchmark.js/
+
+https://beachape.com/blog/2016/11/02/rust-performance-testing-on-travis-ci/
+
+*** DONE add benchmark test
+CLOSED: [2017-12-28 Thu 12:15]
+
+http://taobaofed.org/blog/2016/01/13/measuring-fps/
+http://wicg.github.io/frame-timing/
+https://segmentfault.com/a/1190000011516068
+
+
+
+
+https://github.com/zploskey/bs-puppeteer
+https://github.com/GoogleChrome/puppeteer
+
+
+
+use benchmarkjs:
+https://github.com/glennsl/bs-benchmarkjs
+
+
+build basic test scenes
+
+compare with time
+
+
+
+//add:
+testPromiseWithTimeout
+
+
+
+//test no headless in ci
+
+
+
+//install puppeteer in Wonder.js
+
+////solve ci take too long time problem:
+setViewport?
+
+
+
+//write a tool to auto generate local data
+
+//publish
+test in Wonder.js
+
+
+//judge need
+
+
+//one digit!(<  >)
+
+//compute diff(percent)
+
+
+
+//ci not test pf
+
+
+
+//refactor
+
+
+//add more pf test cases
+
+
+//remove benchmark html
+
+//fix:
+redo data
+basic data
+
+
+
+
+
+//reduce noise
+
+
+
+
+
+
+//refactor: 
+remove config->isGenerateDataFile
+
+
+
+
+
+
+
+
+**** DONE rollup: generate index.re
+CLOSED: [2017-12-26 Tue 18:27]
+
+
+
+////**** TODO implement "clone"
+
+
+
+
+////rollup-plugin-bucklescript: https://www.npmjs.com/package/rollup-plugin-bucklescript
+
+
+
+
+**** DONE benchmark test with jest + ci
+CLOSED: [2017-12-28 Thu 12:14]
+
+
+**** DONE nodejs tool for generate benchmark data
+CLOSED: [2017-12-28 Thu 12:15]
+
+
+////**** TODO can compare different version's benchmark data(use trend graph?)
+refer to:
+https://blogs.unity3d.com/cn/2013/12/30/monitoring-unity-performance-part-i/
+
+
+
+*** DONE ci enhance
+CLOSED: [2017-12-28 Thu 17:37]
+////use stage
+
+
+use deploy:
+deploy to release
+
+
+
+*** DONE refactor
+CLOSED: [2017-12-28 Thu 17:49]
+//rename render setting json file name(e.g. xxx_xxx render_setting, ...) to Xxx_xx, ...
+
+
+
+////** TODO extract integrate test from unit test???
+e.g. "fix bug" describe!
+
+
+
+
+
+
+
+** DONE publish
+CLOSED: [2017-12-28 Thu 21:53]
+
+
+
+
+
+
+
+close package issue
+
+push/deploy
+
+
+clean website
+
+clean org
+
+
+
+
+
+
+* 编辑器
+
+
+
+
+* 中期研究
+
+* 明日计划
+
+
+* TODO 未来7日计划
 ** TODO add light,texture
 *** TODO light material not share index with basic material
 gameObject add basicMaterialMap, lightMaterialMap(add addBasicMaterialComponent, addLightMaterialComponent)
@@ -26,22 +339,13 @@ each group has create texture once
 ** TODO publish
 
 
-* 完成事项
 
 
 
 
-* 编辑器
 
 
 
-
-* 中期研究
-
-* 明日计划
-
-
-* TODO 未来7日计划
 ** TODO support render worker
 
 use module functors?
