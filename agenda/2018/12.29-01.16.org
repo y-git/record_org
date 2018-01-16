@@ -1,4 +1,1259 @@
 * 今日计划
+** TODO use code climate
+
+
+
+
+** TODO add render test
+
+
+** TODO publish
+
+
+* 完成事项
+** DONE 财务报告
+CLOSED: [2017-12-29 Fri 10:51]
+
+
+
+
+** DONE confirm about fix, feat, refactor
+CLOSED: [2017-12-29 Fri 10:30]
+
+
+
+////** TODO use code climate
+
+
+
+** render test(note)
+
+*** TODO enhance render test
+
+https://developers.google.com/web/updates/2017/04/headless-chrome
+https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
+https://docs.travis-ci.com/user/gui-and-headless-browsers/#Using-the-Chrome-addon-in-the-headless-mode
+
+Selenium
+https://saucelabs.com/
+
+
+
+
+ci can run render test
+
+can generate correct image in the debug page of render
+
+
+use headless-gl + jest + ci to test!!!???
+https://github.com/socialtables/webgl-test-ci
+
+
+
+
+
+use web:
+https://developers.google.com/web/fundamentals/instant-and-offline/web-storage/offline-for-pwa
+
+[[https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API][File and Directory Entries API]]
+
+https://github.com/WICG/writable-files/blob/master/EXPLAINER.md
+
+
+
+
+https://blogs.unity3d.com/cn/2016/12/21/graphics-tests-the-last-line-of-automated-testing/
+
+**** TODO add diff image
+
+**** TODO support toggle test image,reference image
+
+**** TODO nodejs tool for save new image(use electron?)
+
+
+**** TODO solve "render test not pass in outer screen" problem
+
+**** TODO move render test to npm/submodule
+move more samples there
+
+
+add README.org:
+todo: add compare in two way:
+- overlap yours and correct img
+- get diff pixel img
+
+**** TODO add render test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE add render test
+CLOSED: [2018-01-03 Wed 22:34]
+get full screen shot:
+set viewport
+
+
+
+
+
+
+
+*** DONE generate image:
+CLOSED: [2018-01-01 Mon 20:19]
+**** DONE implement
+CLOSED: [2018-01-01 Mon 15:00]
+set start time and fake "now"
+specific loop time array
+
+
+use "new Function" instead of "eval"
+
+
+
+
+
+**** DONE canvas
+CLOSED: [2018-01-01 Mon 20:19]
+remove top,left
+
+
+
+full screen canvas
+
+
+
+
+
+*** DONE compare:
+CLOSED: [2018-01-02 Tue 18:51]
+//refactor:
+bodyFunc to bodyFuncStr
+
+
+
+test in local
+
+
+
+
+
+extract data, test without jest expect
+
+
+not use jest! use nodejs directly!
+can generate test report and debug(add debug button)
+
+
+way:
+headlesss(use in ci)
+report(html file)
+
+
+
+////ci use stage:
+send build files to github(so no need to gulp build)
+
+
+(test:rd, test:rd_debug)
+
+
+
+*** DONE render test: generate report html
+CLOSED: [2018-01-03 Wed 09:35]
+//if fail, generate:
+correct image(copy)
+fail image
+diff image
+
+
+
+pass unit test
+
+
+
+////directly open in browser:
+https://github.com/sindresorhus/opn
+
+
+
+*** DONE can auto generate correct images when test render
+CLOSED: [2018-01-03 Wed 11:00]
+flow:
+specify the target commit id where to generate data on
+judge: if current data's commit id == target, not generate
+else: 
+  exec:
+  save "git rev-parse HEAD" to file 'file
+  git reset --hard $targetCommitId
+  generate
+  git reset --hard $sourceCommitId
+  remove 'file
+run test
+
+
+
+improve:
+add test config json file:
+define target commit id
+
+
+
+
+
+
+
+*** DONE render test: generate debug html files
+CLOSED: [2018-01-03 Wed 14:36]
+- compare html file to compare
+(show png name)
+- debug html file for run
+
+  
+
+
+
+
+
+report html can link to debug html
+
+
+*** DONE test in ci
+CLOSED: [2018-01-03 Wed 22:33]
+Wonder.js add render test
+
+
+restore:
+.travis: restore cache
+package.json->wonder-render-test: use latest
+
+
+
+fix:
+////change timePath to float
+
+
+*** DONE fix README->buadge
+CLOSED: [2018-01-03 Wed 20:10]
+Wonder.js
+
+
+
+Wonder-Editor
+
+
+
+
+
+
+** DONE fix render test
+CLOSED: [2018-01-04 Thu 08:56]
+fix testRender
+
+
+move to e2e
+
+ignore image
+
+
+
+////run render test and unit test:
+test stages
+
+** DONE pf test: generate data by nodejs instead of jest!
+CLOSED: [2018-01-05 Fri 10:42]
+need extract data, test without jest expect!
+
+
+
+refactor: 
+Wonder-Render-Test:
+    rename testData->testDataList
+
+
+
+
+
+unit test
+
+
+
+** DONE pf test: generate debug html files
+CLOSED: [2018-01-05 Fri 11:58]
+- debug html file for run
+add tool to encapulate "var n1 = xxx; return {..."
+
+
+
+unit test
+
+
+** DONE pf test: add tool to confirm whether pf test is pass or not locally
+CLOSED: [2018-01-05 Fri 16:19]
+flow:
+run pf test locally
+if fail, only re-run failed cases(at most twice)
+if the same test case is always fail, then mark it fail
+show the result(fail/pass), generate debug html files of fail cases
+
+
+
+
+** DONE can auto generate data when test pf
+CLOSED: [2018-01-05 Fri 18:01]
+flow:
+specify the target commit id where to generate data on
+judge: if current data's commit id == target, not generate
+else: 
+  exec:
+  save "git rev-parse HEAD" to file 'file
+  git reset --hard $targetCommitId
+  gulp generatePfData
+  git reset --hard $sourceCommitId
+  remove 'file
+run pf test
+
+
+** DONE test in ci
+CLOSED: [2018-01-05 Fri 19:58]
+so now can test pf in ci!!!
+
+
+** DONE finish all pf tests
+CLOSED: [2018-01-05 Fri 20:30]
+Wonder.js:
+update all pf test
+
+
+
+
+
+** DONE add generate debug,report,...
+CLOSED: [2018-01-06 Sat 11:46]
+//pf test:
+remove css content
+
+
+
+
+
+render test
+
+fix:
+
+//debug html not use report.css(pf, rd)
+
+//write fs:(rd)
+   //use mkAlldirsSync
+
+//return promise(pf)
+
+//reject the same value(pf, rd)
+
+
+
+
+//all report
+
+
+
+
+//update version
+
+
+//remove jest_pf_xxx
+
+
+//restore all pf tests
+
+//restore execCount
+
+
+pass ci
+
+
+
+
+** DONE move render test/pf test to test/e2e/
+CLOSED: [2018-01-06 Sat 11:34]
+add test/e2e/render_test|pf_test/reports, screenshots, debugs, specs folder
+
+
+
+rename image->screenshot
+
+
+** DONE fix render test
+CLOSED: [2018-01-06 Sat 09:46]
+//generate css
+
+
+//runInBand
+
+
+
+
+
+
+** DONE refactor
+CLOSED: [2018-01-06 Sat 11:34]
+ignore render test/pf test->report, data/image, ...
+
+
+
+
+
+
+render test add TestRender.re refer to TestPerformance.re
+
+rename TestRender,TestPerformance to Tester
+
+*** DONE reduce duplicate code between pf test and render test
+CLOSED: [2018-01-06 Sat 09:49]
+move js tool together
+
+refactor render test:
+remove ImageMatcher
+
+
+
+*** DONE extract Wonder-bs-Puppeteer
+CLOSED: [2018-01-06 Sat 09:37]
+provide api:
+close browser
+launch browsser
+
+
+
+
+** DONE ci test
+CLOSED: [2018-01-06 Sat 14:32]
+use stage to parallel test unit,pf,render
+if anyone fail, stop exec later ones(not hinder other test execution)
+
+
+
+should pass pf test, render test, unit test!!!
+
+
+
+if pf/render test fail, ci build fail!!!
+
+
+
+
+** DONE improve ci->pf test
+CLOSED: [2018-01-07 Sun 10:12]
+*** DONE improve re-compare
+CLOSED: [2018-01-07 Sun 07:30]
+40
+10
+re-compare->5
+
+if +- >= 50%, directly wrong
+
+
+
+*** DONE add report
+CLOSED: [2018-01-07 Sun 10:12]
+
+
+*** DONE test in Wonder.js
+CLOSED: [2018-01-07 Sun 10:12]
+//test in local
+
+test in ci
+
+
+** DONE fix wonder benchmark
+CLOSED: [2018-01-07 Sun 18:32]
+//fix: if current run faster than benchmark, diff should be -xxx%
+
+
+
+
+
+
+
+////debug support import script:
+support "script type=module"
+remove "wd."
+
+
+
+fix:
+change "--" to "-"
+
+
+
+
+** DONE improve pf test->debug
+CLOSED: [2018-01-07 Sun 21:44]
+generate base_debug.html!
+generate wd.js for base
+
+
+
+refactor: 
+////rename GenerateDebug to GenerateTargetDebug
+
+
+
+** DONE fix wonder.js->pf 
+CLOSED: [2018-01-08 Mon 09:28]
+//restore to origin commit id!
+
+
+update wonder-benchmark version:
+0.1.32
+
+
+fix!(debug base and target files!)
+
+
+** DONE refactor e2e test
+CLOSED: [2018-01-08 Mon 09:28]
+extract common js
+
+
+** DONE use code climate
+CLOSED: [2018-01-09 Tue 18:06]
+
+//rate should be A!
+
+
+
+//rename "Cacheable"
+
+
+
+//pass pf test
+
+
+
+Wonder.js, Wonder-Editor->jest:
+//show test coverage instead of codecov
+
+//add coverageThreshold [object]
+https://facebook.github.io/jest/docs/en/configuration.html
+
+//add badges
+
+
+
+
+
+add plugin:
+//scan todo
+https://docs.codeclimate.com/docs/fixme
+
+
+////eslint
+
+
+
+
+
+
+
+
+
+
+pass e2e test
+
+
+
+
+
+//Wonder-Editor:
+use too!
+
+
+////change to dev branch
+
+
+** DONE ci->pf test
+CLOSED: [2018-01-09 Tue 18:04]
+
+
+increase for ci(generated count to be 40, each run 20, re-compare be 4)
+
+
+copy script:
+log info
+
+
+fix puppeteer:
+////use group?
+https://blog.travis-ci.com/2017-12-12-new-trusty-images-q4-launch
+
+
+** DONE ci
+CLOSED: [2018-01-09 Tue 18:05]
+
+solve yarn install !
+
+not use stages?
+
+
+** DONE pf test
+CLOSED: [2018-01-09 Tue 18:56]
+log copy script
+
+
+log generated benchmark json
+
+
+log each compare result
+
+
+
+update wonder.js->wonder-benchmark version
+
+
+reduce count: 10, 20
+
+////** TODO yarn install --frozen-lockfile
+//Wonder.js
+Wonder-Editor,:
+如果需要可重现的依赖环境（比如在持续集成系统中），应该传入 --frozen-lockfile 标志。
+
+
+
+
+** DONE add more badges
+CLOSED: [2018-01-09 Tue 19:32]
+https://shields.io/
+
+downloads
+
+last commit date
+
+license
+
+...
+
+
+Wonder-Editor:
+add
+
+
+
+
+** DONE code climate
+CLOSED: [2018-01-09 Tue 19:36]
+Wonder-Editor:
+change to master
+
+
+** DONE npm script should be root(instead of gulp!)
+CLOSED: [2018-01-09 Tue 21:47]
+
+
+//Wonder.js
+
+add npm script->run pf/render test
+
+
+
+Wonder-Editor
+
+
+
+** DONE change README.org to .md
+CLOSED: [2018-01-09 Tue 19:32]
+npm package show github
+
+
+Wonder.js
+
+
+
+** DONE change LICENSE->author
+CLOSED: [2018-01-09 Tue 19:41]
+Wonder.js
+
+
+Wonder-Editor
+
+
+** DONE fix pf test
+CLOSED: [2018-01-09 Tue 21:41]
+fix info 
+
+
+** DONE publish
+CLOSED: [2018-01-09 Tue 22:26]
+//finish todos:
+Wonder-Benchmark
+Wonder-Render-Test
+Wonder.js
+
+
+
+//bumped:
+run pf,render test
+update e2econfig.js->base commit id to equal the tag commit id
+
+
+
+
+
+
+
+//remove .DS_Store
+
+//stash:
+readme
+
+
+//Wonder.js, Wonder-Editor:
+fix change log
+
+
+
+
+
+ci:
+restore deploy
+check deploy can work or not!
+
+
+////add "performance test","render test", "unit test" pass custom badges
+https://github.com/badges/shields
+
+
+
+** DONE pf test
+CLOSED: [2018-01-11 Thu 20:20]
+//check pf log bug
+
+
+//fix benchmark order
+
+
+
+*** DONE improve pf test
+CLOSED: [2018-01-11 Thu 20:20]
+if compare fail and need re-compare,  re-generate benchmark data of them!!!
+
+
+copy all script to user specify "baseDir" only once, then re-generate benchmark based by it so no need to switch to base
+git
+ 
+
+
+config:
+re-generate benchmark/compare exec count
+
+
+re-generate benchmark at 2th re-compare(can config)
+
+
+
+
+
+
+
+
+
+//fix wonder-commonlib->NodeExtend
+
+
+Wonder.js:
+//finish upgrade :
+cp puppeteer
+install puppeteer
+
+
+fix test data
+
+
+//fix wonder-benchmark:
+remove "finish"
+
+
+pass local test
+
+
+
+ignore base dir
+
+commit
+
+
+
+
+
+test in ci
+
+
+
+
+** DONE refactor
+CLOSED: [2018-01-11 Thu 21:21]
+Sinon:
+toCalledWith use array
+
+
+
+////** TODO Wonder-Editor add render test
+
+
+
+
+
+** DONE give bug report(contract check) specification
+CLOSED: [2018-01-15 Mon 08:37]
+encapulate api
+
+give description + value(like log arr data)?
+
+
+work with mickey
+
+
+
+
+
+
+
+add Wonder-Log repository
+
+
+
+
+error and debug(contrack) should write/log state(should pass state param)?
+
+
+
+error, debug, warn should has trace stack
+should check console.error has trace stack?
+
+
+info
+
+
+
+
+debug info should mark it is contract check
+
+
+debug has two type:
+1. contract check
+2. log debug info(e.g. log state, variable...)
+3. 
+
+should be controller by isDebug(rename isTest)
+
+
+
+add trace type:
+
+log state and trace
+
+
+
+
+
+日志内容
+日志应当提供如下内容：
+
+时间，包含时区信息和毫秒，这个工作往往日志框架足以支持。核心属性之一。
+
+日志级别，例如 debug、info 以及warn、error
+
+会话标识，能知道是哪个客户端或者是哪个用户触发，登陆账号，seesion信息等
+
+功能标识，功能标识的意义在于方便日志搜索，跟踪指定功能的完整轨迹，是INFO，DEBUG日志的常见技巧。跟logger分类同一道理，更细分功能标识则是方法标识，更多使用在DEBUG做在线调试使用。
+
+精炼的内容，内容永远是日志的核心，结合上述使用场景，简单来说包括场景信息（谁，什么功能等），状态信息(开始，中断，结束)以及重要参数.
+
+其他信息，其他可能的有用信息包括：版本号，线程号等等。
+
+
+
+
+
+
+assert use console.assert
+
+
+
+
+
+log(withTrace option)
+info(withTrace option)
+warn(withTrace option)
+error
+fatal
+(throw)
+
+
+assert(contract)(withTrace default)
+debug(console.debug)
+(equal to log, but can be close when not debug)
+(log json variable...)
+(description + value)
+(groupCollapsed default)
+
+(add "debug xxx" prefix) 
+
+
+
+
+group
+
+
+assert should raise Assert exception
+
+
+
+
+
+
+
+move Contract to Wonder-Log
+
+
+
+
+
+
+
+Wonder-Log should handle in chrome, in firefox, in jest(nodejs)
+error when in other environment
+
+
+*** TODO print, printJson
+for temporary debug
+
+
+*** TODO log, info, warn
+log/warn only print text
+if should log/warn variable value, should use debug
+
+Log:
+Info:
+Warn:
+
+
+*** TODO trace
+log,info,warn
+no trace
+
+
+debug,assert,error,fatal
+has trace
+
+
+
+TraceStart
+
+
+TraceEnd
+
+
+*** TODO debug
+debug(func, isTest)
+
+
+*** TODO assert
+Assert: 
+
+
+
+*** TODO give template
+assert:
+1.xxx should xxx, but actual xxx
+2.expect xxx, but actual xxx
+
+
+assert:
+use Contract.requireCheck/ensureCheck
+
+
+
+
+debug
+
+DebugStart
+
+title(?)(function/operation name)
+
+description(?)
+xxx
+
+reason(?)
+xxx
+
+solution(?)
+xxx
+
+params
+xxx
+
+//name(variable name)
+//value
+
+
+DebugEnd
+
+
+error/fatal:
+
+
+Error/FatalStart
+
+title(opearation name, function name, ...)
+
+description
+xxx
+
+reason
+xxx
+
+solution
+xxx
+
+params
+xxx
+
+
+Error/FatalEnd
+
+
+
+*** DONE refactor all contracts
+CLOSED: [2018-01-14 Sun 21:47]
+use wonder-log
+
+**** DONE change some asserts level
+CLOSED: [2018-01-14 Sun 21:33]
+change some assert to warn(e.g. _addComponent???...)
+
+change some assert to error(can continue exec)
+
+
+**** DONE remain
+CLOSED: [2018-01-14 Sun 21:47]
+
+
+//remove Contract.re, contract_test.re
+
+
+need handle:
+
+ProgramSystem->debugWithFunc
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-01-15 Mon 08:37]
+//rename getUniformxxx, getAttrxxx to unsafeGetxxx
+
+//rename isTest to isDebug
+
+//remove wonder-commonlib->DebugUtils
+
+
+*** DONE refactor other repo
+CLOSED: [2018-01-15 Mon 08:37]
+Wonder-Benchmark
+
+
+Wonder-RenderTest
+
+
+
+
+
+
+////** TODO redo-undo
+check result state:
+should has gl
+should has jobHandleMap->functions
+
+
+
+
+** DONE fix build->ShaderChunkSystem
+CLOSED: [2018-01-15 Mon 11:20]
+not add open Contract
+
+** DONE render test
+CLOSED: [2018-01-15 Mon 14:20]
+*** DONE add more render test
+CLOSED: [2018-01-15 Mon 14:20]
+instance basic box
+
+redo undo
+
+
+fix diff
+
+
+////*** TODO improve render test
+copy and use base scripts for debug
+
+
+** DONE install with puppeteer automated
+CLOSED: [2018-01-15 Mon 14:20]
+replace "puppeteer"
+
+git ignore
+
+add "install" gulp task
+
+
+** DONE extract integration test
+CLOSED: [2018-01-15 Mon 14:38]
+
+////Wonder-Benchmark
+
+////Wonder-Render-Test
+
+** DONE improve pf test
+CLOSED: [2018-01-15 Mon 19:59]
+//last one generate benchmark data is no need!
+
+//if item pass, not test again
+
+
+////benmark case data use average
+
+
+
+** DONE fix pf test
+CLOSED: [2018-01-15 Mon 22:31]
+not need compare should fail
+
+
+
+
+** DONE publish 14
+CLOSED: [2018-01-16 Tue 13:51]
+//change to last release date
+
+//remove gulp-shell
+
+//pass code climate
+
+//fix coverage
+
+
+
+publish
+
+
+*** DONE fix Wonder-Editor
+CLOSED: [2018-01-16 Tue 13:51]
+upgrade wonder.js
+
+upgrade wonder-commonlib
+
+
+import wonder-log
+
+
+use isDebug
+
+////fix contracts
+
+
+
+** DONE finish remain work
+CLOSED: [2018-01-16 Tue 14:42]
+//fix bumped bug:
+if test fail, should not continue!
+
+
+
+
+//summary collections
+
+
+//commit org, temp, collections
+
+//finish new summary email
+
+finish iteration email
+
+
+
+
+//add jiaosu
+
+//bathe
+
+
+
+
+* 编辑器
+
+fix badge bug:
+downloads(link bug)
+license(should check when switch to master)
+
+
+
+
+
+//use "new Function" instead of "eval"
+
+
+
+extract integration test
+
+
+
+
+update wonder.js, wonder-commonlib,wonder-bs-jest version(use resolutions)
+
+
+* 中期研究
+
+* 明日计划
+
 ** TODO support render worker
 
 use module functors?
@@ -15,25 +1270,6 @@ file names end with "ReWoShare" instead of "Utils"?
 *** TODO add pf,render test
 
 ** TODO publish
-
-* 完成事项
-
-
-
-
-* 编辑器
-
-
-
-
-
-* 中期研究
-
-
-
-
-* 明日计划
-
 
 * TODO 未来7日计划
 ** TODO add light,texture

@@ -1,4 +1,4 @@
-* TODO before v1.0.0
+* TODO before v1.0.0-beta
 ** TODO extend editor
 //download cocos-creator
 
@@ -127,9 +127,12 @@ http://docs.cocos.com/creator/manual/zh/extension/asset-management.html
 support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corresponding engine package file(e.g.
 wd.renderWorker.js, wd.webgl1.js, ...))
 
+
+* TODO v1.0.0
+** TODO add pf test, render test 
+refer to Wonder.js
 ** TODO add canvas ui component
 http://docs.cocos.com/creator/manual/zh/components/canvas.html
-
 ** TODO Dashboard
 启动 Cocos Creator 并使用 Cocos 开发者帐号登录以后，就会打开 Dashboard 界面，在这里你可以新建项目、打开已有项目或获得帮
 助信息。 
@@ -154,11 +157,9 @@ NPM 第三方库
 
 
 
-** TODO add benchmark,render test 
 
 
-* TODO after v1.0.0
-
+* TODO after v1.0.0-beta
 ** TODO 数据统计
 http://docs.cocos.com/creator/manual/zh/sdk/cocos-analytics.html
 https://analytics.cocos.com/docs/

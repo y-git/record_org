@@ -1,7 +1,0 @@
-* How to use timer
-Wonder.js -> Scheduler class provide scheduleTime,scheduleLoop,scheduleFrame,scheduleInterval method.
-
-
-
-
-

@@ -1357,8 +1357,32 @@ http://www.frostbite.com/wp-content/uploads/2013/05/CullingTheBattlefield.pdf
 hierarchy z culling
 
 
-**** more...
-***** improve texture
+
+**** TODO advanced debug
+***** TODO debug online
+****** TODO user can send devTool output data(e.g. chrome devTool->save as data file), then we can restore new empty state to it(get state data)(redo operate), so that we can reproduce the error
+debug(JSON.stringify) time and state before DirectorSystem->loopBody, so can use the lastest state str for restore
+
+
+*******  problem
+should get new gl
+
+target state(json state str) has no gl,functions(e.g. jobHandleMap)
+
+target state(json state str) change TypeArray(e.g. Float32Array) to {"0":1.1, "1":2.3, ...}
+
+
+****** TODO add "debug" mode
+open debug
+
+use debug.js instead of min.js
+
+
+
+
+
+****** more...
+******* improve texture
 multi map send map arr(so can support <= maxUnit textures)
 modify multi map sample
 
