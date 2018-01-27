@@ -1,9 +1,197 @@
 * 今日计划
+** TODO support render worker
+
+use module functors?
+
+
+conditional compile:
+https://github.com/facebook/reason/issues/1359
+use bsb-native?
+
+
+file names end with "ReWoShare" instead of "Utils"?
+
+
+*** TODO add pf,render test
+
+** TODO publish
+
+* 完成事项
+** DONE fix redo-undo
+CLOSED: [2018-01-19 Fri 10:06]
+why not transform?(get position already update!)
+
+
+
+fix specHelper.js
+
+
+
+** DONE fix redo bug(refer to Wonder-Editor)
+CLOSED: [2018-01-22 Mon 17:34]
+
+
+
+
+** DONE use job architecture
+CLOSED: [2018-01-26 Fri 18:42]
+////parent, child
+
+can generate more jobs
+
+////worker pool
+
+
+all are jobs!(include update logic, render logic)
+
+*** DONE get all jobs once
+CLOSED: [2018-01-23 Tue 11:16]
+
+
+*** DONE refactor
+CLOSED: [2018-01-23 Tue 11:28]
+//remove render_setting->xxx
+
+
+
+*** DONE user can register custom job
+CLOSED: [2018-01-23 Tue 12:46]
+
+
+*** DONE define job in json data
+CLOSED: [2018-01-25 Thu 12:09]
+//use most.js to load json files
+
+
+
+pass unit test:
+Job_test extract integration test
+
+
+integration test:
+load json
+
+
+
+
+
+pass run test
+
+
+////*** TODO change renderer config
+////rename to Render_xxx_xxx.re
+
+
+//remove platform, browser(remain backend)
+(add TODO add platform, browser in setting)
+
+
+
+
+
+*** DONE add logic config:
+CLOSED: [2018-01-25 Thu 18:55]
+Logic_setting.re
+Logic_init_pipeline.re
+Logic_update_pipeline.re
+Logic_xxx_jobs.re
+
+
+
+//pass render test
+
+
+refactor:
+rename WithRenderConfig to WithJobConfig
+
+
+
+pass add custom logic/render job test:
+remove SchedulerController
+init job when finish load!
+
+
+
+pass unit/integration test
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-01-25 Thu 20:28]
+//finish all todos
+
+//rename RenderConfigXXX to RenderJobXXX
+
+*** DONE pass e2e test
+CLOSED: [2018-01-26 Fri 18:42]
+test data add exposedFunction
+
+
+**** DONE pass render test
+CLOSED: [2018-01-26 Fri 17:59]
+(add custom job)
+
+
+
+
+
+
+
+**** DONE pass pf test
+CLOSED: [2018-01-26 Fri 18:42]
+//when debug:
+fix path
+fix title
+
+
+close isDebug
+
+
+////reduce 
+
+
+
+
+** DONE publish
+CLOSED: [2018-01-26 Fri 20:56]
+//increase coverage
+
+//pass code climate
+
+
+publish
+
+
+
+
+////** TODO refactor wonder-bs-sinon
+toCalledWith use list
+
+
+
+
+
+* 编辑器
+
+** TODO update Wonder-Editor
+
+
+* 明日计划
+
+
 ** TODO life
 foot
 
 bash
 
+
+
+
+* 中期研究
+
+
+* TODO 未来7日计划
 ** TODO add light,texture
 *** TODO light material not share index with basic material
 gameObject add basicMaterialMap, lightMaterialMap(add addBasicMaterialComponent, addLightMaterialComponent)
@@ -32,53 +220,6 @@ each group has create texture once
 
 
 
-
-
-* 完成事项
-
-** TODO life
-foot
-
-bash
-
-** TODO add light,texture
-*** TODO light material not share index with basic material
-gameObject add basicMaterialMap, lightMaterialMap(add addBasicMaterialComponent, addLightMaterialComponent)
-
-
-
-*** TODO support normal matrix instance
-
-*** TODO support hot load texture
-
-*** TODO optimize
-
-
-
-
-
-////gpu optimize:
-memory pool:
-texture 
-
-material add "group":
-each group has create texture once
-
-
-
-* 编辑器
-
-** TODO update Wonder-Editor
-
-
-* 明日计划
-
-
-
-* 中期研究
-
-
-* TODO 未来7日计划
 
 ** TODO support webgl2
 *** TODO improve instance
