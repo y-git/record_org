@@ -1,4 +1,557 @@
 * 今日计划
+** TODO life
+foot
+
+bash
+
+** TODO add light,texture
+*** TODO light material not share index with basic material
+gameObject add basicMaterialMap, lightMaterialMap(add addBasicMaterialComponent, addLightMaterialComponent)
+
+
+
+*** TODO support normal matrix instance
+
+*** TODO support hot load texture
+
+*** TODO optimize
+
+
+
+
+
+////gpu optimize:
+memory pool:
+texture 
+
+material add "group":
+each group has create texture once
+
+
+** TODO publish
+
+
+
+
+
+* 完成事项
+** DONE life
+CLOSED: [2018-01-27 Sat 15:30]
+foot
+
+bash
+
+** TODO add light
+*** DONE light material not share index with basic material
+CLOSED: [2018-01-28 Sun 11:46]
+gameObject add basicMaterialMap, lightMaterialMap(add addBasicMaterialComponent, addLightMaterialComponent)
+
+
+
+*** DONE add light material component
+CLOSED: [2018-01-28 Sun 17:58]
+
+pass unit test
+
+
+
+*** DONE init material(shader, glsl)
+CLOSED: [2018-01-30 Tue 15:04]
+
+//add ambient light
+
+
+
+//a_normal:
+add normals
+
+
+
+
+
+
+//pass send uniforms
+
+
+
+//pass compile
+
+//pass unit test
+
+
+
+//shader uniform:
+u_cameraPos
+u_normalMatrix
+
+
+
+
+////add afterRender pipelines:
+
+////add job after render job in render_pipeline: 
+clean light dirty
+add "TODO: unit test!"
+
+
+
+
+
+//pass compile
+
+
+*** DONE draw ambient light
+CLOSED: [2018-01-31 Wed 19:15]
+////add sub job?:
+get_basic_material_gameObjects?
+get_light_material_gameObjects?
+
+
+
+
+//add front render light job
+
+
+
+
+
+//pass ambient light
+
+
+
+
+*** DONE benchmark
+CLOSED: [2018-02-01 Thu 08:44]
+benchmark ambient light:
+    lastSend:
+optimize
+test
+
+
+////test->last: bind index buffer
+
+//fix with RenderBasicJob
+
+
+
+//add clear lastSend job
+
+
+//refactor:
+    //remove:
+lastSendArrayBuffer: option(buffer),
+lastSendElementArrayBuffer: option(buffer),
+
+
+
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-02-01 Thu 10:05]
+//refactor duplicate:
+render job
+init, render job tests
+
+
+
+
+
+////rename json config:
+eliminate xxxXXX to be xxx_xxx
+
+
+//test->tool:
+extract ecs/ folder
+
+
+//remove isColorDirtys
+
+
+*** DONE pass test
+CLOSED: [2018-02-01 Thu 22:48]
+pass unit test:
+light material
+
+//ambient light:
+test:
+disposed light shouldn't be send uniform data
+
+
+
+
+//normal:
+geometry
+vao
+
+
+//gameObject:
+component map
+dispose
+batch add/dispose
+reallocate
+
+
+//clone
+
+
+
+
+//redo_undo
+
+
+
+////add job test
+
+
+
+//pass render test
+
+
+
+*** DONE refactor
+CLOSED: [2018-02-02 Fri 08:58]
+pass all TODO
+
+
+
+*** DONE pass direction light
+CLOSED: [2018-02-02 Fri 21:16]
+
+//init:
+define count
+(static function?)
+
+
+
+//add u_shininess
+////, u_lightModel
+
+
+
+
+////render
+
+
+
+//pass compile
+
+
+
+//pass main test
+
+
+fix:
+//not init [1],...
+//normalMatrix
+
+why inverse?
+
+////no specular!
+
+
+
+
+
+#define DIRECTION_LIGHTS_COUNT 1 should in top
+
+add attribute/uniform to varDeclare instead of top?
+
+
+vs, fs?
+add precision highp float;
+precision highp int;
+
+
+
+
+//set cull face
+
+
+
+
+
+//pass render test
+
+
+
+
+
+
+*** DONE benchmark
+CLOSED: [2018-02-03 Sat 09:37]
+
+
+bottle in gpu->light glsl
+
+
+*** DONE refactor
+CLOSED: [2018-02-03 Sat 10:35]
+//duplicate with ambient
+
+//rename "getJob" to "execJob"
+
+
+////move jobData, shaderLibData to configJsonData?
+
+
+
+*** DONE pass point light
+CLOSED: [2018-02-04 Sun 17:17]
+//add component
+
+pass init:
+//add init logic
+
+////pass unit test
+
+//pass main test
+
+
+
+
+//pass render
+
+
+
+pass compile
+
+
+
+pass main test
+
+
+
+pass render test
+
+
+
+
+*** DONE pass test
+CLOSED: [2018-02-04 Sun 19:22]
+unit test
+
+
+
+*** DONE pass benchmark
+CLOSED: [2018-02-04 Sun 20:30]
+
+pass current pf test
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-02-05 Mon 12:05]
+//remove "ignore" in ecs, other?
+(use ...state as many as possible)
+
+(should not affect performance!)
+
+
+component data not be mutable?
+
+
+component data not option?
+
+
+
+
+
+
+
+refactor: 
+//return disposedIndexArray: let (index, newIndex) = generateIndex(index, disposedIndexArray);
+
+
+
+////component admin can open Common files:
+restore, deepCopyxxx, getXXXData can not in System
+
+
+
+//rename XXXUniformXXXNoCacheXXX to XXXNoCachableXXX
+//rename XXXUniformXXXCacheXXX to XXXCachableXXX
+
+
+
+
+
+*** TODO support normal matrix instance
+**** DONE fix normal matrix
+CLOSED: [2018-02-05 Mon 15:31]
+//fix
+
+//add cache
+
+
+
+
+refactor:
+//rename "clean" to "clear"
+
+**** DONE add normal matrix instance data
+CLOSED: [2018-02-06 Tue 09:14]
+//implement
+
+//pass unit test
+
+
+//pass render test
+
+
+
+//refactor
+
+
+
+
+
+
+
+*** DONE pass benchmark
+CLOSED: [2018-02-06 Tue 14:29]
+
+give report
+
+
+
+
+//instance:
+fix light instance
+
+fix basic instance
+
+
+optimize:
+getOffsetFunc be [@bs]
+
+
+*** DONE handle clone
+CLOSED: [2018-02-06 Tue 14:29]
+
+*** DONE handle shared material
+CLOSED: [2018-02-06 Tue 14:29]
+
+*** DONE handle dispose
+CLOSED: [2018-02-06 Tue 14:29]
+
+*** DONE handle redo-undo
+CLOSED: [2018-02-06 Tue 14:29]
+
+
+
+
+
+
+
+
+
+
+
+*** DONE pass e2e test
+CLOSED: [2018-02-06 Tue 17:31]
+pass test
+
+
+
+render test
+
+
+pf test
+
+
+
+add more cases:
+transform
+
+parent
+
+dispose
+
+
+redo_undo
+
+
+
+perf:
+////create buffer when init?
+
+
+
+
+
+
+** DONE publish
+CLOSED: [2018-02-06 Tue 20:00]
+//coverage
+
+
+//try pass ci
+
+
+//code climate
+
+
+
+//try pass ci
+
+
+** DONE finish remain
+CLOSED: [2018-02-07 Wed 07:23]
+//add benchmark basic report
+
+////optimize
+
+
+//refactor test data
+
+
+
+////add e2e case
+
+
+
+
+
+
+
+
+
+
+
+* 编辑器
+
+** TODO update Wonder-Editor
+
+update wonder.js version
+
+
+wonder-bs-sinon:
+toCalledWith use list
+
+
+* 明日计划
+
+
+
+
+
+
+
+
+
+* 中期研究
+
+
+
+
+* TODO 未来7日计划
+
+
 ** DONE multi thread test
 CLOSED: [2018-02-12 Mon 20:25]
 
@@ -76,63 +629,6 @@ in each frame
 
 
 ** TODO publish
-
-
-
-
-
-
-* 完成事项
-
-
-
-** TODO finish shaders.glsl change
-
-
-
-
-** TODO add worker job data
-
-
-
-
-
-
-
-
-
-
-
-* 编辑器
-
-** TODO update Wonder-Editor
-
-update wonder.js version
-
-
-wonder-bs-sinon:
-toCalledWith use list
-
-
-* 明日计划
-
-
-
-
-
-
-
-
-
-* 中期研究
-
-
-
-
-* TODO 未来7日计划
-** TODO write wonder blog
-
-
 
 
 ** TODO add cull
