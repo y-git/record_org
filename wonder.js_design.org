@@ -1,0 +1,101 @@
+* TODO design
+engine is contained with jobs
+
+other files support service for jobs(inner service) and user(outer service)
+
+
+
+
+
+
+ecs api is for user
+(ecs api should use system)
+
+ecs job service and renderer admin is for job
+
+(rename admin to xxxJobService?xxxJS?)
+(rename api file to xxxBuildService? )
+
+
+(add xxxScriptService(xxxComponentService?) file when add script component)
+
+(add xxxMaterialService file when add custom material component?)
+
+
+
+
+modules
+
+
+add xxxModuleService?
+
+
+
+
+
+extract service layers(e.g. build service layer, ...)
+add contract check in them!
+
+
+
+
+engine is service!
+
+
+
+
+services:
+module service
+
+job service
+
+build service
+
+script service
+
+material service
+
+
+
+
+modules support service
+
+
+
+service consumer:
+module(module consume other modules' moduleService), job, script component, custom material component, build logic
+
+
+
+
+
+
+modules:
+ecs
+renderer
+asset
+core
+device
+structure
+
+
+
+
+
+
+
+
+system is for operate state
+
+common is for share logic between systems
+
+
+utils
+
+
+share is for share logic between no worker and worker
+
+
+* TODO blog
+<<microservice in game engine>> ?
+

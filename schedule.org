@@ -1,0 +1,71 @@
+* before 1.0.0
+** render worker(7d)
+*** worker->init, loop
+*** no worker
+*** user can add job
+*** show debug info
+
+** texture(4d)
+*** basic texture
+**** TODO show texture
+**** TODO load texture
+**** TODO support hot load texture
+*** diffuse, specular texture
+
+** load .wd(7d)
+*** load .wd(refer to glsl 2.0)
+*** data-oriented
+*** converter
+**** .obj
+
+
+
+** event (4d)
+*** pc event
+*** mobile event
+
+** picking(2d)
+
+** camera(2d)
+
+*** ortho camera
+
+
+*** arcball camera controller
+
+
+
+
+
+
+
+
+*** fly camera controller
+
+
+
+
+
+** mobile(3d)
+*** TODO Multiresolution adaptation
+
+
+*** TODO add mobile render pipeline
+
+
+** script component(7d)
+*** hot change
+
+*** support import other script
+
+* after 1.0.0
+** webgl2
+*** TODO defer shading
+*** TODO vao
+*** TODO ubo
+*** TODO glsl 3.0
+*** TODO Occlusion Queries
+
+** skybox
+
+** TODO add tag, name
