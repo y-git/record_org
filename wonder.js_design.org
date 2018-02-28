@@ -47,7 +47,7 @@ engine is service!
 services:
 module service
 
-job service
+////job service
 
 build service
 
@@ -62,6 +62,8 @@ modules support service
 
 
 
+
+
 service consumer:
 module(module consume other modules' moduleService), job, script component, custom material component, build logic
 
@@ -70,7 +72,20 @@ module(module consume other modules' moduleService), job, script component, cust
 
 
 
+
+
+
+
+
+
+
+
+
 modules:
+time
+(
+move computeElapseTime out to engine?
+)
 ecs
 renderer
 asset
@@ -79,9 +94,37 @@ device
 structure
 
 
+** move each service supports out to be new project(manage through npm)
+
+module, job service support in module project
+
+build, script, material service support in engine project
+
+
+*** move job out to be new project?
+
+** service supporter has its own data in state
+(e.g. each component, each device, glsllocation/glslsender, ... has its own data)
 
 
 
+////*** module, job service accept module states(own or other module's state)
+*** module service accept module states(own or other module's state)
+
+
+*** build, script, material service accept one engine state
+
+
+
+** compare to microservice
+
+job -> process
+
+
+
+
+
+** 
 
 
 
@@ -90,10 +133,16 @@ system is for operate state
 common is for share logic between systems
 
 
-utils
+utils is for logic which don't operate state
+(utils can invoke other utils)
 
 
 share is for share logic between no worker and worker
+
+** TODO advanced
+*** TODO split ecs to small modules?
+each component is one module?
+gameObject is one module?
 
 
 * TODO blog
