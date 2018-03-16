@@ -54,7 +54,8 @@
 
 
 ** script component(7d)
-*** hot change
+*** hot load
+
 
 *** support import other script
 

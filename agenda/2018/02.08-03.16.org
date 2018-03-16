@@ -1,4 +1,624 @@
 * 今日计划
+** DONE multi thread test
+CLOSED: [2018-02-12 Mon 20:25]
+
+
+
+
+
+** TODO finish shaders.glsl change
+
+
+
+
+** TODO add worker job data
+
+
+
+** TODO multi thread render
+
+
+
+** TODO show debug info
+show worker, main fps
+
+
+show worker, main memeory
+
+
+show total fps,render time
+
+
+
+** TODO publish
+
+
+
+** TODO add worker job 
+
+
+////*** TODO user added worker job should use thread safe api(xxxWorker api?)
+no need safe api!!!
+
+user job can change data directly, while other worker jobs should read copied sharedArrayBuffer data!
+
+
+*** TODO user can define job in json, add register job function by js
+
+
+*** TODO support user added worker job to new worker
+
+add worker pool
+
+
+
+window.navigator.hardwareConcurrency
+
+make sure only hardwareConcurrency jobs can be used(in each worker)!else jobs should be wait
+
+
+
+
+*** TODO support add worker job at runtime(can add to different/new worker)
+
+
+
+**** TODO job(or all data) support hot loading
+
+add isDirty flag
+
+in each frame
+    if dirty, re-generate job graph
+
+
+
+
+
+
+** TODO publish
+
+
+
+
+
+
+* 完成事项
+
+
+
+////** TODO finish shaders.glsl change
+
+
+
+** DONE pass multi thread render render draft test
+CLOSED: [2018-02-14 Wed 10:02]
+
+
+
+** DONE microservice architecture refactor
+CLOSED: [2018-03-15 Thu 09:04]
+
+setting service
+
+*** TODO user should use api
+user should use it instead of job service even when add custom job
+
+
+
+
+*** TODO Editor refactor
+move data(editor/engine state) to logic_service->composite service->data
+
+not distinguish engine,editor,database service
+
+facade is one to one(to logic_service-> composite service, service)
+
+
+
+move ui state to be service:
+ui global state
+ui local state
+
+
+
+
+
+*** DONE extract job service
+CLOSED: [2018-03-15 Thu 08:01]
+finish cameraController:
+rename CameraControllerJobSingleService
+
+extract PerspectiveCameraFrustumJobSingleService
+(
+has its own index; add create function; 
+
+move pMatrixMap, dirtyArray to it;
+
+move update logic to it:
+CameraControllerJobSingleService remove update logic;
+change Init/UpdateCameraControllerJob to Init/UpdateCameraJob
+)
+
+
+
+upgrade XXXCommon to XXXJobSingleService
+
+
+extract common service:
+move addToDirtyArray to it
+
+
+
+////extract CameraControllerJobCompositeService
+
+
+
+add sceneData:
+currentCameraGameObject
+
+
+
+
+rename:
+api add xxxAPI.re
+
+
+
+finish gameObject:
+extract composite service(ignore other components except cameraController, PerspectiveCameraFrustum)
+
+
+
+refactor:
+////rename gameObjectData to gameObjectContainerData
+
+////job service:
+GameObjectContainerXXXService
+
+////aggr service:
+GameObjectXXXService
+
+
+
+//pass compile
+
+//commit
+
+
+
+
+pass unit test:
+//cameraview, cameraprojection
+//gameObject
+//all unit test
+
+
+//commit
+
+
+
+test:
+////add scene service test
+
+add perspective camera test(redo, ...)
+add scene test(redo, ...)
+
+
+pass all integration test
+
+//commit
+
+
+
+//refactor:
+////state: remove "record/data" post fix!!!(e.g. rename gameObjectRecord to gameObject)
+不加数据类型的后缀！
+
+
+
+
+//pass e2e test:
+pass all render test
+pass pf test -> one case
+
+
+//commit
+
+
+
+
+
+//finish ecs:
+//transform
+
+////pass ci->unit test
+
+//geometry
+
+//refactor:
+move test->transformTool to be TransformServiceTool
+move test->geometry tool to be Geometry service tool
+
+
+
+
+
+//material
+
+//meshRenderer
+
+
+//light
+
+
+
+
+//instance
+
+
+
+//gameObject
+
+//admin
+
+//remove ecs/ folder
+
+
+
+
+
+
+finish render:
+//buffer
+
+
+//device
+
+//view
+
+
+////refactor:
+rename ViewXXX to ScreenXXX
+move contextConfig from view data to deviceManager data
+
+
+//gpu detect
+
+////init device
+
+//shader
+
+//program
+
+//location
+
+
+//attribute
+
+//uniform
+
+
+
+//render worker:
+state service add post fix: "Main", "Render"
+
+
+
+
+
+//rename StateDataType to MainStateDataType
+
+//base service add service:
+getIsDebugFromStateData(StateData.stateData.isDebug)
+
+
+
+
+refactor:
+//remove GlType->options
+(duplicate with ContextType)
+
+
+
+//move glsl to be src/glsl/
+//move worker to be src/worker/
+
+
+//remove src/render/
+
+
+
+
+
+
+finish other:
+//setting
+
+
+refactor:
+//rename renderConfigData to renderConfigRecord
+
+
+
+
+//job
+
+
+
+refactor:
+//move worker->xxx to worker->jobs/
+
+
+
+//render
+
+
+
+
+//shader chunk
+
+
+
+
+//core
+
+
+
+
+
+
+////export render service to api facade?
+
+
+refactor:
+//rename Gpu to GPU
+
+//rename Cpu to CPU
+
+
+*** DONE extract primitive service
+CLOSED: [2018-03-15 Thu 08:01]
+
+move to it:
+structure->ArraySystem
+ComponentSystem
+
+
+*** DONE extract atom service
+CLOSED: [2018-03-15 Thu 08:49]
+create Wonder-Engine-Service project:
+move used WonderCommonlib->files to it
+
+
+
+
+
+*** DONE refactor folder
+CLOSED: [2018-03-15 Thu 08:59]
+src/:
+service/
+(move state to state_service->data)
+(move StateSystem to state_service)
+(move StateSystem->restore to service->stateTuple->RestoreEngineService?)
+
+job/(all jobs here)
+api/
+////config/
+(json data related here. e.g. parse logic)
+(move src/config/ files here)
+(
+
+rename data/ to config/
+
+)
+
+core/
+(Director logic here)
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-03-15 Thu 09:03]
+//add getExn service
+
+
+
+//rename GameObject->get component to unsafeGetXXX
+
+
+//unsafeGetGameObjectSourceInstanceComponent should use Js.Option.getExn
+
+
+
+*** DONE pass u,i,e2e test
+CLOSED: [2018-03-15 Thu 09:04]
+
+
+
+
+
+
+** DONE dispose gameObject keep order(need engine fix)
+CLOSED: [2018-03-15 Thu 11:00]
+description
+dispose gameObject cause order wrong(scene tree)
+
+reason
+
+
+solution
+add disposeGameObjectKeepOrder api in engine
+
+
+
+
+
+add test
+
+
+
+** DONE publish
+CLOSED: [2018-03-15 Thu 17:09]
+//test benchmark:
+optimize?
+
+
+
+
+
+//all TODO
+
+
+
+
+
+
+
+
+
+
+//test coverage
+
+
+
+////update sinon
+
+
+
+
+
+
+
+
+////bsconfig.json remove "commonjs" ?:
+fix test pf,render(gulp file -> require)
+
+
+
+//code climate
+
+
+
+
+
+////upgrade reason to 3.1.0
+
+
+
+
+
+//publish
+
+** DONE solve code climate
+CLOSED: [2018-03-15 Thu 19:49]
+
+
+
+** DONE update Wonder-Editor
+CLOSED: [2018-03-16 Fri 11:25]
+
+
+
+//update wonder-commonlib version
+
+
+
+
+////upgrade reason to 3.1.0
+
+
+
+
+wonder-bs-sinon:
+toCalledWith use list
+
+
+
+
+*** DONE update wonder.js version
+CLOSED: [2018-03-16 Fri 11:25]
+
+//pass one engine test
+
+//pass one editor test
+
+//pass one ui test
+
+
+//restore:
+integration->ui
+unit
+
+
+
+
+
+//wonder.js:
+publish new npm
+
+
+**** DONE fix dispose keep order bug
+CLOSED: [2018-03-16 Fri 11:25]
+
+**** DONE check "dispose bug" is still exist?
+CLOSED: [2018-03-16 Fri 11:19]
+description
+add two boxes(one camera?)
+dispose two boxes one by one
+add one boxes
+error: no binded buffer!
+
+
+
+reason
+?
+
+solution
+?
+
+
+
+
+not exist!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE summary 
+CLOSED: [2018-03-16 Fri 12:08]
+collections
+
+////org-mode
+
+
+
+* 编辑器Editor
+
+** TODO  multi user cooperation
+
+https://www.zhihu.com/question/24978964
+
+unity3d asset server
+https://unity3d.com/cn/unity/features/collaborate
+
+
+
+* 明日计划
+
+
 
 ** TODO report
 week report
@@ -423,37 +1043,23 @@ in each frame
 
 
 
-
-* 完成事项
-
-
-
-////** TODO finish shaders.glsl change
-
-
-
-
-* 编辑器Editor
-
-** TODO  multi user cooperation
-
-https://www.zhihu.com/question/24978964
-
-unity3d asset server
-https://unity3d.com/cn/unity/features/collaborate
-
-
-
-* 明日计划
-
-
-
 * 中期研究
 
 
 
 
 * TODO 未来7日计划
+** TODO write wonder blog
+
+
+
+
+
+
+
+
+
+
 ** TODO optimize
 glsl source use Number() to flatten when shader source?
 

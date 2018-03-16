@@ -44,7 +44,7 @@ engine is service!
 
 
 
-services:
+////services:
 module service
 
 ////job service
@@ -54,6 +54,11 @@ build service
 script service
 
 material service
+
+(only one api:
+service support api for engine->job
+engine support api for user->build, script component, custom material
+)
 
 
 
@@ -89,16 +94,24 @@ move computeElapseTime out to engine?
 ecs
 renderer
 asset
-core
+////core
 device
 structure
 
 
-** move each service supports out to be new project(manage through npm)
+** move each service supporters out to be new project(manage through npm)
 
 module, job service support in module project
 
 build, script, material service support in engine project
+
+
+to @wonder-service/xxx?
+(e.g. @wonder-service/ecs)
+
+
+
+
 
 
 *** move job out to be new project?
@@ -146,5 +159,19 @@ gameObject is one module?
 
 
 * TODO blog
-<<microservice in game engine>> ?
+<<service in game engine>> ?
 
+
+* TODO book
+<<functional game engine pattern>>?
+<<functional game engine architecture>>?
+
+
+
+<<functional game editor architecture/pattern>>?
+
+
+
+publish refer to:
+http://gameprogrammingpatterns.com/
+https://zhuanlan.zhihu.com/p/33724015
