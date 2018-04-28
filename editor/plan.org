@@ -123,6 +123,9 @@ not use?
 http://docs.cocos.com/creator/manual/zh/extension/asset-management.html
 
 
+
+
+
 ** TODO package
 support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corresponding engine package file(e.g.
 wd.renderWorker.js, wd.webgl1.js, ...))
@@ -160,11 +163,11 @@ NPM 第三方库
 
 
 * TODO after v1.0.0-beta
-** TODO 数据统计
+** TODO [#B] 数据统计
 http://docs.cocos.com/creator/manual/zh/sdk/cocos-analytics.html
 https://analytics.cocos.com/docs/
 
-** TODO sdk
+** TODO [#C] sdk
 AnySDK为 CP 提供一套第三方 SDK 接入解决方案，整个接入过程，不改变任何 SDK 的功能、特性、参数等，对于最终玩家而言是完全透
 明无感知的。 目的是让 CP 商能有更多时间更专注于游戏本身的品质，所有 SDK 的接入工作统统交给我们吧。第三方 SDK 包括了渠道
 SDK、用户系统、支付系统、广告系统、统计系统、分享系统等等。 
@@ -182,7 +185,7 @@ offline
 
 
 
-** TODO prefab
+** TODO [#B] prefab
 http://docs.cocos.com/creator/manual/zh/asset-workflow/prefab.html
 http://docs.cocos.com/creator/manual/zh/getting-started/basics/editor-panels/node-library.html
 
@@ -191,7 +194,7 @@ https://docs.unity3d.com/560/Documentation/Manual/Prefabs.html
 
 
 
-** TODO engine script
+** TODO [#A] engine script
 
 *** TODO support change property in inspector(editor)
 
@@ -216,8 +219,30 @@ editor can extend user script component's inspector!
 ** TODO support publish to native platform(ios, ..)
 compile reason to native?bsb-native?
 
+** TODO [#B] add material asset
+refer to unity->material asset
 
-** TODO improve performance 
+
+** TODO [#B] enhance extend editor
+
+** TODO [#A] extend engine
+
+*** TODO extend files
+extend material(? material asset?), shader(.glsl), job(.js), script(.js), config data(.json->./Wonder.js/data/ json files)
+
+
+extend service(.js?)
+
+
+
+add config(.json) to specific the file structure in project file(.wd_project.package)
+
+
+*** TODO use .wonder_extend_package package(zip file) to include all extend files
+
+
+
+** TODO [#C] improve performance 
 benchmark test
 
 
@@ -237,3 +262,74 @@ http://docs.cocos.com/creator/manual/zh/extension/extension-workflow.html -> 插
 
 ** TODO public package
 *** TODO md5 to avoid cache
+
+** TODO [#C] support multi thread
+
+
+** TODO [#C] support multi thread->redo undo
+
+** TODO visualization
+*** TODO visualization pipeline
+job pipeline(json)
+
+
+** TODO switch scene
+
+** TODO [#B] Built for Teams(multi player)
+refer to playcanvas: PlayCanvas has many team features such as being able to chat with your teammates directly from within the Editor.
+
+
+refer to unity
+
+
+
+
+use git
+
+can chat
+
+
+upload asset
+
+
+
+** TODO advanced control
+只让游戏运行一帧：先按下暂停键，再按运行
+
+
+
+测试运行时，可以在任意时候暂停游戏，重新调整数值，游戏对象的位置等等，然后再继续游戏。
+
+
+** TODO advanced scene tree
+1. ALT + 鼠标左键点击 Hierarchy 对象可以展开和收起对象的所有子对象；
+
+
+** TODO [#B] support dragable ui
+
+
+
+
+** TODO add gameObject name
+
+
+
+
+** TODO [#B] add search
+
+
+
+
+
+
+** TODO asset manage
+
+*** TODO add redo-undo?
+why not add:
+unity don't has it! so not add?
+
+asset can be managed by svn/git, so no need redo-undo?
+
+
+*** TODO drag scene tree->gameObject to asset, can generate pretab?
+refer to unity

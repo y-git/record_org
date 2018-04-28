@@ -1,4 +1,2542 @@
 * 今日计划
+
+** TODO report
+week report
+
+iteration report
+
+** TODO add worker job data
+*** DONE finish draft
+CLOSED: [2018-02-19 Mon 18:40]
+
+add isUseWorker to workerDetectData
+
+finish useWorker
+
+
+*** DONE demo
+CLOSED: [2018-02-25 Sun 16:09]
+
+**** DONE worker->init
+CLOSED: [2018-02-24 Sat 21:40]
+//draft
+
+main_init:
+add more job
+//parse config
+
+
+worker_:
+add more job
+//parse config
+
+
+//pass compile
+
+
+
+//pass render test
+
+
+
+
+**** DONE worker->draw
+CLOSED: [2018-02-25 Sun 16:09]
+create wonder-most-animation-frame project and import
+
+
+
+test animation-frame
+
+
+add send->get
+
+
+*** DONE rearrange plan
+CLOSED: [2018-02-26 Mon 10:00]
+use trello:
+write down engine,editor tasks together
+
+////when finish one, edit it!
+
+
+
+
+*** DONE no worker->init, loop
+CLOSED: [2018-02-28 Wed 07:40]
+//pass compile
+
+
+
+**** DONE init
+CLOSED: [2018-02-27 Tue 14:02]
+
+***** DONE pass u/i test
+CLOSED: [2018-02-27 Tue 14:02]
+//pass load test
+
+//add set setting test
+
+//add init device test
+
+//init jobs:
+add initLightMaterialJob_test
+add pregetGLSLDataJob_test
+
+
+
+
+
+
+
+**** DONE loop
+CLOSED: [2018-02-28 Wed 07:40]
+***** DONE pass render test
+CLOSED: [2018-02-27 Tue 21:19]
+
+***** DONE pass u/i test
+CLOSED: [2018-02-28 Wed 07:40]
+loop jobs:
+update jobs
+render jobs
+
+
+//redo-undo
+
+
+//add custom job
+
+
+
+
+
+
+
+
+
+*** TODO finish worker->init
+**** TODO pass worker test demo
+
+//pass init test demo
+
+pass loop test demo
+
+
+
+test create worker instance
+
+
+
+
+**** TODO finish init render:
+pass compile:
+create canvas
+
+...
+
+init gl
+
+send isDebug
+
+
+
+
+
+
+
+
+pass unit/integration test:
+add render worker test
+
+
+pass isDebug
+
+
+init light
+
+init geometry
+
+init material...
+
+
+
+
+
+pass unit test:
+loader
+Main
+
+
+
+add jobs:
+        {
+          "name": "preget_glslData"
+        },
+        {
+          "name": "init_state"
+        },
+        {
+          "name": "init_basic_material"
+        },
+        {
+          "name": "init_light_material"
+        }
+
+
+
+
+**** TODO debug info use debug instead of log
+
+
+*** TODO pass unit,integration test
+
+**** TODO add worker unit test
+
+
+
+*** TODO refactor
+
+**** TODO api, admin
+######################
+ecs api is for user
+(ecs api should use system)
+
+ecs admin and renderer admin is for job
+
+
+
+system is for operate state
+
+common is for share logic between systems
+
+
+utils
+
+
+share is for share logic between no worker and worker
+
+######################
+
+
+
+
+add GameObjectSystem
+(api->GameObject.re use it instead of use GameObjectAdmin)
+
+
+Job should use ecs admin instead of ecs system
+(e.g. InitCameraControllerJob.re)
+
+
+
+Job should use renderer admin instead of renderer system
+(e.g. use GLSLSenderAdmin instead of GLSLSenderDrawUtils, ...)
+
+
+
+
+
+
+*** TODO finish worker->draw
+**** TODO make transform data safe
+copy transform data to draw buffer
+
+
+
+
+*** TODO pass unit,integration test
+
+
+
+*** TODO finish no worker->init, draw
+
+
+*** TODO pass unit,integration test
+
+
+*** TODO refactor
+clean worker,single data
+
+
+add getExn in OptionUtils.re instead of Js.Option.getExn:
+use fatal!
+(correspond change Wonder-Editor!)
+
+
+
+most.js:
+add "callFunc" api (refer to animation-frame)
+
+
+
+unify specification:
+all json data use "xxx_xxx"
+all json->record type use "xxxXXX"
+
+
+rename "JobConfig" to "JobConfigData"
+
+
+
+remove DebugUtils.re
+
+
+
+*** TODO optimize
+
+
+
+
+
+
+** TODO refactor
+
+move 
+  workerFileDir: string,
+  /* TODO finish */
+  useWorker:bool,
+
+
+to workerConfig
+
+
+////move all main config to setting.json:
+  canvasId: option(string),
+  isDebug: bool,
+  workerFileDir: string,
+  contextConfig,
+  bufferConfig,
+  gpuConfig
+
+
+** TODO multi thread render
+*** TODO init
+
+
+*** TODO pass unit/integration test
+
+
+
+
+*** TODO render
+
+**** TODO make transform data safe
+copy transform data to draw buffer
+
+
+
+
+*** TODO pass unit/integration test
+
+
+
+
+** TODO publish
+restore test coverage to 95% up:
+////restore ci test coverage limit(.travis)
+restore ci test coverage limit(jest_coverage->not ignore worker files)
+
+
+
+** TODO show debug info
+setting.json add:
+debug: {
+    open_contract_check: true,
+    show_debug_info: true
+}
+
+
+
+show worker, main fps
+
+
+show worker, main memeory
+
+
+show total fps,render time
+
+
+show each job's render time, memory
+
+** TODO publish
+
+
+
+
+** TODO publish
+
+
+
+
+
+
+
+
+
+
+
+
+* 完成事项
+** DONE report
+CLOSED: [2018-03-16 Fri 21:30]
+week report
+
+iteration report
+
+
+** TODO fix redo bug
+
+
+
+** TODO fix debug, debugJson
+fix Wonder.js
+
+fix Wonder-Editor
+
+
+** TODO add worker job data
+*** DONE finish draft
+CLOSED: [2018-02-19 Mon 18:40]
+
+add isUseWorker to workerDetectData
+
+finish useWorker
+
+
+*** DONE demo
+CLOSED: [2018-02-25 Sun 16:09]
+
+**** DONE worker->init
+CLOSED: [2018-02-24 Sat 21:40]
+//draft
+
+main_init:
+add more job
+//parse config
+
+
+worker_:
+add more job
+//parse config
+
+
+//pass compile
+
+
+
+//pass render test
+
+
+
+
+**** DONE worker->draw
+CLOSED: [2018-02-25 Sun 16:09]
+create wonder-most-animation-frame project and import
+
+
+
+test animation-frame
+
+
+add send->get
+
+
+*** DONE rearrange plan
+CLOSED: [2018-02-26 Mon 10:00]
+use trello:
+write down engine,editor tasks together
+
+////when finish one, edit it!
+
+
+
+
+*** DONE no worker->init, loop
+CLOSED: [2018-02-28 Wed 07:40]
+//pass compile
+
+
+
+**** DONE init
+CLOSED: [2018-02-27 Tue 14:02]
+
+***** DONE pass u/i test
+CLOSED: [2018-02-27 Tue 14:02]
+//pass load test
+
+//add set setting test
+
+//add init device test
+
+//init jobs:
+add initLightMaterialJob_test
+add pregetGLSLDataJob_test
+
+
+
+
+
+
+
+**** DONE loop
+CLOSED: [2018-02-28 Wed 07:40]
+***** DONE pass render test
+CLOSED: [2018-02-27 Tue 21:19]
+
+***** DONE pass u/i test
+CLOSED: [2018-02-28 Wed 07:40]
+loop jobs:
+update jobs
+render jobs
+
+
+//redo-undo
+
+
+//add custom job
+
+
+
+
+
+
+
+
+
+*** TODO finish worker->init
+*** DONE pass worker test demo
+CLOSED: [2018-03-18 Sun 08:27]
+
+//pass init test demo
+
+
+//pass init render test
+
+
+//test create worker instance
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-03-18 Sun 09:33]
+
+//test
+
+
+//worker src
+
+
+
+
+
+
+
+*** DONE create gl in render worker
+CLOSED: [2018-03-19 Mon 17:24]
+
+create canvas
+
+create gl
+
+
+
+pass render test
+
+
+
+
+
+*** DONE change to arraybuffer
+CLOSED: [2018-04-02 Mon 13:34]
+
+//transform:
+add buffer config to setting
+
+create
+
+dispose
+
+batchDispose
+
+
+//pass test:
+set default buffer config
+
+redo undo
+
+pass render test
+
+
+
+//refactor: rename:
+renderBasicJob_test
+frontXXXJob_test
+
+
+
+
+//box geometry:
+//use mapped index
+
+create
+
+dispose
+
+batchDispose
+
+reallocate
+
+init
+
+
+check with light->mappedIndex
+
+
+
+
+//pass compile
+
+
+
+//pass u,i test
+
+//add normals test
+
+
+//pass render test
+
+
+
+
+
+
+
+
+
+//test:
+////add sharedBoxGeometry_test
+
+////add sharedBasicMaterial_test
+
+//refactor XXXMaterial_test -> dispose->group count
+
+
+//basic material
+
+
+//light material
+
+
+
+//pass u,i test:
+redo_undo
+
+
+
+
+////optimize test
+
+
+//pass render test
+
+*** DONE add custom geometry
+CLOSED: [2018-03-31 Sat 11:35]
+//add 
+
+
+//pass u,i test
+
+
+
+
+//box geometry not reallocate!
+
+////reset type array when dispose box geometry!
+
+remove set points api!
+
+
+
+
+//pass box geometry test
+
+
+
+
+
+
+//custom geometry need reallocate!
+
+not reset type array when dispose custom geometry!
+
+
+remain set points api!
+
+
+
+//fix "create custom geometry from disposedIndex":
+should from it after reallocate?
+
+add test cases with custom geometry, box geometry(integration test)
+
+
+
+
+add custom geometry u,i test:
+//CustomGeometry_test
+//gameObject
+//clone
+//redo undo
+
+
+//refactor:
+duplicate with BoxGeometry
+clean
+
+
+//pass all u, i tests
+
+
+
+render test:
+//pass all
+
+add test case for custom geometry
+
+
+//fix bug
+
+//reallocate currentGeometryMap
+
+
+
+
+fix:
+
+
+unit test:
+//pass dispose box, custom geometry->test vbo buffer
+
+integration test:
+//current ->/* TODO test vbo buffer */
+
+//add send custom, send basic:
+bind vbo test cases
+create different buffer
+
+
+
+//test last send geometry
+
+
+
+//fix instance:
+hardware
+
+batch
+
+
+
+
+//fix editor bug
+
+
+//fix clone:
+fix batch add
+
+
+fix batch dispose
+
+
+//pass u,i test
+
+
+//pass render test
+
+
+//optimize gameObject:
+remove boxGeometryMap, customGeometryMap
+
+fix add,batchAdd, dispose, batchDispose component
+(
+e.g. remove _addSharableComponent but remain increase group count?
+)
+
+
+//use get geometry instead of get box/custom geometry component
+//type_ should be "box"/"custom"
+
+
+////rename currentGXXX to geometry
+
+
+
+
+refactor:
+//change geometry component data to (index, type_, mapTuple, funcTuple)
+
+
+
+//pass u,i test
+
+
+//pass render test
+
+
+
+cloneXXX_test:
+//clone material->add share material cases
+
+
+//clone geometry-> add share geometry description
+
+
+
+//rebase master
+
+
+refactor:
+//finish TODO
+
+
+
+
+
+
+
+
+refactor:
+//rename init_geometry job to init_boxGeometry
+
+
+
+
+
+//push
+
+
+
+
+*** DONE fix editor
+CLOSED: [2018-04-02 Mon 13:40]
+
+
+
+optimize:
+//buffer
+
+
+
+//check run test
+
+
+//editor confirm
+
+
+*** DONE no worker-> render object buffer
+CLOSED: [2018-04-03 Tue 10:56]
+
+keep min:
+material
+
+shader index
+
+transform
+
+////model
+
+geometry
+
+////view, p matrix
+
+
+
+
+
+
+
+
+
+r/basic:
+pass no instance
+
+
+pass instance:
+
+////change instance to array buffer
+
+
+pass hardware
+
+
+pass batch
+
+
+
+
+
+
+
+
+
+
+
+//light:
+add camera position
+
+pass
+
+
+
+
+
+refactor:
+//remove renderRecord->renderArray
+
+
+
+//u,i test:
+fix loop->pipelines,jobs
+
+
+//render test
+
+
+
+////*** TODO fix material
+
+
+fix material:
+////last Send material should judge type_
+(add test cases)
+
+
+
+
+
+
+
+optimize gameObject:
+when add material component, decide gameObject is in basic or light render array!
+
+remove basicMaterialMap, lightMaterialMap, use currentMaterialMap instead?
+
+use get material instead of get basic/light material component
+
+
+
+
+
+
+*** DONE pass basic demo
+CLOSED: [2018-04-09 Mon 20:22]
+**** DONE init
+CLOSED: [2018-04-08 Sun 18:00]
+
+
+init basic material:
+
+//get render config data
+
+//fix init shader
+
+
+
+//get new glasses!!!
+
+
+//refactor service->role
+
+
+//pass main compile 
+
+
+
+use "convert state to render data" :
+
+//init basic material
+
+
+//send attribute
+
+
+//send uniform:
+
+light
+
+basic material
+light material
+
+model 
+
+shader
+
+
+fix create render state
+
+
+
+
+
+
+
+
+pass render:
+pass instance
+render job
+
+
+
+
+//pass compile
+
+
+
+
+//pass test compile
+
+
+
+
+
+
+
+
+pass no worker->u,i test:
+//pass others
+
+add test "update transform job":
+//test dispose case
+
+//pass light material:
+restore
+pass test
+
+
+
+
+
+//pass no worker->render test:
+
+instance:
+//fix transform
+
+
+//redo_undo:
+
+
+//use getSourceInstanceObjectInstanceArray
+
+//pass render test
+
+
+
+
+
+
+
+
+
+sender:
+
+////glsl sender not use state, use type arrays directly
+
+remove get data for glsl sender->uniform
+
+
+
+
+fix render:
+render, sendAttribute, sendUniform states
+
+
+
+
+finish:
+//no worker->init material->build init material all state data
+
+
+
+
+pass compile
+
+
+
+////detect 
+
+
+
+refactor:
+remove not-used get data in component service(e.g. OperateBasicMaterialMainService.getColor?)
+
+
+
+
+/*
+update all transforms in main worker job
+
+
+
+no worker and worker:
+////update all transforms([0, index - 1]) before render
+update all rendered transforms before render
+
+
+*/
+
+
+
+
+
+
+
+
+//fix glsl-compiler
+
+
+
+
+
+
+//finish worker-> init basic material
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//init transform:
+
+////update all transforms in main worker job
+
+create type arrays
+
+
+
+no worker and worker:
+////update all transforms([0, index - 1]) before render
+
+////update all rendered transforms before render
+
+
+
+
+
+pass compile
+
+
+
+
+
+
+
+pass u,i test
+
+
+
+
+
+
+init box geometry:
+//remove computeDataFuncMap
+
+
+//pass compile
+
+
+
+
+
+//pass u,i test
+
+
+
+////pass run test
+
+
+
+
+
+**** DONE loop
+CLOSED: [2018-04-09 Mon 20:21]
+pass only render:
+
+//add loop jobs
+
+
+//add tick, ...
+
+//render object buffer
+
+//send camera data
+
+
+//commit
+
+
+
+pass draw a box:
+//render basic
+
+////instance->hardware
+
+////instance->batch
+
+
+
+
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-04-09 Mon 20:30]
+
+//remove ColorMapService
+
+
+
+//move gameObjectRecord from MainStateDataType to GameObjectType
+
+
+*** TODO optimize no worker
+**** DONE render
+CLOSED: [2018-04-11 Wed 10:19]
+
+
+
+//optimize basic
+
+
+//optimize light
+
+
+
+
+
+pass worker run test:
+//renderRecord->basic buffer
+
+
+
+
+
+
+
+
+
+
+//solve cg:
+
+////continue optimize
+
+
+
+
+
+
+
+////if render objects not change, remain last render command buffer?
+else if change, only operate the changed part in last render command buffer?
+
+
+//create buffer only one time
+
+
+
+
+fix:
+////cache
+
+
+optimize:
+////not slice?
+
+
+
+
+
+//optimize box geometry:
+remove array buffer
+only has one geometry data
+only has one geometry buffer
+
+
+test vertices, ...
+
+
+//remove box geometry buffer count
+
+
+
+
+
+
+
+***** TODO optimize render worker
+//optimize create basic render object buffer
+
+////fix normalMatrixCacheMap?
+
+
+//pass localToWorldMatrixCacheMap?
+
+
+
+
+
+
+
+***** TODO pf test
+////light box should fail!!!
+
+
+
+**** DONE static instance
+CLOSED: [2018-04-11 Wed 10:32]
+
+
+**** DONE render basic+light+box/custom geometry+not clone
+CLOSED: [2018-04-11 Wed 11:27]
+
+
+////***** TODO optimize render worker
+
+
+***** DONE pf test add cases?
+CLOSED: [2018-04-11 Wed 11:28]
+
+
+
+**** DONE transform
+CLOSED: [2018-04-11 Wed 16:28]
+transform+set parent
+
+**** DONE dispose:
+CLOSED: [2018-04-11 Wed 18:42]
+//test memory
+////memory leak?
+
+
+
+
+
+
+
+
+
+//pf test->add cases:
+dispose not cloned ones
+add dispose basic+ customGeometry case
+
+
+
+//test light
+
+
+
+**** DONE dynamic instance
+CLOSED: [2018-04-11 Wed 18:56]
+
+
+
+
+dispose
+
+
+
+**** DONE redo_undo
+CLOSED: [2018-04-12 Thu 17:19]
+//deepCopy(then solve editor perf!!!):
+
+
+
+
+//test
+
+
+
+////restore
+
+
+
+
+
+
+optimize copy, restore
+
+
+copy: not copy typearrays
+
+
+
+rename: remove "Pool"
+
+
+
+
+
+pass redo undo case:
+create 10 arraybuffers when idle
+
+
+
+
+
+
+
+
+
+
+
+////test box + custom geometry:
+
+fix custom geometry 
+(refer to box geometry)
+(all state)
+
+
+
+*** DONE fix pf test
+CLOSED: [2018-04-12 Thu 19:24]
+fix :
+if testDataList: [
+{
+test1...
+},
+{test2
+}
+]
+all fail, should report test1 and test2 fail!!  not only test1 !!!
+
+
+
+*** DONE pf test
+CLOSED: [2018-04-12 Thu 21:52]
+generate all reports
+
+
+////*** TODO render test
+generate all reports
+
+
+*** DONE fix worker
+CLOSED: [2018-04-13 Fri 10:44]
+
+
+//fix:  when 29000, 
+
+  title
+  getCurrentGeometryBufferMapAndGetPointsFuncs
+
+  description
+  unknown type_: 153
+
+
+
+description:
+if 20000, not error;
+if 29000, error!?
+
+
+reason:
+CreateBasicRenderObjectBufferTypeArrayRenderWorkerJob-> geometryTypes, sourceInstances error
+
+
+
+*** DONE refactor worker
+CLOSED: [2018-04-13 Fri 11:39]
+//remove duplicate
+
+
+
+*** DONE finish worker feature
+CLOSED: [2018-04-28 Sat 10:15]
+
+**** TODO transform
+***** DONE add job
+CLOSED: [2018-04-16 Mon 11:02]
+
+
+//"copy_transform" job
+
+
+//pass u,i test
+
+
+//pass run test
+
+
+
+
+
+
+
+worker test:
+
+
+
+//finish:
+exclude worker_pipellines->get,set worker data jobs and create_gl job
+
+test by init and loop pipelines job like no worker!!!
+
+
+
+
+//fix render basic->model matrix
+
+
+
+
+
+
+
+
+
+
+//test copy transform
+
+
+
+
+//pass run test
+
+
+
+
+
+
+
+
+refactor:
+//rename draw -> render
+
+//rename test->initSystemAndRender to init
+
+
+
+
+
+
+
+
+
+***** DONE more parallel
+CLOSED: [2018-04-16 Mon 15:09]
+****** DONE draw first
+CLOSED: [2018-04-16 Mon 15:09]
+
+//u,i test
+
+
+//run test
+
+
+
+
+
+***** DONE optimize render basic
+CLOSED: [2018-04-16 Mon 15:40]
+
+
+////why "addEvent" take much time???
+
+
+//copy transform
+
+
+
+
+////***** TODO add "copy_basic_material" job
+
+
+
+pass u,i test:
+change material->color
+
+
+
+pass run test
+
+
+
+
+
+
+
+***** DONE add worker job
+CLOSED: [2018-04-17 Tue 10:37]
+
+
+
+////test use transfer array buffer instead of sab
+
+
+
+//main init
+
+
+//main loop:
+use RenderJobsRenderWorkerTool
+
+
+////worker:
+use RenderJobsRenderWorkerTool
+
+
+****** DONE refactor
+CLOSED: [2018-04-17 Tue 10:37]
+////RenderJobRenderWorkerTool
+
+
+//remove duplicate
+
+//rename No/WorkerJobService to XxxJobMainService
+
+
+***** DONE fix operate no worker job
+CLOSED: [2018-04-17 Tue 10:40]
+
+
+////***** TODO add safe API
+add TransformSafeAPI
+
+
+////add requireCheck for unsafe api?
+
+
+
+
+add integration test:
+
+
+
+***** DONE add sync job
+CLOSED: [2018-04-17 Tue 11:15]
+
+////add integration test:
+can add worker job into sync phase which is safe!
+
+
+
+
+
+***** DONE optimize
+CLOSED: [2018-04-17 Tue 11:28]
+transform
+
+transform+set parent
+
+
+////change material->color
+
+
+
+
+**** DONE create and dispose
+CLOSED: [2018-04-23 Mon 07:20]
+
+***** DONE defer dispose 
+CLOSED: [2018-04-23 Mon 07:20]
+
+//no worker:
+//defer batch dispose
+//defer dispose
+//defer dispose component
+
+
+//test clear
+
+
+
+
+//test redo-undo
+
+
+
+pass run test
+
+
+
+
+
+
+//batch for keep order
+
+
+//remove dispose, only remain batch dispose
+
+
+
+
+worker:
+//test send message
+//test dispose vbo in render worker
+
+
+
+
+////test sourceInstance->dispose geometry->vbo buffer
+
+
+//test geometry->vbo buffer:
+box 
+
+
+
+
+
+//fix custom geometry
+
+
+
+//test geometry->vbo buffer:
+custom
+
+
+refactor:
+//remove DisposeXXXComponentTool
+
+
+
+
+box geometry:
+u,i test:
+//pass all tests
+//add test case
+
+
+refactor:
+//test->duplicate
+
+
+
+
+
+
+
+
+test:
+////test safe dispose
+
+
+
+
+
+
+send init material data:
+//basic
+
+
+
+pass run test:
+//pass no worker:
+test case
+
+
+pass worker:
+test case
+
+
+
+fix bug:
+
+
+//1.create and dispose:
+all be mutable operation(record mutable)
+
+//2.basic material array for init: should remove disposed ones!
+
+
+
+3.with no dispose, only create-> render created one which isn't inited yet!
+
+
+//clear init material array after send?
+
+
+
+
+/*
+set shader index:
+set shader index in initGameObject
+
+not send shaders,shader libs to render worker
+*/
+
+
+
+//remove getShaderIndex in XxxMaterialMainService.re
+
+
+
+
+
+
+//fix test
+
+
+
+
+
+
+
+
+
+//handle dispose bug!
+
+
+
+//main_loop_pipeline
+
+
+////4.render->shader index in render array buffer should exist!
+
+batchDisposeMeshRendererComponent
+
+
+
+
+
+
+////why color change?
+( print color uniform data )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+u,i test:
+//test "if shaderIndex not exist(is default value)(means that render worker not finish init shader), not draw"
+
+add more cases
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+refactor:
+////main workekr job remove return value?!
+
+
+
+
+
+
+
+//fix wonder-log->assertNotEqual->message: use not equal message
+
+
+
+
+
+////worker setting add "dispose_defer_frame_count"(default is 2)
+
+
+
+***** DONE optimize create and dispose
+CLOSED: [2018-04-23 Mon 07:20]
+
+****** TODO optimize
+
+create and dispose
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-04-23 Mon 11:49]
+//init basic material
+
+
+
+//remove duplicate code
+
+
+
+
+
+
+
+
+
+*** DONE pass light demo
+CLOSED: [2018-04-24 Tue 21:50]
+
+
+**** TODO init
+***** DONE add logic
+CLOSED: [2018-04-23 Mon 20:23]
+
+////***** TODO test
+add test case
+
+**** DONE render
+CLOSED: [2018-04-23 Mon 21:37]
+
+normal matrix
+
+light material
+
+light
+
+
+
+////**** TODO refactor
+split to RenderBasic, FrontRenderLight state from Render state
+
+
+
+
+**** TODO test
+//pass all test
+
+
+////add init light material case
+
+//disposeRenderWorker_test, initMaterialRenderWorker_test  add cases
+
+
+//add render test case
+
+
+
+////add copyTransformMainWorkerJob_test test case
+
+
+
+//pass run test
+
+
+
+add light cases:
+//send direction->position
+
+
+
+
+
+*** DONE optimize light
+CLOSED: [2018-04-25 Wed 10:06]
+**** TODO create and dispose
+
+**** TODO transform
+
+
+**** TODO set parent
+
+
+*** DONE finish customGeometry
+CLOSED: [2018-04-25 Wed 15:50]
+//change infoArray to typeArray
+
+
+////get,set add getIndex logic
+
+
+test:
+////get custom data with two custom geometrys
+
+
+//pass test
+
+//test in worker
+
+
+
+
+*** TODO pass instance demo
+
+**** TODO render basic
+
+////**** TODO refactor
+split to RenderBasic->instance, FrontRenderLight->instance state from Render state
+
+
+
+//gpu detect
+
+
+
+
+//send data
+
+
+
+//isSupportInstance
+
+
+
+
+
+***** DONE test
+CLOSED: [2018-04-27 Fri 15:20]
+//pass test
+
+
+//init basic material->instance shader
+
+
+//render instance
+
+
+refactor:
+////remove duplicate
+
+
+
+
+//solve create and dispose(fix run bug)!!!!
+
+
+
+//dispose source instance:
+  /* TODO send to render worker */
+    [@bs]
+    TypeArrayPoolService.addFloat32TypeArrayToPool(
+      typeArr,
+      MemorySettingService.getMaxBigTypeArrayPoolSize(state.settingRecord),
+      TypeArrayPoolService.getFloat32ArrayPoolMap(typeArrayPoolRecord)
+    )
+    |> ignore
+
+
+
+
+//dispose these in render worker:
+      matrixFloat32ArrayMap: 
+      matrixInstanceBufferCapacityMap:
+      isSendTransformMatrixDataMap:
+
+
+
+
+
+
+
+//test dispose sourceInstance in no worker
+
+
+
+***** DONE fix get type array when create instance buffer
+CLOSED: [2018-04-27 Fri 15:46]
+
+
+
+
+
+
+
+
+
+***** DONE batch
+CLOSED: [2018-04-27 Fri 16:01]
+
+
+
+
+
+***** DONE refactor
+CLOSED: [2018-04-27 Fri 16:38]
+//render worker add "get_material_data" job;
+create init basic/light material state only with render worker state!
+
+
+
+//pass all test
+
+
+
+**** DONE front render light
+CLOSED: [2018-04-27 Fri 17:23]
+
+
+
+//test init
+
+
+
+//test render
+
+
+
+//pass run test
+
+
+*** DONE refactor
+CLOSED: [2018-04-27 Fri 17:24]
+rename setWorkerData to setDataWorker
+
+
+
+///*** TODO optimize instance
+
+
+
+////**** TODO memory
+
+////why so big memory?
+
+
+
+
+
+
+check all->create and dispose->memory leak:
+no worker
+
+worker
+
+
+
+////**** TODO time
+
+
+
+send objectInstanceTransformArray:
+filter only when need
+
+
+
+
+
+*** DONE finish init
+CLOSED: [2018-04-28 Sat 10:15]
+//isDebug
+
+
+use debug instead of print(e.g. print send matrix3 data) to print info for render worker debug!
+
+
+
+
+
+//viewport
+
+//set canvas
+
+
+*** TODO test worker
+
+
+
+
+
+pass unit, integration test:
+
+test localToWorldMatrixCacheMap
+
+
+
+
+
+
+
+
+
+
+
+
+pass render test
+
+
+
+test worker->load asset:
+detect worker
+...
+
+
+
+
+
+
+*** TODO refactor worker
+remove duplicate
+
+
+
+
+
+
+*** TODO create issue template:
+https://help.github.com/articles/creating-an-issue-template-for-your-repository/
+
+
+
+
+
+*** TODO add contract check: different lines' job shouldn't set the same record of the main state
+
+*** TODO add e2e test for multi thread ?
+
+add render test?
+
+
+add pf test?
+
+
+*** TODO test
+
+
+
+
+
+*** TODO add safe API
+
+*** TODO test
+
+init:
+glsl should contain light count
+
+
+*** TODO pass no worker
+
+
+
+*** TODO optimize
+
+
+no worker benchmark:
+render
+transform
+transform+set parent
+dispose
+
+
+
+
+worker benchmark:
+render
+transform
+transform+set parent
+dispose
+
+
+*** TODO add safe API
+
+*** TODO test
+
+
+*** TODO pass no worker
+
+
+*** TODO optimize
+
+
+no worker benchmark:
+render
+transform
+transform+set parent
+dispose
+
+
+
+
+worker benchmark:
+render
+transform
+transform+set parent
+dispose
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE refactor
+CLOSED: [2018-04-28 Sat 11:00]
+//rename test->xxxToolWorker to xxxWorkerTool
+
+
+////move 
+  workerFileDir: string,
+  /* TODO finish */
+  useWorker:bool,
+
+
+to workerConfig
+
+
+////move all main config to setting.json:
+  canvasId: option(string),
+  isDebug: bool,
+  workerFileDir: string,
+  contextConfig,
+  bufferConfig,
+  gpuConfig
+
+
+
+////clean worker,single data
+
+
+////add getExn in OptionUtils.re instead of Js.Option.getExn:
+use fatal!
+(correspond change Wonder-Editor!)
+
+
+
+////most.js:
+add "callFunc" api (refer to animation-frame)
+
+
+
+//unify specification:
+all json data use "xxx_xxx"
+all json->record type use "xxxXXX"
+
+
+////rename "JobConfig" to "JobConfigData"
+
+
+
+////remove DebugUtils.re
+
+
+
+
+////debug info use debug instead of log
+
+
+
+
+** DONE finish all todos
+CLOSED: [2018-04-29 Sun 18:06]
+
+
+** DONE optimize
+CLOSED: [2018-04-30 Mon 14:10]
+give benchmark report
+
+
+*** DONE instance
+CLOSED: [2018-04-29 Sun 17:22]
+
+
+send objectInstanceTransformArray:
+filter only when need
+
+
+
+//use sharedArrayBuffer:
+implement
+
+add test case:
+////ObjectInstance_test ->"remove from sourceInstance->objectInstanceTransformCollections": add more cases
+
+send render data->objectInstanceTransformIndexMap
+
+...
+
+
+
+
+**** DONE improve
+CLOSED: [2018-04-29 Sun 17:20]
+main, render worker job now not mutable state, just set state:
+main worker jobs' merged job(get message job) shouldn't operate state
+
+render worker jobs should all be concat:
+main should wait finish_dispose message from render worker
+
+
+
+**** DONE refactor
+CLOSED: [2018-04-29 Sun 17:22]
+rename TypeArrayService->get/setIntxxx to get/setUIntxxx
+
+
+
+
+
+
+
+
+*** DONE create and dispose
+CLOSED: [2018-04-30 Mon 10:11]
+
+////why exceed 700?
+
+why meshrenderer->batchRemoveFromArray 180w!!!???
+
+
+uidMap
+
+
+
+
+
+
+*** DONE front render light
+CLOSED: [2018-04-30 Mon 14:10]
+
+
+
+
+** DONE refactor
+CLOSED: [2018-04-30 Mon 14:24]
+add no worker job: add before/after action
+
+
+
+
+** DONE increase test coverage
+CLOSED: [2018-04-30 Mon 15:07]
+restore test coverage to 95% up:
+restore ci test coverage limit(jest_coverage->not ignore worker files)
+
+
+test loadToData
+
+test StateAPI->get/setXXXFrom/ToData, createStateData
+
+
+** DONE pass e2e test
+CLOSED: [2018-04-30 Mon 15:49]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE wonder-commonlib
+CLOSED: [2018-04-30 Mon 15:57]
+
+SparseMap add "t" for type
+
+
+
+** TODO pass ci
+deploy file->wd.renderWorker.js
+
+
+** TODO publish
+
+
+//copy e2e->json to data/
+
+
+//fix gulp buildAll:
+build rollupRenderWorker
+
+
+
+
+
+
+//give benchmark report
+
+
+
+
+
+
+//pass code climate
+
+
+
+
+
+* 编辑器Editor
+
+
+** TODO update engine version
+
+** TODO optimize redo-undo
+
+copy array buffers when idle
+
+
+close issue
+
+
+
+** TODO diferent loop can use diferent job pipelines!
+
+so when edit, loopBody should only update camera;
+when run, loopBody should update all(include update collider, update script, ...).
+
+
+////** TODO engine: add deepCopyForNew
+
+
+** TODO add "contract check after set state" to ensure editEngineState and runEngineState should be the same
+
+add isStateEqual(state1, state2) function!
+
+
+
+** TODO test "refresh engine"
+
+
+** TODO use GPL license
+
+
+** TODO update wonder.js version
+
+* 明日计划
 ** TODO fix all engine bug issue
 
 
@@ -8,56 +2546,6 @@
 
 ** TODO publish
 
-
-** 编辑器Editor
-*** TODO update engine version
-
-*** TODO optimize redo-undo
-
-copy array buffers when idle
-
-
-close issue
-
-
-
-*** TODO diferent loop can use diferent job pipelines!
-
-so when edit, loopBody should only update camera;
-when run, loopBody should update all(include update collider, update script, ...).
-
-
-////** TODO engine: add deepCopyForNew
-
-
-*** TODO add "contract check after set state" to ensure editEngineState and runEngineState should be the same
-
-add isStateEqual(state1, state2) function!
-
-
-
-*** TODO test "refresh engine"
-
-
-*** TODO use GPL license
-
-
-*** TODO update wonder.js version
-
-
-
-
-
-
-* 完成事项
-
-
-
-
-
-* 编辑器Editor
-
-* 明日计划
 
 * 中期研究
 

@@ -1,0 +1,22 @@
+* morning
+2小时
+重构init material，分离了basic,light material
+
+* afternoon
+1.5小时
+与mickey讨论编辑器新功能设计
+
+
+1.5小时
+与mickey一起制定<<Wonder科技工作量监督制度>>
+
+
+* evening
+
+2.5小时
+加入了 render worker-> init light material, front render light 逻辑(pass compile)
+
+
+
+* total
+7.5小时
