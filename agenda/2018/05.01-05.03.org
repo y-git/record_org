@@ -1,4 +1,167 @@
 * 今日计划
+** TODO fix all engine bug issue
+
+
+
+** TODO update editor->engine version
+
+
+** TODO publish
+
+
+** 编辑器Editor
+*** TODO update engine version
+
+*** TODO optimize redo-undo
+
+copy array buffers when idle
+
+
+close issue
+
+
+
+*** TODO diferent loop can use diferent job pipelines!
+
+so when edit, loopBody should only update camera;
+when run, loopBody should update all(include update collider, update script, ...).
+
+
+////** TODO engine: add deepCopyForNew
+
+
+*** TODO update wonder.js version
+
+
+
+
+
+
+* 完成事项
+
+** DONE fix all engine bug issue
+CLOSED: [2018-05-03 Thu 20:22]
+
+
+** DONE update editor->engine version
+CLOSED: [2018-05-03 Thu 20:22]
+
+pass compile and test:
+
+
+fix shaderIndices
+
+fix transform
+
+fix no undo, just redo
+
+
+
+
+
+
+
+
+
+
+optimize:
+customGeometry->setDefaultTypeArrData$6
+
+
+
+
+
+run test:
+
+
+
+
+
+
+
+
+//fix package.json->e2e:xxx
+
+
+
+refactor:
+rename setFirstBoxTobeCurrentGameObject to setFirstBoxToBeCurrentGameObject
+
+
+
+
+
+
+* 编辑器Editor
+
+** TODO use GPL license
+
+
+** TODO add "contract check after set state" to ensure editEngineState and runEngineState should be the same
+
+add isStateEqual(state1, state2) function!
+
+
+
+** TODO test "refresh engine"
+
+
+
+* 明日计划
+
+* 中期研究
+
+
+** TODO fix for snake
+*** DONE use old version
+CLOSED: [2018-04-25 Wed 23:02]
+//pass run test
+
+
+//add light
+
+
+//add texture
+
+
+//pass level
+
+
+//add prop
+
+
+//add obstacle
+
+
+
+
+refactor:
+clean unuse code
+
+
+*** TODO use new version
+
+fix add no worker job: use action type
+
+
+
+
+add BasicCameraViewAPI->setBasicCameraViewWorldToCameraMatrix
+
+
+
+
+fix  unsafeGetProgram bug
+
+
+
+
+
+
+
+
+
+* TODO 未来7日计划
 ** TODO optimize
 glsl source use Number() to flatten when shader source?
 
@@ -93,92 +256,6 @@ update cameraController->check "should has one camera at least"
 
 
 ** TODO publish
-
-
-
-
-* 完成事项
-
-
-
-
-
-
-
-
-
-
-
-* 编辑器Editor
-
-** TODO use GPL license
-
-
-** TODO add "contract check after set state" to ensure editEngineState and runEngineState should be the same
-
-add isStateEqual(state1, state2) function!
-
-
-
-** TODO test "refresh engine"
-
-
-
-* 明日计划
-
-* 中期研究
-
-
-** TODO fix for snake
-*** DONE use old version
-CLOSED: [2018-04-25 Wed 23:02]
-//pass run test
-
-
-//add light
-
-
-//add texture
-
-
-//pass level
-
-
-//add prop
-
-
-//add obstacle
-
-
-
-
-refactor:
-clean unuse code
-
-
-*** TODO use new version
-
-fix add no worker job: use action type
-
-
-
-
-add BasicCameraViewAPI->setBasicCameraViewWorldToCameraMatrix
-
-
-
-
-fix  unsafeGetProgram bug
-
-
-
-
-
-
-
-
-
-* TODO 未来7日计划
 
 
 ** TODO refactor
