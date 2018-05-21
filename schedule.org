@@ -103,8 +103,216 @@ advantage of extended instruction/uniform counts.
 
 
 
-** TODO [#B] finish book draft
+** TODO [#C] finish book draft
 take about 60 days to finish
+
+
+
+
+** TODO [#B] dynamic load asset
+
+refer to unity->AssetBundle:
+https://docs.unity3d.com/Manual/AssetBundlesIntro.html
+http://gad.qq.com/article/detail/10033
+
+
+** TODO [#A] extend
+
+*** TODO extend files
+extend material(? material asset?), shader(.glsl), job(.js), script(.js), config data(.json->./Wonder.js/data/ json files)
+
+
+extend service(.js?)
+
+
+
+
+
+add config(.json) to specific the file structure in project file(.wd_project_package)
+
+
+*** TODO use .wonder_extend_package package(zip file) to include all extend files
+
+include asset:
+e.g.:
+.wd
+.bin
+...
+
+
+
+
+
+
+
+
+
+*** TODO extend render config
+
+**** TODO improve shaders.json->branch(static_branch)
+remove static_branchs, change to:
+        {
+          "type": "static_branch",
+          "name": "modelMatrix_instance"
+        },
+
+
+add Shaders.re->addBranchHandle api, user can register handle after load(e.g. wd.addBranchHandle("modelMatrix_instance", function(xxx){...}))
+
+
+**** TODO add custom material+custom shader
+***** TODO custom glsl can support instance
+
+
+
+**** TODO user can write own .glsl can register to npm
+modify render config(shader config json?), support build npm->glsl to ShaderChunk.ts?
+
+
+
+
+
+**** TODO extend material
+user can add custom material, custom glsl, custom shaderLib_generate, custom render module(like defer, front render
+module/system)
+////(but how to handle render worker?)
+
+
+user can edit shaders.json, shader_libs.json(e.g. add condition limit so that use one shader lib when in mobile, use
+other one when in pc)
+
+
+
+
+**** TODO extend glsl
+
+***** TODO glsl use require,include?
+@bhouston what about a custom webpack loader for the glsl files instead of using the raw-loader? The loader could take care of recursively resolving any #include lines in the root shader file. Any shader could be required in with e.g.:
+
+var vert = require('three-glsl!../shaders/my-shader.vert')
+var frag = require('three-glsl!../shaders/my-shader.frag')
+just a thought
+
+
+
+
+
+
+
+
+*** TODO extend component
+/*
+user can write local/public component
+
+add wonder_component_config.json, add "components" field.
+e.g.
+{
+components:[
+"wonder-component-aaa"
+]
+}
+
+wonder should read this field and register it
+
+
+public component:
+(refer to typescript=>d.ts)
+user should send it to public github repository
+in ci, it will check and run unit test
+
+after pass ci and merge it, it will be published to @wonder-components/xxx npm package 
+*/
+
+**** TODO add script component
+http://docs.cocos.com/creator/manual/zh/scripting/
+
+now one script is one component(the type is user script component)
+
+editor should show it in inspector(the component name should be defined by script json)
+
+one gameObject can has multiple user script components(only has one? or has multiple?):
+declare properties(can be show and edit in editor)
+
+implement interface functions(.rei), e.g.:
+onDispose
+...
+
+
+
+refer to:
+https://developer.playcanvas.com/en/user-manual/scripting/
+
+
+
+***** TODO support Hot Reloading 
+https://developer.playcanvas.com/en/user-manual/scripting/hot-reloading/
+
+https://developer.playcanvas.com/zh/ukser-manual/introduction/
+
+
+
+***** TODO support import other script
+http://docs.cocos.com/creator/manual/zh/scripting/modular-script.html
+
+
+***** TODO for editor->"edit and run" feature
+
+should invoke editor exposed api instead of directly invoke engine's api!
+(
+because if user add box in script, should update ui(e.g. scene tree)!
+)
+
+
+**** TODO add custom component
+declare properties(can be show and edit in editor)
+
+
+
+implement interface functions(.rei), e.g.:
+update
+dispose
+clone
+add
+...
+( component add and implement .rei)
+
+
+
+how to add component data to state???
+
+
+
+accept function string which is inputed from editor!
+use "new Function"?
+
+
+can use job for manage custom component(e.g. add "updateXXX" for update logic)
+*** TODO work in editor
+work in editor
+
+
+work with editor ->extension ui component?
+*** TODO solve how to extend by user:(refer to unity)
+
+
+how to write own component
+how to write own extension(material)
+build component repository?
+
+
+
+
+
+
+
+
+
+*** TODO extend job
+add user job in json
+
+
+** TODO publish
+
 
 
 
@@ -113,6 +321,11 @@ take about 60 days to finish
 
 
 ** TODO [#A] UI
+
+stop loop:
+should not stop ui loop logic!!!
+
+
 *** TODO 2d UI
 **** TODO loading ui
 
@@ -129,8 +342,9 @@ take about 60 days to finish
 
 
 
+** TODO advanced debug
 
-** TODO show debug info
+*** TODO show debug info
 setting.json add:
 debug: {
     open_contract_check: true,
@@ -151,6 +365,7 @@ show total fps,render time
 show each job's render time, memory
 
 
+*** TODO can log error,fatal state json data(when open debug). we can reproduce the bug by the json data!!!
 
 
 
@@ -347,6 +562,12 @@ refer to DXR:
 https://blogs.msdn.microsoft.com/directx/2018/03/19/announcing-microsoft-directx-raytracing/
 https://www.zhihu.com/question/269149582
 https://devblogs.nvidia.com/introduction-nvidia-rtx-directx-raytracing/
+
+
+
+** TODO [#B] optimize
+*** TODO compress typeArrays
+e.g. Texture typeArray->wrapS, wrapT, ... should share the same Uint8Array with different value range
 
 
 

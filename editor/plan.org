@@ -125,6 +125,343 @@ http://docs.cocos.com/creator/manual/zh/extension/asset-management.html
 
 
 
+** TODO import
+discard index.html, wd.js
+
+
+
+*** TODO import asset
+**** TODO import
+
+each asset has description data(record data? store in map?)
+
+
+***** TODO texture
+texture asset:
+upload image file(.png, ...);
+create texture with the source;
+add description data(wrap, filter, format...)
+
+
+
+let (state, textureIndex ) = wd.createTexture()
+
+
+
+let state = wd.setTextureSource(textureIndex, image, state);
+
+
+
+
+store engine->texture index + description data
+
+
+
+
+
+***** TODO mode(obj, gltf, wd)
+
+
+refer to 
+https://docs.unity3d.com/Manual/ImportingModelFiles.html
+https://docs.unity3d.com/Manual/FBXImporter-Materials.html
+
+
+
+
+
+inspector add "relate file" button:
+for obj: 
+should upload load .obj, .mtl
+relate texture files by image name
+
+
+
+
+for gltf: 
+should upload .gltf, .bin
+relate texture files by image name
+
+
+
+for wd
+should upload .wd, .bin
+
+relate texture files by src(root src, relate to asset/ folder)
+
+
+
+
+these related files should be imported before
+
+
+
+relate to the id of theses file, not the src in asset folder!
+
+
+
+
+
+
+
+related file is external
+
+
+
+
+
+
+****** TODO convert
+
+////add "convert" button:
+
+auto convert after load model:
+convert .obj,.gltf to .wd(no need to send to server)
+
+
+
+
+then asset panel show the .wd model file icon
+
+
+
+
+
+
+
+add "re-update" button: find texture and update description data and convert
+
+
+
+
+****** TODO store .wd+.bin content to map
+
+store texture id to .wd
+(instead of texture src)
+
+(replace texture id to src when export!)
+
+
+
+
+
+
+****** TODO advanced
+
+support embed related file
+
+
+
+show model thumbnail(in the right-down)(refer to unity)
+
+
+
+
+
+
+***** TODO data json
+shouldn't import new data json! only allow edit exist data json!
+(pacakge should has data json default!)
+
+
+
+
+
+***** TODO job script
+
+store script string in description data
+
+
+
+**** TODO apply to scene
+////***** TODO .obj, .gltf
+
+***** TODO support hot apply!
+
+***** TODO model
+1.button->create model
+(
+
+should select use which model data(.wd model)
+
+(if obj,gltf not converted yet, can't be used!)
+)
+
+2.load .wd file by engine api(async)
+
+
+
+wd.load("wd string", .bin )
+
+
+complete() can get the model uid
+
+
+
+
+
+
+
+
+3.wait it finish!
+
+
+4.add model uid to editor state->root
+
+
+
+***** TODO texture
+set map
+
+
+
+let state = wd.setBasicMaterialMap(materialIndex, textureIndex, state);
+
+
+
+
+***** TODO job script
+exec script string twice(inject edit, run engine state)
+
+
+
+
+***** TODO data json
+not support apply!
+
+
+
+
+*** TODO import project package
+
+- dispose current scene
+
+
+forEach editor state->root, dipose all children
+
+
+
+- unzip package, get .wd, .bin, asset/ folder files, ...
+  
+
+- create and init scene by read .wd
+
+
+wd.load(.wd string , .bin)
+
+
+
+
+
+
+- init asset/ folder files by read asset.json
+
+
+    - show in asset panel
+
+
+
+
+
+** TODO export project package
+
+keep folder structure not change
+
+
+
+.wonder_project_package/
+   .wd
+   .bin
+   wd.js
+   index.html
+   asset/
+       asset.json
+       ...
+
+
+
+*** TODO export assets
+
+
+**** TODO export all assets(include not used in scene(in .wd))
+
+put to asset/ folder in .wonder_project_package
+
+
+
+generate asset.json file:
+store all assets->description data
+
+
+
+
+
+
+**** TODO export model
+
+export .wd + .bin(not export textures!)
+
+
+
+**** TODO export texture
+
+export image file
+(texture info store in asset.json)
+
+
+
+
+**** TODO data json
+export file
+
+
+
+
+**** TODO job script
+
+generate script file
+
+
+
+
+
+
+*** TODO export other file
+
+
+
+**** TODO generate .wd+.bin from scene(engine do this)
+
+////merge loaded .wd files
+(no need to merge!  )
+
+
+
+no need to generate textures(include in asset folder)
+
+
+
+
+**** TODO generate index.html
+
+
+
+import job script;
+exec job script;
+
+
+
+
+**** TODO generate wd.js
+
+
+
+
+
+
+
+
+
 
 ** TODO package
 support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corresponding engine package file(e.g.

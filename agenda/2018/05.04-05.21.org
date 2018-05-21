@@ -1,4 +1,1138 @@
 * 今日计划
+** TODO optimize
+glsl source use Number() to flatten when shader source?
+
+
+
+
+
+** TODO add texture
+*** TODO basic texture
+**** TODO show texture
+shader
+
+mapManagera
+
+texture
+
+texture cache
+
+
+getMap/setMap
+
+
+**** TODO test
+unit test
+
+
+render test
+
+
+**** TODO load texture
+
+
+**** TODO support hot load texture
+change map
+
+allow change source?
+
+dispose texture
+
+
+
+
+**** TODO test
+
+
+
+
+*** TODO refactor
+rename json -> xxxXXX to xxx_xxx
+
+
+
+
+
+
+*** TODO diffuse, specular texture
+
+
+
+*** TODO handle clone
+
+*** TODO handle redo-undo
+
+
+** TODO optimize
+
+
+
+
+
+////gpu optimize:
+memory pool:
+texture 
+
+material add "group":
+each group has create texture once
+
+
+*** TODO benchmark
+
+
+
+** TODO refactor
+////SparseMap, HashMap add t for type:
+related fix wonder.js, wonder-editor
+
+
+** TODO contract check
+update cameraController->check "should has one camera at least"
+
+
+
+** TODO publish
+
+
+
+
+* 完成事项
+////** TODO optimize
+glsl source use Number() to flatten when shader source?
+
+
+
+
+
+** TODO add texture
+*** TODO basic texture
+
+
+**** DONE show texture
+CLOSED: [2018-05-12 Sat 17:11]
+shader
+
+mapManager
+
+texture
+
+texture cache
+
+
+getMap/setMap
+
+
+
+
+
+***** DONE draft
+CLOSED: [2018-05-09 Wed 17:52]
+
+
+
+
+
+//shader
+
+
+//send
+
+
+//add texCoord:
+box geometry 
+custom geometry
+
+
+
+
+
+//buffer data->set map, get map(not support remove map):
+
+mapManager
+
+
+
+setting define max texture count
+
+
+
+
+
+
+
+
+
+
+
+
+//commit
+
+
+
+
+
+
+
+//buffer data->get/set width, ... :
+texture
+
+
+
+//create
+
+
+
+//init texture:
+init
+add job
+
+
+
+
+//bind
+
+
+
+//update texture
+
+
+
+
+send?
+
+
+
+//commit
+
+
+
+//init shader
+
+
+bind 
+
+
+update
+
+
+send
+
+
+////finish send TODO
+
+
+//commit
+
+
+
+//add job to json, map
+
+
+
+//pass compile
+
+
+
+//commit
+
+
+
+***** DONE test
+CLOSED: [2018-05-10 Thu 15:19]
+u,i test:
+//pass test
+
+
+add cases:
+//shader 
+
+BasicMaterial_test:
+//create
+...
+//set map
+
+
+//init texture job
+
+
+
+
+
+
+//render basic job:
+bind
+update
+send
+
+texCoord buffer
+
+
+
+//geometry-> texCoords:
+box geometry
+
+custom geometry
+
+
+//texture
+
+
+
+
+
+
+
+
+run test:
+
+//show texture
+
+
+***** DONE refactor
+CLOSED: [2018-05-10 Thu 15:33]
+////chage xxxXXX to xxx_xxx:
+e.g. xxx_noInstance
+
+
+//remove defaultXxx in state(e.g. basicMaterialRecord, ...)
+
+
+
+//rename TypeArrayService-> UIntx_xx to Uintxxx
+
+
+***** DONE add more
+CLOSED: [2018-05-10 Thu 16:21]
+
+detect gl->max texture count, check >= setting define max texture count
+
+
+***** DONE optimize
+CLOSED: [2018-05-10 Thu 17:16]
+
+add cache
+
+
+
+
+***** DONE test
+CLOSED: [2018-05-10 Thu 17:16]
+
+
+
+
+
+***** DONE dispose texture
+CLOSED: [2018-05-10 Thu 18:47]
+
+//dispose geometry:
+texCoords
+vbo buffer
+reallocate custom geometry
+
+
+
+
+dispose basicMaterial->map
+
+////dispose texture
+
+
+
+***** DONE test
+CLOSED: [2018-05-10 Thu 20:56]
+
+//vboBuffer_test
+
+
+
+
+
+//commit
+
+
+
+run test:
+//create and dispose
+
+
+
+
+test:
+//init gameObject
+
+
+////create and dispose: share the same map
+
+
+
+//commit
+
+
+***** DONE fix
+CLOSED: [2018-05-10 Thu 21:02]
+//custom geometry->infos use Uint32
+
+
+
+***** DONE feat
+CLOSED: [2018-05-11 Fri 11:49]
+
+//fix init gameObject->texture: if no texture, not init
+
+
+//perf: custom geometry->info: count not equal geometry point count
+
+
+//texture:
+remove widths, heights
+remove setWidth, setHeight
+
+add filter, wrap data
+
+
+////run test:
+////set width,height,
+
+////wrap
+
+
+
+
+
+
+
+***** DONE worker
+CLOSED: [2018-05-12 Sat 16:56]
+****** DONE draft
+CLOSED: [2018-05-11 Fri 18:36]
+create buffer data:
+//basic material
+
+//texture
+
+
+
+//init texture:
+
+send sourceMap
+
+
+get sourceMap in render worker
+
+
+
+init texture when render:
+when init gameObject
+
+
+
+
+
+//handle chrome and firefox
+
+
+
+
+
+
+
+
+render
+
+
+////****** TODO dispose
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+finish "TODO finish"
+
+
+//commit
+
+
+****** DONE pass compile
+CLOSED: [2018-05-11 Fri 20:06]
+
+//pass compile
+
+
+
+
+
+
+
+
+
+****** DONE test
+CLOSED: [2018-05-12 Sat 16:56]
+
+u,i test:
+//pass test
+
+
+
+
+
+
+
+add cases:
+//fix _createImageBitmap stream problem!
+
+
+//init texture
+
+
+//init texture for render
+
+
+
+
+bind, update, send texture when render basic 
+
+
+//update->setFlipY:
+test chrome, firefox
+
+
+
+//send init->clear
+
+
+
+
+//run test:
+
+
+
+***** DONE refactor
+CLOSED: [2018-05-12 Sat 17:11]
+rename setting->databuffercount to count?
+**** DONE support hot load texture
+CLOSED: [2018-05-12 Sat 21:01]
+change map
+
+
+////handle cache
+
+
+
+////allow change source?
+
+////dispose texture
+
+
+
+
+**** DONE test
+CLOSED: [2018-05-12 Sat 21:22]
+
+//refer to hotLoad test
+
+
+//run test:
+
+
+
+
+
+**** DONE worker
+CLOSED: [2018-05-12 Sat 21:52]
+
+
+
+
+**** DONE test
+CLOSED: [2018-05-12 Sat 21:52]
+
+refer to hotLoad test
+
+
+run test:
+
+
+**** DONE refactor
+CLOSED: [2018-05-13 Sun 08:47]
+rename setting->memory->xxxXXX to xxx_xxx
+
+
+**** DONE optimize
+CLOSED: [2018-05-13 Sun 08:59]
+if lastMaterial are the same, not bind,update texture
+
+
+**** DONE test
+CLOSED: [2018-05-13 Sun 08:59]
+
+
+
+////**** TODO load texture
+
+//add format, type type arrays
+
+
+
+add AssetDatabase system
+
+
+
+
+
+
+
+////**** TODO test
+
+
+
+
+
+
+**** DONE instance
+CLOSED: [2018-05-14 Mon 10:18]
+
+////**** TODO worker
+
+**** DONE test
+CLOSED: [2018-05-14 Mon 10:19]
+
+
+**** DONE handle clone
+CLOSED: [2018-05-14 Mon 11:02]
+
+
+**** DONE fix clone bug
+CLOSED: [2018-05-14 Mon 12:25]
+
+
+**** DONE handle redo-undo
+CLOSED: [2018-05-14 Mon 20:14]
+
+
+//pass u,i test
+
+//pass run test:
+
+
+**** DONE fix
+CLOSED: [2018-05-15 Tue 10:00]
+1.batch: error!
+
+
+2.instance: basic should has map!!!
+
+**** DONE finish TODOs
+CLOSED: [2018-05-15 Tue 11:31]
+
+//reduce default textureCount to 64
+
+
+
+
+
+*** DONE optimize
+CLOSED: [2018-05-15 Tue 19:54]
+**** DONE no worker
+CLOSED: [2018-05-15 Tue 19:54]
+
+//render:
+//different texture
+//same texture
+
+
+
+//create and dispose
+
+
+
+////render instance
+
+
+
+////hot change
+
+
+
+**** DONE worker
+CLOSED: [2018-05-15 Tue 19:54]
+
+
+////render
+
+
+
+//create and dispose
+
+
+
+////render instance
+
+
+
+////hot change
+
+
+*** DONE diffuse, specular texture
+CLOSED: [2018-05-16 Wed 21:05]
+
+
+**** DONE basic logic
+CLOSED: [2018-05-16 Wed 05:19]
+
+//buffer
+
+
+//shader
+
+
+//glsl
+
+
+//render
+
+
+
+//pass compile
+
+
+**** DONE test
+CLOSED: [2018-05-16 Wed 19:26]
+
+//pass test
+
+
+u,i test:
+//add case
+
+//hot change map
+
+
+//instance
+
+
+//clone
+
+
+//redo_undo
+
+
+
+
+run test:
+
+//render
+
+//create and dispose
+
+//hot change
+
+////instance
+
+//redo_undo
+
+
+
+
+
+**** DONE refactor
+CLOSED: [2018-05-16 Wed 21:05]
+//duplicate
+
+
+
+//refactor shaders.json->noXxxXxx to no_xxx_xxx
+
+
+////**** TODO worker
+////
+////
+////**** TODO test
+////
+////
+////
+////**** TODO support hot load texture
+////
+////**** TODO worker
+////
+////
+////**** TODO instance
+////
+////
+////**** TODO handle clone
+////
+////**** TODO handle redo-undo
+
+
+
+*** DONE finish all TODOs
+CLOSED: [2018-05-17 Thu 07:01]
+
+
+
+*** DONE e2e test
+CLOSED: [2018-05-21 Mon 18:11]
+
+render test:
+//pass test
+add test cases:
+render
+////create and dispose
+redo-undo
+
+
+
+
+
+fix load image bug!:
+
+rename texture to basicSourceTexture
+add arrayBufferViewSourceTexture
+
+
+//render
+
+//init texture
+
+//send texture
+
+//worker
+
+
+//pass compile
+
+
+//pass test
+
+
+//pass run test
+
+
+
+add arrayBufferViewSourceTexture test cases:
+    no worker
+
+
+//basicSource->record->offset
+
+
+
+add more test!!!
+
+render->bind, update:
+//fix bug: set gl texture before(judge texture index)
+
+
+
+//init texture:
+//job
+//init gameObject
+//redo-undo
+
+
+
+
+
+//pass run test:
+
+
+use fetch
+
+
+
+
+
+    worker:
+
+
+
+
+run test:
+    worker:
+//render
+
+
+//refactor initMaterialRenderWorker_test.re
+
+
+//create and dispose
+
+
+
+
+  finish!
+  updateUint8ArraySource
+  updateHTMLImageElementSource
+
+worker:
+send uint8Array source map to worker
+
+
+
+
+
+
+
+
+refactor:
+//e2e test->tool->map: accept texture, not source!
+
+//duplicate
+
+//move "%identity" to Type.re
+
+
+
+
+
+
+
+
+
+
+
+test in worker:
+can postMessage send uint8array data?
+yes
+
+
+add u,i test cases
+
+
+
+
+
+
+
+pass run test:
+
+
+use fetch
+
+
+
+
+
+
+refactor:
+remove duplicate in arrayBufferViewSourceTexture
+
+
+
+
+
+
+
+
+
+
+
+//support run render report->html:
+add window.loadImage function: use fetch?
+
+
+
+
+
+
+
+
+
+
+render test:
+data
+update wonder-render-test
+
+
+
+
+
+
+
+//pf test:
+create and dispose with map
+redo_undo with map
+render with map
+
+
+
+
+
+verify fetch
+
+
+improve fetch(use node->fetch library?)
+
+
+
+
+
+update Wonder-Benchmark->puppeteer version
+
+update wonder-benchmark version
+
+
+add dependences: get-pixels
+
+
+
+wonder.js remove dev-dependences: get-pixels
+
+
+upgrade     "puppeteer": "^0.13.0"
+
+
+
+
+
+
+
+
+
+
+pf test:
+pass test
+add test case:
+render
+////create and dispose
+redo-undo
+
+
+
+add e2e->pf json to e2e->render,data/
+
+
+*** DONE code climate
+CLOSED: [2018-05-21 Mon 20:50]
+
+
+
+*** DONE test coverage
+CLOSED: [2018-05-21 Mon 20:53]
+
+
+
+////*** TODO optimize
+
+//basic + light 
+
+
+
+give benchmark report
+
+
+
+*** TODO ci
+
+
+
+
+*** DONE update data/ json
+CLOSED: [2018-05-21 Mon 20:56]
+
+
+
+
+
+*** DONE publish
+CLOSED: [2018-05-21 Mon 21:10]
+
+
+
+
+
+* 编辑器Editor
+
+** TODO use GPL license
+
+
+** TODO add "contract check after set state" to ensure editEngineState and runEngineState should be the same
+
+add isStateEqual(state1, state2) function!
+
+
+
+** TODO test "refresh engine"
+
+
+
+* 明日计划
+
+
+** TODO update editor version
+
+
+
+
+
+
+
+
+* 中期研究
+
+
+** TODO fix for snake
+*** DONE use old version
+CLOSED: [2018-04-25 Wed 23:02]
+//pass run test
+
+
+//add light
+
+
+//add texture
+
+
+//pass level
+
+
+//add prop
+
+
+//add obstacle
+
+
+
+
+refactor:
+clean unuse code
+
+
+*** TODO use new version
+
+fix add no worker job: use action type
+
+
+
+
+add BasicCameraViewAPI->setBasicCameraViewWorldToCameraMatrix
+
+
+
+
+fix  unsafeGetProgram bug
+
+
+
+
+
+
+
+
+
+* TODO 未来7日计划
+
 
 ** TODO refactor
 finish TODO
@@ -88,99 +1222,6 @@ no need to generate textures(include in asset folder)
 
 
 
-
-
-
-
-* 完成事项
-
-
-** TODO update editor version
-
-
-
-
-
-
-* 编辑器Editor
-
-** TODO use GPL license
-
-
-** TODO add "contract check after set state" to ensure editEngineState and runEngineState should be the same
-
-add isStateEqual(state1, state2) function!
-
-
-
-** TODO test "refresh engine"
-
-
-
-* 明日计划
-
-
-
-
-
-
-
-
-
-
-* 中期研究
-
-
-** TODO fix for snake
-*** DONE use old version
-CLOSED: [2018-04-25 Wed 23:02]
-//pass run test
-
-
-//add light
-
-
-//add texture
-
-
-//pass level
-
-
-//add prop
-
-
-//add obstacle
-
-
-
-
-refactor:
-clean unuse code
-
-
-*** TODO use new version
-
-fix add no worker job: use action type
-
-
-
-
-add BasicCameraViewAPI->setBasicCameraViewWorldToCameraMatrix
-
-
-
-
-fix  unsafeGetProgram bug
-
-
-
-
-
-
-
-
-
-* TODO 未来7日计划
 
 
 
