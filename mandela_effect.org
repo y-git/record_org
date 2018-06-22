@@ -105,6 +105,10 @@ Feburary->February
 谷歌:
 google -> Google
 
+
+grandad -> granddad
+
+
 * 科技历史提前：
 彩色照片提前
 https://www.youtube.com/watch?v=YRpKykXYUO8
@@ -127,6 +131,13 @@ https://www.youtube.com/watch?v=YRpKykXYUO8
 
 
 
+
+
+* 游戏
+
+魔兽争霸：
+    剑圣:
+疾风步->疾步风
 
 * 新景观
 玫瑰湖

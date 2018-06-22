@@ -1,7 +1,0 @@
-
-** TODO  multi user cooperation
-
-https://www.zhihu.com/question/24978964
-
-unity3d asset server
-https://unity3d.com/cn/unity/features/collaborate

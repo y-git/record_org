@@ -468,6 +468,12 @@ support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corr
 wd.renderWorker.js, wd.webgl1.js, ...))
 
 
+** TODO advanced transform
+support rotation
+
+support scale
+
+
 * TODO v1.0.0
 ** TODO add pf test, render test 
 refer to Wonder.js
@@ -560,7 +566,7 @@ compile reason to native?bsb-native?
 refer to unity->material asset
 
 
-** TODO [#B] enhance extend editor
+** TODO [#A] enhance extend editor
 
 ** TODO [#A] extend engine
 
@@ -612,7 +618,7 @@ job pipeline(json)
 
 ** TODO switch scene
 
-** TODO [#B] Built for Teams(multi player)
+** TODO [#A] Built for Teams(multi player)
 refer to playcanvas: PlayCanvas has many team features such as being able to chat with your teammates directly from within the Editor.
 
 
@@ -627,6 +633,15 @@ can chat
 
 
 upload asset
+
+
+
+*** TODO  multi user cooperation
+
+https://www.zhihu.com/question/24978964
+
+unity3d asset server
+https://unity3d.com/cn/unity/features/collaborate
 
 
 
