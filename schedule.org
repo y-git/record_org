@@ -53,6 +53,31 @@
 *** TODO add mobile render pipeline
 
 
+** TODO [#A] UI
+
+
+*** TODO 2d UI
+**** TODO loading ui
+
+***** TODO support custom loading ui
+
+*** TODO 3d UI
+
+
+
+
+
+*** TODO advanced
+**** TODO extend ui
+
+
+*** TODO add stop loop
+should not stop ui loop logic!!!
+
+
+
+
+
 * after 1.0.0
 ** TODO [#A] script component(7d)
 *** hot load
@@ -322,26 +347,6 @@ add user job in json
 
 
 
-** TODO [#A] UI
-
-stop loop:
-should not stop ui loop logic!!!
-
-
-*** TODO 2d UI
-**** TODO loading ui
-
-***** TODO support custom loading ui
-
-*** TODO 3d UI
-
-
-
-
-
-*** TODO extend ui
-
-
 
 
 ** TODO advanced debug
@@ -572,6 +577,67 @@ https://devblogs.nvidia.com/introduction-nvidia-rtx-directx-raytracing/
 e.g. Texture typeArray->wrapS, wrapT, ... should share the same Uint8Array with different value range
 
 
+
+
+** TODO [#C] advanced asset
+*** TODO support gltf extensions
+https://github.com/KhronosGroup/glTF/tree/master/extensions
+
+
+
+*** TODO convert .wd to .gltf
+**** TODO fix share material but not share geometry!
+(node->extension->material)
+
+
+*** TODO add more data in .wd
+add:
+clone
+instance
+...
+
+
+
+**** TODO material add side
+
+
+
+
+*** TODO optimize generate wd
+when generate wd->generate gltf, add extended data:
+geometry type(box, customGeometry)
+
+
+not add box geometry data to buffer!
+
+
+
+
+
+*** TODO add AssetDatabase to support aync load asset
+(move out to be a project in wonder group?)
+
+*** TODO use backgroup task api
+https://developer.mozilla.org/en-US/docs/Web/API/Background_Tasks_API
+
+
+
+
+
+
+
+
+
+
+
+*** TODO write fbx python sdk converter
+refer to wonder, claygl
+
+
+use 2019.1 python sdk
+
+
+should export light data
 
 * Tool
 ** TODO webgl inspector which can work with multi thread
