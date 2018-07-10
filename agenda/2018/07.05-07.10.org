@@ -1,5 +1,390 @@
 * 今日计划
+** TODO event 
+*** pc event
 
+
+
+*** mobile event
+
+
+
+
+** TODO camera
+
+////*** ortho camera
+
+
+*** arcball camera controller
+
+
+
+
+*** fly camera controller
+
+
+
+
+
+
+** TODO publish
+
+
+
+
+
+
+
+
+
+
+
+
+
+* 完成事项
+** DONE pass ci
+CLOSED: [2018-07-05 Thu 18:32]
+
+
+
+** DONE event 
+CLOSED: [2018-07-08 Sun 15:33]
+
+
+support mouse, keyboard, touch event
+
+
+
+
+point event include:
+mouse event
+touch event
+
+
+
+
+only trigger custom event
+
+
+*** DONE mouse, keyboard event and custom event
+CLOSED: [2018-07-08 Sun 08:55]
+**** DONE draft
+CLOSED: [2018-07-06 Fri 13:03]
+
+most->fromEventPattern?
+
+
+optimize:
+bind dom event: 
+    bind dom event only once(bind on document.body), bind/unbind handler from event list
+
+
+bind custom event: 
+    bind/unbind handler from event list
+
+
+
+
+trigger dom event when binded dom event->next(only support bind body dom event):
+    trigger global event handler;
+
+
+
+
+
+
+
+
+
+
+
+**** DONE pass compile
+CLOSED: [2018-07-06 Fri 13:27]
+
+
+
+**** DONE refactor: rename Dom to DomExtend
+CLOSED: [2018-07-06 Fri 14:38]
+finish todo->use identity
+
+
+**** DONE add scene gameObject
+CLOSED: [2018-07-06 Fri 18:27]
+fix run test(asset, load_wdb, ...), render test,pf test->scene
+
+
+var sceneGameObject = wd.getSceneGameObject(state);
+
+
+
+
+
+
+
+**** DONE u,i test
+CLOSED: [2018-07-07 Sat 11:44]
+
+
+
+**** DONE run test
+CLOSED: [2018-07-07 Sat 12:16]
+
+
+
+
+
+**** DONE optimize
+CLOSED: [2018-07-07 Sat 15:33]
+
+
+
+
+
+
+**** DONE add unsubscribeDomEventStream
+CLOSED: [2018-07-07 Sat 15:33]
+
+
+
+**** DONE redo,undo
+CLOSED: [2018-07-07 Sat 16:34]
+
+
+
+
+**** DONE render worker
+CLOSED: [2018-07-07 Sat 19:29]
+
+
+
+
+
+
+
+**** DONE add keyboard event, more mouse event
+CLOSED: [2018-07-08 Sun 08:55]
+***** DONE draft
+CLOSED: [2018-07-07 Sat 21:20]
+
+
+
+***** DONE pass compile
+CLOSED: [2018-07-07 Sat 21:20]
+
+
+***** DONE test more mouse event(mouseup, ...)
+CLOSED: [2018-07-08 Sun 07:09]
+
+
+***** DONE test more point event(pointup, ...)
+CLOSED: [2018-07-08 Sun 07:29]
+add point drag event, tap event
+
+
+
+***** DONE test keyboard event
+CLOSED: [2018-07-08 Sun 08:23]
+
+
+
+
+***** DONE run test
+CLOSED: [2018-07-08 Sun 08:55]
+//pass 
+
+//test move
+
+//test drag
+
+//test keyboard event
+
+
+
+*** DONE add touch event
+CLOSED: [2018-07-08 Sun 15:33]
+**** DONE draft
+CLOSED: [2018-07-08 Sun 10:18]
+
+
+**** DONE pass compile
+CLOSED: [2018-07-08 Sun 10:18]
+
+
+
+**** DONE u,i test
+CLOSED: [2018-07-08 Sun 15:02]
+
+
+**** DONE run test
+CLOSED: [2018-07-08 Sun 15:33]
+
+
+
+
+
+
+** DONE camera
+CLOSED: [2018-07-10 Tue 11:36]
+*** TODO arcball camera controller
+**** TODO add component
+//draft
+
+
+//pass compile
+
+
+//u,i test
+
+
+run test:
+//add wheel case
+//add target case
+
+//fix drag
+
+//fix touch->drag
+
+
+***** DONE fix event
+CLOSED: [2018-07-10 Tue 07:55]
+"point down" not trigger in android?
+
+
+
+
+***** DONE refactor
+CLOSED: [2018-07-10 Tue 08:02]
+
+
+
+**** DONE transform add lookat
+CLOSED: [2018-07-09 Mon 18:02]
+
+
+
+**** DONE dispose
+CLOSED: [2018-07-09 Mon 18:02]
+reallocate gameObject
+
+
+**** DONE clone
+CLOSED: [2018-07-09 Mon 18:02]
+
+
+**** DONE redo undo
+CLOSED: [2018-07-09 Mon 18:02]
+
+
+**** DONE render worker
+CLOSED: [2018-07-10 Tue 08:49]
+
+
+**** DONE init camera gameObject
+CLOSED: [2018-07-09 Mon 18:11]
+need init perspectiveCameraProjection, arcballCameraController components
+
+
+
+
+
+////*** TODO import and export wdb
+////**** TODO wdb
+
+////**** TODO generate
+
+
+////** TODO refactor: rename isChrome, isFirefox
+
+////** TODO refactor: test/benchmark/, ./data, ./test/e2e/.../data/ all use /data/ -> pipelines and jobs files
+
+
+** DONE pass render test
+CLOSED: [2018-07-10 Tue 12:15]
+//pass test
+
+
+add cases
+
+
+
+
+
+** DONE pass pf test
+CLOSED: [2018-07-10 Tue 12:15]
+
+
+** DONE update data/, e2e->data json by test/benchmark/data json
+CLOSED: [2018-07-10 Tue 12:24]
+
+
+** DONE pass coverage
+CLOSED: [2018-07-10 Tue 13:54]
+
+
+** DONE pass code climate
+CLOSED: [2018-07-10 Tue 14:39]
+
+
+** DONE pass ci
+CLOSED: [2018-07-10 Tue 15:59]
+
+
+** DONE upgrade bs-platform to 4.0.0
+CLOSED: [2018-07-10 Tue 19:27]
+
+
+** DONE publish
+CLOSED: [2018-07-10 Tue 22:52]
+
+
+
+
+
+
+* 编辑器Editor
+** TODO set format when import texture asset
+jpg rgb
+png: rgba
+
+
+
+
+** TODO upgrade wonder.js
+
+
+
+
+
+** TODO use engine state->scene gameObject instead of editor state->scene
+
+
+** TODO support more camera component
+*** TODO arcball camera controller
+
+
+
+
+
+* 未解决的问题
+
+
+
+
+
+* 明日计划
+
+
+
+
+
+
+
+
+
+
+* 中期研究
+
+
+* TODO 未来7日计划
 ** TODO script component
 http://docs.cocos.com/creator/manual/zh/scripting/
 
@@ -65,69 +450,6 @@ because if user add box in script, should update ui(e.g. scene tree)!
 
 ** TODO publish
 
-
-
-
-
-
-
-
-
-
-
-
-
-* 完成事项
-
-
-
-
-
-* 编辑器Editor
-** TODO set format when import texture asset
-jpg rgb
-png: rgba
-
-
-
-
-** TODO upgrade wonder.js
-
-
-
-
-
-** TODO use engine state->scene gameObject instead of editor state->scene
-
-
-** TODO support more camera component
-*** TODO arcball camera controller
-
-
-
-
-
-* 未解决的问题
-
-
-
-
-
-* 明日计划
-
-
-
-
-
-
-
-
-
-
-* 中期研究
-
-
-* TODO 未来7日计划
 
 
 

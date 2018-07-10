@@ -619,6 +619,17 @@ job pipeline(json)
 ** TODO switch scene
 
 ** TODO [#A] Built for Teams(multi player)
+*** TODO add website to host and manage user published projects
+refer to playcanvas
+
+
+*** TODO user can browser other user's project(in editor)
+refer to playcanvas
+
+
+
+*** TODO  user can edit other user's project(in editor)(need authorization)
+
 refer to playcanvas: PlayCanvas has many team features such as being able to chat with your teammates directly from within the Editor.
 
 
@@ -635,8 +646,6 @@ can chat
 upload asset
 
 
-
-*** TODO  multi user cooperation
 
 https://www.zhihu.com/question/24978964
 
@@ -663,6 +672,15 @@ https://unity3d.com/cn/unity/features/collaborate
 
 
 ** TODO add gameObject name
+
+
+
+
+**  TODO [#B] support debug in mobile
+publish scene to debug server(github pages?) for debug mobile and debug pc online?
+
+
+show qr code?
 
 
 

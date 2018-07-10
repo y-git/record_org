@@ -1,17 +1,20 @@
 * before 1.0.0
-** TODO render worker(7d)
+** DONE render worker(7d)
+CLOSED: [2018-07-09 Mon 08:00]
 *** worker->init, loop
 *** no worker
 *** user can add job
 
-** TODO texture(4d)
+** DONE texture(4d)
+CLOSED: [2018-07-09 Mon 08:00]
 *** basic texture
 **** TODO show texture
 **** TODO load texture
 **** TODO support hot load texture
 *** diffuse, specular texture
 
-** TODO load .wd(7d)
+** DONE load .wd(7d)
+CLOSED: [2018-07-09 Mon 08:00]
 *** add transform->rotation, scale
 *** load .wd(refer to glsf 2.0)
 *** data-oriented
@@ -20,7 +23,8 @@
 
 
 
-** TODO event (4d)
+** DONE event (4d)
+CLOSED: [2018-07-09 Mon 08:00]
 *** pc event
 *** mobile event
 
@@ -79,11 +83,6 @@ should not stop ui loop logic!!!
 
 
 * after 1.0.0
-** TODO [#A] script component(7d)
-*** hot load
-
-
-*** support import other script
 
 ** TODO [#A] support webgl2
 *** TODO improve instance
@@ -248,44 +247,9 @@ in ci, it will check and run unit test
 after pass ci and merge it, it will be published to @wonder-components/xxx npm package 
 */
 
-**** TODO add script component
-http://docs.cocos.com/creator/manual/zh/scripting/
 
-now one script is one component(the type is user script component)
+e.g. user can add (XxxCameraController component)
 
-editor should show it in inspector(the component name should be defined by script json)
-
-one gameObject can has multiple user script components(only has one? or has multiple?):
-declare properties(can be show and edit in editor)
-
-implement interface functions(.rei), e.g.:
-onDispose
-...
-
-
-
-refer to:
-https://developer.playcanvas.com/en/user-manual/scripting/
-
-
-
-***** TODO support Hot Reloading 
-https://developer.playcanvas.com/en/user-manual/scripting/hot-reloading/
-
-https://developer.playcanvas.com/zh/ukser-manual/introduction/
-
-
-
-***** TODO support import other script
-http://docs.cocos.com/creator/manual/zh/scripting/modular-script.html
-
-
-***** TODO for editor->"edit and run" feature
-
-should invoke editor exposed api instead of directly invoke engine's api!
-(
-because if user add box in script, should update ui(e.g. scene tree)!
-)
 
 
 **** TODO add custom component
@@ -340,10 +304,10 @@ add user job in json
 ** TODO publish
 
 
-** TODO add pbr
+** TODO [#A] add pbr
 
 
-** TODO skybox
+** TODO [#B] skybox
 
 
 
@@ -376,7 +340,7 @@ show each job's render time, memory
 
 
 
-** TODO add tag, name
+** TODO [#C] add tag
 
 
 ** TODO advanced job
@@ -590,7 +554,7 @@ https://github.com/KhronosGroup/glTF/tree/master/extensions
 (node->extension->material)
 
 
-*** TODO add more data in .wd
+*** TODO [#A] add more data in .wd
 add:
 clone
 instance
@@ -630,7 +594,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Background_Tasks_API
 
 
 
-*** TODO write fbx python sdk converter
+*** TODO [#B] write fbx python sdk converter
 refer to wonder, claygl
 
 
@@ -638,6 +602,123 @@ use 2019.1 python sdk
 
 
 should export light data
+
+
+
+** TODO [#B] add cull
+
+https://gamedev.autodesk.com/blogs/1/post/353597490642337181
+
+https://www.slideshare.net/DICEStudio/culling-the-battlefield-data-oriented-design-in-practice
+
+
+in do way:
+use array instead of octree?
+
+
+
+each gameObject(meshRenderer) support not join cull:
+judge whether has collider component?
+
+
+instance:
+static instance can only be all culled
+dynamic instance can cull each instance
+
+////*** TODO use webassembly???(or not!?)
+use arraybuffer to store render data!?
+
+fall back to js version
+
+
+*** TODO use web worker for sort and cull
+
+
+
+
+
+**** TODO move create_basic_render_object_buffer, sort, cull to new worker: cull
+
+
+main worker state->gameObjectRecord->component maps should be sharedArrayBuffer data?
+
+or send component data (get from component maps) to worker?
+
+
+
+**** TODO dispose should defer 2 frame instead of defer 1 frame!
+
+
+
+**** TODO support add/remove cull worker job
+
+
+
+
+*** TODO add Occlusion culling?
+Occlusion culling: Calculating which objects are hidden behind other objects and excluding them from rendering.
+
+refer to unity->https://docs.unity3d.com/Manual/OcclusionCulling.html
+
+
+
+** TODO [#A] sort by shader,geometry group, texture
+
+*** TODO optimize sort render command(WebglRenderer.ts)
+use radix sort?
+
+refer to:
+https://www.byvoid.com/zhs/blog/sort-radix
+http://www.dataorienteddesign.com/dodmain/node10.html
+
+
+use web worker to parallel sort:
+It is possible to make this last stage of the process parallel by having each sorter ignore any values that it reads
+that are outside its working set, meaning that each worker reads through the entire set of values gathering for their
+bucket, but there is still a small chance of non-linear performance due to having to write to nearby memory on different
+threads. During the time the worker collects the elements for its bucket, it could be generating the counts for the next
+radix in the sequence, only requiring a summing before use in the next pass of the data, mitigating the cost of
+iterating over the whole set with every worker. 
+
+If your data is not simple enough to radix sort, you might be better off using a merge sort or a quick sort, but there
+are other sorts that work very well if you know the length of your sortable buffer at compile time, such as sorting
+networks. Through merge-sort is not itself a concurrent algorithm, the many early merges can be run in parallel, only
+the final merge is serial, and with a quick pre-parse of the to-be-merged data, you can finalise with two threads rather
+than one by starting from both ends (you need to make sure that the mergers don't run out of data). Though quick sort is
+not a concurrent algorithm each of the sub stages can be run in parallel. These algorithms are inherently serial, but
+can be turned into partially parallelisable algorithms with O(log n) latency. 
+
+
+
+Multi-threaded sorting: Each command bucket can be sorted independently, in parallel.
+
+
+** TODO [#C] add action component
+
+
+
+
+
+** TODO [#C] advanced transform
+*** TODO optimize quaternion
+四元数的压缩存储
+https://blog.codingnow.com/2017/11/quaternion_compress.html#more
+
+https://www.gamedev.net/forums/topic/461253-compressed-quaternions/
+
+
+
+** TODO [#C] advanced event
+*** TODO support more touch event
+**** TODO touch->point event support pointscale event
+
+
+
+** TODO [#C] advanced camera
+*** TODO fly camera controller
+use pointer lock:
+https://www.zhangxinxu.com/wordpress/2017/10/js-api-pointer-lock/
+
 
 * Tool
 ** TODO webgl inspector which can work with multi thread
