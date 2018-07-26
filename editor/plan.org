@@ -535,6 +535,10 @@ http://docs.cocos.com/creator/manual/zh/getting-started/basics/editor-panels/nod
 https://docs.unity3d.com/560/Documentation/Manual/Prefabs.html
 
 
+** TODO [#C] template
+refer to unity: 
+https://docs.unity3d.com/Manual/ProjectTemplates.html
+which are project starters with default settings already tuned, including a sample scene. Here are some samples of the HD RP and LW RP templates
 
 
 ** TODO [#A] engine script
@@ -567,6 +571,16 @@ refer to unity->material asset
 
 
 ** TODO [#A] enhance extend editor
+*** TODO use imgui
+https://blogs.unity3d.com/cn/2015/12/22/going-deep-with-imgui-and-editor-customization/
+https://docs.unity3d.com/Manual/ExtendingTheEditor.html
+https://docs.unity3d.com/Manual/GUIScriptingGuide.html
+https://github.com/ocornut/imgui
+
+
+http://sol.gfxile.net/imgui/
+
+https://www.zhihu.com/question/267602287
 
 ** TODO [#A] extend engine
 
@@ -619,16 +633,31 @@ job pipeline(json)
 ** TODO switch scene
 
 ** TODO [#A] Built for Teams(multi player)
-*** TODO add website to host and manage user published projects
+*** TODO [#A] add website to host and manage user published projects
 refer to playcanvas
 
 
-*** TODO user can browser other user's project(in editor)
+*** TODO [#A] support run in new tab
+(send run data(wdb, ...) to server, then open new window to go to the server url)
+
+
+this is used for:
+1.see final result in browser
+2.debug for performance in browser
+3.can run in multi thread
+4.can test in mobile
+can generate two-dimension code
+
+
+
+
+
+*** TODO [#A] user can browser other user's project(in editor)
 refer to playcanvas
 
 
 
-*** TODO  user can edit other user's project(in editor)(need authorization)
+*** TODO [#C]  user can edit other user's project(in editor)(need authorization)
 
 refer to playcanvas: PlayCanvas has many team features such as being able to chat with your teammates directly from within the Editor.
 

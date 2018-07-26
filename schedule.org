@@ -1,4 +1,4 @@
-* before 1.0.0
+* 1.0.0
 ** DONE render worker(7d)
 CLOSED: [2018-07-09 Mon 08:00]
 *** worker->init, loop
@@ -80,9 +80,29 @@ should not stop ui loop logic!!!
 
 
 
+* 2.0.0
+** Main Point
+*** Editor
+- publish
+- asset store
+- server
+- multi player
+- extend
+
+*** Engine
+- webgl2
+- extend
+  
 
 
-* after 1.0.0
+*** All
+- ci/cd
+
+
+
+
+
+
 
 ** TODO [#A] support webgl2
 *** TODO improve instance
@@ -127,17 +147,41 @@ advantage of extended instruction/uniform counts.
 
 
 
-** TODO [#C] finish book draft
-take about 60 days to finish
+
+** TODO [#A] reduce engine file size
+
+- package different .wd?
+can exclude not used pipelines/jobs code?
+
+
+- es6 import, then build by rollup
+
+
+*** TODO package
+user give job handle map(import used job files) 
+
+
+custom job:
+invoke service api
 
 
 
 
-** TODO [#B] dynamic load asset
+**** TODO use reason
 
-refer to unity->AssetBundle:
-https://docs.unity3d.com/Manual/AssetBundlesIntro.html
-http://gad.qq.com/article/detail/10033
+
+
+**** TODO use js
+
+
+**** TODO editor support package
+
+
+
+
+
+
+
 
 
 ** TODO [#A] extend
@@ -296,57 +340,39 @@ build component repository?
 
 
 
-*** TODO extend job
+
+
+
+
+*** TODO [#A] advanced job
+**** TODO fix bug:
+action->before not worker???
+**** TODO support import/export job script
+***** TODO wdb
+
+***** TODO generate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** TODO extend job
 add user job in json
+***** TODO user can define job in json, add register job function by js
 
-
-
-** TODO publish
-
-
-** TODO [#A] add pbr
-
-
-** TODO [#B] skybox
-
-
-
-
-
-** TODO advanced debug
-
-*** TODO show debug info
-setting.json add:
-debug: {
-    open_contract_check: true,
-    show_debug_info: true
-}
-
-
-
-show worker, main fps
-
-
-show worker, main memeory
-
-
-show total fps,render time
-
-
-show each job's render time, memory
-
-
-*** TODO can log error,fatal state json data(when open debug). we can reproduce the bug by the json data!!!
-
-
-
-** TODO [#C] add tag
-
-
-** TODO advanced job
-*** TODO user can define job in json, add register job function by js
-
-*** TODO job(or all data) support hot loading
+**** TODO job(or all data) support hot loading
 setting.json add:
 debug: {
     ...,
@@ -360,9 +386,9 @@ add isDirty flag
 in each frame
     if dirty, re-generate job graph
 
-*** TODO user can add job
-**** TODO worker
-***** TODO support user add worker job(in render/cull/... worker)
+**** TODO user can add job
+***** TODO worker
+****** TODO support user add worker job(in render/cull/... worker)
 
 ////***** TODO support user added worker job to new worker
 
@@ -390,21 +416,139 @@ make sure only hardwareConcurrency jobs can be used(in each worker)!else jobs sh
 
 
 
-** TODO schedule frame rate(define in json config)
-**** TODO can specify fps 
-e.g.
-keep 60/40/30 fps
-
-**** TODO can specify worker fps 
-e.g. 
-main worker: 1 frame sync(must sync at each frame)
-render worker: 2 frame sync
-physics worker: 1 frame sync
-xxx worker: 3 frame sync
 
 
-** TODO e2e test for multi thread
+** TODO [#A] add pbr
+https://seblagarde.wordpress.com/2015/07/14/siggraph-2014-moving-frostbite-to-physically-based-rendering/
 
+*** TODO [#A] add pbr material
+
+*** TODO [#C] add pbr light
+
+*** TODO [#C] add pbr camera
+https://placeholderart.wordpress.com/2014/11/16/implementing-a-physically-based-camera-understanding-exposure/
+
+
+
+** TODO [#A] skybox
+
+** TODO [#A] advanced ci/cd
+*** DONE use ci for deploy and pf(performance) test
+CLOSED: [2018-01-06 Sat 17:53]
+write gulp task
+
+ci test pf:
+allow fail
+deploy to github(ci pf data json):
+    not pass pf test
+
+
+
+use build stages:
+parallel job(e.g. test)
+
+
+
+
+
+
+
+refactor:
+wonder-benchmark: add "local" folder for data json files
+
+
+
+main branch:
+master, test, dev
+
+dev push: unit test
+no deploy
+
+test push: unit test + pf test(all must pass)
+deploy to test environment(on tag)
+
+master push: unit test + pf test(all must pass)
+deploy to produce environment(on tag)
+deploy to github release(on tag)(file: wd.js)
+
+
+
+
+
+(in test branch)
+deploy to test/pre-pubilish environment:
+should pass all test(pf,unit test)
+
+deploy to AWS Lambda?
+(user can run engine example online)
+
+
+
+(in mater branch)
+deploy to produce environment
+
+*** TODO auto run render test and pf test in every day
+send report email to developer
+
+
+*** TODO auto generate samples from render test/pf test
+render test
+
+
+
+pf test
+
+
+
+
+
+
+
+
+
+**** TODO ci deploy samples to github page?
+
+
+
+
+
+*** TODO improve ci->pf test
+cache benchmark
+*** TODO test in diferent browser/mobiles
+https://www.browserstack.com/automate
+
+* 3.0.0
+** Main Point
+*** Editor
+- more editor?
+- support more engine functions
+*** Engine
+- optimize
+- more main functions
+
+
+** TODO add physics
+http://www.html5gamedevs.com/topic/33392-whats-your-prefered-physics-engine-these-days/
+
+https://github.com/lo-th/Oimo.js/
+
+use Oimo?
+because its performance is better than cannon.js
+
+e.g. worker example
+
+Oimo:
+2000 gamgObjects:
+physics worker: 16ms
+
+
+Cannon:
+2000 gamgObjects:
+physics worker: >100ms
+
+
+
+*** TODO use web worker
 
 
 
@@ -527,6 +671,188 @@ https://www.youtube.com/watch?v=DQg6mpjQMRo&feature=youtu.be
 
 
 
+
+
+** TODO [#B] add cull
+
+https://gamedev.autodesk.com/blogs/1/post/353597490642337181
+
+https://www.slideshare.net/DICEStudio/culling-the-battlefield-data-oriented-design-in-practice
+
+
+in do way:
+use array instead of octree?
+
+
+
+each gameObject(meshRenderer) support not join cull:
+judge whether has collider component?
+
+
+instance:
+static instance can only be all culled
+dynamic instance can cull each instance
+
+////*** TODO use webassembly???(or not!?)
+use arraybuffer to store render data!?
+
+fall back to js version
+
+
+
+
+
+*** TODO use web worker for sort and cull
+
+
+
+
+
+**** TODO move create_basic_render_object_buffer, sort, cull to new worker: cull
+
+
+main worker state->gameObjectRecord->component maps should be sharedArrayBuffer data?
+
+or send component data (get from component maps) to worker?
+
+
+
+**** TODO dispose should defer 2 frame instead of defer 1 frame!
+
+
+
+**** TODO support add/remove cull worker job
+
+
+*** TODO Frustum culling
+Calculating the objects that exist between the camera near and far plane.
+
+
+
+*** TODO add Occlusion culling?
+Occlusion culling: Calculating which objects are hidden behind other objects and excluding them from rendering.
+
+refer to unity->https://docs.unity3d.com/Manual/OcclusionCulling.html
+
+
+
+** TODO [#B] sort by shader,geometry group, texture
+
+*** TODO optimize sort render command(WebglRenderer.ts)
+use radix sort?
+
+refer to:
+https://www.byvoid.com/zhs/blog/sort-radix
+http://www.dataorienteddesign.com/dodmain/node10.html
+
+
+use web worker to parallel sort:
+It is possible to make this last stage of the process parallel by having each sorter ignore any values that it reads
+that are outside its working set, meaning that each worker reads through the entire set of values gathering for their
+bucket, but there is still a small chance of non-linear performance due to having to write to nearby memory on different
+threads. During the time the worker collects the elements for its bucket, it could be generating the counts for the next
+radix in the sequence, only requiring a summing before use in the next pass of the data, mitigating the cost of
+iterating over the whole set with every worker. 
+
+If your data is not simple enough to radix sort, you might be better off using a merge sort or a quick sort, but there
+are other sorts that work very well if you know the length of your sortable buffer at compile time, such as sorting
+networks. Through merge-sort is not itself a concurrent algorithm, the many early merges can be run in parallel, only
+the final merge is serial, and with a quick pre-parse of the to-be-merged data, you can finalise with two threads rather
+than one by starting from both ends (you need to make sure that the mergers don't run out of data). Though quick sort is
+not a concurrent algorithm each of the sub stages can be run in parallel. These algorithms are inherently serial, but
+can be turned into partially parallelisable algorithms with O(log n) latency. 
+
+
+
+Multi-threaded sorting: Each command bucket can be sorted independently, in parallel.
+
+
+
+** TODO [#B] animation
+*** TODO [#A] skin animation
+**** TODO data oriented
+
+*** TODO [#A] articulated animation
+
+
+
+
+
+
+** TODO [#C] add tag
+
+
+** TODO shadow
+
+
+* more
+
+** TODO [#C] finish book draft
+take about 60 days to finish
+
+
+
+
+** TODO [#B] dynamic load asset
+
+refer to unity->AssetBundle:
+https://docs.unity3d.com/Manual/AssetBundlesIntro.html
+http://gad.qq.com/article/detail/10033
+
+
+
+
+
+
+
+
+** TODO advanced debug
+
+*** TODO show debug info
+setting.json add:
+debug: {
+    open_contract_check: true,
+    show_debug_info: true
+}
+
+
+
+show worker, main fps
+
+
+show worker, main memeory
+
+
+show total fps,render time
+
+
+show each job's render time, memory
+
+
+*** TODO can log error,fatal state json data(when open debug). we can reproduce the bug by the json data!!!
+
+
+
+
+
+** TODO schedule frame rate(define in json config)
+**** TODO can specify fps 
+e.g.
+keep 60/40/30 fps
+
+**** TODO can specify worker fps 
+e.g. 
+main worker: 1 frame sync(must sync at each frame)
+render worker: 2 frame sync
+physics worker: 1 frame sync
+xxx worker: 3 frame sync
+
+
+** TODO e2e test for multi thread
+
+
+
+
 ** TODO [#C] add ray tracing pipeline
 
 refer to DXR: 
@@ -605,92 +931,125 @@ should export light data
 
 
 
-** TODO [#B] add cull
-
-https://gamedev.autodesk.com/blogs/1/post/353597490642337181
-
-https://www.slideshare.net/DICEStudio/culling-the-battlefield-data-oriented-design-in-practice
+** TODO [#C] advanced animation
+*** TODO skin optimize
+**** TODO use blender to build skin animation
 
 
-in do way:
-use array instead of octree?
+fix yuan bao problem:
+the animation and the static model's rotation is not the same!(animation has rotate(0,-90,0)!)
+(
+gltf is correct(monster is correct)(by compare with threejs)
 
-
-
-each gameObject(meshRenderer) support not join cull:
-judge whether has collider component?
-
-
-instance:
-static instance can only be all culled
-dynamic instance can cull each instance
-
-////*** TODO use webassembly???(or not!?)
-use arraybuffer to store render data!?
-
-fall back to js version
-
-
-*** TODO use web worker for sort and cull
+but fbx is wrong!(xsi_man_skinning.fbx)(compare with threejs=>webgl_loader_fbx.html)
+maybe the bind shape matrix is wrong? need parse!?
+# parse bind shape matrix:
+# http://www.gamedev.net/topic/574309-solved-fbx-animation-problems/
+# refer to babylonjs=>SkinInfo.cpp=>bindPoses ?)
 
 
 
 
-
-**** TODO move create_basic_render_object_buffer, sort, cull to new worker: cull
-
-
-main worker state->gameObjectRecord->component maps should be sharedArrayBuffer data?
-
-or send component data (get from component maps) to worker?
+**** TODO support multi animations in one fbx
+pass fbx=>converter=>multi skin animations!:
+use blender to add multi animations of one model in one .fbx file
+learn how to separate and combine character and its props animations!
 
 
-
-**** TODO dispose should defer 2 frame instead of defer 1 frame!
-
-
-
-**** TODO support add/remove cull worker job
+**** TODO optimize skin
+https://engineering.riotgames.com/news/compressing-skeletal-animation-data
 
 
 
 
-*** TODO add Occlusion culling?
-Occlusion culling: Calculating which objects are hidden behind other objects and excluding them from rendering.
-
-refer to unity->https://docs.unity3d.com/Manual/OcclusionCulling.html
-
-
-
-** TODO [#A] sort by shader,geometry group, texture
-
-*** TODO optimize sort render command(WebglRenderer.ts)
-use radix sort?
-
-refer to:
-https://www.byvoid.com/zhs/blog/sort-radix
-http://www.dataorienteddesign.com/dodmain/node10.html
-
-
-use web worker to parallel sort:
-It is possible to make this last stage of the process parallel by having each sorter ignore any values that it reads
-that are outside its working set, meaning that each worker reads through the entire set of values gathering for their
-bucket, but there is still a small chance of non-linear performance due to having to write to nearby memory on different
-threads. During the time the worker collects the elements for its bucket, it could be generating the counts for the next
-radix in the sequence, only requiring a summing before use in the next pass of the data, mitigating the cost of
-iterating over the whole set with every worker. 
-
-If your data is not simple enough to radix sort, you might be better off using a merge sort or a quick sort, but there
-are other sorts that work very well if you know the length of your sortable buffer at compile time, such as sorting
-networks. Through merge-sort is not itself a concurrent algorithm, the many early merges can be run in parallel, only
-the final merge is serial, and with a quick pre-parse of the to-be-merged data, you can finalise with two threads rather
-than one by starting from both ends (you need to make sure that the mergers don't run out of data). Though quick sort is
-not a concurrent algorithm each of the sub stages can be run in parallel. These algorithms are inherently serial, but
-can be turned into partially parallelisable algorithms with O(log n) latency. 
+fbx:
+  parse bind shape matrix:
+  http://www.gamedev.net/topic/574309-solved-fbx-animation-problems/
+  refer to babylonjs=>SkinInfo.cpp=>bindPoses ?
 
 
 
-Multi-threaded sorting: Each command bucket can be sorted independently, in parallel.
+
+optimize: 
+not update tranlation,scale(pre handle key frame data)
+
+
+
+write to texture:
+judge vertex texture
+
+
+//add basic optimize
+
+
+add render test
+
+
+optimize: 
+//if bindShapeMatrix is identify, set it null and not multiply
+
+other "todo" optimizes
+
+
+optimize:
+query max uniform data arr count
+
+
+
+compute in gpu
+1) Make sure that the size of the bones array is correct. Often times, you will find that part of the mesh is skinned fine while the other parts are not skinned correctly. If so make sure the size of the bones array is correct.  
+
+There are two things that you have to be careful about.
+
+
+
+
+
+**** TODO publish
+
+
+*** TODO optimize skeleton animation
+把所有不同的角色的骨骼相关的矩阵和变换信息写入到纹理里(refer to playcanvas, threejs)
+(fallback:if not support vertex texture, pass uniform data instead)
+http://ftp.opengpu.org/forum.php?mod=viewthread&tid=18164&extra=page%3D1
+
+http://http.developer.nvidia.com/GPUGems3/gpugems3_ch02.html
+
+https://github.com/mrdoob/three.js/issues/3187
+
+
+use Skinned Instancing
+
+use quaternion for rotate skeleton
+
+
+
+**** TODO not update no-render gameObjects' skeleton
+
+
+*** TODO support animation blend
+
+**** TODO publish
+
+*** TODO support animation control(using action to control)
+refer to unity:
+https://docs.unity3d.com/Manual/AnimationSection.html
+
+
+
+support time limit logic(e.g. isTimeExceed5000)
+
+support frame control
+
+**** TODO refactor:extract AnimationEngine and move out to be a new project
+
+**** TODO publish
+
+
+
+
+*** TODO morph animation
+
 
 
 ** TODO [#C] add action component
@@ -718,6 +1077,54 @@ https://www.gamedev.net/forums/topic/461253-compressed-quaternions/
 *** TODO fly camera controller
 use pointer lock:
 https://www.zhangxinxu.com/wordpress/2017/10/js-api-pointer-lock/
+
+
+** TODO [#C] Machine Learning
+https://unity3d.com/cn/machine-learning
+
+
+** TODO iap
+Unity IAP makes it easy to implement in-app purchases in your application across the most popular App stores.
+https://blogs.unity3d.com/cn/2018/03/18/3-ways-to-make-more-money-with-unity-iap-promo/
+https://docs.unity3d.com/Manual/UnityIAP.html
+
+
+
+** TODO [#B] advanced ui
+*** TODO [#A] advanced imgui
+**** TODO more controls
+https://docs.unity3d.com/Manual/gui-Controls.html
+
+**** TODO layout
+https://docs.unity3d.com/Manual/gui-Layout.html
+
+***** TODO auto layout
+
+**** TODO custom style
+https://docs.unity3d.com/Manual/gui-Customization.html
+
+**** TODO extend
+https://docs.unity3d.com/Manual/gui-Extending.html
+
+***** TODO use can write custom controls?
+add your own custom drawing functions 
+
+
+**** TODO optimize
+***** TODO use sissor
+
+
+*** TODO [#B] rmgui(retain mode gui)
+
+*** TODO [#C] compress buffer data
+refer to http://ourmachinery.com/post/ui-rendering-using-primitive-buffers/
+
+
+
+*** TODO [#C] single draw call?
+http://ourmachinery.com/post/one-draw-call-ui/
+
+
 
 
 * Tool

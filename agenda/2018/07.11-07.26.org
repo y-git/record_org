@@ -1,4 +1,734 @@
 * 今日计划
+
+** TODO script component
+http://docs.cocos.com/creator/manual/zh/scripting/
+
+now one script is one component(the type is user script component)
+
+editor should show it in inspector(the component name should be defined by script json)
+
+one gameObject can has multiple user script components(only has one? or has multiple?):
+declare properties(can be show and edit in editor)
+
+implement interface functions(.rei), e.g.:
+onDispose
+...
+
+
+
+refer to:
+https://developer.playcanvas.com/en/user-manual/scripting/
+
+
+*** TODO hot load
+https://developer.playcanvas.com/en/user-manual/scripting/hot-reloading/
+
+https://developer.playcanvas.com/zh/ukser-manual/introduction/
+
+
+*** TODO support import other script
+http://docs.cocos.com/creator/manual/zh/scripting/modular-script.html
+
+
+
+*** TODO run test
+**** TODO reason script
+
+
+**** TODO js script
+
+
+
+
+** TODO import and export wdb
+*** TODO support script component
+
+**** TODO wdb
+
+**** TODO generate
+
+
+*** TODO support job script
+**** TODO wdb
+
+**** TODO generate
+
+
+** TODO for editor->"edit and run" feature
+
+should invoke editor exposed api instead of directly invoke engine's api!
+(
+because if user add box in script, should update ui(e.g. scene tree)!
+)
+
+
+
+** TODO publish
+
+
+
+
+
+
+
+
+
+
+
+
+
+* 完成事项
+** TODO ui
+imgui?
+
+use primitive buffer and index buffer to store?
+
+
+refer to:
+http://ourmachinery.com/post/one-draw-call-ui/
+http://ourmachinery.com/post/ui-rendering-using-primitive-buffers/
+http://ourmachinery.com/post/implementing-drag-and-drop-in-an-imgui/
+
+
+refer to https://github.com/ocornut/imgui
+
+
+refer to https://github.com/KorokEngine/Korok :
+
+// play music
+	gui.Move(50, 50)
+	gui.Text(0, gui.Rect{}, "Music", nil)
+
+	v := audio.MusicVolume()
+	gui.Text(0, gui.Rect{X:100, Y:0}, fmt.Sprintf("volume:%f", v), nil)
+
+	if gui.Button(1, gui.Rect{X:0, Y:20}, "Play", nil).JustPressed() {
+		audio.PlayMusic(m.ogg)
+	}
+	if gui.Button(2, gui.Rect{X:50, Y:20}, "Stop", nil).JustPressed() {
+		audio.StopMusic()
+	}
+	if gui.Button(3, gui.Rect{X:100, Y:20}, "Pause", nil).JustPressed() {
+		audio.PauseMusic()
+	}
+	if gui.Button(4, gui.Rect{X:160, Y:20}, "Resume", nil).JustPressed() {
+		audio.ResumeMusic()
+	}
+	if gui.Slider(5, gui.Rect{10, 70, 200, 10}, &m.vlm0, nil).Dragging() {
+		audio.SetMusicVolume(m.vlm0)
+	}
+
+
+
+*** TODO 2d ui
+**** TODO use webgl to draw
+***** DONE label
+CLOSED: [2018-07-14 Sat 15:47]
+
+
+
+***** DONE image
+CLOSED: [2018-07-14 Sat 15:47]
+use drawElements->count, offset
+
+bind texture
+
+set uv
+
+
+
+group by texture
+
+
+
+
+
+
+***** DONE optimize
+CLOSED: [2018-07-14 Sat 15:48]
+****** TODO put no-texture/same-texture->buffer data together, so can draw once
+
+
+
+
+
+**** DONE pass compile
+CLOSED: [2018-07-14 Sat 16:28]
+
+
+
+**** DONE u,i test
+CLOSED: [2018-07-14 Sat 21:27]
+
+
+**** DONE run test
+CLOSED: [2018-07-16 Mon 18:18]
+////test with wonder.js
+
+//add rollup
+
+
+fix: 
+//text not blend:
+font bitmap should be transparent image!!!
+
+
+//rect unit not equal pixel
+(canvas width,canvas height wrong?)
+viewport?
+ortho?
+
+
+
+//image triangles wrong
+
+
+
+
+**** DONE add fnt font
+CLOSED: [2018-07-16 Mon 18:18]
+
+
+//use fnt + png text
+
+
+
+
+
+
+
+
+////get default fft data include chinese and english!
+
+//can upload fft data?
+
+
+//fix: fntData string->int
+
+//fix: judge fontDefDictionary.length > 0
+
+
+
+test:
+pass fnt test:
+test main case
+pass run test
+test other cases
+
+
+
+//add "clear drawDataArr" case
+
+add "test index buffer data->label + image" case
+
+fix drawElements->offset case
+
+
+
+
+draw  offset
+
+
+
+
+fix:
+multi image
+
+////multi label
+
+
+
+
+
+
+
+
+
+
+**** DONE integrate with wonder.js
+CLOSED: [2018-07-19 Thu 21:22]
+***** DONE load font
+CLOSED: [2018-07-17 Tue 08:27]
+
+
+
+//// ***** TODO unify load
+
+
+
+
+***** DONE render worker
+CLOSED: [2018-07-18 Wed 20:30]
+//draft
+
+
+//pass compile
+
+
+
+
+
+test:
+
+send imguiFunc data
+send setting data
+send canvas->width,height
+
+send fntDataMap, bitmapMap
+
+
+
+
+
+//test init,render
+
+
+
+
+
+cp wonder.js->xxx to wonder-imgui/src
+//update version
+
+
+
+run test:
+//test draw label
+
+test draw image:
+    ////support add render worker job
+    
+    add font->custom texture source by id!
+
+    pass wonder-imgui test
+
+    pass run test
+
+
+
+pass all test
+
+add test case:
+////set custom data
+
+
+
+commit and update version
+
+
+wonder.js update version and commit
+
+
+
+
+
+***** DONE import and export wdb
+CLOSED: [2018-07-19 Thu 18:34]
+
+****** DONE imgui
+CLOSED: [2018-07-19 Thu 11:17]
+//scene add extras
+
+//logic
+
+
+//u,i test
+
+
+//run test
+
+
+
+****** DONE arcball camera controller
+CLOSED: [2018-07-19 Thu 18:34]
+
+
+
+**** DONE optimize
+CLOSED: [2018-07-19 Thu 21:22]
+only uniform1i once:
+only send uniform data once
+
+
+//only build jsObj once
+
+
+//optimize buffer data
+
+
+////no need backup and restore gl?
+
+
+***** DONE test in wonder.js
+CLOSED: [2018-07-19 Thu 21:22]
+test with one box
+
+
+**** DONE fix bug(master)
+CLOSED: [2018-07-20 Fri 10:12]
+//fix lightMaterial->shader:
+////if no direction,point light, use (1.0,1.0,1.0) color
+if no direction,point light, light use ambient light color
+////send u_diffuse
+
+
+//publish npm
+
+
+
+//if attribute/uniform location not exist, not send
+
+
+
+
+//fix generate asset run test
+
+
+
+//fix multi arcball camera controllers:
+use current one
+
+
+
+
+
+//publish npm
+
+
+
+**** DONE run test wdb->arcball
+CLOSED: [2018-07-20 Fri 10:30]
+
+
+
+
+**** DONE button(rect or with color)
+CLOSED: [2018-07-20 Fri 17:26]
+
+//draw box
+
+
+//logic
+
+
+//u,i test
+
+
+//run test
+
+
+**** DONE fix: meshRenderer->basic/light render gameObject array
+CLOSED: [2018-07-21 Sat 18:06]
+
+
+***** DONE Wonder-Editor
+CLOSED: [2018-07-21 Sat 18:06]
+rebase dev
+
+pass test:
+//shaderIndex
+////getExn
+
+
+
+
+**** DONE Wonder-Editor
+CLOSED: [2018-07-21 Sat 20:01]
+test "set lightMaterial->color not worker"
+
+
+
+**** DONE integrate with wonder.js
+CLOSED: [2018-07-21 Sat 16:41]
+
+worker:
+fix click bug
+
+fix glsl bug
+
+
+
+***** DONE run test
+CLOSED: [2018-07-21 Sat 16:41]
+//no worker
+
+
+//worker 
+
+
+**** DONE refactor: rename type
+CLOSED: [2018-07-21 Sat 16:50]
+
+
+
+
+**** DONE wonder-editor
+CLOSED: [2018-07-22 Sun 11:23]
+pass test
+
+
+//fix fake gl: two
+
+
+
+**** DONE layout: group
+CLOSED: [2018-07-22 Sun 12:12]
+
+
+
+
+
+**** DONE box
+CLOSED: [2018-07-22 Sun 15:09]
+
+
+**** DONE more controls
+CLOSED: [2018-07-23 Mon 17:00]
+
+***** DONE radio
+CLOSED: [2018-07-22 Sun 18:28]
+//pass compile
+
+
+
+***** DONE fix bug
+CLOSED: [2018-07-23 Mon 10:36]
+
+
+
+
+/* TODO clear data(e.g. radioButtonData) */
+
+
+bug:
+group?
+
+
+***** DONE integrate with wonder.js
+CLOSED: [2018-07-23 Mon 10:36]
+
+
+***** DONE checkbox
+CLOSED: [2018-07-23 Mon 11:33]
+
+
+
+***** DONE slider
+CLOSED: [2018-07-23 Mon 16:11]
+
+
+
+////***** TODO drag 1 input
+
+
+
+***** DONE integrate with wonder.js
+CLOSED: [2018-07-23 Mon 17:00]
+checkbox
+
+slider
+
+
+
+
+
+
+
+
+
+**** TODO design imgui + layout
+***** TODO button remove transitions, image, ...
+
+***** TODO RectTransform transform now has x,y,z!
+
+***** TODO no UIObject
+
+***** TODO add material
+
+***** TODO remain gameObject + ui components, but use imgui to draw  basic shapes(e.g. rectangles, circles and text)
+
+
+
+
+
+
+** DONE fix bug
+CLOSED: [2018-07-23 Mon 17:15]
+1.set imgui func should clear data
+
+
+
+** DONE integrate with wonder.js
+CLOSED: [2018-07-24 Tue 16:14]
+*** TODO need inject wd api jsObj?
+
+
+
+*** TODO handle state instead of imguiRecord?
+
+
+
+*** TODO pass no worker
+
+
+
+*** TODO pass worker
+
+
+** DONE benchmark
+CLOSED: [2018-07-25 Wed 09:11]
+
+
+
+
+
+** DONE fix wonder-tool-converter
+CLOSED: [2018-07-25 Wed 09:19]
+update wonder.js version
+
+test load_wdb
+
+
+
+** DONE render test
+CLOSED: [2018-07-25 Wed 11:18]
+
+//pass test
+
+
+//add test case
+
+
+
+** DONE pf test
+CLOSED: [2018-07-25 Wed 11:41]
+
+
+
+** DONE demo
+CLOSED: [2018-07-26 Thu 10:04]
+//radioButton, checkbox add default select
+
+
+//vertical align
+
+
+*** DONE add debug panel
+CLOSED: [2018-07-26 Thu 10:04]
+change fnt asset
+
+
+can hide/show debug panel
+
+
+show fps, memory
+
+can switch by button
+
+
+change diffuse color
+
+change light color
+
+
+
+
+
+
+**** pass no worker
+add more api
+
+
+**** pass worker
+add more api
+
+
+
+
+
+
+
+
+
+** DONE pass render test
+CLOSED: [2018-07-26 Thu 10:53]
+
+
+
+** DONE pass pf test
+CLOSED: [2018-07-26 Thu 10:53]
+
+
+
+** DONE fix demo->size
+CLOSED: [2018-07-26 Thu 11:31]
+
+
+
+
+////** TODO refactor
+rename Gl->resetBuffer to unbindBuffer
+(fix other resetXXX)
+
+
+
+
+update Gl to wonderjs
+
+
+** DONE give benchmark report
+CLOSED: [2018-07-26 Thu 12:08]
+//optimize
+
+
+
+** DONE coverage
+CLOSED: [2018-07-26 Thu 12:18]
+
+
+** DONE update data json from test/benchmark to ./e2e/, ./data/ 
+CLOSED: [2018-07-26 Thu 12:20]
+
+
+** DONE code climate
+CLOSED: [2018-07-26 Thu 15:23]
+
+
+
+** DONE publish
+CLOSED: [2018-07-26 Thu 16:21]
+*** DONE publish examples to server
+CLOSED: [2018-07-26 Thu 10:06]
+github page?
+
+
+
+
+
+* 编辑器Editor
+////** TODO add init event test
+
+
+** TODO set format when import texture asset
+jpg rgb
+png: rgba
+
+
+
+
+
+** TODO use engine state->scene gameObject instead of editor state->scene
+
+
+
+
+
+* 未解决的问题
+
+
+
+
+
+* 明日计划
 ** TODO fix event(master)
 only listen canvas dom
 
@@ -106,64 +836,6 @@ geometry apply default light material
 
 
 
-
-
-
-
-
-
-
-
-
-
-* 完成事项
-
-
-** TODO fix event(master)
-only listen canvas dom
-
-
-add api, can get state/set state from custom state data
-
-
-
-*** TODO wonder-editor
-**** TODO fix editor->event
-
-
-**** TODO pass ee->arcball camera
-
-
-
-
-
-
-
-* 编辑器Editor
-////** TODO add init event test
-
-
-** TODO set format when import texture asset
-jpg rgb
-png: rgba
-
-
-
-
-
-** TODO use engine state->scene gameObject instead of editor state->scene
-
-
-
-
-
-* 未解决的问题
-
-
-
-
-
-* 明日计划
 
 
 
