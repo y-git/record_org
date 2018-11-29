@@ -57,7 +57,8 @@ CLOSED: [2018-07-09 Mon 08:00]
 *** TODO add mobile render pipeline
 
 
-** TODO [#A] UI
+** DONE [#A] UI
+CLOSED: [2018-08-07 Tue 10:26]
 
 
 *** TODO 2d UI
@@ -80,24 +81,340 @@ should not stop ui loop logic!!!
 
 
 
+
+
+** TODO publish
+*** TODO use gzip, cdn, indexDB
+https://www.davrous.com/2014/05/21/why-and-how-we-migrated-babylonjs-com-to-microsoft-azure/
+
+https://www.davrous.com/2013/09/24/using-indexeddb-to-handle-your-3d-webgl-assets-sharing-feedbacks-tips-of-babylon-js/
+
+
+*** TODO demo
+https://www.davrous.com/2016/02/05/discovering-sponza-by-babylon-js-and-sharing-tips-on-how-to-build-a-cross-platforms-webgl-game/
+
+
 * 2.0.0
 ** Main Point
 *** Editor
 - publish
-- asset store
-- server
 - multi player
 - extend
 
 *** Engine
 - webgl2
 - extend
-  
+
+
+
+*** Server
+- host projects online
+ 
+
+
+*** Store
+package(.zip)
+asset(.asb)
+extension(editor extension, engine extension)
+service?
+(based on microservice?)
+
+
+*** Tool
+**** online converter
+
+
+
+*** Service
+support service to user
+(
+refer to unity->service:
+https://unity3d.com/cn/services
+)
+
+- converter service
+
+e.g. convert fbx,obj to wdb/glb(need send fbx data to server)
+
+
+
+
+
+- multi player service
+- analytics
+...
+
+
+
+
+
+
+
+*** Account
+associated with github?:
+can use github account to logic
+user can use github api to write extensions
+
+
 
 
 *** All
 - ci/cd
 
+
+
+
+** TODO [#A] script component
+http://docs.cocos.com/creator/manual/zh/scripting/
+
+now one script is one component(the type is user script component)
+
+editor should show it in inspector(the component name should be defined by script json)
+
+one gameObject can has multiple user script components(only has one? or has multiple?):
+declare properties(can be show and edit in editor)
+
+implement interface functions(.rei), e.g.:
+onDispose
+...
+
+
+
+refer to:
+https://developer.playcanvas.com/en/user-manual/scripting/
+
+
+
+
+*** TODO for stream load
+**** TODO support load and exec script before or after loading
+
+
+**** TODO support user provide specific script which will be executed before loading
+
+
+*** TODO add life script componnet
+
+name(be unique)
+
+
+
+how script define properties to state?
+
+
+
+
+one gameObject can has multiple user script components
+define priority?
+
+
+
+
+
+////load script
+
+
+
+add script(name, source) by script source string
+
+
+
+
+
+
+
+**** TODO declare attributes for editor
+provide getScriptAttribute(scriptName, attributeName, state), setScriptAttributeDefaultValue(scriptName, attributeName, value, state) api for editor
+
+(getScriptAttribute can get attribute data)
+(setScriptAttribute should set default value)
+
+
+
+add resetScriptAttributes(scriptName, state) for edtor->stop
+
+
+***** TODO Attribute types
+refer to https://developer.playcanvas.com/en/user-manual/scripting/script-attributes/
+
+When you declare an attribute you also declare the type of the attribute. This allows the editor to show the relevant
+controls for you to edit the attribute.   
+
+
+gameObject
+boolean, number, string, json
+(rgb, rgba, vec2, vec3, vec4, curve, enum)
+////asset
+
+
+
+*** TODO feature
+add findGameObjectsByName?
+
+
+
+*** TODO support import other script
+http://docs.cocos.com/creator/manual/zh/scripting/modular-script.html
+
+
+
+
+find by script name?
+
+all script data are in state
+
+
+
+
+*** TODO run test
+**** TODO reason script
+
+
+**** TODO js script
+
+
+*** TODO rewrite demo/e2e test
+use script component instead of job script
+
+
+
+*** TODO editor
+**** TODO for editor->"edit and run" feature
+
+should invoke editor exposed api instead of directly invoke engine's api!
+(
+because if user add box in script, should update ui(e.g. scene tree)!
+)
+
+
+
+**** TODO declare properties for editor
+在组件脚本的编写过程中，你可以通过声明属性，将脚本中需要调节的变量映射到 属性检查器（Properties） 中，供策划和美术调整。
+
+
+
+
+**** TODO script is asset
+
+
+
+**** TODO hot load
+https://developer.playcanvas.com/en/user-manual/scripting/hot-reloading/
+
+https://developer.playcanvas.com/zh/ukser-manual/introduction/
+
+
+http://flaxengine.com/blog/flax-facts-16-scripts-hot-reload/
+
+
+add swap function:
+////save old one's attributes to new one;
+
+editor has "save script" button, if click it, replace script;
+
+
+
+
+if has no swap function, not hotloaded
+
+
+
+The initialize method of the script is not called again. Instead the old script instance is passed into the swap method
+and it is up to the developer to ensure that the state of the old script is copied into the new one.
+
+
+Declared script attributes are automatically copied over into the new script instance.
+
+
+
+It is also important to remove any event
+listeners from the old instance and re-attach them to the new one. 
+
+
+
+**** TODO not error if script throw error
+catch script->throw error, show error info in console
+
+
+*** TODO import and export wdb
+**** TODO support script component
+export attributes:
+default value
+
+
+
+/*
+export all script string to one script file
+wdb->script components remain: name, url
+*/
+
+export script string into wdb?
+
+
+
+
+***** TODO wdb
+
+***** TODO generate
+
+
+
+
+
+
+
+
+
+
+** TODO [#B] collider
+*** TODO use do
+remove geometryPointDataBufferCount
+add colliderDataBufferCount?
+
+
+
+*** TODO box collider
+
+
+
+*** TODO sphere collider
+**** TODO add sphere geometry
+
+
+
+*** TODO mesh collider
+
+
+
+*** TODO add collide script handle(collide script component)
+
+
+
+*** TODO import and export wdb
+
+
+
+
+*** TODO run test
+**** TODO gameObject collide with gameObject
+
+**** TODO camera collide with model
+
+
+
+
+
+
+
+
+
+** TODO [#C] picking
+*** TODO add event script component
+**** TODO add getXXXEventXXX for js script
+
+
+
+*** TODO import and export wdb
 
 
 
@@ -116,9 +433,89 @@ refer to http://www.jiazhengblog.com/blog/2017/03/20/3104/ -> comment:
 add dirty?
 
 
-*** TODO vao
-optimize: judge last sended vao buffer
 
+
+**** TODO advanced
+refer to:
+klayge
+<<gpu gem2>> -> Chapter 9. Deferred Shading in S.T.A.L.K.E.R.
+<<gpu gem3>> -> 第19章 《Tabula Rasa》中的延迟着色（Deferred Shading in Tabula Rasa）
+
+
+*** TODO support webgl1 extensions which already are supported
+e.g. OES_element_index_uint
+
+
+
+*** TODO VAO
+
+(optimize: judge last sended vao buffer)
+
+
+
+webgl 2? just use extension in webgl 1!
+To save a lot of API calls, use vertex array objects (VAOs) or interleave static vertex data. 
+
+
+
+
+that can significantly improve per- formance on mobile devices
+
+VAOs are available in WebGL 1.0 with the OES_ vertex_array_object
+extension, which is widely supported on mobile devices. As of early
+2015, more than 80% of smartphone and tablet clients recorded by
+WebGL Stats have it 
+
+
+
+If vertex array objects (VAOs) are supported, then we build one for
+each combination of vertex buffers and index buffer present in the
+DrawParameters objects. As we share the buffers between many different
+geometries, the actual number of combinations is usually quite
+low. This allows us at dispatch time to simplify all the buffer checks
+to a single equality comparison between the current VAO and the
+previous one. Even when the VAOs are dif- ferent, setting them with
+WebGL is cheaper on the CPU than setting all the different buffers and
+vertex pointer attributes, which makes them a big win for complex
+scenes.
+
+
+Adding a fallback for devices without VAO support is also
+straightforward. Let’s call the code that binds buffers and sets
+vertex attrib pointers related to a specific mesh the binding
+block. If VAOs are supported, the code should initialize the VAO of
+each mesh using the binding block. Then, when the mesh is drawn, the
+code either binds the VAO if VAOs are supported, or executes the
+binding block if VAOs are not supported. The only case where this
+becomes more complicated is when there’s a different number of active
+vertex attribute arrays for different meshes—then the code should add
+disable- VertexAttribArray calls where appropriate. For a complete
+code example, see an explanation of VAOs* or an implementation of a
+fallback path in SceneJS
+(https://github.com/xeolabs/scenejs/blob/v4.0/src/core/display/chunks/geometryChunk.js)
+
+
+
+
+Lowering the number of vertex buffers helps to reduce CPU usage if
+VAOs are not a good fit for the code for some reason. This can be done
+by interleaving different types of vertex data for the same object: If
+we have, for example, positions, texture coordinates, and normals for
+each vertex, they can all be stored in the same vertex buffer in an
+interleaved fashion. In our CPU-bound drawing test that uses four
+vertex attributes, interleaving the attributes increased the FPS
+around 4%. The downside is that interleaving the data needs to be
+either handled by the content creation pipeline or done at load time;
+the latter may marginally slow down loading. Interleaving three
+attributes for a million vertices in a tight JS loop had a cost of
+around 200 ms on a Nexus 5 (2013 phone). 
+
+
+
+
+http://blog.tojicode.com/2012/10/oesvertexarrayobject-extension.html
+
+http://www.openglsuperbible.com/2013/12/09/vertex-array-performance/
 
 
 *** TODO ubo
@@ -148,7 +545,28 @@ advantage of extended instruction/uniform counts.
 
 
 
-** TODO [#A] reduce engine file size
+** date
+2018.10.16
+
+total
+5.5小时
+
+剩825.5h
+
+morning
+2小时
+
+afternoon
+3.5小时
+
+evening
+0小时
+
+
+
+summary
+1.begin add material test
+TODO [#A] reduce engine file size
 
 - package different .wd?
 can exclude not used pipelines/jobs code?
@@ -187,6 +605,17 @@ invoke service api
 ** TODO [#A] extend
 
 *** TODO extend files
+
+
+
+
+
+
+
+
+
+
+
 extend material(? material asset?), shader(.glsl), job(.js), script(.js), config data(.json->./Wonder.js/data/ json files)
 
 
@@ -197,6 +626,19 @@ extend service(.js?)
 
 
 add config(.json) to specific the file structure in project file(.wd_project_package)
+
+
+
+
+
+*** TODO extend import/export package(.wdb, .asb)
+e.g. if extend component, should also extend import/export!
+
+
+
+*** TODO add .etb for extension?
+
+
 
 
 *** TODO use .wonder_extend_package package(zip file) to include all extend files
@@ -345,33 +787,6 @@ build component repository?
 
 
 *** TODO [#A] advanced job
-**** TODO fix bug:
-action->before not worker???
-**** TODO support import/export job script
-***** TODO wdb
-
-***** TODO generate
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-**** TODO extend job
-add user job in json
-***** TODO user can define job in json, add register job function by js
-
 **** TODO job(or all data) support hot loading
 setting.json add:
 debug: {
@@ -386,9 +801,12 @@ add isDirty flag
 in each frame
     if dirty, re-generate job graph
 
-**** TODO user can add job
+**** TODO user can add/remove job
+***** TODO support before/after nth job(to solve "has multiple source jobs" problem)
+
+
 ***** TODO worker
-****** TODO support user add worker job(in render/cull/... worker)
+****** TODO support user add/remove worker job(in render/cull/... worker)
 
 ////***** TODO support user added worker job to new worker
 
@@ -422,6 +840,62 @@ make sure only hardwareConcurrency jobs can be used(in each worker)!else jobs sh
 https://seblagarde.wordpress.com/2015/07/14/siggraph-2014-moving-frostbite-to-physically-based-rendering/
 
 *** TODO [#A] add pbr material
+https://zhuanlan.zhihu.com/p/21376124
+
+https://learnopengl.com/PBR/Theory
+
+https://developer.playcanvas.com/en/user-manual/graphics/physical-rendering/
+
+https://interplayoflight.wordpress.com/2013/12/30/readings-on-physically-based-rendering/
+
+http://bitsquid.blogspot.com/2017/07/validating-materials-and-lights-in.html
+
+https://cesium.com/blog/2017/08/08/physically-based-rendering-in-cesium/
+https://github.com/KhronosGroup/glTF-WebGL-PBR
+
+
+[[https://zhuanlan.zhihu.com/p/25314364][【Unity Shader实践】基于MatCap实现适于移动平台的“次时代”车漆Shader]]
+
+
+
+
+[[https://gamedev.autodesk.com/blogs/1/post/2287972226151420438][Validating materials and lights in Stingray]]
+
+[[https://gamedev.autodesk.com/blogs/1/post/5917432056362215813][Physical Cameras in Stingray]]
+
+
+
+https://zhuanlan.zhihu.com/p/28827026
+
+
+https://zhuanlan.zhihu.com/p/20091064
+
+
+**** TODO add pbr material
+
+
+
+**** TODO fix .wd by using pbr instead of brdf
+
+**** TODO .wd: support texCoord_1, ...
+
+**** TODO add IBL
+
+**** TODO pbr in mobile
+https://www.zhihu.com/question/62965225
+
+
+
+
+
+
+
+
+
+
+
+*** TODO [#A] remove basic material
+
 
 *** TODO [#C] add pbr light
 
@@ -429,6 +903,11 @@ https://seblagarde.wordpress.com/2015/07/14/siggraph-2014-moving-frostbite-to-ph
 https://placeholderart.wordpress.com/2014/11/16/implementing-a-physically-based-camera-understanding-exposure/
 
 
+
+
+
+
+** TODO [#A] shadow
 
 ** TODO [#A] skybox
 
@@ -487,6 +966,14 @@ deploy to AWS Lambda?
 (in mater branch)
 deploy to produce environment
 
+
+*** TODO add publish to page gulp task
+add task
+
+
+add to bumped
+
+
 *** TODO auto run render test and pf test in every day
 send report email to developer
 
@@ -527,7 +1014,7 @@ https://www.browserstack.com/automate
 - more main functions
 
 
-** TODO add physics
+** TODO [#B] add physics
 http://www.html5gamedevs.com/topic/33392-whats-your-prefered-physics-engine-these-days/
 
 https://github.com/lo-th/Oimo.js/
@@ -558,6 +1045,8 @@ https://interplayoflight.wordpress.com/2015/04/08/the-rendering-technology-of-sk
 https://www.youtube.com/watch?v=51JNyjBcDMo
 
 https://forum.unity.com/threads/terrainengine-voxel-terrain-smooth-cubic-2d-hexagonal-infinite-procedural-terrain.174595/
+
+https://developer.nvidia.com/gpugems/GPUGems3/gpugems3_ch01.html
 
 
 marching cube
@@ -673,7 +1162,7 @@ https://www.youtube.com/watch?v=DQg6mpjQMRo&feature=youtu.be
 
 
 
-** TODO [#B] add cull
+** TODO [#A] add cull
 
 https://gamedev.autodesk.com/blogs/1/post/353597490642337181
 
@@ -736,7 +1225,7 @@ refer to unity->https://docs.unity3d.com/Manual/OcclusionCulling.html
 
 
 
-** TODO [#B] sort by shader,geometry group, texture
+** TODO [#A] sort by shader,geometry group, texture
 
 *** TODO optimize sort render command(WebglRenderer.ts)
 use radix sort?
@@ -768,7 +1257,7 @@ Multi-threaded sorting: Each command bucket can be sorted independently, in para
 
 
 
-** TODO [#B] animation
+** TODO [#A] animation
 *** TODO [#A] skin animation
 **** TODO data oriented
 
@@ -782,7 +1271,65 @@ Multi-threaded sorting: Each command bucket can be sorted independently, in para
 ** TODO [#C] add tag
 
 
-** TODO shadow
+
+** TODO [#A] advanced asset
+add asset script
+(refer to unity->AssetPostProcessor:
+
+https://www.cnblogs.com/dongliang/archive/2012/09/25/ModelImporter.html
+https://zhuanlan.zhihu.com/p/27438791
+https://docs.unity3d.com/ScriptReference/AssetPostprocessor.html
+
+)
+
+
+
+** TODO [#A] audio
+https://dev.opera.com/articles/drum-sounds-webaudio/
+https://www.davrous.com/2016/05/27/tutorial-creating-a-small-8-bit-responsive-drum-machine-using-web-audio-svg-multi-touches/
+
+
+use web audio?
+
+store in arraybuffer in wdb?
+https://www.clicktorelease.com/blog/loading-sounds-faster-using-html5-web-audio-api/
+
+
+** TODO [#A] compressed texture
+https://cesium.com/blog/2017/02/06/texture-compression/
+
+
+
+** TODO [#C] stream scene
+https://stackoverflow.com/questions/25823729/large-3d-scene-streaming
+
+https://forum.unity.com/threads/thoughts-on-scene-streaming.503392/
+
+https://www.sectr.co/stream.html
+https://www.sectr.co/uploads/2/5/7/9/25793991/sectr_stream_quickstart.pdf
+
+
+** TODO [#B] add msaa
+affect re state
+
+
+
+** TODO [#B] advanced run/stop
+*** TODO support run in new tab
+*** TODO support commit changes in run?
+https://answers.unity.com/questions/43972/how-do-i-commit-changes-in-test-mode.html
+
+
+
+
+** TODO [#C] advanced gizmo
+*** TODO feature: fix imgui->z order
+add 3d mode(vs 2d mode)?
+
+3d mode use billboard gameObject, 2d mode use imgui???
+
+refer to unity->gizmo:
+https://docs.unity3d.com/Manual/GizmosMenu.html#GizmosIcons
 
 
 * more
@@ -1079,6 +1626,12 @@ use pointer lock:
 https://www.zhangxinxu.com/wordpress/2017/10/js-api-pointer-lock/
 
 
+
+*** TODO advanced arcball camera controller
+support keydown-> multiple keys
+e.g. press a,w can move left-up
+
+
 ** TODO [#C] Machine Learning
 https://unity3d.com/cn/machine-learning
 
@@ -1087,6 +1640,9 @@ https://unity3d.com/cn/machine-learning
 Unity IAP makes it easy to implement in-app purchases in your application across the most popular App stores.
 https://blogs.unity3d.com/cn/2018/03/18/3-ways-to-make-more-money-with-unity-iap-promo/
 https://docs.unity3d.com/Manual/UnityIAP.html
+
+
+
 
 
 
@@ -1125,7 +1681,32 @@ refer to http://ourmachinery.com/post/ui-rendering-using-primitive-buffers/
 http://ourmachinery.com/post/one-draw-call-ui/
 
 
+*** TODO [#C] particles
+**** TODO optimize
+refer to:
+https://developer.nvidia.com/gpugems/GPUGems3/gpugems3_ch23.html
+data oriented
+gpu based?
 
+
+
+
+*** TODO [#C] advanced data oriented
+////**** TODO setting.json->buffer->geometry support multi section config
+e.g. 
+"buffer": {
+  "geometry": {
+    "section1": {
+            "geometry_point_count": 20000000,
+            "geometry_count": 100,
+    },
+    "section2": {
+            "geometry_point_count": 100000,
+            "geometry_count": 1000,
+    },
+    ...
+  }
+}
 
 * Tool
 ** TODO webgl inspector which can work with multi thread

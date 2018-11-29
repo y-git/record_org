@@ -1,128 +1,4 @@
 * TODO before v1.0.0-beta
-** TODO extend editor
-//download cocos-creator
-
-
-
-package.json
-
-
-load,unload callback
-
-
-
-如果你的插件会自动完成工作，别忘记通过 Editor.log, Editor.success 接口（上述接口可以在 Console API 查看详情），来告诉用户刚刚完成了哪些工作。
-
-
-
-示例中使用到的 Editor.projectPath 接口会返回当前打开项目的绝对路径，详情可以在 Editor API 中找到。
-
-
-
-入口程序除了可以在主进程执行 Node.js 所有标准接口以外，还可以打开编辑器面板、窗口，并通过 IPC 消息在主进程的入口程序和渲染进程的编辑器面板间进行通讯，通过编辑器面板和用户进行复杂的交互，并在相关的进程中完成业务逻辑的处理。
-
-要通过入口程序打开一个编辑器面板：
-
-  messages: {
-    'open' () {
-      // open entry panel registered in package.json
-      Editor.Panel.open('myPackage');
-    }
-  }
-
-
-
-
-
-扩展主菜单
-http://docs.cocos.com/creator/manual/zh/extension/extends-main-menu.html
-
-
-
-
-
-
-面板类型：
-dockable
-
-simple
-http://docs.cocos.com/creator/manual/zh/extension/define-simple-panel.html
-
-
-
-
-
-
-
-https://docs.unity3d.com/Manual/ExtendingTheEditor.html
-
-http://forum.china.unity3d.com/thread-18683-1-1.html
-
-http://jingpin.jikexueyuan.com/article/30041.html
-
-
-
-
-
-use can:
-create custom editor component
-use exist editor component(main_editor, inspector, number_input, ...)
-...
-
-
-
-how can user create custom gameObject component?
-
-
-*** TODO add plugin store
-user can publish, install plugin!
-
-
-*** TODO 多语言化
-http://docs.cocos.com/creator/manual/zh/extension/i18n.html
-
-http://docs.cocos.com/creator/manual/zh/advanced-topics/i18n.html
-
-*** TODO extend in editor
-refer to http://www.cocos.com/1061
-
-
-
-data driven
-
-plugin:
-前面提到，Cocos Creator的架构完全是可扩展的插件式，我们自己开发Creator功能的时候，也是按照插件接口标准来做的，左边这张图
-就是我们自己开发的核心插件。当然你也可以把这些核心插件停用甚至卸载了，因为我们是完全按照插件接口标准来开发的。这样的插件
-开发方式，就允许开发者和我们引擎团队一样，自己开发编辑器扩展、定制Creator，以符合自己喜欢的工作流方式。如果你愿意公开自
-己开发的Creator插件，那么就可以把它发布到我们的扩展商店里面，分享给社区里的几十万开发者使用。 
-
-
-- 可以对Creator底下使用的开源引擎进行修改，并且指定工作目录到你修改后的引擎框架路径
-
-////- AnySDK多渠道打包功能，这里面包含了上百个原生渠道和几十个H5渠道SDK，方便你快速地发布游戏，省去集成渠道SDK的烦恼
-
-- 引擎的模块化裁剪，在这里可以可视化地反选掉你用不到的引擎功能，有效减小包体积高达30%
-
-  
-
-
-
-more...
-
-
-*** TODO 调用引擎 API 和项目脚本???
-http://docs.cocos.com/creator/manual/zh/extension/scene-script.html
-
-not use?
-(can directly use wded.xxx api to get gameObject,children,components...)
-
-*** TODO extend in engine
-
-
-** TODO assert manager
-http://docs.cocos.com/creator/manual/zh/extension/asset-management.html
-
-
 
 
 ** TODO import
@@ -463,18 +339,234 @@ exec job script;
 
 
 
-** TODO package
-support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corresponding engine package file(e.g.
-wd.renderWorker.js, wd.webgl1.js, ...))
 
 
-** TODO advanced transform
+** TODO picking, axis
+
+
+
+
+
+** TODO ui
+
+
+
+
+** TODO server
+*** TODO for export package
+**** TODO get html, res, wd.min.js from server
+
+
+*** TODO login/register
+
+
+*** TODO pay
+
+
+*** TODO forum
+
+
+
+** TODO custom loading
+
+
+** DONE advanced transform
+CLOSED: [2018-09-20 Thu 11:15]
 support rotation
 
 support scale
 
 
-* TODO v1.0.0
+
+
+
+
+** TODO improve UE
+*** TODO add free camera
+*** TODO support click sceneTree node to focus(refer to unity)(shortcut: f)
+*** TODO "Add Component" should click other place to close
+
+*** TODO add "clone selected sceneTree node"
+
+
+*** TODO feat: inspector->map: add select list
+
+
+*** TODO bind shortcut(not support edit)
+
+*** TODO feat(sceneTree): support drag to slibing
+*** TODO fix: change direction light to point light: when > 4 lights. the select option should still be direction light(test snapshot)(with @mickey)
+
+*** TODO feat: add create sphere
+*** TODO feat: MeshRenderer inspector: add "isRender" checkbox
+
+
+*** TODO feat: export,import add waiting modal?
+
+*** TODO improve: texture inspector: show image(big size)
+*** TODO fix: add gameObject should add to sceneTree node->children
+
+*** TODO set format when import texture asset
+jpg rgb
+png: rgba
+
+*** TODO asset->name: add "..."
+
+
+*** TODO [#C] fix "load asset wdb"->inspector order: arcball component, cameraGroup order has change
+
+*** TODO engine: imgui->slider: can't drag?
+
+
+*** TODO engine: firefox->arcball-> mouse scale not work
+
+
+
+
+
+
+* TODO v1.0.0-beta
+
+** TODO remove antd ?(write custom message)
+
+
+
+** TODO improve debug and test
+*** TODO debug panel(render by dom instead of imgui)
+profile can be defined in render config json!
+
+
+
+compute:
+fps
+[[http://www.cnblogs.com/coco1s/p/8029582.html][【前端性能】Web 动画帧率（FPS）计算]]
+
+render time:
+cpu time
+gpu time
+
+
+
+memory:
+cpu memory:
+total
+typeArray
+...
+
+
+gpu memory:
+total
+textures
+vertex buffers
+index buffers
+GBuffer
+
+
+frame counters:
+vertices count
+triangles count
+
+
+
+show these if setMainConfig=>showDebugPanel:true
+
+
+
+
+
+
+
+
+
+
+
+*** TODO publish: add "show debug panel" config
+
+
+
+
+** TODO extremely test 
+*** TODO scene has 10000 cloned lightMaterial gameObjects + 10000 cloned basicMaterial gameObjects
+*** TODO scene has 5000 new lightMaterial gameObjects + 5000 new basicMaterial gameObjects
+*** TODO ...
+
+
+
+** TODO add debug/production version
+*** for production
+**** TODO remove Console->debug button(e.g. add log, ...)
+**** TODO remove ...
+
+**** TODO compress and merge editor/engine->resources(e.g. lato.png)
+
+**** TODO add localStorage cache?
+
+
+**** TODO set config->setting.json->isDebug to false
+
+** TODO get resource from server
+*** TODO get wd.min.js,engine->config,res(publish)
+
+
+
+** TODO check online
+
+*** TODO fix:loading->css(test in macbook)("WONDER" is overlap with logo)
+
+
+*** TODO check more browser(e.g. qq, 360, ...)
+
+
+
+** TODO run in mobile
+*** TODO render static scene can work
+
+*** TODO arcball/fly camera can work
+
+
+
+
+** TODO more import/export
+*** TODO import scene
+*** TODO export/import asset
+
+
+*** TODO optimize export wpk: why wpk is so big than the zip(published)???
+
+
+
+** TODO redo-undo
+*** TODO select assetTree not redo-undo?
+
+
+
+////*** TODO should release memory when remove state from stack(need confirm)
+
+
+
+
+
+** TODO feat: add msaa
+
+
+
+
+
+* TODO v1.0.0-rc
+** TODO engine: add examples to github(wonder.js)
+
+
+** TODO editor: add examples
+
+
+* TODO after v1.0.0
+
+** TODO package
+support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corresponding engine package file(e.g.
+wd.renderWorker.js, wd.webgl1.js, ...))
+
+
+
 ** TODO add pf test, render test 
 refer to Wonder.js
 ** TODO add canvas ui component
@@ -502,10 +594,194 @@ NPM 第三方库
 
 
 
+** TODO [#A] job script, data json
+
+*** TODO data json
+open/close worker setting
 
 
 
-* TODO after v1.0.0-beta
+**** TODO user can change setting.json->buffer
+1.editor->engine->setting.json
+2.publish->engine->setting.json
+
+
+
+
+
+*** TODO editor: support edit config json
+
+*** TODO job
+**** TODO fix bug:
+action->before not worker???
+**** TODO support import/export job script
+***** TODO wdb
+
+***** TODO generate
+
+
+
+*** TODO demo
+**** TODO 3d snake
+
+
+
+
+
+
+
+
+** TODO [#C] set imgui
+
+*** TODO editor: extract imgui asset
+
+
+**** TODO extract asset wdb->imgui func asset
+
+**** TODO extract scene wdb->imgui func asset
+
+
+** TODO [#A] pwa
+
+
+
+
+
+
+** TODO [#A] extend editor
+
+
+
+//download cocos-creator
+
+
+
+package.json
+
+
+load,unload callback
+
+
+
+如果你的插件会自动完成工作，别忘记通过 Editor.log, Editor.success 接口（上述接口可以在 Console API 查看详情），来告诉用户刚刚完成了哪些工作。
+
+
+
+示例中使用到的 Editor.projectPath 接口会返回当前打开项目的绝对路径，详情可以在 Editor API 中找到。
+
+
+
+入口程序除了可以在主进程执行 Node.js 所有标准接口以外，还可以打开编辑器面板、窗口，并通过 IPC 消息在主进程的入口程序和渲染进程的编辑器面板间进行通讯，通过编辑器面板和用户进行复杂的交互，并在相关的进程中完成业务逻辑的处理。
+
+要通过入口程序打开一个编辑器面板：
+
+  messages: {
+    'open' () {
+      // open entry panel registered in package.json
+      Editor.Panel.open('myPackage');
+    }
+  }
+
+
+
+
+
+扩展主菜单
+http://docs.cocos.com/creator/manual/zh/extension/extends-main-menu.html
+
+
+
+
+
+
+面板类型：
+dockable
+
+simple
+http://docs.cocos.com/creator/manual/zh/extension/define-simple-panel.html
+
+
+
+
+
+
+
+https://docs.unity3d.com/Manual/ExtendingTheEditor.html
+
+http://forum.china.unity3d.com/thread-18683-1-1.html
+
+http://jingpin.jikexueyuan.com/article/30041.html
+
+
+
+
+
+use can:
+create custom editor component
+use exist editor component(main_editor, inspector, number_input, ...)
+...
+
+
+
+how can user create custom gameObject component?
+
+
+*** TODO feat: add "add package wpk"(so now has "import package" and "add package")
+
+
+
+*** TODO add plugin store
+user can publish, install plugin!
+
+
+*** TODO 多语言化
+http://docs.cocos.com/creator/manual/zh/extension/i18n.html
+
+http://docs.cocos.com/creator/manual/zh/advanced-topics/i18n.html
+
+*** TODO extend in editor
+refer to http://www.cocos.com/1061
+
+
+
+data driven
+
+plugin:
+前面提到，Cocos Creator的架构完全是可扩展的插件式，我们自己开发Creator功能的时候，也是按照插件接口标准来做的，左边这张图
+就是我们自己开发的核心插件。当然你也可以把这些核心插件停用甚至卸载了，因为我们是完全按照插件接口标准来开发的。这样的插件
+开发方式，就允许开发者和我们引擎团队一样，自己开发编辑器扩展、定制Creator，以符合自己喜欢的工作流方式。如果你愿意公开自
+己开发的Creator插件，那么就可以把它发布到我们的扩展商店里面，分享给社区里的几十万开发者使用。 
+
+
+- 可以对Creator底下使用的开源引擎进行修改，并且指定工作目录到你修改后的引擎框架路径
+
+////- AnySDK多渠道打包功能，这里面包含了上百个原生渠道和几十个H5渠道SDK，方便你快速地发布游戏，省去集成渠道SDK的烦恼
+
+- 引擎的模块化裁剪，在这里可以可视化地反选掉你用不到的引擎功能，有效减小包体积高达30%
+
+  
+
+
+
+more...
+
+
+*** TODO 调用引擎 API 和项目脚本???
+http://docs.cocos.com/creator/manual/zh/extension/scene-script.html
+
+not use?
+(can directly use wded.xxx api to get gameObject,children,components...)
+
+*** TODO extend in engine
+
+
+*** TODO user can use redo-undo api for custom editor
+https://docs.unity3d.com/ScriptReference/Undo.html
+** TODO assert manager
+http://docs.cocos.com/creator/manual/zh/extension/asset-management.html
+
+
+
 ** TODO [#B] 数据统计
 http://docs.cocos.com/creator/manual/zh/sdk/cocos-analytics.html
 https://analytics.cocos.com/docs/
@@ -566,9 +842,6 @@ editor can extend user script component's inspector!
 ** TODO support publish to native platform(ios, ..)
 compile reason to native?bsb-native?
 
-** TODO [#B] add material asset
-refer to unity->material asset
-
 
 ** TODO [#A] enhance extend editor
 *** TODO use imgui
@@ -603,7 +876,7 @@ add config(.json) to specific the file structure in project file(.wd_project.pac
 benchmark test
 
 
-optimize memory 
+
 
 
 ** TODO reuse user resource
@@ -722,13 +995,26 @@ show qr code?
 
 
 ** TODO asset manage
-
-*** TODO add redo-undo?
-why not add:
-unity don't has it! so not add?
-
 asset can be managed by svn/git, so no need redo-undo?
 
 
 *** TODO drag scene tree->gameObject to asset, can generate pretab?
 refer to unity
+
+
+
+** TODO advanced asset
+
+*** TODO inspector add a canvas for show
+add engine state
+
+
+add default direction light
+
+
+**** TODO material,geometry asset->icon should be show canvas->snapshot
+material apply to sphere geometry data
+
+
+geometry apply default light material
+(use line mode instead of triangle mode)
