@@ -1,6 +1,697 @@
 * 今日计划
 
 
+
+** TODO improve UE
+
+
+
+
+
+
+
+
+
+* 完成事项
+
+
+
+** TODO write 迭代报告
+
+
+** TODO improve UE
+
+
+
+////*** TODO fix(import package): 1.load WDBAsset1.wdb; 2.drag to scene; 3.import package DemoPackage1_room.wpk;  4.drag wdb to scene;    the wdb change to room!!! but should be outdoor scene!!!
+
+
+
+
+
+
+*** DONE fix(redo-undo): 1.rotate; 2.undo;    transform inspector->rotate not undo!!!
+CLOSED: [2019-02-15 Fri 08:25]
+
+
+
+
+
+*** DONE fix: scene should be common gameObject(can has component)
+CLOSED: [2019-02-15 Fri 09:13]
+
+can update name
+
+
+test export scene
+
+
+
+
+
+*** DONE fix(left-header): dispose gameObject shouldn't cause error!
+CLOSED: [2019-02-15 Fri 10:01]
+
+
+
+
+////*** TODO fix(left-header): add gameObject should refresh canvas?
+
+
+*** DONE fix(left-header): clone gameObject should refresh canvas
+CLOSED: [2019-02-15 Fri 10:38]
+
+
+*** DONE fix(scene-tree): change child should refresh
+CLOSED: [2019-02-15 Fri 10:38]
+
+
+
+*** DONE fix(dispose gameObject)
+CLOSED: [2019-02-15 Fri 11:57]
+
+**** DONE fix: 0.open debug;1.dispose cube1;2.dispose cube2;3.add cube3; 4.select cube3;       error!!!
+CLOSED: [2019-02-15 Fri 11:11]
+
+
+
+**** DONE fix(import package): 0.open debug; 1.dispose all gameObjects except one cube; 2.export package wpk1; 3.dispose the cube; 4.import wpk1;    error->"expect component alive, but actual not" 
+CLOSED: [2019-02-15 Fri 11:12]
+
+
+**** DONE fix(import package): 0.open debug; 1.dispose all cubes; 2.import package DemoPackage1_room.wpk;   error: "expect all wdb gameObjects->materials should be material assets or default materials, but actual not"
+CLOSED: [2019-02-15 Fri 11:13]
+
+
+
+
+
+
+
+**** DONE fix(dispose): 1.import package DemoPackage1_room.wpk;2.dispose the package gameObject;3.create cube;   shouldn't has light!!!
+CLOSED: [2019-02-15 Fri 11:57]
+should reinit all light materials
+
+
+
+
+*** DONE fix(package): scene
+CLOSED: [2019-02-15 Fri 15:55]
+
+
+////*** TODO fix(clone): should remain transform->local position,rotation,scale
+
+
+*** DONE fix(clone): clone direction/point light gameObject: should limit light count
+CLOSED: [2019-02-15 Fri 16:35]
+
+
+
+////*** TODO fix(clone): clone point light gameObject: grid plane affected!!!
+
+
+
+
+
+
+
+*** fix(controller): stop not change the icon to stop icon at sometime!!!
+
+
+
+*** DONE fix(event): when move game view->arcball camera, should update inspector->rotation and scale beside position!!!
+CLOSED: [2019-02-16 Sat 09:18]
+
+
+
+*** DONE fix(controller): if stop, should dispatch all
+CLOSED: [2019-02-16 Sat 10:33]
+
+
+
+
+
+
+
+
+
+*** DONE fix(camera): if blur/drag drop camera controller->distance/minDistance, should refresh transform
+CLOSED: [2019-02-16 Sat 12:09]
+
+blur,drag drop should refresh transform
+
+
+
+*** DONE fix(controller): change camera hierachy when run; should refresh
+CLOSED: [2019-02-16 Sat 14:05]
+////change camera controller hierachy/transform it should mark camera controller dirty
+
+
+//if current scene tree node has arcballCameraController component, not render gizmo
+
+
+//fix engine, add updateAllCameraControllers
+
+
+
+
+
+*** DONE feat(camera): camera controller component add more field(e.g. phi, theta)
+CLOSED: [2019-02-16 Sat 17:18]
+
+
+
+*** DONE test: pass all tests
+CLOSED: [2019-02-16 Sat 17:22]
+
+
+
+
+*** DONE fix(ui): floatInput: drag mouse to select value to label; shouldn't cancel select!
+CLOSED: [2019-02-16 Sat 17:42]
+
+
+
+*** DONE fix(camera): drag drop should only refresh transform instead of inspector
+CLOSED: [2019-02-16 Sat 19:39]
+
+*** DONE fix: fix floatinput->blur drag start
+CLOSED: [2019-02-16 Sat 21:16]
+
+
+*** DONE fix(camera): drag drop should push to undo
+CLOSED: [2019-02-16 Sat 21:16]
+
+
+
+
+
+
+
+*** fix: keydown should refresh
+
+
+
+
+*** DONE test: add test cases
+CLOSED: [2019-02-17 Sun 08:44]
+
+*** DONE test(coverage): MainEditorAssetChildrenNode › test set current node › test click folder › double click folder, set folder to be currentAssetNodeParent and currentNode(are the same)
+CLOSED: [2019-02-17 Sun 09:23]
+
+
+
+*** DONE push dev
+CLOSED: [2019-02-18 Mon 11:16]
+
+
+
+
+*** feat(redo-undo): arcball camera when run->drag drop/keydown should push to undo
+no need to push!!!
+
+because if stop, all this redo-undo will lost!
+
+
+
+
+
+*** DONE fix(event->error): if event error, the binded event should still work!!!
+CLOSED: [2019-02-20 Wed 11:14]
+
+
+
+
+
+
+
+
+
+*** fix(asset): fix "drag asset to folder node": should fail instead of rename
+
+
+
+
+////*** TODO fix(sceneTree, assetTree): if node relation check fail, shouldn't error(do nothing)
+*** DONE feat(console): asset node/scene tree node->"check relation when drag drop" not not error
+CLOSED: [2019-02-20 Wed 11:36]
+
+
+
+
+*** DONE fix(rename asset): should fail
+CLOSED: [2019-02-20 Wed 19:00]
+
+
+
+
+*** DONE fix: add gameObject should add to sceneTree node->children
+CLOSED: [2019-02-20 Wed 19:01]
+
+
+
+
+
+*** DONE fix(controller): 1.change viewport when run; stop; the viewport shouldn't restore!!!
+CLOSED: [2019-02-21 Thu 09:45]
+resize when stop
+
+
+
+
+*** DONE feat(picking): add isRoot
+CLOSED: [2019-02-22 Fri 15:59]
+
+**** DONE engine support isRoot
+CLOSED: [2019-02-21 Thu 19:37]
+
+//gameObject add "isRoot"
+
+//clone
+
+//dispose
+
+
+
+//test gameObject
+
+
+
+
+
+
+
+//test convert
+
+
+//test assemble
+
+
+//test generate
+
+
+**** DONE feat(picking): if picking wdb->all children, select the rootGameObject of the wdb!
+CLOSED: [2019-02-21 Thu 22:38]
+find the top prefab gameObject(for nested prefabs)
+
+
+
+can load room scene wdb:
+//pass editor test
+//pass engine test
+
+////change wdtype->isRootxxx to option
+
+
+//publish wonder.js version:
+
+
+
+**** DONE support single click to choose next
+CLOSED: [2019-02-22 Fri 10:15]
+
+
+**** DONE default
+CLOSED: [2019-02-22 Fri 12:03]
+export wdk: scene is not root
+
+export scene: is root
+
+convert glb,gltf to wdb(mark top gameObject root)
+
+
+
+
+
+
+**** DONE fix load wpk;load wpk bug
+CLOSED: [2019-02-22 Fri 15:56]
+
+
+
+
+
+
+**** feat(gameObject->inspector): add "isRoot" field
+scene gameObject should also add!!!
+
+
+////**** TODO wdb inspector: add "mark prefab"?
+or mark gameObject prefabRoot???
+
+
+////**** TODO add "export scene as prefab wdb"(add checkbox)
+
+**** DONE load asset->auto convert glb,gltf to prefab wdb
+CLOSED: [2019-02-22 Fri 15:59]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** add online service for user: convert glb,gltf to wdb/prefab wdb
+
+
+
+
+
+
+*** optimize(wdb): wdType-> use sparseMap instead array to support no data
+e.g.:
+gameObject->names can has no name data(not use default name)
+
+
+
+
+(not do this!!!because it will affect editor, and do this gains little!)
+
+
+
+*** DONE feat(focus): calc aabb
+CLOSED: [2019-02-23 Sat 11:55]
+
+
+
+
+
+
+
+
+
+
+*** DONE fix(focus)
+CLOSED: [2019-02-23 Sat 17:46]
+
+**** DONE fix : not * scale?
+CLOSED: [2019-02-23 Sat 17:33]
+
+**** DONE fix focus scale(35) cube
+CLOSED: [2019-02-23 Sat 17:33]
+
+
+**** DONE fix focus scale(0.1) elf_girl
+CLOSED: [2019-02-23 Sat 17:33]
+
+**** DONE fix focus camera,light(imgui gizmo)
+CLOSED: [2019-02-23 Sat 17:46]
+
+
+
+
+
+
+*** DONE fix(asset): set texture to be material asset map 
+CLOSED: [2019-02-24 Sun 07:56]
+
+//need ensure the pause point!!!
+
+
+
+//test
+
+
+//refactor:
+reInitAllLightMaterialsAndClearShaderCache
+
+
+
+
+//not dispatch?
+
+
+*** DONE fix(texture): png texture->transparent shouldn't be black!!!
+CLOSED: [2019-02-24 Sun 07:40]
+
+
+
+
+*** DONE fix(redo-undo): restore deviceManager record should remain all gl state data!
+CLOSED: [2019-02-25 Mon 12:14]
+
+
+
+
+
+*** DONE fix(asset): texture inspector
+CLOSED: [2019-02-25 Mon 12:15]
+**** DONE change attribute should redo-undo
+CLOSED: [2019-02-25 Mon 12:15]
+
+
+     TODO fix: undo should mark update:
+add function(mark update) for executed after restore engine state when restore history state?
+
+     TODO fix: redo should mark update
+
+
+
+////**** TODO change attribute work???
+(should re-generate texture)?
+
+
+
+*** refactor: EventHandler->setUndoValueToCopiedEngineState shouldn't use return type!
+
+
+*** DONE feat(event): arcball camera controller->keydown: if is combined key, not set target
+CLOSED: [2019-02-25 Mon 16:02]
+
+
+
+
+
+
+*** DONE improve(ui): the draged tree node to other one don't to be current tree node
+CLOSED: [2019-02-25 Mon 16:14]
+
+
+*** DONE impove(ui): now click select material/geometry name can show group
+CLOSED: [2019-02-25 Mon 16:34]
+
+
+*** DONE feat(console): should show clear button when not debug
+CLOSED: [2019-02-25 Mon 17:21]
+
+
+
+
+*** DONE improve(console):should format string
+CLOSED: [2019-02-25 Mon 18:29]
+
+e.g.:
+
+445-61.2428.6
+
+
+should format to(refer to chrome console!!!) :
+[
+445, 
+[61.24, 28.6]
+]
+
+
+*** DONE improve(console):should only show 99 messages at max
+CLOSED: [2019-02-25 Mon 19:50]
+
+
+
+
+*** DONE fix(hotkey)
+CLOSED: [2019-02-25 Mon 20:47]
+
+**** DONE should show setting ui
+CLOSED: [2019-02-25 Mon 20:46]
+
+
+**** fix(hotkey): should consider event target??????? or not???????
+e.g. if target is SceneView, "f"(focus) can work
+
+
+**** fix mac 
+should use command
+shouldn't use ctrl
+
+
+ui->setting should show command instead ctrl
+
+
+
+*** DONE refactor(test): move
+CLOSED: [2019-02-25 Mon 20:49]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE "Add Component" should click other place to close
+CLOSED: [2019-02-23 Sat 17:21]
+
+
+
+
+** TODO mickey
+*** DONE impove(ui): 1.click sceneview;2.mouse scale;3.move mouse to scene tree zone;4.mouse scale;      should y-roll  scene tree!!!
+CLOSED: [2019-02-25 Mon 21:11]
+@mickey:
+should test in linux
+
+
+
+
+
+*** DONE improve(sceneTree): need x rollbar
+CLOSED: [2019-02-25 Mon 21:11]
+*** DONE feat(sceneTree): when click current sceneTree node, scroll(y scroll) to it(make it top)
+CLOSED: [2019-02-25 Mon 21:11]
+
+
+
+
+
+*** DONE support click sceneTree node to focus(refer to unity)(shortcut: f)
+CLOSED: [2019-02-25 Mon 21:11]
+
+
+*** TODO feat(pwa): add desktop icon
+
+
+*** optimize: pick sometimes very slow(in linux)
+cg cause it.
+because run too long time.
+
+restart computer can solve that...
+
+
+*** DONE fix(scene-tree): shouldn't drag wdb asset to be brother of the scene!
+CLOSED: [2019-02-25 Mon 21:11]
+
+
+
+*** DONE feat(focus): should update distance by the current scene tree node->transform->scale and geometry->vertices
+CLOSED: [2019-02-25 Mon 21:11]
+
+
+
+*** DONE fix(scroll): if open chrome debug, scroll wrong! 
+CLOSED: [2019-02-25 Mon 21:11]
+
+
+
+
+
+
+
+
+
+** DONE publish 1.0.0-beta.2
+CLOSED: [2019-02-26 Tue 10:02]
+
+*** DONE publish engine
+CLOSED: [2019-02-26 Tue 07:34]
+//e2e test
+
+
+//TODO
+
+//code climate
+
+
+//write release
+
+
+*** DONE publish editor
+CLOSED: [2019-02-26 Tue 09:49]
+
+
+
+////TODO
+
+
+//update wonder.js version
+
+
+//code climate
+
+
+//pass test
+
+
+//test publish:
+no worker
+worker
+
+
+//update online demo
+
+
+
+*** DONE write report
+CLOSED: [2019-02-26 Tue 10:02]
+
+
+
+
+
+* won't fix
+
+** fix(engine): gameView-> arcball if has parent ameObject: when mouse wheel too close, the camera will phi down(not bug)
+
+
+** TODO [#C] fix "load asset wdb"->inspector order: arcball component, cameraGroup order has change
+
+
+
+* need reproduce
+
+** fix(inspector): inspector->material: 1.create material2 asset;2.change it's color to red in asset inspector; 3.gameObject1 select material2(color is red); but the color is still not change(white?);
+
+only after:
+select other gameObject;
+select the gameObject1 back;
+
+the material color change to red!!!
+
+
+
+
+
+
+
+* 未解决的问题
+
+
+
+
+* 明日计划
+
+
+
+* 中期研究
+
+
+* TODO 未来7日计划
+
 ** TODO solve test ci
 
 ** TODO refactor: remove antd library
@@ -36,43 +727,6 @@ give report
 
 
 ** TODO publish
-
-
-
-
-
-
-
-
-
-
-
-* 完成事项
-
-
-* won't fix
-
-
-* need reproduce
-
-
-
-
-
-
-* 未解决的问题
-
-
-
-
-* 明日计划
-
-
-
-* 中期研究
-
-
-* TODO 未来7日计划
 
 
 ** TODO test work in windows

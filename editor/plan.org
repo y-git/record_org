@@ -675,56 +675,6 @@ png: rgba
 
 
 
-** TODO improve debug and test
-*** TODO debug panel(render by dom instead of imgui)
-profile can be defined in render config json!
-
-
-
-compute:
-fps
-[[http://www.cnblogs.com/coco1s/p/8029582.html][【前端性能】Web 动画帧率（FPS）计算]]
-
-render time:
-cpu time
-gpu time
-
-
-
-memory:
-cpu memory:
-total
-typeArray
-...
-
-
-gpu memory:
-total
-textures
-vertex buffers
-index buffers
-GBuffer
-
-
-frame counters:
-vertices count
-triangles count
-
-
-
-show these if setMainConfig=>showDebugPanel:true
-
-
-
-
-
-
-
-
-
-
-
-*** TODO publish: add "show debug panel" config
 
 
 
@@ -846,10 +796,178 @@ need refer to https://github.com/facebook/jest/issues/1650
 **** TODO refactor(engine): fix DrawOutlineJob->sendXXX:should return state???
 
 
+
+
+* TODO v1.0.0-release
+
+** TODO feat(stats): show debug info(use imgui to show)
+
+compute:
+fps
+[[http://www.cnblogs.com/coco1s/p/8029582.html][【前端性能】Web 动画帧率（FPS）计算]]
+
+render time:
+cpu time
+gpu time
+
+
+
+memory:
+cpu memory:
+total
+typeArray
+...
+
+
+gpu memory:
+total
+textures
+vertex buffers
+index buffers
+GBuffer
+
+
+frame counters:
+vertices count
+triangles count
+
+
+
+show these if setMainConfig=>showDebugPanel:true
+
+
+
+
+*** TODO in editor->run
+show:
+time(render, loop), fps,memory, draw call count, face count, gameObject count, 
+engine version
+...
+
+
+
+**** TODO imgui
+
+
+*** TODO in runtime
+
+
+**** TODO no worker
+
+
+
+**** TODO worker
+
+
+
+** TODO feat(publish): add more config
+
+
+*** TODO add isRoot->setting
+export scene ->root(defaultly scene is not root)
+
+*** TODO cache
+stream load/common load support wdb cache
+
+setting.json add cache field?
+"Scene201812300750"?
+
+*** TODO use stream load
+
+
+
+*** TODO debug
+open contract
+
+not compress
+
+show debug info:
+for no worker and worker
+*** TODO should store setting in localStorage?
+
+
+
+
+
+** TODO feat: MeshRenderer inspector: add "isRender" checkbox
+if gameObject is pretab, should add "isRender" checkbox to the pretab gameObject eveven if the gameObject not has
+meshRenderer!!!
+
+
+
+
+
+** TODO feat(material): support side
+
+
+*** TODO replace basicMaterial->isDepthTest to side!!!???(remove isDepthTest)
+
+
+*** TODO set gl state->side when draw gameObject(front,basic render job; draw outline job)
+
+*** TODO wdb support side
+
+*** TODO clone,dispose should work with side
+
+*** TODO picking->intersect with triangle: support side
+
+
+////*** TODO feat(asset): wdb support isDepthTest
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO add free camera
+
+
+** TODO feat: export,import add waiting modal?
+
+** TODO improve: texture inspector: show image(big size)
+
+
+** TODO fix(engine): imgui->slider: can't drag?
+
+
+** TODO fix(engine): firefox->arcball-> mouse scale not work
+
+
+
+
+
+
+
 * TODO after v1.0.0
 ** TODO [#A] UE
-*** TODO feat(picking): first select whole gameObject; if continue click the node, select next child node; then next,... then top parent; then next...
-refer to unity
+*** TODO asset->name: add "..."
+
+*** TODO decrease arcball->keydown speed??????(or not???)
+
+*** TODO improve(outline): improve cube outline!!!
+
+
+
+*** TODO fix: set format when import texture asset
+jpg rgb
+png: rgba
+
+
+*** TODO change ui
+**** TODO run-stop height change to fixed value instead of percent? (@mickey)
+
+
+
+
+*** TODO feat: add scroll bar(x, y) for sceneTree, inspector, bottom, header
+
 
 
 
