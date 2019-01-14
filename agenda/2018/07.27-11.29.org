@@ -1,4 +1,5680 @@
 * 今日计划
+** TODO fix event(master)
+only listen canvas dom
+
+
+add api, can get state/set state from custom state data
+
+
+
+*** TODO wonder-editor
+**** TODO fix editor->event
+
+
+**** TODO pass ee->arcball camera
+
+
+
+
+
+** TODO fix light material shader
+no direction,point light
+add it
+need re-init lightMaterial's shader
+
+
+
+*** TODO wonder-editor
+fix dispose "direction light" bug
+
+
+
+support dynamic add direction/point light:
+re-init shader?
+
+
+** TODO fix direction light
+use direction instead of pos
+
+
+
+
+** TODO transform
+add euler api
+
+
+
+
+** TODO publish
+
+
+
+
+
+** TODO wonder-editor
+*** TODO inspector add a canvas for show
+add engine state
+
+
+add default direction light
+
+
+**** TODO material,geometry asset->icon should be show canvas->snapshot
+material apply to sphere geometry data
+
+
+geometry apply default light material
+(use line mode instead of triangle mode)
+
+
+
+*** TODO imgui script is asset
+
+
+
+
+
+** TODO publish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* 完成事项
+** DONE fix event(master)
+CLOSED: [2018-07-27 Fri 20:14]
+//only listen canvas dom
+
+
+//add api, can get state/set state from custom state data
+
+
+
+*** TODO wonder-editor
+**** TODO fix editor->event
+
+
+**** TODO pass ee->arcball camera
+
+
+
+
+
+
+
+
+
+**** TODO for run, stop ee->arcball camera
+add stopArcballCameraController, startArcballCameraController api
+
+
+
+**** TODO rethink add camera controller component with @mickey
+for edit
+for run
+
+
+
+
+
+
+
+*** TODO fix keyboard event
+
+
+
+
+*** TODO add pointer lock?
+
+
+
+
+*** TODO prevent 
+
+
+
+
+
+
+*** TODO upgrade wonder.js version
+
+
+** DONE transform
+CLOSED: [2018-07-27 Fri 21:28]
+//add euler api
+
+
+
+
+////add round logic
+
+
+
+** DONE component
+CLOSED: [2018-07-28 Sat 09:08]
+gameObject can add all components
+(
+e.g. gameObject has camera component can also add material component
+)
+
+
+** DONE fix light material shader
+CLOSED: [2018-07-29 Sun 16:35]
+no direction,point light
+add it
+need re-init lightMaterial's shader
+
+
+*** DONE no worker
+CLOSED: [2018-07-28 Sat 13:54]
+
+
+
+////*** TODO render worker
+
+
+*** DONE wonder-editor
+CLOSED: [2018-07-29 Sun 16:35]
+//fix dispose "direction light" bug
+
+
+
+
+//update wonder.js
+
+
+
+
+
+//fix dispose "direction light" bug:
+should loopBody after dispose direction light gameObject
+
+
+
+
+
+//fix undo/redo bug
+
+
+
+
+
+
+
+//update wonder.js
+
+
+
+
+
+
+
+support dynamic add direction/point light:
+re-init shader?
+
+
+fix dispose
+
+
+set color should work!
+
+
+
+
+
+
+
+** DONE fix direction light
+CLOSED: [2018-07-29 Sun 21:35]
+use direction instead of pos
+
+
+** DONE add light count limit
+CLOSED: [2018-07-29 Sun 10:00]
+
+
+
+
+
+** DONE @mickey
+CLOSED: [2018-07-29 Sun 21:36]
+1.transform->scale:
+value shouldn't be 0
+
+
+
+
+
+
+** DONE fix event bug: if run, not loopBody
+CLOSED: [2018-07-30 Mon 09:20]
+fix
+
+add test
+
+
+
+
+update wonder.js
+
+
+
+
+
+
+
+
+
+** DONE set canvas size api
+CLOSED: [2018-08-02 Thu 08:47]
+
+
+
+** DONE imgui
+CLOSED: [2018-08-02 Thu 11:19]
+//pass coordinate
+
+
+//use injected api
+
+
+//use uncurry
+
+
+//pass import/export test
+
+
+
+** DONE add plane(grid)
+CLOSED: [2018-08-03 Fri 17:03]
+
+support draw mode: line ?
+
+*** DONE meshRenderer add modes
+CLOSED: [2018-08-02 Thus 18:17]
+//logic 
+
+
+//pass compile
+
+
+//render worker
+
+
+
+//test:
+//pass test
+
+    no worker:
+
+
+
+
+    worker:
+InitMeshRendererRenderWorkerJob
+
+
+
+
+//run test
+
+
+
+
+
+
+*** DONE wdb support mode
+CLOSED: [2018-08-03 Fri 17:03]
+add mode and basicMaterial
+
+
+//logic
+
+
+//pass compile
+
+
+test
+
+
+****  TODO import
+
+****  TODO export
+
+
+
+**** TODO test
+extra
+
+//nameMap
+
+meshRenderer
+
+basicMaterial
+
+lightMaterial
+
+
+add default material
+
+
+
+
+//convert
+
+
+//assemble
+
+
+
+
+//generate
+
+
+
+//run test:
+generate test: grid plane + one box + one direction light
+
+
+
+
+** DONE editor
+CLOSED: [2018-08-03 Fri 18:54]
+add grid plane to ee
+
+
+test
+
+
+
+** DONE fix bug: redo->buffer data wrong
+CLOSED: [2018-08-03 Fri 21:09]
+
+
+
+** DONE fix bug: truck wdb wrong
+CLOSED: [2018-08-03 Fri 22:19]
+
+
+
+
+
+
+** DONE add get all component api
+CLOSED: [2018-08-04 Sat 10:00]
+get by gameObjectRecord->component map
+
+
+*** DONE rewrite editor-> "get all lightMaterial components"
+CLOSED: [2018-08-04 Sat 10:00]
+
+
+
+
+
+** DONE refactor set current camera
+CLOSED: [2018-08-04 Sat 16:58]
+*** DONE use "basicCameraView add isActive" instead of sceneRecord->setCurrentCameraGameObject
+CLOSED: [2018-08-04 Sat 12:14]
+//logic
+
+
+//test
+
+
+
+*** DONE wdb
+CLOSED: [2018-08-04 Sat 16:58]
+//add isActive
+
+
+
+fix generate->imgui
+
+
+run test:
+test isActive
+
+test imgui
+
+
+
+** DONE add camera api
+CLOSED: [2018-08-04 Sat 18:58]
+
+////merge basicCameraView and perspectiveCameraProjection to camera component???
+
+
+merge to camera group
+(camera components)
+
+
+
+** DONE add material/meshRenderer api
+CLOSED: [2018-08-04 Sat 20:41]
+
+
+
+////** TODO increase wheel speed
+
+
+
+
+** DONE add convertWorldToScreen api
+CLOSED: [2018-08-04 Sat 22:00]
+//logic 
+
+
+//test
+
+
+//publish npm
+
+
+
+fix position bug:
+not /. w?
+
+should be lower(- y)
+
+
+when distance < , shouldn't see imgui!!!
+
+
+
+
+
+
+
+////** TODO fix imgui image size
+adjust by sqrt((x1-x2)^2 + ...)
+
+
+
+
+
+
+** DONE fix bug
+CLOSED: [2018-08-05 Sun 17:04]
+
+dispose arcball cameraController, loopBody twice
+
+
+
+fix direction/point light->isExceedMaxCount: -1
+
+
+
+
+////fix bug:
+add camera component;
+remove another camera, error
+
+
+
+////fix:
+dispose material error(if has meshRenderer)
+
+
+
+
+** DONE fix wdb->isActiveCamera
+CLOSED: [2018-08-05 Sun 16:28]
+
+
+
+
+
+
+//test generate:
+//test dispose
+
+//node extras->meshRenderer
+
+//node extras->basicCameraView
+
+
+//check:
+should only active one
+
+////basicCameraViews' count should === cameraProjections count
+
+
+
+//run test
+
+
+
+
+** DONE fix arcball cameraController
+CLOSED: [2018-08-05 Sun 16:52]
+//not bind event when init, initGameObject
+
+
+////remove warn
+
+
+
+
+
+*** DONE wdb
+CLOSED: [2018-08-05 Sun 16:52]
+add isBindEvent 
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE fix imgui
+CLOSED: [2018-08-05 Sun 19:34]
+not serialize
+
+
+not deserialize
+
+
+
+
+editor
+
+
+
+** DONE renderGroup add replaceXxx api
+CLOSED: [2018-08-05 Sun 22:13]
+
+
+
+
+
+
+** DONE fix bug
+CLOSED: [2018-08-06 Mon 12:17]
+//no geometry shouldn't render
+
+
+** DONE fix dispose,add render group bug
+CLOSED: [2018-08-06 Mon 16:19]
+
+
+
+** DONE remove BoxGeometry, only remain CustomGeometry
+CLOSED: [2018-08-06 Mon 18:50]
+//remove BoxGeometry
+
+
+//add createBoxGeometry api
+
+
+//rename CustomGeometry to Geometry
+
+
+//apply to editor
+
+
+** DONE how to use gizp?
+CLOSED: [2018-08-08 Wed 18:23]
+
+
+
+** TODO add loading progress bar
+show loading count/total count?
+or loading size/total size?
+
+
+
+add imgui control?
+show label
+
+
+
+////*** TODO image change to uint8array 
+
+
+
+
+*** DONE create 1*1 default texture uint8Array
+CLOSED: [2018-08-11 Sat 10:46]
+
+
+
+*** DONE new wdb format
+CLOSED: [2018-08-14 Tue 09:57]
+load one by one
+
+one:
+geometry + texture
+(first bind default texture; when texture loaded, replace it)
+
+
+
+
+
+//draft
+
+
+//logic
+
+
+//pass compile
+
+
+
+
+
+
+
+
+
+*** DONE pass load whole wdb(support none-stream)(pass assemble, generate test)
+CLOSED: [2018-08-15 Wed 21:01]
+
+//fix build stream-> chunkByteLength
+
+
+
+////put image bufferViews to end
+
+
+//fix bin buffer data
+
+
+
+
+
+pass test:
+//assemble
+//generate
+
+
+
+pass run test:
+//1.convert glb to wdb->load wdb:
+//a.box textured
+//b.truck
+//c.2CylinderEngine
+
+//d.AlphaBlendModeTest.glb:
+
+test data->index data
+
+
+//f.Lantern(pbr)
+
+VC.glb ? 
+
+
+////test sponza.glb
+
+
+
+
+
+
+
+//2.generate wdb->load wdb
+
+
+
+
+
+
+
+*** DONE assemble by stream(support stream) && add stream load api
+CLOSED: [2018-08-22 Wed 20:39]
+
+
+
+//put chunkLength together(remove chunkType)
+
+
+
+
+//logic
+
+
+//pass compile
+
+
+
+
+//pass run test:
+pass stream load demo
+
+
+
+
+
+
+pass test:
+test load:
+
+//BoxTextured:
+//draw count
+//set point data
+//loaded image, set source
+
+//pass run test
+
+
+
+//Truck:
+//draw count
+//set point data
+//loaded image, set source
+
+//load one/more chunk data:
+
+//add more cases!
+
+
+
+
+//run test:
+load local
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//AlphaBlendModeTest:
+draw count
+set point data
+loaded image, set source
+
+
+
+//pass run test
+
+
+
+
+
+
+
+
+//pass worker:
+BoxTextured
+Truck
+Alpha
+
+
+//run test
+
+
+
+
+
+
+
+
+//run test:
+load remote
+
+
+
+
+
+
+
+
+
+
+//BoxTextured + Truck + AlphaBlendModeTest + imgui:
+//run test
+
+
+
+
+
+
+
+
+
+
+    
+
+//pass worker
+
+
+   
+
+
+
+
+
+
+
+
+//run test:
+load remote
+
+
+
+
+
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-08-22 Wed 21:31]
+//duplicate
+
+//split files
+
+
+
+
+
+*** DONE add sphere geometry(dev branch)
+CLOSED: [2018-08-23 Thu 10:20]
+
+publish
+
+
+
+
+
+
+
+////*** TODO update wdb version in wdb->header->version
+
+
+
+
+
+
+
+
+
+*** DONE support stream fallback(load whole wdb)(e.g. in firefox)
+CLOSED: [2018-08-23 Thu 11:42]
+
+
+
+*** DONE support load whole wdb
+CLOSED: [2018-08-23 Thu 11:47]
+
+
+
+*** DONE fix: truck->use default texture?
+CLOSED: [2018-08-23 Thu 17:30]
+
+
+
+*** DONE refactor
+CLOSED: [2018-08-23 Thu 19:41]
+
+rename AssembleWDBAPI to Whole, Stream ones
+
+
+
+////*** TODO Scene1->AlphaBlendModeTest not right?
+
+
+*** DONE why Scene1 need so long time to load?
+CLOSED: [2018-08-23 Thu 19:57]
+
+
+
+*** DONE add setSceneGameObject(dev branch)
+CLOSED: [2018-08-23 Thu 20:04]
+
+
+
+
+
+*** DONE optimize
+CLOSED: [2018-08-24 Fri 21:10]
+**** DONE optimize generate->build image uint8Array
+CLOSED: [2018-08-24 Fri 18:12]
+need be more small!!!
+
+
+remove imageBase64Map?
+
+
+convert glb to wdb
+
+
+
+
+
+generateWDB accept imageUint8ArrayMap?
+
+
+
+
+
+
+
+
+**** DONE optimize convert to wdb
+CLOSED: [2018-08-24 Fri 20:23]
+
+
+
+**** DONE optimize assemble stream wdb
+CLOSED: [2018-08-24 Fri 21:10]
+
+**** DONE optimize stream load
+CLOSED: [2018-08-24 Fri 21:10]
+
+
+
+
+
+
+
+
+
+
+////*** TODO engine: add disposeGameObjectRemainComponentAssetsdata
+
+
+*** TODO fix bug: editor->inspector->remove/switch geometry component
+
+use remove(add remove) instead of dispose
+(refer to unity)
+
+
+
+*** TODO fix engine: dispose scene->camera gameObject, should unbind event and dispose basicCameraView component
+add instant dispose gameObject api
+
+
+
+
+*** DONE getXXXGameObjects
+CLOSED: [2018-08-26 Sun 12:39]
+add getXXXGameObjects(basic material, light material, geometry)???
+(return the gameObject arr which share the same one)
+
+
+
+handle remove/dispose
+
+
+
+
+*** DONE loopBody support no camera
+CLOSED: [2018-08-26 Sun 14:32]
+if no vMatrix, not render
+
+
+
+test
+
+
+run test:
+no worker
+
+
+worker
+
+
+
+////*** TODO remove geometry add more test cases
+
+
+
+*** DONE geometry name
+CLOSED: [2018-08-26 Sun 21:17]
+
+
+
+*** DONE pass convert test
+CLOSED: [2018-08-27 Mon 11:21]
+
+
+
+*** DONE update wdb(dev)
+CLOSED: [2018-08-27 Mon 14:26]
+
+
+
+////*** TODO add load all
+////load:
+1.data json
+2.imgui
+3.wdb(support multiple wdbs)
+
+
+
+*** DONE add load info
+CLOSED: [2018-08-27 Mon 19:56]
+
+
+
+//publish wonder-imgui
+
+
+//load stream wdb
+
+
+//load whole wdb
+
+
+
+//use dom to show loading info
+
+
+*** DONE pass demo
+CLOSED: [2018-08-27 Mon 20:44]
+use stream load
+//no worker
+
+//worker
+
+
+
+//improve effect:
+distance
+direction light direction
+
+
+
+////update online
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-08-27 Mon 20:51]
+remove log
+(remove stream load info)
+
+
+
+
+
+*** DONE update online demo
+CLOSED: [2018-08-27 Mon 21:25]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE merge stream to dev branch
+CLOSED: [2018-08-28 Tue 09:06]
+
+
+
+** DONE fix bug:  clone出来的GameObject没有name
+CLOSED: [2018-08-28 Tue 10:16]
+
+
+
+////** TODO fix bug:  clone gameObject once: result structure wrong!!!???
+
+
+
+** DONE not render if not add to scene?
+CLOSED: [2018-08-28 Tue 15:36]
+meshRenderer add isRender flag?
+
+
+
+** DONE fix disposeRemoveGeometry bug
+CLOSED: [2018-08-28 Tue 16:46]
+
+
+
+
+
+** DONE update editor->engine version
+CLOSED: [2018-08-29 Wed 08:17]
+
+*** TODO pass compile
+
+
+*** TODO pass u,i test
+
+
+*** TODO pass run test
+
+
+
+
+*** TODO check fix bug
+
+
+
+
+
+** DONE editor: fileReader->type: use extname instead of file.type
+CLOSED: [2018-08-29 Wed 08:36]
+
+
+
+
+** TODO fix bug:  import wdb
+*** DONE fix bug: 
+CLOSED: [2018-08-29 Wed 10:13]
+1.import wdb
+2.switch other gameObject->geometry to use the wdb->geometry twice
+
+
+error:
+expect sharable component only add to the same gameObject once, but actual not
+
+
+
+
+*** DONE fix bug: 
+CLOSED: [2018-08-29 Wed 10:55]
+1.import wdb
+
+
+the imgui become smaller!!!
+
+
+
+
+*** DONE fix bug: 
+CLOSED: [2018-08-29 Wed 10:55]
+1.import wdb
+2.undo
+
+
+imgui disappear!
+
+
+
+*** DONE fix
+CLOSED: [2018-08-29 Wed 15:41]
+
+"expect not disposed before, but actual do"
+
+
+
+
+
+add test
+
+
+fix
+
+
+
+pass test
+
+
+
+test perf->assemble
+
+
+
+
+*** DONE fix bug: use remove geometry instead of dispose geometry
+
+CLOSED: [2018-08-29 Wed 16:10]
+
+
+
+
+*** DONE fix bug: 
+CLOSED: [2018-08-29 Wed 17:22]
+1.import wdb
+2.switch other gameObject->geometry to use the wdb->geometry
+
+drawElements warn!!!
+
+
+
+*** DONE fix bug: 
+CLOSED: [2018-08-29 Wed 17:51]
+1.select cube
+2.undo
+3.import wdb
+
+ "expect isRender is true, but actual is false"
+
+
+
+
+*** DONE push
+CLOSED: [2018-08-29 Wed 17:54]
+
+
+
+
+
+
+
+
+
+
+*** DONE import asset wdb-> not set imgui func
+CLOSED: [2018-08-29 Wed 19:33]
+
+
+
+*** DONE Done should not render wdb(@mickey)
+CLOSED: [2018-08-29 Wed 17:33]
+
+
+
+
+
+** DONE editor: pass all test
+CLOSED: [2018-08-29 Wed 20:25]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////** TODO fix bug: camera gameObject add geometry + render group, not render box !!!
+
+
+
+
+
+
+
+** TODO fix scene wdb bug
+*** TODO event
+
+
+*** TODO grid
+
+
+////why only box has bug?
+
+
+////*** TODO why gameObject is black?(no light?)
+
+
+
+*** DONE need imgui after import
+CLOSED: [2018-08-31 Fri 12:47]
+
+//not add grid, edit camera to scene
+
+
+
+
+diff bug:
+////change diff when dispose scene
+
+
+
+//fix imgui-> edit camera
+
+
+//engine:
+api add getAllGameObjects, hasGameObjectBasicCameraViewComponent
+
+//editor:
+refactor GameObjectEngineService
+refactor _getSceneCameras
+
+
+
+
+//fix bind event
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE engine: imgui->light imgui position wrong when scale arcball camera(but camera imgui is correct!)
+CLOSED: [2018-08-31 Fri 13:16]
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE refactor: extract LoadFileUtils?
+CLOSED: [2018-08-31 Fri 13:20]
+
+
+
+
+
+*** DONE fix re: init ?
+CLOSED: [2018-08-31 Fri 13:23]
+
+
+*** DONE re should set scene wdb->imgui
+CLOSED: [2018-08-31 Fri 13:38]
+
+
+
+*** DONE re scene wdb->imgui size error!
+CLOSED: [2018-08-31 Fri 13:46]
+
+
+
+*** DONE change some geometry will cause warn!!!
+CLOSED: [2018-08-31 Fri 15:46]
+
+
+*** DONE refactor MaterialService->checkEditAndRunMaterialWithDiff
+CLOSED: [2018-08-31 Fri 15:49]
+
+
+
+
+
+////*** TODO run after import error
+
+
+
+
+
+*** DONE second import wdb
+CLOSED: [2018-09-03 Mon 11:49]
+**** DONE if import the same one, not work
+CLOSED: [2018-09-03 Mon 11:24]
+
+
+fix
+
+
+refactor
+
+
+
+**** DONE cancel cause error
+CLOSED: [2018-09-03 Mon 11:49]
+
+
+
+
+
+*** TODO after first import
+***** DONE add box; set position->error
+CLOSED: [2018-09-03 Mon 16:03]
+
+add test
+
+
+
+
+**** TODO test add gameObject/asset wdb after import
+
+
+
+
+
+
+
+
+////** TODO get asset geometry from scene wdb?
+
+
+
+*** DONE support undo after import(@mickey)
+CLOSED: [2018-09-03 Mon 16:12]
+
+
+
+** TODO fix load asset wdb
+*** DONE load Scene.wdb error->imgui, event bug
+CLOSED: [2018-09-03 Mon 19:42]
+
+
+//imgui->get all from scene
+
+
+//fix camera
+
+
+
+////re: change gray:
+
+
+
+////** TODO fix dispose disposeKeepOrder not dispose bug
+
+
+
+////*** TODO load the same one not work
+
+
+
+*** DONE 1.remove a after load a;2.load b;3.load a;    b become to a!!!
+CLOSED: [2018-09-04 Tue 11:26]
+
+
+
+
+
+** DONE fix direction light:
+CLOSED: [2018-09-03 Mon 21:30]
+intensity 1 not work?
+
+
+point light?
+
+
+** DONE refactor handleSceneWdb
+CLOSED: [2018-09-04 Tue 09:29]
+
+
+
+
+
+
+////** TODO fix remove asset wdb after load scene wdb,asset wdb
+
+
+** DONE fix arcball when run(@mickey)
+CLOSED: [2018-09-04 Tue 14:19]
+*** TODO change distance should refresh transform inspector
+*** TODO shouldn't change transform inspector
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE fix arcball(active) when run
+CLOSED: [2018-09-04 Tue 16:33]
+////*** TODO update ee
+update imgui->camera
+
+update inspector instantly
+
+
+////*** TODO update inspector->arcballCameraController, transform
+
+
+
+////*** TODO engine: arcball
+   when run:
+add new arcball component(with no cameraGroup)
+
+shouldn't affect current active arcball component
+
+
+
+
+** DONE support no camera?(@mickey)
+CLOSED: [2018-09-04 Tue 17:12]
+support dispose all camera gameObjects
+
+** DONE truck wdb: should has multiple geometrys instead of one(@mickey)
+CLOSED: [2018-08-31 Fri 15:53]
+
+
+** DONE finish test:mainEditorAssetHeder_loadFile_test
+CLOSED: [2018-08-30 Thu 13:38]
+@mickey
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE fix: apply asset wdb(contain camera)->should active its camera?
+CLOSED: [2018-09-04 Tue 18:58]
+now not active(so not fix)
+
+
+** TODO Q: script can get editor specific gameObjects(e.g. camera gizmo)? how to handle it?
+
+** TODO demo(verify use one engine state and one canvas+image?or canvas and use canvas.drawImage?)
+*** DONE render scene view, game view
+CLOSED: [2018-09-05 Wed 20:29]
+use render to target render scene view, game view
+
+
+
+
+
+
+
+game view need exclude grid, editCamera
+
+
+
+
+
+
+
+////**** TODO use add job
+
+
+*** DONE extend job
+CLOSED: [2018-09-05 Wed 19:33]
+add user job in json
+**** DONE user can define job in json, add register job function by js
+CLOSED: [2018-09-05 Wed 19:33]
+
+
+
+
+
+
+*** TODO fix
+**** DONE fix viewport bug!
+CLOSED: [2018-09-05 Wed 20:29]
+
+
+
+
+
+**** DONE fix projection bug
+CLOSED: [2018-09-06 Thu 21:10]
+
+***** DONE engine
+CLOSED: [2018-09-06 Thu 21:10]
+////set aspect when init camera
+
+
+
+
+***** DONE editor
+CLOSED: [2018-09-06 Thu 21:10]
+fix createCameraGroup
+
+
+
+
+fix resize?
+resize is invoked when start?
+
+set all camera projection->aspect when resize
+
+
+
+**** DONE set game view->camera->aspect???
+CLOSED: [2018-09-06 Thu 21:13]
+
+
+**** DONE increase offscreen size?
+CLOSED: [2018-09-07 Fri 10:36]
+
+
+
+
+////**** TODO fix render worker->render
+
+
+
+
+
+
+**** DONE optimize
+CLOSED: [2018-09-07 Fri 17:55]
+optimize readPixels
+
+not get imageData?
+
+
+***** DONE change to two views in one canvas instead of use readPixels!!!
+CLOSED: [2018-09-07 Fri 17:55]
+use scissor
+
+
+
+
+
+
+
+////**** TODO fix game view->viewport?
+offscreen size not related to game view canvas size???
+
+
+
+
+
+
+
+
+
+////*** TODO loopBody  should render to target
+
+
+*** DONE when run, trigger both event
+CLOSED: [2018-09-08 Sat 16:48]
+game view image bind event:
+only trigger user event(e.g. user added arcball)(need test user add event)
+
+
+scene view canvas(engine state) bind event:
+only trigger edit event(e.g. edit camera->arcball event)
+
+
+
+
+
+
+**** DONE pass test
+CLOSED: [2018-09-08 Sat 15:00]
+pass u,i test
+
+
+pass run test
+
+
+
+**** DONE switch topic(by mousedown) to switch trigger event
+CLOSED: [2018-09-08 Sat 16:49]
+add filter when init event->from dom event
+
+
+
+**** DONE test arcball event
+CLOSED: [2018-09-08 Sat 15:26]
+
+
+
+
+
+
+**** DONE test picking
+CLOSED: [2018-09-08 Sat 16:31]
+test active camera
+
+get pMatrix
+
+
+
+
+
+*** DONE fix event(demo) and initEvent job(engine job)
+CLOSED: [2018-09-08 Sat 16:48]
+**** DONE engine->refactor: remove StateDataMainService.unsafeGetStateByFunc,setStateByFunc
+CLOSED: [2018-09-08 Sat 16:46]
+
+
+**** DONE _preventContextMenuEvent not use state
+CLOSED: [2018-09-08 Sat 16:48]
+
+
+
+////*** TODO point event
+scene view: bind dom to trigger scene event
+
+
+
+game view: not change
+
+
+
+////*** TODO keyboard event
+
+scene view: exec scene dom event
+
+
+
+game view: not change
+
+
+////*** TODO bind scene view->event
+point event: event name
+
+
+keyboard event: event name
+
+
+
+
+
+////*** TODO should scale point event->mouse position, view size from game view to scene view???
+
+
+
+
+
+
+
+*** TODO make sure that exported package->event should work!
+
+
+
+
+////*** TODO need verify picking: scene view,game view size are different, should picking the target!
+
+
+
+
+
+
+
+*** TODO game view exclude scene view->gizmos
+
+
+
+
+
+*** TODO import,export
+
+
+
+
+*** TODO redo undo
+
+
+
+
+
+*** DONE DemoAPI->gl operation use DeviceManagerService
+CLOSED: [2018-09-10 Mon 11:05]
+
+////**** TODO DemoAPI->restore scissor test
+
+
+*** DONE fix gl.viewport->ffi
+CLOSED: [2018-09-10 Mon 11:13]
+use int instead of float
+
+
+*** DONE update wonder-webgl
+CLOSED: [2018-09-10 Mon 11:13]
+
+
+////*** TODO DemoAPI: all use API 
+
+
+
+
+
+
+
+*** TODO apply to editor(remain ee, re temporarily)
+
+**** DONE finish render
+CLOSED: [2018-09-10 Mon 18:26]
+
+resize need update xxxViewRect
+
+
+**** DONE add test
+CLOSED: [2018-09-11 Tue 20:52]
+//pass resize test
+
+
+prepare job:
+////if not set viewRect, not render
+not loopBody!
+
+//send uniform for imgui
+
+fix camera:
+//fix active bug
+
+//test more data(e.g. aspect)
+
+
+
+
+
+
+//fix game view->viewport bug
+
+
+//fix resize bug
+
+
+
+
+
+//fix scene view: should show imgui
+
+
+
+////add test
+
+
+
+
+
+
+//fix game view->viewport
+
+
+
+
+
+
+
+
+
+
+
+
+
+//fix game view: not has grid, edit camera
+
+
+
+
+
+////fix scene view: arcball distance?
+
+
+
+
+//fix clear color
+
+
+
+
+
+////refactor gameView test
+
+
+
+
+
+
+
+
+
+
+
+
+test more:
+//test restore job
+
+//scissor
+
+
+
+
+
+
+
+
+
+////refactor
+
+
+
+
+
+
+//pass run test
+
+
+
+**** DONE fix imgui
+CLOSED: [2018-09-11 Tue 19:36]
+
+***** DONE fix game view->imgui: should set different imgui before render scene view and render game view
+CLOSED: [2018-09-11 Tue 15:44]
+
+***** DONE add test
+CLOSED: [2018-09-11 Tue 15:44]
+
+***** DONE import scene wdb->imgui: use game view imgui function
+CLOSED: [2018-09-11 Tue 19:29]
+//fix imgui
+
+//fix active
+
+
+//pass import scene wdb:
+u,i test
+run test
+
+
+//remove "controller load scene wdb" test
+
+
+
+
+
+////***** TODO refactor scene view->imgui
+in no worker:
+remove custom data
+
+
+
+
+
+
+
+
+**** DONE run test: pass show inspector
+CLOSED: [2018-09-12 Wed 19:17]
+
+
+
+**** DONE pass camera->active related test:
+CLOSED: [2018-09-13 Thu 16:46]
+
+
+//active basicCameraView
+
+//add camera group
+
+
+//remove camera group:
+test snapshot
+
+test set last active
+
+
+
+
+
+
+//dispose camera gameObject:
+test set last active
+
+
+
+////unactive all camera:
+test snapshot
+
+
+
+
+
+
+//test load scene wdb->active
+
+
+
+//fix game view->no camera:
+load scene wdb->has no active camera
+dispose all camera
+unactive all camera
+
+
+
+
+
+
+
+
+
+
+
+
+pass u,i test
+
+
+
+pass run test
+
+
+
+
+**** DONE pass run/stop
+CLOSED: [2018-09-13 Thu 19:17]
+***** DONE fix
+CLOSED: [2018-09-13 Thu 19:14]
+
+////***** TODO active when run/stop
+
+
+
+
+
+**** DONE finish event
+CLOSED: [2018-09-14 Fri 19:04]
+
+
+
+***** DONE add test
+CLOSED: [2018-09-13 Thu 21:27]
+
+init event job:
+
+
+refactor
+
+
+
+
+
+***** DONE pass arcball
+CLOSED: [2018-09-14 Fri 18:09]
+
+
+
+
+
+//run/stop->bind event
+
+
+//test dispose:
+gameObject
+camera group
+arcballCameraController
+
+//add:
+camera group
+arcballCameraController
+
+
+
+//change active camera(has camera controller) should unbind previous one and bind current one:
+remove
+not active/active
+
+
+
+
+
+
+////pass load scene wdb->bind test
+
+***** DONE event->loopBody
+CLOSED: [2018-09-14 Fri 19:03]
+
+
+
+
+
+
+
+**** DONE test init editor job
+CLOSED: [2018-09-14 Fri 19:44]
+
+
+
+
+
+
+
+**** DONE fix import
+CLOSED: [2018-09-14 Fri 21:10]
+***** DONE pass import scene wdb
+CLOSED: [2018-09-14 Fri 20:45]
+add snapshot test
+
+
+***** DONE pass import/remove asset wdb
+CLOSED: [2018-09-14 Fri 21:10]
+
+
+
+
+**** DONE pass undo/redo
+CLOSED: [2018-09-14 Fri 21:21]
+
+
+
+
+
+**** DONE fix: bind warning
+CLOSED: [2018-09-15 Sat 08:42]
+
+////**** TODO fix: should show info in console
+
+**** DONE fix: change geometry-> remove "new geometry"?
+CLOSED: [2018-09-15 Sat 09:20]
+
+
+
+**** DONE refactor MainEditorSceneTool
+CLOSED: [2018-09-15 Sat 09:23]
+
+
+
+**** DONE pass scene tree
+CLOSED: [2018-09-15 Sat 11:09]
+
+
+
+**** DONE pass inspector
+CLOSED: [2018-09-15 Sat 11:09]
+
+
+
+**** DONE pass header
+CLOSED: [2018-09-15 Sat 11:09]
+
+
+
+
+**** DONE pass asset
+CLOSED: [2018-09-15 Sat 11:10]
+
+
+
+
+
+
+////**** TODO refactor: move controller tests
+
+////**** TODO refactor: move stateTuple->logic service to state service
+
+
+**** DONE refactor: clean TODOs
+CLOSED: [2018-09-15 Sat 11:30]
+
+
+
+
+
+**** DONE push to dev(merge @mickey)
+CLOSED: [2018-09-15 Sat 14:26]
+
+
+
+
+** DONE fix drag arcball when run: should update transform inspector
+CLOSED: [2018-09-15 Sat 15:32]
+
+
+
+
+** pass header->export test(@mickey)
+
+
+
+
+
+////** TODO fix bug: not redo/undo resize(@mickey)
+
+
+** DONE fix import scene wdb bug:
+CLOSED: [2018-09-18 Tue 19:29]
+*** DONE if wdb has no light, scene should has no light after import!!!
+CLOSED: [2018-09-18 Tue 16:10]
+
+should change glsl->light count
+
+
+
+
+
+////*** TODO import wonder-tool-converter -> dest/test.wdb: shouldn't error!!!(from zhou tao, no texture and joint)
+
+
+////** TODO fix point light: export wdb with point light; import wdb; click point light in scene tree; shouldn't error!!!
+
+
+
+** DONE fix bug: resize->should update "no camera"
+CLOSED: [2018-09-18 Tue 20:29]
+
+
+
+
+
+
+
+
+
+** DONE check export wdb && import wdb
+CLOSED: [2018-09-20 Thu 11:19]
+////*** TODO fix: 1. export scene package(has only one BoxTextured); 2.import package; shouldn't error! should has texture!!!
+
+
+
+////*** TODO fix:1. import package2; 2. import package3; select direction light;  error!
+
+
+////*** TODO export scene wdb->imgui: use game view imgui function
+
+
+*** DONE fix import asset wdb
+CLOSED: [2018-09-20 Thu 10:37]
+**** DONE wdb:direction light wdb should re-init
+CLOSED: [2018-09-19 Wed 21:13]
+reinit: clear shader cache
+
+not init when load
+init(not init material) and reinit when drag
+
+
+
+             //test1:loaded gameObject->shaderSource->light count === 2
+             //test2:origin gameObject->reinit->shaderSource->light count === 2
+             //test2:dispose origin gameObject->new gameObject after drag->shaderSource->light count === 2
+
+
+
+//fix reInitAllMaterials:
+clear shader cache
+reInit scene->all materials
+
+
+
+
+
+
+    /* TODO need refactor tests */
+
+fix: 
+direction light:
+no worker:
+create
+define light count
+send
+
+
+
+max count:
+isMaxCount
+create
+define light count
+
+
+
+
+test:
+clone
+dispose
+
+
+
+worker
+
+
+
+
+point light:
+no worker
+
+
+worker
+
+
+
+
+
+
+light->index
+
+
+light->count
+
+
+
+
+
+
+
+
+
+
+**** DONE fix: 1.import DirectionPointLightsAndBox.wdb; 2. dispose point light;   error!!!
+CLOSED: [2018-09-20 Thu 10:37]
+
+
+
+
+
+
+
+
+
+
+
+////*** TODO fix bind?
+1.bind active camera->arcballCameraController(if has) event 
+2.export
+3.unbind
+
+
+
+////*** TODO fix imgui?
+
+
+
+
+
+
+
+/*
+////** TODO event 
+
+
+////** TODO script 
+
+
+////** TODO inspector 
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE fix apply texture bug
+CLOSED: [2018-09-25 Tue 19:26]
+*** DONE fix apply texture(export,import,apply) bug
+CLOSED: [2018-09-21 Fri 10:51]
+
+
+
+
+////*** TODO 1.import truck wdb;2.apply texture to one wheel; another wheel shouldn't be affected! 
+
+
+
+*** DONE 1.import truck wdb;2.wheel should show texture!
+CLOSED: [2018-09-21 Fri 10:53]
+
+
+
+
+
+*** DONE dispose texture asset
+CLOSED: [2018-09-25 Tue 19:26]
+**** DONE dispose texture asset->need remove in engine
+CLOSED: [2018-09-22 Sat 12:38]
+need add "get texture->all basic materials/light materials who use it"
+
+
+
+update wonder.js(need public)
+
+
+////**** TODO fix 1.load asset wdb->drag: first one use the texture asset; the second one shouldn't has it!!!
+
+
+
+
+**** DONE fix 1.load asset wdb->drag: draged ones use the same texture asset; 2.remove texture asset;  should remove from all draged ones!!!
+CLOSED: [2018-09-25 Tue 19:26]
+engine:
+//material:get gameObjects
+
+//add remove material logic
+
+
+//pass compile
+
+
+
+//test:
+//pass test
+
+
+get logic:
+
+
+
+remove logic:
+remove material
+
+api->batchDisposeBasicMaterial,lightxxx
+
+
+
+
+//pass worker
+
+
+
+
+
+
+
+
+editor:
+//fix: use getGameObjects
+
+
+//fix: use remove material instead of dispose material
+
+
+//pass compile
+
+
+
+test:
+//pass all tests
+
+//u,i test
+
+//run test
+
+
+
+//publish wonder.js npm(update it in wonder-editor)
+
+
+
+** DONE fix(material): not judge geometry, add map even though has no geometry
+CLOSED: [2018-09-26 Wed 11:39]
+
+not judge texCoords?
+
+
+** DONE refactor
+CLOSED: [2018-09-26 Wed 11:55]
+
+
+
+
+
+
+
+** DONE fix setting.json: add buffer data(should big enough)
+CLOSED: [2018-09-26 Wed 12:16]
+
+
+
+** DONE fix replace material type bug: use remove instead of dispose old material
+CLOSED: [2018-09-26 Wed 15:32]
+
+
+
+////** TODO fix apply material and change asset->material->type
+
+
+extract shader module?
+so that change type shouldn't affect gameObject who share the material!!!???
+
+
+
+////** TODO feat: add get material->gameObjects (refer to geometry)???
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////** TODO more asset
+
+
+
+material
+geometry
+imgui script
+script
+...
+
+
+
+different gameObject can use the same asset
+(share the asset)
+
+
+
+asset name should be unique!
+
+
+
+basicMaterial,lightMaterial all has one name: material name
+api: getMaterialName/setMaterialName
+
+
+
+
+
+
+
+
+////*** TODO rethink meshRender and material
+remove material?
+remove meshRender?
+
+
+refer to unity!!!
+
+
+////*** TODO only has material component, which has basic/light shader
+
+
+
+
+////** TODO engine: support none material
+(can has meshRenderer)
+
+
+
+
+
+////** TODO editor: support add geometry component(default is none)
+////*** TODO engine: support add geometry component with no point data
+can render, but if has no vertices,/..., not send corresponding attributes???
+
+
+////** TODO dispose geometry/material
+not dispose geometry/material data if no gameObject use
+
+
+
+
+
+
+** DONE fix bug
+CLOSED: [2018-09-26 Wed 17:35]
+////*** TODO engine: redo-undo bug
+   operation:
+   /*
+   remove renderGroup
+   undo
+   change light material to basic material
+   */
+   
+
+select gameObject
+undo
+   change light material to basic material
+   
+
+   description:
+   draw mode change to points(should be triangles)
+   (and switch draw mode, not affect)
+*** DONE engine: create light
+CLOSED: [2018-09-26 Wed 17:32]
+
+////**** TODO engine: create < 4(should <= 4)
+
+**** DONE change direction light to point light: when > 4 lights, error
+CLOSED: [2018-09-26 Wed 17:32]
+
+
+////*** TODO engine
+1.create empty gameObject
+2.add one component
+3.run
+4.dispose the component
+5.dispose gameObject
+6.stop
+
+
+gameObject disappear!
+
+if then add one gameObject, the gameObject appear again!
+
+
+
+
+
+////*** TODO engine: MeshRendererAPI->getMeshRendererDrawMode should return type
+
+
+
+
+
+
+
+
+** DONE export .zip instead of .wonderpackage format
+CLOSED: [2018-09-26 Wed 17:45]
+
+
+** DONE change license
+CLOSED: [2018-09-26 Wed 18:09]
+
+
+
+
+
+** DONE fix: 1.export package(has one cube); 2.import it;3.drag texture to it;4.remove texture asset; error!!!
+CLOSED: [2018-09-27 Thu 18:03]
+
+
+
+
+** DONE fix: when run and has arcballCameraController and is trigger gameView event, transform inspector can't operate!!!
+CLOSED: [2018-09-28 Fri 09:03]
+
+
+
+
+
+
+** DONE fix: apply texture bug
+CLOSED: [2018-09-28 Fri 15:59]
+1.load texture asset
+2.dispose one box
+3.apply texture to scene->box->mesh
+4.undo
+5.apply texture to scene->box->mesh
+
+
+the box->texture not work!!!
+
+
+
+1.load scene.wdb
+2.load texture asset
+3.apply texture to scene->box->mesh
+4.apply texture to box(default scene)
+
+
+the box->texture not work!!!
+
+
+
+
+
+
+
+
+
+
+** TODO test import/export package
+*** DONE finish export->html,js
+CLOSED: [2018-09-28 Fri 11:47]
+
+
+*** TODO test run in local by exported package
+
+**** DONE fix bind
+CLOSED: [2018-09-28 Fri 18:29]
+1.bind active camera->arcballCameraController(if has) event 
+2.export
+
+
+bind when run in local
+
+
+
+////** TODO fix: 1.run;2.click console; error!!!(@mickey)
+
+
+
+
+test
+
+
+**** DONE add more export package test cases
+CLOSED: [2018-09-28 Fri 18:29]
+
+
+**** DONE pass all u,i tests
+CLOSED: [2018-09-29 Sat 09:49]
+
+
+////**** TODO fix viewport
+load scene wdb
+active scene camera
+export
+
+viewport bug
+
+aspect bug???
+
+refer to MainEditor.re:
+    StateEngineService.unsafeGetState()
+    |> PerspectiveCameraProjectionEngineService.markAllPerspectiveCameraProjectionsDirty
+    |> DeviceManagerEngineService.setViewport((
+         0,
+         0,
+         width |> NumberType.convertFloatToInt,
+         height |> NumberType.convertFloatToInt,
+       ))
+    |> DirectorEngineService.loopBody(0.)
+    |> StateEngineService.setState
+    |> ignore;
+  };
+
+
+
+
+
+////**** TODO fix generate file too big
+
+**** DONE update Scene.wdb(editor->test->res)
+CLOSED: [2018-09-29 Sat 12:00]
+pass load scene wdb test
+
+
+*** DONE refactor: rename data/ to config/
+CLOSED: [2018-10-02 Tue 10:25]
+
+
+*** DONE refactor:  rename _loadAndWriteDataData, ... to _xxxSingleXXX
+CLOSED: [2018-10-02 Tue 10:25]
+
+
+
+
+
+*** DONE refactor: remove name
+CLOSED: [2018-10-08 Mon 16:49]
+
+
+
+*** DONE test: pass u,i tests
+CLOSED: [2018-10-08 Mon 16:49]
+
+
+
+*** DONE pass add material
+CLOSED: [2018-10-08 Mon 17:31]
+
+
+*** DONE feat: show material inspector
+CLOSED: [2018-10-08 Mon 17:31]
+
+
+
+////*** TODO feat: remove render array
+
+
+////*** TODO feat: remove "render group" related logic
+
+
+
+
+
+
+*** DONE feat: add material asset
+CLOSED: [2018-10-17 Wed 15:02]
+**** DONE feat: edit material inspector
+CLOSED: [2018-10-10 Wed 10:18]
+***** DONE fix:select type
+CLOSED: [2018-10-09 Tue 20:37]
+
+
+
+***** DONE fix:set map
+CLOSED: [2018-10-10 Wed 10:18]
+
+
+
+
+**** DONE fix replaceRenderGroupByMaterialType
+CLOSED: [2018-10-09 Tue 19:13]
+***** DONE only re-set meshRenderer->renderArray, not replace meshRenderer
+CLOSED: [2018-10-09 Tue 19:13]
+
+
+
+**** DONE feat:select material in renderGroup 
+CLOSED: [2018-10-10 Wed 17:07]
+***** DONE modal select material
+CLOSED: [2018-10-10 Wed 12:34]
+
+
+
+
+
+***** DONE default material (can't change)
+CLOSED: [2018-10-10 Wed 15:57]
+
+
+***** DONE fix: select material can has all type materials
+CLOSED: [2018-10-10 Wed 16:34]
+
+
+
+***** DONE default scene should use default light material
+CLOSED: [2018-10-10 Wed 16:54]
+
+***** DONE add gameObject,material should use default light material
+CLOSED: [2018-10-10 Wed 16:54]
+
+
+***** DONE rename material name: shouldn't equal default material name!!!
+CLOSED: [2018-10-10 Wed 17:07]
+
+
+
+**** DONE refactor: move materialRecord to assetRecord->materialData
+CLOSED: [2018-10-10 Wed 17:19]
+
+
+
+**** DONE fix: 1:add material;2.select material  to added one; should only select added one, not select default basic material!!!
+CLOSED: [2018-10-10 Wed 17:26]
+
+
+**** DONE test
+CLOSED: [2018-10-17 Wed 15:02]
+***** DONE refactor: trigger function instead of trigger event
+CLOSED: [2018-10-13 Sat 16:49]
+****** DONE finish
+CLOSED: [2018-10-13 Sat 12:32]
+
+****** DONE refactor: remove unused code
+CLOSED: [2018-10-13 Sat 12:32]
+
+
+
+****** DONE push
+CLOSED: [2018-10-13 Sat 16:48]
+
+widge->
+isWidge->
+
+
+
+
+
+
+
+remove _engineState:
+
+AssetTreeEditorService:
+
+let isTreeNodeRelationError =
+    (targetId, removedId, (editorState, _engineState)) =>
+  AssetUtils.isIdEqual(targetId, removedId) ?
+    true :
+    _isRemovedTreeNodeBeTargetParent(
+      targetId,
+      editorState
+      |> AssetTreeRootEditorService.unsafeGetAssetTreeRoot
+      |> AssetUtils.getSpecificTreeNodeById(removedId)
+      |> OptionService.unsafeGet,
+    ) ?
+      true :
+      _isTargetTreeNodeBeRemovedParent(
+        editorState
+        |> AssetTreeRootEditorService.unsafeGetAssetTreeRoot
+        |> AssetUtils.getSpecificTreeNodeById(targetId)
+        |> OptionService.unsafeGet,
+        removedId,
+      )
+      || _isTargetTreeNodeHasSameNameChild(targetId, removedId, editorState);
+
+
+
+
+
+
+
+
+
+
+***** DONE pass u,i test
+CLOSED: [2018-10-13 Sat 16:57]
+
+
+***** DONE test add material
+CLOSED: [2018-10-16 Tue 12:21]
+
+***** DONE test edit material inspector
+CLOSED: [2018-10-17 Wed 15:02]
+
+
+
+
+
+
+***** DONE test change material
+CLOSED: [2018-10-17 Wed 15:02]
+
+////****** TODO fix and test: material inspector: 1.change type to basic; 2.select default basic material;   error!!!
+
+
+****** DONE fix and test: material inspector:  1.select added material; 2.change material inspector->type to basic; the added material should change type!!!
+CLOSED: [2018-10-16 Tue 16:00]
+
+
+****** DONE fix and test: material inspector:  1.select added material; 2.change material asset->type to basic; the added material should change type!!!
+CLOSED: [2018-10-17 Wed 08:50]
+
+
+****** DONE fix and test: update material node id map
+CLOSED: [2018-10-17 Wed 08:50]
+
+
+****** DONE fix and test: 1.remove added material;  
+CLOSED: [2018-10-17 Wed 10:38]
+should remove from select material;
+any use this material's gameObject should change to use default one;
+
+
+////****** TODO fix and test: set diffuseMap
+
+
+****** DONE fix and test: 1.remove texture(not drag before) from material assets;2.material asset->map should be removed
+CLOSED: [2018-10-17 Wed 14:39]
+
+
+
+***** DONE add redo-undo tests
+CLOSED: [2018-10-17 Wed 11:21]
+
+
+
+
+
+***** DONE test rename material name
+CLOSED: [2018-10-17 Wed 15:00]
+test "rename material name: shouldn't equal default material name!!!"
+
+
+
+////*** TODO feat: remove texture from material assets
+
+
+***** DONE refactor: rename parentNodeId to parentFolderNodeId
+CLOSED: [2018-10-17 Wed 15:01]
+
+
+
+
+*** DONE remove JSON asset type
+CLOSED: [2018-10-17 Wed 15:37]
+
+*** DONE refactor: remove assetnodeType-> postfix(material, texture, wdb, ...)
+CLOSED: [2018-10-17 Wed 15:45]
+
+
+*** DONE refactor: remove diffMap
+CLOSED: [2018-10-17 Wed 15:47]
+
+
+
+
+
+
+
+
+
+*** DONE test scale ui(with @mickey)
+CLOSED: [2018-10-17 Wed 16:12]
+
+
+
+*** DONE fix: rename material asset name twice with the same name
+CLOSED: [2018-10-17 Wed 17:19]
+
+
+
+
+
+
+
+*** DONE refactor: remove textureIndex, textureArray
+CLOSED: [2018-10-22 Mon 11:53]
+
+
+
+
+*** DONE feat: export .asb(export package)
+CLOSED: [2018-10-30 Tue 11:52]
+texture
+material
+wdb
+
+
+add version(editor)
+
+
+**** TODO editor: use imageUint8ArrayDataMap  instead of imageBase64Map(add after add generateWDB)
+editor: 
+asset->texture:
+should set uint8Array
+
+
+
+
+
+
+
+
+
+*** DONE feat: import package, relate gameObject and assets
+CLOSED: [2018-10-30 Tue 11:52]
+fix import!(now import package not work!)
+
+
+
+*** DONE write logic
+CLOSED: [2018-10-23 Tue 11:50]
+
+
+*** DONE pass compile
+CLOSED: [2018-10-23 Tue 18:03]
+
+
+
+
+*** DONE u,i test
+CLOSED: [2018-10-30 Tue 11:52]
+//pass test
+
+
+add main test:
+material: 
+    //src
+    //basic type
+
+    two materials->name:
+//a.change type->should ensure name
+//b.one textures+one materials:
+
+//pass wonder.js tests
+
+//fix stream
+
+//pass test
+
+
+//publish wonder.js version
+////update wonder.js->wdbs
+//pass tests
+
+//update wonder.js version in wonder-editor
+
+
+
+//remove Scene.wdb
+//remove test/res/wdb/*.wdb
+
+////e2e->wdb use test/res/wdb
+
+
+//c.two textures+two materials:
+
+
+
+
+//commit!
+
+
+//pass all tests
+
+
+//push
+
+
+
+
+
+//d.basic material + light material(with map):
+map not related!!!
+
+
+
+
+
+
+
+
+//geometry: 
+should has one cube!
+
+
+wonder-default-cube/sphere
+
+
+
+
+
+
+wdb: 
+
+
+
+
+
+
+//test "export/import package"->"relate scene->wdb with wdb assets->geometrys"
+
+
+
+//test "export/import package"->"relate asset->wdb with default geometrys"
+
+
+
+//test two wdbs
+
+
+
+
+
+
+//fix wdb + material + texture bug
+
+
+
+
+
+//fix: during import bug
+
+
+
+
+
+//fix: wdb name duplicate?(path duplicate???)
+
+
+
+
+//run test:
+test more wdbs
+
+
+
+
+
+////add more tests
+
+
+
+
+
+*** DONE remove basicMaterial->map
+CLOSED: [2018-10-27 Sat 19:29]
+
+//commit
+
+
+
+
+
+*** DONE run test
+CLOSED: [2018-10-30 Tue 11:52]
+
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-10-30 Tue 12:17]
+remove prints
+
+
+
+
+
+
+
+
+
+
+
+
+
+////*** DONE enhance image equal logic
+CLOSED: [2018-10-30 Tue 19:10]
+
+optimize judge base64,uint8Array equal
+
+finish logic
+
+
+commit wonder.js
+update wonder.js version
+
+
+pass test
+
+
+
+
+////*** TODO limit texture name
+
+
+
+*** DONE feat: get materials from loaded asset wdb
+CLOSED: [2018-11-01 Thu 18:53]
+
+
+**** DONE judge has material asset?
+CLOSED: [2018-11-01 Thu 18:53]
+
+*** DONE feat: get textures from loaded asset wdb
+CLOSED: [2018-11-01 Thu 18:53]
+
+
+**** DONE judge has texture asset?(judge base64,uint8Array data?)
+CLOSED: [2018-11-01 Thu 18:53]
+
+
+
+
+
+
+
+
+//finish logic
+
+
+//pass compile
+
+
+
+*** DONE fix test->drag asset tree
+CLOSED: [2018-11-02 Fri 09:25]
+
+
+
+
+*** DONE feat:add redo-undo import package
+CLOSED: [2018-11-02 Fri 10:20]
+
+
+
+
+
+*** DONE u,i test
+CLOSED: [2018-11-02 Fri 13:01]
+**** DONE test load wdb asset
+CLOSED: [2018-11-02 Fri 13:01]
+
+
+***** DONE test no material and no texture assets case
+CLOSED: [2018-11-02 Fri 13:01]
+
+**** DONE test export/import package
+CLOSED: [2018-11-02 Fri 12:48]
+***** TODO test "relate asset->wdb with material asset"
+
+
+*** DONE fix(extract): truck wdb->remove wheels->texture asset, wdb gameObject->wheels->texture should be removed from material!
+CLOSED: [2018-11-02 Fri 12:10]
+test:
+two materials use the same texture t1;
+remove t1;
+
+
+
+*** DONE fix(extract): MatBed material miss
+CLOSED: [2018-11-02 Fri 12:10]
+
+
+*** DONE fix: image data change?geometry change?
+CLOSED: [2018-11-02 Fri 12:48]
+keep texture data not change during export,import package
+
+
+
+
+*** DONE run test
+CLOSED: [2018-11-02 Fri 12:48]
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2018-11-02 Fri 14:04]
+duplicate
+
+
+too long
+
+
+
+
+
+////*** TODO optimize: select asset so slow(after load wdb asset)!!!
+log???
+
+
+
+
+
+
+
+*** DONE update online demo
+CLOSED: [2018-11-02 Fri 14:22]
+
+
+
+
+
+*** DONE feat: wpk add version
+CLOSED: [2018-11-03 Sat 11:43]
+
+
+
+
+
+
+
+
+
+*** DONE feat: add export .wdb
+CLOSED: [2018-11-03 Sat 11:57]
+
+
+
+*** DONE fix: "set export package name" not work!
+CLOSED: [2018-11-03 Sat 12:02]
+
+
+
+
+
+*** DONE fix: load scene wdb asset->light
+CLOSED: [2018-11-03 Sat 21:31]
+**** TODO fix
+
+
+
+**** TODO fix: 1.export wpk;2.import wpk;  exceed light count
+
+
+
+
+
+
+
+
+*** DONE fix wonder.js:
+CLOSED: [2018-11-03 Sat 21:22]
+**** DONE TypeArrayService: add check bound
+CLOSED: [2018-11-03 Sat 18:46]
+
+
+
+////**** TODO test
+      ~getAttribLocation=createEmptyStub(refJsObjToSandbox(sandbox^))
+                         |> returns(-1),
+      ~getUniformLocation=createEmptyStub(refJsObjToSandbox(sandbox^))
+                          |> returns(-1),
+
+
+
+
+**** DONE add buffer->direction light/point light count
+CLOSED: [2018-11-03 Sat 21:22]
+
+
+*** DONE feat: drag wdb should add check
+CLOSED: [2018-11-03 Sat 22:23]
+**** TODO check max light count
+
+
+*** fix: import package should add check
+**** TODO check max light count
+
+
+
+
+
+
+*** feat: add export/import .asb
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE feat: add publish->local zip
+CLOSED: [2018-11-04 Sun 10:46]
+**** DONE remove assets
+CLOSED: [2018-11-04 Sun 10:46]
+
+
+
+**** DONE update export
+CLOSED: [2018-11-04 Sun 10:46]
+
+
+
+*** DONE header add "publish"->"local package"
+CLOSED: [2018-11-04 Sun 10:46]
+
+
+
+
+
+
+
+
+
+
+
+*** DONE test
+CLOSED: [2018-11-04 Sun 10:46]
+
+
+
+
+*** optimize
+import scene wdb is too slow!??
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE refactor: rename textureIndex, materialComponent to texture, material
+CLOSED: [2018-10-09 Tue 11:33]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE fix stop->setUint32_1: expect not exceed bound
+CLOSED: [2018-11-04 Sun 11:33]
+
+
+
+
+*** DONE fix:load wdb
+CLOSED: [2018-11-04 Sun 20:07]
+
+
+
+
+*** DONE fix load asset: support same name
+CLOSED: [2018-11-05 Mon 17:13]
+
+https://stackoverflow.com/questions/26634616/filereader-upload-same-file-again-not-working
+
+
+
+*** DONE fix:1.load truck wdb;  shouldn't has "New Geometry"!!!
+CLOSED: [2018-11-05 Mon 19:52]
+**** DONE fix engine->assemble???
+CLOSED: [2018-11-05 Mon 19:52]
+
+**** DONE fix geometry asset
+CLOSED: [2018-11-05 Mon 19:52]
+
+
+
+*** DONE pass tests
+CLOSED: [2018-11-05 Mon 20:12]
+
+
+*** DONE fix:the asset can't has the same name
+CLOSED: [2018-11-05 Mon 20:23]
+
+
+
+
+
+*** DONE feat: change "select geometry" and "select material" show order 
+CLOSED: [2018-11-05 Mon 20:33]
+
+
+*** fix:truck remove material bug(two truck share the same material?)
+
+
+
+*** DONE finish asset->wdb, geometry related logic
+CLOSED: [2018-11-04 Sun 20:59]
+
+**** DONE pass removeNode test
+CLOSED: [2018-11-04 Sun 16:03]
+
+
+**** DONE fix:1.dispose wdb asset;  shouldn't remove cloned ones
+CLOSED: [2018-11-04 Sun 17:44]
+
+
+**** DONE fix:1.dispose wdb asset;  remove cloned ones->geometry component
+CLOSED: [2018-11-04 Sun 17:44]
+
+
+**** DONE fix:1.dispose wdb asset; select geometry should update!!!
+CLOSED: [2018-11-04 Sun 17:44]
+
+
+
+
+
+**** DONE fix:1.dispose wdb asset;  should dispose the wdb gameObject(remove material)
+CLOSED: [2018-11-04 Sun 20:59]
+
+////**** TODO fix:1.dispose gameObject; select geometry should update!!!
+
+
+
+
+
+*** DONE feat: load asset not multiple
+CLOSED: [2018-11-05 Mon 20:38]
+
+
+*** dispose material, texture asset
+
+
+////**** TODO dispose asset->texture: should remove from imageUint8ArrayMap
+
+
+
+////**** TODO test remove texture
+////***** TODO texture order
+
+////***** TODO fix: 1.load t1,t2;  remove and add? 2.drag t1,t2 to 2 boxes;3.export;4.import;     only show half!!!???
+
+
+
+
+
+
+
+
+*** fix:should dispose all current assets when import package(e.g. so basicSourceTexture->index should keep small)
+transform, basicSourceTexture
+
+
+
+
+
+*** DONE refactor AssetUtils
+CLOSED: [2018-11-05 Mon 21:55]
+**** DONE split
+CLOSED: [2018-11-05 Mon 21:55]
+
+**** DONE refactor deep remove: pass engineState
+CLOSED: [2018-11-05 Mon 21:03]
+
+
+
+*** DONE refactor service:rename state->editor->asset service
+CLOSED: [2018-11-05 Mon 22:12]
+
+
+
+
+*** DONE fix bug
+CLOSED: [2018-10-05 Fri 11:35]
+**** DONE import package with two texture assets: only has one!
+CLOSED: [2018-10-04 Thu 11:46]
+
+
+
+
+
+////**** TODO fix: 1.load t1,t2;2.drag t1,t2 to 2 boxes;3.export;4.import;     2 boxes all use t1!!!(jpg,png)
+**** DONE fix: 1.load t1(jpg);2.drag t1 to 1 boxes;3.export;4.import;     
+CLOSED: [2018-10-05 Fri 11:35]
+
+images->mimeType wrong
+
+
+_convert->images: null(convertStream
+
+
+
+
+
+engine:
+//fix toDataURL
+
+
+
+
+
+
+
+
+////**** TODO fix: test/ jpg image only show half!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////** TODO update wonder-bs-jest
+
+
+
+
+
+
+
+
+
+
+
+** DONE optimize: not loopBody when event trigger
+CLOSED: [2018-11-06 Tue 16:27]
+
+
+
+
+
+** DONE improve: expand sceneTree->arrow judge zone(@mickey)
+CLOSED: [2018-11-06 Tue 16:27]
+
+
+
+** DONE not drag wdb,gameObject to dragTree
+CLOSED: [2018-11-07 Wed 11:44]
+
+
+** DONE feat(sceneTree): add scene as root
+CLOSED: [2018-11-07 Wed 12:07]
+
+
+** DONE fix: drag wdb to folder
+CLOSED: [2018-11-07 Wed 12:36]
+
+
+** DONE support drag to scenetree->treeNode
+CLOSED: [2018-11-07 Wed 14:09]
+
+
+** DONE test
+CLOSED: [2018-11-07 Wed 14:09]
+////drag gameObject to Scene
+////drag wdb to Scene
+
+drag wdb to sceneTree node
+
+
+** DONE fix apply asset wdb-> drag zone
+CLOSED: [2018-11-07 Wed 14:09]
+*** DONE support drag to scene view
+CLOSED: [2018-11-07 Wed 11:34]
+
+
+*** DONE redo-undo
+CLOSED: [2018-11-07 Wed 11:34]
+
+*** DONE test
+CLOSED: [2018-11-07 Wed 11:34]
+
+
+*** DONE refactor: extract MainEditorCanvas ui
+CLOSED: [2018-11-07 Wed 11:34]
+
+
+** DONE fix apply asset wdb: should remain other applied wdb->folded
+CLOSED: [2018-11-07 Wed 17:22]
+
+
+** DONE feat(sceneTree): default should be folded
+CLOSED: [2018-11-07 Wed 17:31]
+
+
+
+
+
+** DONE fix import package/scene wdb: scenetree,asset tree should all be->folded
+CLOSED: [2018-11-07 Wed 17:58]
+
+
+
+** DONE fix ui: 1.drag wdb to scene tree->check 2.warn(light count)  scene tree shouldn't be drag state!
+CLOSED: [2018-11-07 Wed 18:03]
+
+
+
+
+
+** DONE fix select scene tree->Scene
+CLOSED: [2018-11-07 Wed 17:57]
+
+
+
+** DONE fix: asset tree->isShowChildren refer to sceneTree
+CLOSED: [2018-11-07 Wed 19:18]
+
+
+
+
+** DONE refactor: rename export/ to publish/
+CLOSED: [2018-11-08 Thu 09:18]
+
+
+
+
+
+
+
+
+
+
+
+** DONE optimize drag wdb to scene
+CLOSED: [2018-11-08 Thu 09:42]
+more and more slower when already drag much wdbs
+(use WonderPackage 27 to test)
+
+
+
+** DONE add isDebug
+CLOSED: [2018-11-08 Thu 10:46]
+*** DONE production->editor->isDebug should be false
+CLOSED: [2018-11-08 Thu 10:46]
+
+
+*** DONE publish->engine->isDebug should be false
+CLOSED: [2018-11-08 Thu 10:46]
+
+
+
+
+** DONE optimize reInit lightMaterials
+CLOSED: [2018-11-08 Thu 13:13]
+
+
+
+
+
+
+
+
+////** fix redo-undo->dispose gameObject: should only one step, but actually two steps!
+
+
+** DONE fix: texture, material asset inspector: 1.change name; 2.click view;   name shouldn't restore!!!
+CLOSED: [2018-11-08 Thu 16:30]
+
+
+** DONE fix: set texture inspector->wrap,filter not work(engine)???
+CLOSED: [2018-11-08 Thu 18:10]
+need re-update
+
+
+
+
+
+** DONE fix: texture inspector: limit wrapS,wrapT, magFilter, minFilter range(get from editor)
+CLOSED: [2018-11-09 Fri 08:23]
+
+
+
+
+
+
+
+** DONE fix: use WonderScene (13): add 4; export,import->light count
+CLOSED: [2018-11-09 Fri 10:19]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE optimize: optimie MainEditorAssetChildrenNode->render->texture
+CLOSED: [2018-11-09 Fri 10:56]
+fix: use WonderScene (13): select asset->texture too slow;  
+
+
+
+
+
+
+** DONE fix: loading
+CLOSED: [2018-11-09 Fri 12:06]
+*** TODO for stream loading: should show scene when loading
+
+
+*** TODO for whole loading: should not show scene when loading(keep current)
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE fix bug: transform->rotation:direction light x:-45  y:180 z:0; loop;  rotation is change!!!
+CLOSED: [2018-11-10 Sat 09:30]
+
+
+playcanvas also has this problem:
+https://forum.playcanvas.com/t/setting-localeulerangle-to-180-but-when-getting-it-is-a-different-number/3506
+
+
+
+
+
+
+** fix: local zip: viewport is bigger then game view
+not bug.
+
+
+
+
+
+
+
+
+
+** DONE refactor: extract MainEditorSceneTreeBody
+CLOSED: [2018-11-10 Sat 19:12]
+
+
+
+** DONE fix: console
+CLOSED: [2018-11-12 Mon 11:03]
+*** DONE fix console->"if warn in MainEditorBottomComponents ui, will trigger recursive warn"
+CLOSED: [2018-11-10 Sat 12:55]
+
+
+*** DONE write console test
+CLOSED: [2018-11-10 Sat 19:00]
+
+*** DONE pass all tests
+CLOSED: [2018-11-10 Sat 19:03]
+
+
+*** DONE error should show message
+CLOSED: [2018-11-10 Sat 20:01]
+e.g.  AssetHeaderUtils->_handleSpecificFuncByTypeAsync
+
+**** DONE fix load asset: if not wdb/image,  should give error message
+CLOSED: [2018-11-10 Sat 20:01]
+
+
+
+
+
+////*** TODO fix trace in firefox
+
+
+
+
+
+*** DONE refactor: ConsoleUtils: use editorState instead of root
+CLOSED: [2018-11-10 Sat 20:01]
+
+
+*** DONE fix: warn->rename not count?
+CLOSED: [2018-11-10 Sat 20:34]
+
+
+*** DONE fix: relation error->warn: only trigger when drop
+CLOSED: [2018-11-10 Sat 20:42]
+
+
+
+
+
+*** DONE fix: red circle should include all infos?
+CLOSED: [2018-11-10 Sat 20:45]
+
+*** DONE fix: can't see the whole last console info
+CLOSED: [2018-11-10 Sat 21:40]
+
+
+*** DONE fix error info format:
+CLOSED: [2018-11-10 Sat 22:10]
+"\n Error:\n\n title\n handleSpecificFuncByType\n\n description\n the load file type is error\n\n reason\n \n\n solution\n \n\n params\n \n\n "
+
+use newline;
+...
+
+
+
+*** support chinese info
+
+
+
+*** DONE feat: simplify error,fatal message
+CLOSED: [2018-11-10 Sat 22:39]
+
+
+
+*** fix: red circle: warn by ConsoleUtils.warn should add one count!!!(e.g. max light count limit)
+
+
+
+*** DONE fix: ui->bottom->projection,console button is too wide(and need align center)
+CLOSED: [2018-11-10 Sat 21:40]
+
+
+
+*** DONE if info is too long, should show align roll bar? or break line?
+CLOSED: [2018-11-10 Sat 21:40]
+
+
+
+
+*** DONE fix: remove unused trace stack info
+CLOSED: [2018-11-10 Sat 23:12]
+
+
+
+
+
+
+
+*** DONE fix: if no unread message, not show unread count
+CLOSED: [2018-11-11 Sun 07:13]
+
+
+
+
+
+*** DONE use error instead of fatal in editor
+CLOSED: [2018-11-11 Sun 07:53]
+
+
+
+
+
+
+*** DONE all should use ConsoleUtils
+CLOSED: [2018-11-11 Sun 08:07]
+
+
+
+
+
+
+
+
+
+
+*** DONE feat: add debug, info icon(@mickey)
+CLOSED: [2018-11-12 Mon 10:58]
+
+*** DONE feat: remove message->type info
+CLOSED: [2018-11-12 Mon 11:03]
+
+
+
+** DONE refactor: rename handleEngineState
+CLOSED: [2018-11-11 Sun 08:08]
+
+////** TODO fix: loading(editor, publish): remove animate(show name)
+
+
+
+
+
+
+** DONE optimize
+CLOSED: [2018-11-12 Mon 10:33]
+*** DONE optimize export 
+CLOSED: [2018-11-12 Mon 10:14]
+**** TODO optimize first export 
+////optimize write buffer
+
+
+////optimize convert base64 to uint8Array
+
+
+
+**** DONE optimize second export (add cache)
+CLOSED: [2018-11-12 Mon 10:14]
+
+test
+
+*** optimize import 
+
+
+
+
+
+
+** fix:sceneTree->cloned wdb order change!
+
+
+
+
+** DONE refactor(editor): unify cube and box
+CLOSED: [2018-11-12 Mon 10:41]
+*** DONE refactor: rename "Box" to "Cube"
+CLOSED: [2018-11-12 Mon 10:41]
+
+
+
+
+
+
+** DONE fix: 1.change to basic material type; 2.name shouldn't change
+CLOSED: [2018-11-12 Mon 11:40]
+
+
+** DONE fix: 1.change name;2.change to basic material type; 3.name shouldn't change
+CLOSED: [2018-11-12 Mon 11:40]
+
+
+** DONE test: MainEditorConsole_test add debug case
+CLOSED: [2018-11-12 Mon 11:42]
+
+
+
+
+** DONE fix: ui
+CLOSED: [2018-11-12 Mon 13:14]
+
+
+
+
+*** DONE refactor: rename material inspector->"shader" to "type"
+CLOSED: [2018-11-12 Mon 11:08]
+
+
+
+*** DONE fix: header css
+**** DONE fix: ui->edit-> show problem
+CLOSED: [2018-11-12 Mon 12:04]
+
+
+**** DONE fix: ui->publish: need wide!
+CLOSED: [2018-11-12 Mon 12:04]
+
+
+
+*** DONE fix: modal css
+CLOSED: [2018-11-12 Mon 12:18]
+
+
+
+*** DONE fix: ui->scene tree: 1.open chrome panel;2.close it;  shouldn't show roll bar!!!
+CLOSED: [2018-11-12 Mon 13:14]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////** fix: transform inspector: 1.selection x; 2.keep mousedown to game view, scene view;   selection cancel!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** fix: path not duplicate should add contract check when import?(shouldn't be duplicate?)
+
+
+
+
+
+
+
+
+** DONE fix react-dom.development.js:512 Warning: Can't call setState (or forceUpdate) on an unmounted component. 
+CLOSED: [2018-11-12 Mon 18:02]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE design logo, icon
+CLOSED: [2018-10-02 Tue 10:47]
+
+
+** DONE loading should show logo
+CLOSED: [2018-10-02 Tue 12:41]
+
+
+pass test
+
+
+** DONE editor add loading
+CLOSED: [2018-10-02 Tue 12:48]
+
+
+
+** DONE fix: pass render worker
+CLOSED: [2018-10-02 Tue 18:23]
+
+
+** DONE update online with icon, logo
+CLOSED: [2018-10-02 Tue 18:55]
+
+//update wdb
+
+update editor, engine
+
+
+fix title to wonder technology
+
+
+update demo(with logo)
+
+
+
+
+
+** DONE feat:separate material, shader(so only need replace shader, no need to copy material data to new material!)
+CLOSED: [2018-10-01 Mon 18:53]
+
+
+////pass material type
+
+//add test case
+
+
+//add "remove map"
+
+//publish wonder.js version
+
+
+//finish wonder-editor changes
+
+
+
+
+
+
+** DONE improve drag sceneTreeNode/assetTree node
+CLOSED: [2018-11-12 Mon 23:04]
+description
+1.drag over node1 to node2;
+2.drag move left and right over node2(trigger drag leave and enter);
+
+
+can't drag drop into node2!!!
+
+
+
+*** DONE refactor: remove drag ul
+CLOSED: [2018-11-12 Mon 23:04]
+
+
+
+
+
+** fix: pass run in firefox
+(not support firefox in editor!!!)
+
+*** DONE scene tree roll bar
+CLOSED: [2018-11-12 Mon 20:06]
+*** TODO can't drag wdb asset to scene tree
+*** TODO ......
+
+
+
+** check: didMount order(refactor "none"?)
+
+
+
+
+
+
+** DONE fix: tree->overflow x
+CLOSED: [2018-11-13 Tue 09:30]
+
+
+
+
+** DONE feat:asset wdb
+CLOSED: [2018-11-13 Tue 10:19]
+*** DONE add "convert glb to wdb"
+CLOSED: [2018-11-13 Tue 10:19]
+
+
+*** DONE console error
+CLOSED: [2018-11-13 Tue 10:19]
+
+
+*** add "convert gltf to glb to wdb"?
+
+
+
+
+
+
+
+
+
+
+
+** DONE fix: sceneTree: can't click when click near border
+CLOSED: [2018-11-13 Tue 10:29]
+
+
+
+
+
+** DONE fix: import 59 package
+CLOSED: [2018-11-13 Tue 10:57]
+
+
+** TODO optimize: (59)
+*** DONE run
+CLOSED: [2018-11-13 Tue 12:49]
+
+*** DONE event
+CLOSED: [2018-11-13 Tue 12:49]
+
+
+*** DONE stop
+CLOSED: [2018-11-13 Tue 12:49]
+
+
+*** DONE sceneTree
+CLOSED: [2018-11-13 Tue 18:40]
+
+*** DONE assetTree
+CLOSED: [2018-11-13 Tue 18:40]
+
+
+*** DONE import package
+CLOSED: [2018-11-14 Wed 21:42]
+**** DONE optimize relate
+CLOSED: [2018-11-13 Tue 22:03]
+
+**** DONE optimize dispose assets
+CLOSED: [2018-11-14 Wed 21:42]
+
+engine add api:
+dispose image->texture->material->geometry
+
+dispose asset node map whole instead one by one
+
+editor:
+add "get geometry assets" function
+
+
+
+
+
+
+
+//pass tests!!!
+
+
+
+
+***** DONE test:add more geometry test cases
+CLOSED: [2018-11-14 Wed 16:15]
+
+
+
+
+
+***** TODO add dispose material component
+
+
+***** TODO test:add dispose editor state cases(e.g. node Map)
+
+
+
+
+***** TODO test:add more material test cases
+//test: add show select material group test case!
+test: material has no gameObject
+
+
+////**** TODO optimize refresh?
+
+
+** DONE fix: 1.import package 61;2.remove wdb;3.undo;   not work!!!
+CLOSED: [2018-11-15 Thu 09:57]
+
+
+
+
+** DONE refactor: rename AssetMaterialNodeMapLogicService to MaterialNodeMapLogicAssetService
+CLOSED: [2018-11-15 Thu 10:01]
+
+** DONE feat: asset children: sort by name
+CLOSED: [2018-11-15 Thu 10:54]
+
+** DONE feat: asset tree: sort by name
+CLOSED: [2018-11-15 Thu 11:19]
+
+////** TODO feat: scene tree: sort by name
+
+** DONE feat: select material: sort by name
+CLOSED: [2018-11-15 Thu 11:39]
+
+** DONE feat: select geometry: sort by name
+CLOSED: [2018-11-15 Thu 11:48]
+
+
+** DONE test: pass all tests
+CLOSED: [2018-11-15 Thu 11:53]
+
+
+
+
+** DONE test more glb
+CLOSED: [2018-11-16 Fri 16:24]
+Predator_s.glb
+
+
+*** DONE support UNSIGNED_INT
+CLOSED: [2018-11-15 Thu 17:56]
+**** TODO whole
+**** TODO stream
+
+*** DONE test assemble->geometrys(whole, stream),materials+texture+image(whole, stream)
+CLOSED: [2018-11-15 Thu 17:56]
+
+
+
+
+
+*** TODO out.glb
+
+
+
+*** TODO out (1).glb
+
+
+
+** DONE fix:should catch assemble fatal !!!
+CLOSED: [2018-11-16 Fri 06:43]
+
+
+
+** DONE fix: inspector->transform: support input 0->.->0->1
+CLOSED: [2018-11-16 Fri 07:04]
+
+
+
+
+////** TODO fix: assemble->gameObject has no name: add default name?
+e.g. out(8).glb
+
+
+** DONE load wdb asset error: need undo
+CLOSED: [2018-11-16 Fri 08:21]
+
+
+** DONE fix: import package error: need undo
+CLOSED: [2018-11-16 Fri 11:39]
+
+
+
+
+
+** DONE fix: load asset type error(wpk): should console
+CLOSED: [2018-11-16 Fri 11:58]
+
+
+
+** DONE fix:1.load wdb asset;2.remove wdb gameObject->map;3.add empty gameObject;4.undo;add emptyGameObject
+CLOSED: [2018-11-16 Fri 12:43]
+warning: Encountered two children with the same key
+
+** DONE fix: fix gameObject/cube redo-undo
+CLOSED: [2018-11-16 Fri 12:43]
+
+
+
+** DONE refactor: rename addBox to addCube
+CLOSED: [2018-11-16 Fri 12:45]
+
+
+** DONE fix: texture asset->cache miss after load new wdb asset?
+CLOSED: [2018-11-16 Fri 13:06]
+
+
+
+
+
+** DONE fix: publish: need stop?
+CLOSED: [2018-11-16 Fri 16:02]
+
+
+
+** DONE fix: change texCoord_1 debug to warn
+CLOSED: [2018-11-16 Fri 16:24]
+
+
+
+
+
+
+
+
+** DONE feat: geometry->indices: add support uint32Array, uint8Array
+CLOSED: [2018-11-17 Sat 08:59]
+support UNSIGNED_SHORT, UNSIGNED_INT
+
+
+
+
+
+
+fix convert(whole, stream)
+
+fix get/set indices
+
+fix draw
+
+
+
+
+
+test:
+//detect->extension
+
+//assemble
+
+//generate
+
+//render(normal, ////batch, ////instance)
+
+//geometry->compute normals
+
+//stream load
+
+
+//redo undo
+
+
+//reallocate geometry data
+
+
+//renderWorker->render(include send indicesTypeMap)!!!
+
+
+//pass all tests
+
+
+
+
+
+
+
+
+
+//run test(no worker, worker)(whole, stream)(generate:export,import):
+test AlphaModelTest.glb
+test by Predator_s.glb from https://sketchfab.com/models/3921d70ad5dd45d1861a1cdd9c49a228
+
+
+
+
+//update benchmark->worker->pipelines
+
+
+
+
+//update wonder.js version
+
+//update wonder-editor
+
+
+//update publish->wd.min.js
+
+
+
+
+
+
+
+
+
+
+** DONE optimize: redo-undo,remove map from material(out(9).glb)
+CLOSED: [2018-11-17 Sat 12:52]
+two bugs:
+first: set dirty to false when copy?
+
+
+load new wdb
+
+
+
+////not copy when not dirty???
+
+
+
+
+
+*** DONE optimize undo
+CLOSED: [2018-11-17 Sat 12:52]
+
+
+*** DONE optimize redo
+CLOSED: [2018-11-17 Sat 12:52]
+
+
+*** DONE if no step, not refresh
+CLOSED: [2018-11-17 Sat 12:52]
+
+
+
+
+
+*** DONE remove dead state?
+CLOSED: [2018-11-17 Sat 12:52]
+
+
+
+
+
+
+
+
+** DONE feat(asset): support load gltf zip
+CLOSED: [2018-11-17 Sat 21:54]
+
+
+test:
+pass u,i test
+
+
+pass run test
+
+
+** DONE console: ui: log,info,warn should break line
+CLOSED: [2018-11-17 Sat 22:01]
+
+
+
+
+** DONE publish not stop should warn
+CLOSED: [2018-11-18 Sun 07:37]
+
+
+
+** DONE fix: load Printer.glb error
+CLOSED: [2018-11-18 Sun 07:52]
+
+
+** DONE update online demo
+CLOSED: [2018-11-18 Sun 21:40]
+
+
+
+
+
+
+
+** DONE add css.map
+CLOSED: [2018-11-19 Mon 09:45]
+
+
+
+** DONE fix: inspector: change material type shouldn't rename
+CLOSED: [2018-11-19 Mon 10:58]
+
+
+
+
+
+////** TODO fix: relate material bug
+
+
+
+** DONE fix: support texCoord_1(give warn and not use it )
+CLOSED: [2018-11-19 Mon 11:43]
+should only warn once
+
+
+
+
+
+
+
+
+** DONE check why not show geometry
+CLOSED: [2018-11-19 Mon 11:29]
+
+geometry is too small that can't see!
+
+
+
+
+
+
+
+** DONE use index.min.js to test
+CLOSED: [2018-11-19 Mon 11:45]
+
+
+
+
+
+////** TODO optimize: remove map from material?
+
+
+
+
+
+
+////** TODO feat(publish): add "open contract check", "show debug info", "use multi thread"
+** DONE feat(publish): add "useWorker" setting
+CLOSED: [2018-11-19 Mon 19:00]
+
+
+** DONE fix: maybe has no camera in game view when refresh/import package
+CLOSED: [2018-11-19 Mon 19:18]
+
+
+
+** DONE ue
+CLOSED: [2018-11-19 Mon 21:30]
+
+*** DONE fix:sceneTree->border
+CLOSED: [2018-11-19 Mon 20:24]
+
+
+
+*** DONE fix(ui):material->diffuseMap:  when move out, border is disappear!
+CLOSED: [2018-11-19 Mon 20:30]
+
+
+
+*** DONE fix:console->fatal->text should vertical center
+CLOSED: [2018-11-19 Mon 20:34]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE change box size
+CLOSED: [2018-11-19 Mon 21:17]
+*** DONE change arcball distance,speed,...
+CLOSED: [2018-11-19 Mon 21:17]
+*** DONE change grid plane size
+CLOSED: [2018-11-19 Mon 21:17]
+*** DONE change default scene-> direction light rotation
+CLOSED: [2018-11-19 Mon 21:17]
+
+
+
+*** DONE pass all tests
+CLOSED: [2018-11-19 Mon 21:17]
+
+
+
+
+*** DONE expand engine->setting.json->buffer
+CLOSED: [2018-11-19 Mon 21:30]
+
+
+
+
+
+
+
+** DONE optimize(memory): redo-undo
+CLOSED: [2018-11-23 Fri 11:57]
+*** DONE copy geometry
+CLOSED: [2018-11-20 Tue 10:59]
+//add copied points
+
+
+////not copy&&restore and remove copied points!!!???
+(need test reallocate geometry)
+
+
+
+*** DONE optimize deepCopy all typeArrays(material, transform, ...)
+CLOSED: [2018-11-21 Wed 05:51]
+add copied points:
+//transform
+//light material
+
+
+
+////*** TODO change gameObjectRecord, transformRecord -> maps to immutable
+
+*** DONE optimize gameObjectRecord, transformRecord -> maps: add flag to mark is dirty?
+CLOSED: [2018-11-21 Wed 05:22]
+
+//meshRendererRecord:
+  basicMaterialRenderGameObjectMap: renderGameObjectMap,
+  lightMaterialRenderGameObjectMap: renderGameObjectMap,
+  gameObjectMap,
+
+*** DONE restore  transform,material -> typeArrays
+CLOSED: [2018-11-21 Wed 21:08]
+
+
+*** DONE optimize geometry->typeArrays
+CLOSED: [2018-11-21 Wed 21:08]
+//reset to e10cece and commit new
+
+
+//remove material->groupMap
+
+
+//remove isPointDataDirtyForRestore
+
+
+
+
+
+
+*** DONE test: reallocate geometry
+CLOSED: [2018-11-22 Thu 11:28]
+test memory after dispose VC(trigger reallocate)
+
+
+
+//pass editor test:
+undo
+undo, redo
+
+
+////pass run test
+
+
+
+//rename ToNewBuffer to ToBuffer
+
+
+
+
+
+////engine: 
+not reset infos when dispose;
+not copy and restore infos;
+hasGeometryXXX->isAlive
+
+
+////add geometry point "immutable" test case
+
+
+
+
+
+
+*** TODO pass editor tests
+//rename: ToDeepCopyState
+
+
+
+*** TODO optimize copy editor state
+////remove component type map?
+
+
+
+
+////*** TODO optimize copy ui state
+scene tree node->tree children
+
+if not show children, not render?
+
+
+
+
+
+
+////*** TODO optimize: decrease disposeCount(for editor)
+test memory after dispose VC(trigger reallocate)
+
+
+
+
+
+
+
+
+
+*** DONE fix(redo-undo): run:
+CLOSED: [2018-11-23 Fri 10:06]
+////**** TODO shouldn't loopBody when run
+////**** TODO shouldn't undo to the state before run when run?
+
+
+////** TODO fix(redo-undo): undo after run.  should stop loop
+
+**** DONE undo to the state before run shouldn't stop run
+CLOSED: [2018-11-23 Fri 10:06]
+
+
+
+*** optimize redo-undo stack
+
+**** remove dead state(added when run) when stop
+
+
+**** remove dead state when not run
+
+
+
+
+*** DONE add editor->setting.json: max redo-undo stack size(default is 50)
+CLOSED: [2018-11-23 Fri 11:56]
+
+
+
+////*** TODO select not redo-undo(sceneTree node, assetTree node, asset children node)
+
+
+
+
+** DONE fix(ui): header->file: remove ctrl+z info
+CLOSED: [2018-11-23 Fri 12:00]
+
+
+
+
+////** TODO fix: load elf_girl, three-storey_house: three-storey_house->texture not be load and its material use girl texture!!!
+
+
+
+
+** DONE publish->loading: 100%
+CLOSED: [2018-11-23 Fri 13:46]
+
+
+
+** DONE update online demo
+CLOSED: [2018-11-23 Fri 13:46]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE demo: add demo scene(.wpk)
+CLOSED: [2018-11-23 Fri 13:46]
+
+*** TODO export package,scene
+
+*** TODO publish local and test perf
+
+
+
+** DONE fix:index.html->no sharedArrayBuffer
+CLOSED: [2018-11-24 Sat 07:47]
+
+
+
+
+
+** DONE fix: texture:judge image data
+CLOSED: [2018-11-24 Sat 09:19]
+
+
+
+** DONE optimize: export package
+CLOSED: [2018-11-24 Sat 19:46]
+
+//optimize write buffer
+
+//optimize _writeBinBufferByBufferViewData
+
+
+
+//fix judge asset->equal->name
+
+
+
+
+
+wpk->sceneWDB,asb should remove duplicate asset wdb data(related)
+
+
+
+
+** DONE fix:ui->header: can't close menu after import package(under linux)
+CLOSED: [2018-11-24 Sat 20:08]
+
+
+
+
+** DONE fix:dispose camera->parent gameObject
+CLOSED: [2018-11-24 Sat 21:25]
+
+
+** DONE feat: change cube->scale to 1; change BoxGeometry->vertices to -0.5 - 0.5
+CLOSED: [2018-11-24 Sat 21:33]
+
+
+** DONE feat: expand gridplane
+CLOSED: [2018-11-24 Sat 21:42]
+
+
+** DONE wide header
+CLOSED: [2018-11-24 Sat 21:45]
+
+
+** DONE update online demo
+CLOSED: [2018-11-24 Sat 21:49]
+
+fix:ui->header: can't close menu after import package(under linux)(need confirm)
+
+
+
+** DONE test: add case
+CLOSED: [2018-11-25 Sun 06:02]
+
+
+
+
+
+** DONE fix(ui): fix select material,geometry(line break?)
+CLOSED: [2018-11-25 Sun 07:50]
+
+
+** DONE fix: import package,... load detect position
+CLOSED: [2018-11-25 Sun 07:53]
+
+
+** DONE fix: click header
+CLOSED: [2018-11-25 Sun 08:02]
+
+
+
+
+** DONE update online demo
+CLOSED: [2018-11-25 Sun 08:05]
+
+
+** DONE fix: remove healer wdb may affect my_little_xxx!!??
+CLOSED: [2018-11-25 Sun 12:02]
+1.import DemoScene1.wpk
+2.import my_little_pony_dream_house.zip 
+3.drag it to scene
+4.import healer_houseshop_crazy_pumpkin.zip
+5.remove healer_houseshop_crazy_pumpkin wdb asset
+
+
+scene->my_little_pony_dream_house not render!!!
+(
+but its gameObjects still has geometrys;
+the geometrys' points not change;
+the geometrys' vbo buffer not channge;
+)
+
+
+
+
+
+*** DONE fix: wonder.js->remove geometry-> disposedIndexMap
+CLOSED: [2018-11-25 Sun 12:02]
+
+
+
+** DONE optimize memory 
+CLOSED: [2018-11-25 Sun 12:42]
+editor: should reallocate geometry when has not enough points space
+
+
+
+
+
+** DONE fix: select geometry,material->title css
+CLOSED: [2018-11-25 Sun 15:31]
+
+
+
+** DONE fix: drag wdb->image
+CLOSED: [2018-11-25 Sun 15:53]
+
+
+
+
+** DONE expand camera->fovy
+CLOSED: [2018-11-25 Sun 16:09]
+
+
+
+
+** DONE source is too large:1.load wdb to cause it;2.export;3.import
+CLOSED: [2018-11-26 Mon 13:45]
+*** DONE optimize wpk: 1.not store asb->geometry data to wdb;2.import wpk->relate scene wdb and assets in assemble!
+CLOSED: [2018-11-26 Mon 13:45]
+
+
+
+*** DONE optimize wpk: geometry+images
+CLOSED: [2018-11-26 Mon 13:45]
+
+
+
+*** DONE refactor: wonder.js: remove log comment
+CLOSED: [2018-11-26 Mon 13:48]
+
+
+
+*** DONE test
+CLOSED: [2018-11-26 Mon 13:48]
+
+
+
+
+
+
+
+
+** DONE point light not work after import package
+CLOSED: [2018-11-26 Mon 18:07]
+
+
+
+** DONE pass all tests
+CLOSED: [2018-11-26 Mon 18:07]
+
+
+
+** DONE import package
+CLOSED: [2018-11-26 Mon 20:13]
+*** DONE not redo-undo
+CLOSED: [2018-11-26 Mon 19:58]
+
+
+
+*** DONE 1.undo;2.dispose assets;3.reallocate(10%);4.import;  if success, clear redo-undo stack; else, undo;
+CLOSED: [2018-11-26 Mon 19:58]
+
+
+
+*** DONE test
+CLOSED: [2018-11-26 Mon 19:58]
+
+
+
+
+
+
+
+*** optimize import
+
+
+
+** DONE fix: publish bug
+CLOSED: [2018-11-27 Tue 08:48]
+
+
+
+
+
+
+** DONE demo scene3: room scene
+CLOSED: [2018-11-27 Tue 10:16]
+
+
+
+
+
+
+
+
+
+
+
+
+** optimize
+*** optimize local package(run in browser)
+
+
+*** optimize demoScene2*7
+
+
+
+
+
+
+
+
+
+** optimize: why bedroom so slow???
+
+
+
+
+
+
+
+
+** DONE refactor: rename Wdb to WDB(@mickey)
+CLOSED: [2018-09-15 Sat 16:02]
+
+
+
+
+** DONE fix test(@mickey)
+CLOSED: [2018-09-15 Sat 16:03]
+
+*** DONE test:watch will trigger bsb:watch
+CLOSED: [2018-09-15 Sat 16:03]
+
+*** DONE test all cases takes too long time!(optimize)
+CLOSED: [2018-09-15 Sat 16:03]
+
+
+
+
+
+
+
+** TODO pass e2e test
+update data json
+
+
+////update wonder-converter-tool
+
+////update all wdb
+
+
+direction light use rotation instead of position
+
+
+arcball:
+not bind event when init, initGameObject
+
+
+imgui->customData
+
+
+load imgui,wdb:
+handleWhenLoading
+move param->state to last
+
+
+
+assemble->add config
+
+
+*** DONE pass render test
+CLOSED: [2018-11-27 Tue 19:18]
+remove redo-undo, load_wdb...
+
+fix loadIMGUI
+
+
+
+*** DONE pass pf test
+CLOSED: [2018-11-27 Tue 21:01]
+//no worker job
+
+//worker job
+
+
+//remove redo_undo...
+
+
+//fix loadIMGUI
+
+
+
+
+
+
+
+
+
+
+//update wonder-log version
+
+
+
+*** create and dispose
+test indices32 + indices16
+
+
+
+** give benchmark report
+
+test all?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE refactor loading
+CLOSED: [2018-11-27 Tue 21:25]
+
+hide loading data?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////*** TODO add statics
+
+
+
+
+
+
+
+
+** fix demo
+//wonder.js add demos
+
+
+*** DONE fix event
+CLOSED: [2018-08-05 Sun 20:15]
+
+
+*** DONE worker
+CLOSED: [2018-08-05 Sun 21:47]
+
+//remove control data
+
+
+**** DONE directly store data in render worker state
+CLOSED: [2018-08-05 Sun 21:47]
+because render worker state is created only once
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE publish engine
+CLOSED: [2018-11-28 Wed 12:43]
+
+
+////** TODO extend service,component
+move service out to be new project
+
+
+
+
+
+
+
+
+/* 编辑器Editor
+////** TODO add init event test
+
+
+*** DONE pass all TODOS
+CLOSED: [2018-11-27 Tue 21:50]
+
+*** DONE coverage
+CLOSED: [2018-11-27 Tue 21:56]
+
+
+*** DONE code climate
+CLOSED: [2018-11-28 Wed 11:15]
+
+
+
+
+
+
+*** DONE pass ci
+CLOSED: [2018-11-28 Wed 12:07]
+pass
+
+
+should show test coverage
+
+
+*** DONE remove example in github
+CLOSED: [2018-11-28 Wed 12:09]
+
+
+
+
+*** DONE publish
+CLOSED: [2018-11-28 Wed 12:43]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE publish editor
+CLOSED: [2018-11-29 Thu 13:39]
+*** DONE update wonder-log
+CLOSED: [2018-11-28 Wed 13:25]
+
+*** DONE update wonder.js
+CLOSED: [2018-11-28 Wed 13:25]
+
+
+*** DONE pass all TODOS
+CLOSED: [2018-11-28 Wed 17:19]
+
+
+
+
+*** DONE coverage
+CLOSED: [2018-11-29 Thu 10:00]
+open ui
+
+
+*** DONE code climate
+CLOSED: [2018-11-29 Thu 09:55]
+
+
+*** DONE change sphere size
+CLOSED: [2018-11-29 Thu 10:03]
+
+
+*** DONE ci
+CLOSED: [2018-11-29 Thu 10:03]
+
+
+
+*** DONE fix: render worker: point light not work
+CLOSED: [2018-11-29 Thu 11:50]
+
+
+*** DONE update publish->engine->wd.min.js
+CLOSED: [2018-11-29 Thu 11:52]
+
+
+*** DONE update online demo
+CLOSED: [2018-11-29 Thu 13:07]
+
+
+**** DONE remove engine demos
+CLOSED: [2018-11-29 Thu 10:11]
+**** DONE set isDebug to false
+CLOSED: [2018-11-29 Thu 11:52]
+
+**** update logo
+
+
+////*** TODO update wdb
+
+
+**** give convert gltf to glb resources
+https://gltf-viewer.donmccurdy.com/
+https://glb-packer.glitch.me/
+
+
+
+**** check online demo by @mickey(linux) and windows(test in internet bar?)
+
+
+
+
+
+
+
+
+
+*** DONE editor: change to GPL license
+CLOSED: [2018-11-29 Thu 12:10]
+
+
+
+*** DONE .bumpedrc add "update Copyright.re->getVersion->version" task before "bsb:build"
+CLOSED: [2018-11-29 Thu 13:21]
+
+
+*** DONE remove wonder-package
+CLOSED: [2018-11-29 Thu 13:22]
+
+
+*** DONE publish
+CLOSED: [2018-11-29 Thu 13:39]
+
+
+
+
+
+** DONE update collections
+CLOSED: [2018-11-29 Thu 16:59]
+
+
+
+** DONE push org, temp
+CLOSED: [2018-11-29 Thu 17:00]
+
+
+
+
+
+
+
+** improve
+*** console: should show last console message below(refer to unity)
+
+
+
+
+
+
+
+* won't fix
+
+** fix: import/export package->asset->empty folder miss
+
+** fix arcball bug: change distance/minDistance; should update transform inspector
+
+** fix(package):if import package fail, should close select nav
+
+
+
+
+
+* 未解决的问题
+
+** TODO fix editor: box with logo.png+direction light has light rings!!! why?
+
+
+
+* 明日计划
 
 
 ** TODO editor: support picking and add axis
@@ -28,1775 +5704,16 @@ source can refer to playcanvas
 
 
 
-
-
-
-
-
-
-
-
-* 完成事项
-
-
-
-** DONE optimize export wpk: why wpk is so big than the zip(published)
-CLOSED: [2018-12-01 Sat 14:58]
-
-
-c51e78
-
-
-
-
-optimize:
-fix optimize: not exlude (isInWDB), use wdb asset(arrayBuffer) to exclude extract assets:
-
-release(remove?) wdb arrayBuffer after load wdb->extract
-
-
-
-
-
-
-
-fix bug:
-
-
-add more test cases:
-//use extracted texture
-//use extracted material
-
-
-
-
-
-
-
-//remove comment
-
-
-
-
-//optimize export/import
-
-
-** DONE if debug, not show console->button
-CLOSED: [2018-12-01 Sat 17:36]
-
-
-** DONE update online demo
-CLOSED: [2018-12-01 Sat 17:42]
-
-
-
-** DONE publish editor
-CLOSED: [2018-12-01 Sat 18:07]
-
-
-
-
-** DONE 财务报告
-CLOSED: [2018-12-01 Sat 18:04]
-
-
-
-** DONE learn fp
-CLOSED: [2018-12-10 Mon 19:35]
-
-
-
-** DONE rewrite asset tree
-CLOSED: [2018-12-26 Wed 18:49]
-not get nodeId from remove
-
-////set isShow children to ui store?
-
-
-
-handle error:
-isTreeNodeRelationError should use Result type?
-
-
-*** DONE pass demo
-CLOSED: [2018-12-13 Thu 17:47]
-
-
-
-
-*** DONE pass compile
-CLOSED: [2018-12-26 Wed 07:42]
-//rename
-
-//nodeId
-
-//texture
-
-//finish get unique name
-
-handle error:
-//assetChildren
-
-
-
-
-
-//pass src compile
-
-
-//pass test compile
-
-
-
-
-
-operate:
-//relation, handle tree result: use module functor to use result module
-
-
-
-
-*** DONE pass test
-CLOSED: [2018-12-26 Wed 18:48]
-
-
-
-*** add tree_tester?
-
-
-
-*** test performance
-
-
-*** DONE extract folder, wdb, ... node service(primitive service)
-CLOSED: [2018-12-26 Wed 18:48]
-
-
-
-** rewrite load asset(by type)
-rethink nodeResultType?
-
-
-
-
-
-
-** refactor: rename XXXEngineService: remove prefix
-e.g.:
-rename getBasicSourceTextureName to getName
-
-
-
-** rethink ExportAssetType
-
-
-
-
-
-** rewrite addGameObjectType?
-
-
-** engine
-
-*** rewrite convert,assemble,generate
-
-*** rewrite streamType
-
-
-
-** rewrite "handle error"
-*** TODO rewrite DirectorEngineService->loopBody(tryCatch)
-can handle loopBody error outside?
-
-
-*** TODO rewrite Console
-
-
-
-
-*** TODO rewrite load asset->LoadError
-
-refer to:
-A functional approach to error handling (Railway oriented programming)
-
-
-*** TODO rewrite load stream->read error?
-
-
-
-** add type to int?(e.g. wonder.js->component index, gameObject uid)
-
-
-** rewrite module/folder!
-
-
-
-** remove all utils
-////move to service->record->editor/ ?
-move to service->middle/ ?
-
-*** add ui store related service
-
-
-
-
-
-** DONE fix drag bug
-CLOSED: [2018-12-27 Thu 11:37]
-*** DONE drag material to folder
-CLOSED: [2018-12-27 Thu 09:29]
-
-
-*** DONE drag material to scene tree node
-CLOSED: [2018-12-27 Thu 09:29]
-
-
-*** DONE drag scene tree node
-CLOSED: [2018-12-27 Thu 11:37]
-
-
-** DONE picking
-CLOSED: [2019-01-04 Fri 18:40]
-*** DONE add picking
-CLOSED: [2018-12-28 Fri 21:56]
-first check aabb
-
-
-then check mesh?
-
-
-get top gameObject:
-sort by _getDistanceToCamera
-
-
-
-
-
-
-select the top gameObject(sceneTree)
-
-
-
-*** DONE add mesh collision check
-CLOSED: [2018-12-28 Fri 21:56]
-
-source can refer to three.js
-
-
-*** DONE pass compile
-CLOSED: [2018-12-28 Fri 21:56]
-
-
-
-
-
-*** TODO u,i test
-
-
-intersect wrong:
-aabb:
-//zero position
-//not zero position
-
-mesh:
-change rotation
-
-change box vertices generate?
-
-
-check aabb intersect:
-////draw debug
-
-
-check triangle intersect:
-draw ray
-
-draw triangles for test
-
-
-
-
-
-re-implement:
-generate ray
-
-draw the ray(not add to scene)
-
-generate sphereo
-
-draw the sphere
-
-
-test intersect with sphere
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-optimize:
-check sphere instead of aabb(no need to transform!!!)
-
-(should cache center,radius of geometry in map!)
-
-
-
-
-
-
-test find one!
-
-
-dispatch scene tree first time not work!!!
-
-
-
-should dispatch the node which is scene tree->children node!
-
-
-
-
-
-
-
-
-
-*** DONE re-implement
-CLOSED: [2019-01-03 Thu 21:36]
-**** DONE generate ray
-CLOSED: [2019-01-03 Thu 08:20]
-
-**** TODO draw the ray(not add to scene; not affect editorState; add button to debug layer)
-
-**** DONE generate sphere
-CLOSED: [2019-01-03 Thu 10:21]
-
-**** TODO draw the sphere
-
-
-
-
-**** DONE test intersect with sphere
-CLOSED: [2019-01-03 Thu 10:22]
-
-**** TODO draw the intersect point
-
-**** TODO test intersect with triangle(not cull)
-
-**** TODO draw the intersect point
-
-
-
-**** TODO consider cull
-////***** TODO engine: support side(now is front cull(back side?))
-
-
-***** TODO test back side, front side, double side
-
-
-**** DONE remove comment
-CLOSED: [2019-01-03 Thu 21:36]
-
-
-
-
-
-
-
-
-
-*** DONE fix optimize:
-CLOSED: [2019-01-03 Thu 21:45]
-clear sphereShapeMap geometry->data when set geometry points!!!
-
-
-
-
-
-*** DONE unit test
-CLOSED: [2019-01-04 Fri 11:14]
-//intersect
-
-//select top
-
-//test cull
-
-//test sphereShapeMap optimize
-
-
-
-
-
-
-
-*** DONE fix select node bug
-CLOSED: [2019-01-04 Fri 18:34]
-
-
-//test dispatch 
-
-
-
-//all show
-
-
-
-
-*** DONE fix scene tree: parent; rename;  hierarchy wrong!
-CLOSED: [2019-01-04 Fri 18:34]
-
-
-
-*** DONE run test
-CLOSED: [2019-01-04 Fri 18:34]
-
-
-
-
-
-
-*** benchmark test
-
-////**** TODO optimize intersect with aabb
-transform ray to local coordinate instead of transform each point to world coordinate
-
-
-*** DONE refactor
-CLOSED: [2019-01-04 Fri 18:38]
-**** DONE remove print
-CLOSED: [2019-01-04 Fri 18:35]
-
-**** remove OptionService->andThenDefault, either
-
-
-*** DONE push dev
-CLOSED: [2019-01-04 Fri 18:39]
-
-
-** DONE fix bug
-CLOSED: [2019-01-07 Mon 14:07]
-*** DONE add scene tree node
-CLOSED: [2019-01-07 Mon 14:07]
-
-
-*** DONE dispose scene tree node
-CLOSED: [2019-01-07 Mon 14:07]
-
-
-
-*** DONE fix dispose->refresh
-CLOSED: [2019-01-07 Mon 14:07]
-
-
-
-
-** DONE refactor: Dispose->option duplicate
-CLOSED: [2019-01-07 Mon 14:48]
-
-
-
-
-** DONE refactor(shader)
-CLOSED: [2019-01-08 Tue 18:50]
-//extract data:
-////down sub state to all record
-
-
-
-
-
-//remove usedShaderIndexArray
-
-
-//clearShaderIndexCache:
-engine
-////editor
-
-
-
-//rename clearShaderCache to clearInitShaderCache
-
-
-
-
-
-//pass render test
-
-
-
-
-
-** DONE refactor: cloned add return type
-CLOSED: [2019-01-08 Tue 16:50]
-
-
-
-
-** DONE refactor: set render data: sub state not return
-CLOSED: [2019-01-14 Mon 12:13]
-
-
-
-
-
-
-** TODO show outline
-
-
-
-
-*** engine: add outline pass
-refer to three.js
-
-
-
-can set selectedObjects for the pass
-
-
-*** DONE init no material shaders(no worker)(engine)
-CLOSED: [2019-01-15 Tue 15:00]
-
-from: "shader"
-
-field
-
-
-////set shader func
-
-
-//draft
-
-
-//pass compile
-
-
-
-
-
-
-**** DONE test
-CLOSED: [2019-01-15 Tue 15:00]
-//pass current test
-
-
-
-//add test cases
-
-
-
-
-*** DONE engine: add outline pass(pipeline)
-CLOSED: [2019-01-17 Thu 20:01]
-//update wonder-webgl->gl
-
-
-engine: 
-//add stencil func
-//add depthMask func
-
-
-//test
-
-
-
-
-
-//draft :
-render
-add JobDataAPI:
-set,get api
-
-
-//pass compile
-
-
-
-
-
-
-
-
-
-
-add RenderJobAPI.re
-
-
-editor: define custom render origin gameObject func by RenderJobAPI
-
-
-shaders.json define noMaterialShaders:
-OutlineDrawOriginGameObject
-OutlineDrawExpandGameObject(need send outline color)
-
-
-
-
-
-should send normals to OutlineDrawOriginGameObject even if material is basicMaterial!!!
-
-
-**** DONE unit test
-CLOSED: [2019-01-17 Thu 13:12]
-
-//pass test
-
-
-//add test case
-
-
-
-
-**** DONE run test
-CLOSED: [2019-01-17 Thu 17:45]
-pass
-
-
-test stencil: true
-
-test fixed gl state
-
-
-send scale u_mMatrix???
-
-pass outline test
-
-
-
-
-
-
-**** fix: copy all map! 
-
-**** DONE refactor
-CLOSED: [2019-01-17 Thu 20:01]
-duplicate
-
-dead code
-
-
-
-
-*** DONE editor: use outline pass(pipeline)
-CLOSED: [2019-01-18 Fri 11:49]
-**** DONE update wonder.js version
-CLOSED: [2019-01-18 Fri 09:38]
-
-
-**** DONE set outline
-CLOSED: [2019-01-18 Fri 11:49]
-//logic
-
-//pass run test
-
-
-
-***** DONE fix: importPackage_test stuck
-CLOSED: [2019-01-18 Fri 11:11]
-
-
-
-
-***** DONE unit test
-CLOSED: [2019-01-18 Fri 11:49]
-test job:
-show it and its all children total outline
-
-
-
-test refresh
-
-
-test stencil:true
-
-
-** DONE fix: import room package; can't pick model expect the house!!!
-CLOSED: [2019-01-18 Fri 13:54]
-
-
-
-** DONE fix(picking->find top one): 
-CLOSED: [2019-01-18 Fri 16:36]
-////select by compare global position!!!
-
-////compare center(* mMatrix)!!!
-
-
-use intersected point!!!
-
-
-** DONE fix(outline): set front side when draw expanded
-CLOSED: [2019-01-18 Fri 16:47]
-TODO set each gameObject->material side
-
-pass pick AlphaBlendMode.glb
-
-
-////** TODO feat(picking): should set the whole one of the finded one to current scene tree node 
-
-
-** DONE optimize(picking): when mouse move, the fps drop very big!!!
-CLOSED: [2019-01-19 Sat 11:56]
-mouse move shouldn't refresh???
-
-
-rewrite controller dispose->re-render
-
-
-** DONE improve(sceneView->arcball camera):mouse-> left button should click, mouse->right button should controll camera!!!
-CLOSED: [2019-01-19 Sat 14:58]
-
-
-
-** DONE fix: fix arcball->scale event: to trigger refresh
-CLOSED: [2019-01-19 Sat 15:12]
-
-
-** DONE picking: add redo-undo
-CLOSED: [2019-01-19 Sat 17:40]
-*** DONE extract funcion between SceneTreeSelectCurrentNodeEventHandler(dispatch project)
-CLOSED: [2019-01-19 Sat 16:37]
-*** DONE add deep copy
-CLOSED: [2019-01-19 Sat 16:37]
-(but how to get store??????????):
-get last store!!!
-
-*** DONE test
-CLOSED: [2019-01-19 Sat 17:40]
-
-
-
-
-** DONE feat: support pick nothing
-CLOSED: [2019-01-20 Sun 09:45]
-
-write test
-
-
-** DONE refactor: remove "NotRestore"
-CLOSED: [2019-01-20 Sun 09:46]
-
-
-** DONE fix(picking): change trigger pick event from pointdown to pointtap
-CLOSED: [2019-01-20 Sun 10:44]
-
-
-
-
-
-
-** DONE refactor: add immutable SparseMap
-CLOSED: [2019-01-21 Mon 15:37]
-
-pass editor->test
-
-
-
-*** functor
-
-
-*** _SparseMapService
-
-
-
-
-
-** DONE refactor: add immutable HashMap
-CLOSED: [2019-01-21 Mon 17:04]
-
-
-
-
-
-** DONE refactor(engine, editor): remove Obj.magic
-CLOSED: [2019-01-21 Mon 21:11]
-*** DONE sparseMap(////hashmap)->nullable?
-CLOSED: [2019-01-21 Mon 16:54]
-*** DONE abstract indices(engine, editor)
-CLOSED: [2019-01-21 Mon 21:11]
-
-
-move:
-let hasIndices16 = (geometry, engineState) =>
-  GeometryType.(
-    switch (
-      IndicesGeometryMainService.unsafeGetIndicesType(geometry, engineState)
-    ) {
-    | Short => true
-    | _ => false
-    }
-  );
-
-let hasIndices32 = (geometry, engineState) =>
-  GeometryType.(
-    switch (
-      IndicesGeometryMainService.unsafeGetIndicesType(geometry, engineState)
-    ) {
-    | Int => true
-    | _ => false
-    }
-  );
-
-
-to engine
-
-
-
-
-
-
-
-
-
-
-** DONE refactor(engine->shader): GLSLLocation->getXXXLocation should rename to getAndCacheXxxLocation
-CLOSED: [2019-01-21 Mon 21:17]
-and should return (the immutable map, location)!!!
-
-
-
-** DONE refactor(engine): TransformAPI->unsafeGetTransformParent should return transform instead of Js.Undefined(transform)
-CLOSED: [2019-01-22 Tue 10:20]
-
-** refactor: move editor->TransformEngineService->changeChildOrder and its test to engine
-
-
-
-** DONE feat(undo-redo): "not picking" should only push to history stack once(if "not", "not"; only push once!!!)
-CLOSED: [2019-01-22 Tue 11:03]
-
-
-** DONE fix: pickingjob->get last store
-CLOSED: [2019-01-22 Tue 11:10]
-    should undo if ui stack is empty!!!
-
-
-** DONE fix: trigger refresh, pickingjob->not trigger event!!!
-CLOSED: [2019-01-22 Tue 11:30]
-
-
-
-** DONE feat(undo-redo): "picking the same one" should only push to history stack once
-CLOSED: [2019-01-22 Tue 11:39]
-
-
-** DONE drag translation
-CLOSED: [2019-02-01 Fri 12:27]
-
-////*** add render job in editor
-use wonder.js->RenderBasicJobUtils
-
-close depthTest when render
-
-////*** add depthTest in basic/lightMaterial?
-
-
-
-*** DONE add create cylinder, cone, plane geometrys
-CLOSED: [2019-01-23 Wed 14:37]
-//logic 
-
-//pass compile
-
-
-//run test
-
-
-//pass unit test
-
-
-*** "no material shader" support editor extend
-
-
-*** DONE support material->isDepthTest
-CLOSED: [2019-01-23 Wed 15:48]
-
-
-
-*** DONE add "init_transform_gameObjects", "show_transform_gameObjects",  "hide_transform_gameObjects" jobs
-CLOSED: [2019-01-24 Thu 12:26]
-
-//should render transform gameObjects at last!(set isDepthTest to false)
-
-
-//logic
-
-
-//pass compile
-
-
-run test:
-
-fix:
-//color error
-
-//isDepthTest should work
-
-
-
-//should rotate
-
-
-
-
-//update wonder.js version
-
-
-
-
-
-*** DONE support drag
-CLOSED: [2019-01-24 Thu 17:21]
-
-
-*** DONE fix:
-CLOSED: [2019-01-26 Sat 15:13]
-**** DONE fix "find plane for get intersect point"
-CLOSED: [2019-01-24 Thu 21:37]
-
-
-
-**** DONE handle "not get intersect point with plane" case
-CLOSED: [2019-01-25 Fri 07:36]
-
-move too far when the axis is almost perpendicular to the camera
-
-
-**** DONE draw order: should draw z,y,x
-CLOSED: [2019-01-25 Fri 07:41]
-
-
-
-**** DONE improve: should expand axis aabb
-CLOSED: [2019-01-25 Fri 07:50]
-
-
-**** DONE now if drag end, still show translation gameObjects and keep pick
-CLOSED: [2019-01-25 Fri 08:10]
-
-
-**** DONE should move in local
-CLOSED: [2019-01-26 Sat 11:16]
-
-
-
-
-**** change plane?
-
-
-**** fix group
-
-
-
-
-**** DONE right button->drag and down shouldn't work
-CLOSED: [2019-01-26 Sat 14:03]
-
-
-
-
-
-**** DONE feat(picking): fix: if select any transform gameObject when pointtap, not handle pick
-CLOSED: [2019-01-26 Sat 14:32]
-
-
-
-
-
-**** DONE scale translation gameObjects based on the distance between currentSceneTreeNode and camera
-CLOSED: [2019-01-26 Sat 15:10]
-
-
-
-**** DONE fix: select scene tree should update translation gizmos 
-CLOSED: [2019-01-26 Sat 15:13]
-
-
-
-*** DONE refactor: rename Transform/Translation gameObject to gizmo
-CLOSED: [2019-01-26 Sat 15:25]
-
-
-*** DONE fix: drag translation gizmos should refresh inspector
-CLOSED: [2019-01-26 Sat 15:29]
-
-
-*** DONE unit test
-CLOSED: [2019-01-28 Mon 15:27]
-//pass test
-
-
-//push to dev
-
-
-**** DONE test InitTransformGizmosJobUtils
-CLOSED: [2019-01-27 Sun 09:14]
-
-
-
-**** DONE update UpdateTransformGizmosJobUtils
-CLOSED: [2019-01-28 Mon 11:54]
-
-
-**** DONE test RenderTransformGizmosJobUtils
-CLOSED: [2019-01-28 Mon 15:04]
-
-
-
-**** DONE test picking->gizmo related logic
-CLOSED: [2019-01-28 Mon 15:27]
-
-
-*** DONE pass test coverage and push dev
-CLOSED: [2019-01-28 Mon 15:38]
-
-*** add no material shader->draw translation(editor)
-close depthTest
-
-
-
-
-
-
-*** DONE refactor
-CLOSED: [2019-01-28 Mon 17:45]
-
-
-**** DONE refactor: rename "currentGameObject" to "currentSceneTreeNode"
-CLOSED: [2019-01-28 Mon 15:40]
-
-
-
-
-**** DONE refactor: rename KeyUp_editor to KeyXxx_SceneView, Keyxxx to KeyXxx_GameView
-CLOSED: [2019-01-28 Mon 15:54]
-
-**** DONE refactor: rename EventEditorService->getXXXEventName to EventSceneViewEditorService->xxx
-CLOSED: [2019-01-28 Mon 15:58]
-
-**** DONE refactor: rename NameEventEngineService to EventGameViewEditorService
-CLOSED: [2019-01-28 Mon 15:58]
-
-
-
-**** DONE refactor: rename XXXJobUtils to XXXJob
-CLOSED: [2019-01-28 Mon 16:12]
-
-
-
-**** DONE refactor: remove Wonderjs???
-CLOSED: [2019-01-28 Mon 17:26]
-ReallocateCPUMemoryJob->wonderjs->private: 
-ReallocateCPUMemoryJobUtils._reallocateGameObjectByDisposeCount
-
-**** DONE refactor: remove Wonderjs???
-CLOSED: [2019-01-28 Mon 17:26]
-extract RenderEngineService(wonder.js should extract RenderAPI?)
-
-
-TODO refactor: shouldn't operate renderState in editor!!!
-
-
-
-
-**** DONE refactor: _sendUniformRenderObjectModelData, _sendAttributeData ... not return state!
-CLOSED: [2019-01-28 Mon 16:56]
-
-**** DONE split InitTransformGizmosJob
-CLOSED: [2019-01-28 Mon 17:44]
-
-
-
-*** DONE feat: add redo-undo when drag end
-CLOSED: [2019-01-29 Tue 13:25]
-// (add drag start, drag drop event?)
-
-
-//fix twice
-
-
-//should push last pos
-
-
-
-*** DONE fix: should scale translation when compute aabb
-CLOSED: [2019-01-29 Tue 17:38]
-
-
-*** DONE optimize
-CLOSED: [2019-01-29 Tue 18:26]
-**** DONE optimize picking
-CLOSED: [2019-01-29 Tue 18:25]
-
-
-////**** optimize translation gizmo
-
-
-
-*** DONE fix: should scale translation when compute aabb
-CLOSED: [2019-01-30 Wed 09:35]
-
-
-
-*** DONE BasicMaterial add alpha
-CLOSED: [2019-01-31 Thu 15:31]
-
-
-
-*** DONE add translation plane
-CLOSED: [2019-01-31 Thu 17:34]
-**** DONE add
-CLOSED: [2019-01-31 Thu 16:34]
-
-
-**** DONE transparency
-CLOSED: [2019-01-31 Thu 16:34]
-
-gl.enable(gl.BLEND);
-
-gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
-
-**** DONE move by camera
-CLOSED: [2019-01-31 Thu 16:34]
-
-
-
-**** DONE support drag
-CLOSED: [2019-01-31 Thu 17:34]
-
-
-
-
-*** DONE test
-CLOSED: [2019-02-01 Fri 12:27]
-
-pass test
-
-
-add cases
-
-
-
-** DONE drag rotation
-CLOSED: [2019-02-10 Sun 13:14]
-
-https://www.gamedev.net/forums/topic/683654-how-to-translate-mouse-movement-to-a-rotation-gizmo/
-
-https://computergraphics.stackexchange.com/questions/4535/how-to-translate-mouse-movement-to-a-rotation-gizmo
-
-
-
-https://www.gamedev.net/forums/topic/681053-opengl-how-to-draw-transformation-gizmos/
-
-
-
-*** learn the threejs->editor->rotation!!!
-
-
-**** DONE download newest threejs
-CLOSED: [2019-02-01 Fri 20:00]
-
-
-
-
-
-
-////*** TODO draw rings
-cull face
-
-
-
-*** DONE draw circle
-CLOSED: [2019-02-06 Wed 07:14]
-//draw
-
-
-//no material shader:
-"cull face"
-
-
-
-//commit
-
-//publish wonder.js
-//update wonder.js version
-
-
-
-
-*** DONE update transform
-CLOSED: [2019-02-06 Wed 07:24]
-
-
-
-
-
-
-
-
-
-
-*** DONE ray intersect with line
-CLOSED: [2019-02-06 Wed 09:06]
-get point intersect with circle;
-compare distance between the point and the radius of circle;
-
-
-
-test xy circle
-
-
-*** DONE rotate by axis
-CLOSED: [2019-02-06 Wed 13:52]
-
-fix rotate
-
-
-fix scale!!!???
-
-
-fix select:can't select
-
-
-
-fix can't intersect
-
-
-
-test xy circle
-
-
-
-
-*** DONE finish all circles
-CLOSED: [2019-02-07 Thu 11:18]
-
-
-
-
-*** rotate by sphere(local coord system)
-angle with xy,xz,yz plane
- 
-
-
-*** DONE fix translation gizmo
-CLOSED: [2019-02-07 Thu 12:37]
-
-
-*** DONE set current gizmo(translation/rotation) to be white
-CLOSED: [2019-02-07 Thu 13:38]
-
-
-
-*** DONE add button to switch translation,rotation,scale
-CLOSED: [2019-02-07 Thu 16:41]
-
-
-*** DONE test
-CLOSED: [2019-02-08 Fri 19:24]
-//pass test
-
-
-add test cases:
-//init
-////update
-//render
-
-
-//set current gizmo
-
-////add button to switch
-
-*** DONE refactor: not set gizmoName
-CLOSED: [2019-02-09 Sat 07:52]
-
-
-*** DONE feat(scene-view): fix "select translation gizmo": intersect "with mesh" instead of "with aabb"
-CLOSED: [2019-02-09 Sat 08:16]
-
-
-
-
-
-*** DONE feat(scene-view): fix "select translation->axis gizmo": intersect "with aabb" instead of "with mesh"
-CLOSED: [2019-02-09 Sat 10:16]
-
-
-
-
-
-*** DONE optimize: not refresh when: drag, drop, drag and over!
-CLOSED: [2019-02-09 Sat 11:04]
-
-
-*** DONE feat: add world/local for translation/rotation
-CLOSED: [2019-02-09 Sat 20:16]
-default use world
-
-
-
-**** DONE support world
-CLOSED: [2019-02-09 Sat 13:21]
-
-
-
-**** DONE add switch ui
-CLOSED: [2019-02-09 Sat 13:21]
-
-
-
-**** DONE test
-CLOSED: [2019-02-09 Sat 20:16]
-//pass test
-
-
-//add test cases
-
-
-*** DONE fix(controller): first click not work???
-CLOSED: [2019-02-10 Sun 09:30]
-
-
-
-*** DONE fix(gizmo): should switch when run
-CLOSED: [2019-02-10 Sun 09:30]
-
-
-
-*** fix: limit translation->plane move far distance(refer to axis)
-
-
-*** DONE fix: should refresh inspector(update rotation)
-CLOSED: [2019-02-10 Sun 10:48]
-
-
-
-*** DONE redo-undo
-CLOSED: [2019-02-10 Sun 11:56]
-
-
-
-
-
-
-
-*** DONE refactor
-CLOSED: [2019-02-10 Sun 13:12]
-
-
-**** remove render rotation gizmo(no material shader) duplicate code with draw outline job
-
-
-**** translation,rotation: remove function name->Translation/Rotation prefix
-
-
-**** DONE clear TODO
-CLOSED: [2019-02-10 Sun 13:12]
-**** remove print
-
-
-
-
-** DONE drag scale
-CLOSED: [2019-02-12 Tue 10:06]
-
-*** DONE add switch button
-CLOSED: [2019-02-11 Mon 09:23]
-
-
-*** DONE disable coordinate system button with scale
-CLOSED: [2019-02-11 Mon 09:23]
-
-
-*** DONE create axis
-CLOSED: [2019-02-11 Mon 10:27]
-
-*** DONE create center box
-CLOSED: [2019-02-11 Mon 10:27]
-
-
-*** DONE select axis
-CLOSED: [2019-02-11 Mon 16:10]
-
-
-
-
-
-
-
-
-
-
-*** DONE select center box
-CLOSED: [2019-02-11 Mon 16:10]
-
-
-*** DONE drag axis
-CLOSED: [2019-02-11 Mon 16:10]
-
-
-*** DONE drag center box
-CLOSED: [2019-02-11 Mon 16:10]
-
-
-
-
-
-
-
-
-*** DONE test
-CLOSED: [2019-02-12 Tue 09:56]
-//pass test
-
-
-
-add test cases:
-//create
-
-
-//event
-
-
-//render
-
-
-////update
-
-
-//coordinate
-
-
-//current gizmo color
-
-
-//snapshot: "disable coordinate system with scale"
-
-
-
-
-
-
-
-
-
-
-
-
-*** DONE redo-undo
-CLOSED: [2019-02-12 Tue 10:06]
-
-
-
-** DONE refactor
-CLOSED: [2019-02-12 Tue 10:10]
-
-
-
-
-** DONE fix: scale shouldn't be 0
-CLOSED: [2019-02-12 Tue 10:40]
-
-
-fix drag axis
-
-
-
-** fix: parent: pick parent; pick child;   child->translation plane should be moved!!!
-
-
-
-** DONE fix: arcball add key event
-CLOSED: [2019-02-12 Tue 11:26]
-(judge w,a,s,d):
-preventDefault
-
-renderWhenStop
-
-
-
-
-
-
-
-
-
-
-
-** DONE push
-CLOSED: [2019-02-12 Tue 11:49]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-** handle group gameObjects
-
-*** TODO picking
-(if target gameObject has children)
-
-
-*** TODO show outline
-
-
-*** TODO drag translation
-
-
-
-
-
-
-
-
-
-** DONE fix bug
-CLOSED: [2019-02-13 Wed 09:35]
-*** DONE fix: scale direction light shouldn't affect light direction!!!
-CLOSED: [2019-02-13 Wed 08:48]
-
-
-*** DONE fix: why 0?
-CLOSED: [2019-02-13 Wed 09:35]
-
-
-
-
-
-** DONE all floatInput should support drag(include transform, light->intensity, ...)
-CLOSED: [2019-02-13 Wed 17:23]
-*** DONE finish logic
-CLOSED: [2019-02-13 Wed 12:04]
-drag
-
-
-css:pointer
-
-
-
-*** DONE fix: scale to 0.; continue drag!!!
-CLOSED: [2019-02-13 Wed 16:28]
-
-*** DONE test
-CLOSED: [2019-02-13 Wed 17:23]
-
-
-
-** transform inspector
-*** feat(inspector): transform: should only remain 3 digits
-
-
-
-
-
-
-
-
-
-
-
-
-** DONE pick imgui gizmo
-CLOSED: [2019-02-13 Wed 20:02]
-
-
-*** DONE pick direction light
-CLOSED: [2019-02-13 Wed 19:22]
-
-
-*** DONE pick point light
-CLOSED: [2019-02-13 Wed 19:22]
-
-
-*** DONE pick camera
-CLOSED: [2019-02-13 Wed 19:22]
-
-
-
-
-*** DONE test
-CLOSED: [2019-02-13 Wed 20:02]
-
-
-
-
-
-
-** DONE pass all tests
-CLOSED: [2019-02-13 Wed 20:52]
-
-
-
-
-
-
-
-
-** DONE push
-CLOSED: [2019-02-13 Wed 20:57]
-
-
-
-
-** DONE publish engine
-CLOSED: [2019-02-14 Thu 13:35]
-
-*** DONE pass all u,i test
-CLOSED: [2019-02-14 Thu 09:05]
-
-
-
-*** DONE pass coverage
-CLOSED: [2019-02-14 Thu 09:10]
-
-
-*** DONE pass render test
-CLOSED: [2019-02-14 Thu 09:23]
-
-
-*** DONE pass pf test
-CLOSED: [2019-02-14 Thu 09:56]
-
-push benchmark data!
-
-
-
-*** DONE pass ci
-CLOSED: [2019-02-14 Thu 09:56]
-
-
-
-*** DONE code climate
-CLOSED: [2019-02-14 Thu 11:47]
-
-
-*** DONE publish
-CLOSED: [2019-02-14 Thu 13:35]
-//bumped release
-
-write release note
-
-
-
-** DONE publish editor
-CLOSED: [2019-02-14 Thu 17:46]
-
-*** DONE remove print
-CLOSED: [2019-02-14 Thu 11:52]
-
-*** DONE pass all u,i test
-CLOSED: [2019-02-14 Thu 13:38]
-
-
-
-*** DONE pass coverage
-CLOSED: [2019-02-14 Thu 13:38]
-
-
-*** DONE pass ci
-CLOSED: [2019-02-14 Thu 17:23]
-
-
-*** DONE clear TODO
-CLOSED: [2019-02-14 Thu 10:42]
-
-
-*** DONE code climate
-CLOSED: [2019-02-14 Thu 17:22]
-
-
-*** DONE update online demo
-CLOSED: [2019-02-14 Thu 17:32]
-
-
-
-
-*** DONE publish
-CLOSED: [2019-02-14 Thu 17:45]
-
-
-** DONE publish beta.1(engine,editor)
-CLOSED: [2019-02-14 Thu 17:55]
-
-
-
-*** DONE change editor to Apache Licene 2.0(editor)
-CLOSED: [2019-02-14 Thu 17:50]
-
-
-
-** DONE update online demo
-CLOSED: [2019-02-14 Thu 18:01]
-
-
-
-
-
-
-** DONE 买个新的服务器(内地)并备案
-CLOSED: [2018-12-26 Wed 20:15]
-
-
-
-** TODO summary collection
-
-
-
-** TODO push data
-
-
-
-
-
-
-
-** TODO write 版本报告
-
-
-** TODO write 迭代报告
-
-
-
-
-
-
-
-
-* won't fix
-
-
-* 未解决的问题
-
-
-* 明日计划
-
-
-
 * 中期研究
 
 
 * TODO 未来7日计划
 
-** TODO finish ue
+
+
+
+
+
 
 
 

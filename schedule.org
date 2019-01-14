@@ -95,6 +95,69 @@ https://www.davrous.com/2016/02/05/discovering-sponza-by-babylon-js-and-sharing-
 
 
 * 2.0.0
+
+** plan
+- script
+ 
+
+
+
+
+- extend
+custom material/shader
+extend no material shader
+custom component
+editor extend
+...
+
+
+
+
+
+create github repo to host
+
+
+user can write extend by reason/js
+
+
+user can send extend to repo according to editor
+(need auto check before send that whether it can work)
+
+user can get extend from repo according to editor
+
+
+
+
+
+user's extend is related to his account
+
+
+
+
+(need refactor editor->rotation gizmo)
+
+
+
+
+- webgl2
+glsl 3.0
+ubo
+vao
+
+
+
+
+- defer shading
+
+
+
+- pbr
+
+
+- support mobile
+
+
+
 ** Main Point
 *** Editor
 - publish
@@ -112,12 +175,28 @@ https://www.davrous.com/2016/02/05/discovering-sponza-by-babylon-js-and-sharing-
  
 
 
+- based on github(host public)(free)
+host project repo in github
+
+
+- host privately(need charge)
+
+
 *** Store
 package(.zip)
 asset(.asb)
 extension(editor extension, engine extension)
 service?
 (based on microservice?)
+
+- based on github(host public)(free)
+
+host goods repo in github
+
+
+
+- host privately(need charge)
+
 
 
 *** Tool
@@ -160,6 +239,7 @@ user can use github api to write extensions
 
 *** All
 - ci/cd
+- code review
 
 
 
@@ -370,6 +450,11 @@ export script string into wdb?
 *** TODO use do
 remove geometryPointDataBufferCount
 add colliderDataBufferCount?
+
+
+*** TODO optimize
+not judge "is transform" to compute aabb!!!
+(because user should invoke "compute aabb" function by themself when change transform!!!)
 
 
 
@@ -675,6 +760,7 @@ add Shaders.re->addBranchHandle api, user can register handle after load(e.g. wd
 
 
 
+**** TODO add custom no material shader
 **** TODO user can write own .glsl can register to npm
 modify render config(shader config json?), support build npm->glsl to ShaderChunk.ts?
 
@@ -1000,9 +1086,18 @@ pf test
 
 
 *** TODO improve ci->pf test
-cache benchmark
+cache benchmark;
+
+reduce pf test case test time;
+
+
 *** TODO test in diferent browser/mobiles
 https://www.browserstack.com/automate
+
+
+
+
+
 
 * 3.0.0
 ** Main Point

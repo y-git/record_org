@@ -382,6 +382,229 @@ support scale
 
 
 ** TODO improve UE
+
+
+
+////*** TODO fix(import package): 1.load WDBAsset1.wdb; 2.drag to scene; 3.import package DemoPackage1_room.wpk;  4.drag wdb to scene;    the wdb change to room!!! but should be outdoor scene!!!
+
+
+
+
+
+
+*** TODO fix: scene can be select or pick(should has transform inspector)
+**** TODO fix: scene can't add other component except transform(default component, can't remove)
+
+
+
+
+
+*** TODO fix(redo-undo): 1.rotate; 2.undo;    transform inspector->rotate not undo!!!
+
+
+
+*** TODO fix(scene-tree): change child should refresh
+
+
+*** TODO fix(left-header): dispose gameObject should refresh canvas
+
+
+*** TODO fix(left-header): clone gameObject should refresh canvas
+
+
+
+
+*** TODO fix(dispose gameObject)
+
+**** TODO fix: 0.open debug;1.dispose cube1;2.dispose cube2;3.add cube3; 4.select cube3;       error!!!
+
+
+
+**** TODO fix(import package): 0.open debug; 1.dispose all gameObjects except one cube; 2.export package wpk1; 3.dispose the cube; 4.import wpk1;    error->"expect component alive, but actual not" 
+
+
+**** TODO fix(import package): 0.open debug; 1.dispose all cubes; 2.import package DemoPackage1_room.wpk;   error: "expect all wdb gameObjects->materials should be material assets or default materials, but actual not"
+
+
+
+
+
+
+*** TODO fix(clone): clone point light gameObject: grid plane affected!!!
+
+*** TODO fix(clone): should remain transform->local position,rotation,scale
+
+
+
+
+
+*** TODO fix(clone): clone direction light gameObject 
+
+
+*** TODO fix(controller): stop not change the icon to stop icon at sometime!!!
+
+
+
+*** TODO fix(event): when move game view->arcball camera, should update inspector->rotation and scale beside position!!!
+
+*** TODO fix(engine): gameView-> arcball: when mouse wheel too close, the camera will phi down!!!???(but scene view->arcball not has this bug!!!???)
+
+
+
+*** TODO fix(inspector): inspector->material: 1.create material2 asset;2.change it's color to red in asset inspector; 3.gameObject1 select material2(color is red); but the color is still not change(white?);
+
+only after:
+select other gameObject;
+select the gameObject1 back;
+
+the material color change to red!!!
+
+
+
+
+
+*** TODO fix(asset): fix "drag asset to folder node": should fail instead of rename
+
+
+
+
+////*** TODO fix(sceneTree, assetTree): if node relation check fail, shouldn't error(do nothing)
+*** TODO fix(sceneTree, assetTree): if node relation check fail, should warn instead of errorj
+
+*** TODO fix(viewport):0.open chrome debug; 1.run;2.change viewport(close chrome debug);3.stop;    should update canvas size change!!!
+
+
+
+
+
+
+
+
+
+
+*** TODO improve(console):should format string
+
+e.g.:
+
+445-61.2428.6
+
+
+should format to(refer to chrome console!!!) :
+[
+445, 
+[61.24, 28.6]
+]
+
+
+*** TODO improve(console):should only show 99 messages at max
+
+
+
+*** TODO feat(picking): add pretab wdb
+**** TODO feat(picking): if picking pretab wdb->all children, select the rootGameObject of the wdb!
+
+
+**** TODO add "export scene as pretab wdb"(add checkbox)
+
+
+**** TODO load asset->auto convert glb,gltf to pretab wdb
+
+
+**** TODO add online service for user: convert glb,gltf to wdb/pretab wdb
+
+
+
+
+
+*** TODO feat(setting): editor add setting
+setting:
+load glb/gltf as pretab
+
+
+should store setting in localStorage?
+
+
+
+
+*** TODO feat: MeshRenderer inspector: add "isRender" checkbox
+if gameObject is pretab, should add "isRender" checkbox to the pretab gameObject eveven if the gameObject not has
+meshRenderer!!!
+
+
+
+
+
+*** TODO feat(material): support side
+
+
+**** TODO replace basicMaterial->isDepthTest to side!!!???(remove isDepthTest)
+
+
+**** TODO set gl state->side when draw gameObject(front,basic render job; draw outline job)
+
+**** TODO wdb support side
+
+**** TODO clone,dispose should work with side
+
+**** TODO picking->intersect with triangle: support side
+
+
+////*** TODO feat(asset): wdb support isDepthTest
+
+
+
+*** TODO fix(hotkey)
+
+**** TODO fix(hotkey): should consider event target??????? or not???????
+e.g. if target is SceneView, "f"(focus) can work
+
+
+**** TODO fix mac 
+should use command
+shouldn't use ctrl
+
+
+
+
+
+
+*** TODO fix(event->error): if event error, the binded event should still work!!!
+
+
+
+
+
+
+*** TODO feat(run): show debug info(use imgui to show)
+show:
+time(render, loop), fps,memory, draw call count, face count, gameObject count, 
+engine version
+...
+
+*** TODO feat(publish): add more config
+**** TODO cache
+stream load/common load support wdb cache
+
+setting.json add cache field?
+"Scene201812300750"?
+
+**** TODO use stream load
+
+
+
+**** TODO debug
+open contract
+
+not compress
+
+show debug info:
+for no worker and worker
+
+
+
+
+
+
 *** TODO add free camera
 *** TODO support click sceneTree node to focus(refer to unity)(shortcut: f)
 *** TODO "Add Component" should click other place to close
@@ -392,19 +615,21 @@ support scale
 *** TODO feat: inspector->map: add select list
 
 
+*** TODO fix(ui): fix color picker->sketch-picker->height should be 100%
+
+
 *** TODO bind shortcut(not support edit)
 
 *** TODO feat(sceneTree): support drag to slibing
 *** TODO fix: change direction light to point light: when > 4 lights. the select option should still be direction light(test snapshot)(with @mickey)
 
 *** TODO feat: add create sphere
-*** TODO feat: MeshRenderer inspector: add "isRender" checkbox
-
-
 *** TODO feat: export,import add waiting modal?
 
 *** TODO improve: texture inspector: show image(big size)
 *** TODO fix: add gameObject should add to sceneTree node->children
+
+*** TODO refactor: remove antd library
 
 *** TODO set format when import texture asset
 jpg rgb
@@ -412,6 +637,8 @@ png: rgba
 
 *** TODO asset->name: add "..."
 
+*** TODO change ui
+**** TODO run-stop height change to fixed value instead of percent? (@mickey)
 
 *** TODO [#C] fix "load asset wdb"->inspector order: arcball component, cameraGroup order has change
 
@@ -425,7 +652,24 @@ png: rgba
 
 
 
+
+
+*** TODO mickey
+**** TODO improve(sceneTree): need x rollbar
+**** TODO feat(sceneTree): when click current sceneTree node, scroll(y scroll) to it(make it top)
+
+
+**** TODO feat: add scroll bar(x, y) for sceneTree, inspector, bottom, header
+
+
+**** TODO feat(pwa): add desktop icon
+
+
+**** TODO optimize: pick sometimes very slow(in linux)
+
+
 * TODO v1.0.0-beta
+** TODO upgrade reason,reason-react version
 
 ** TODO remove antd ?(write custom message)
 
@@ -531,7 +775,6 @@ show these if setMainConfig=>showDebugPanel:true
 *** TODO export/import asset
 
 
-*** TODO optimize export wpk: why wpk is so big than the zip(published)???
 
 
 
@@ -553,13 +796,73 @@ show these if setMainConfig=>showDebugPanel:true
 
 
 * TODO v1.0.0-rc
+
+
+** TODO demo
+*** TODO picture show
+*** TODO room
+*** TODO outdoor
+
+
+
+
+
 ** TODO engine: add examples to github(wonder.js)
 
 
 ** TODO editor: add examples
 
 
+** TODO fix(ci->test): editor->ci test shouldn't update snapshot
+
+need fix can't find snapshot problem!!!:
+gulp changeSnapshotPath not work and will cause test fail even if all test case pass!!!
+
+
+solution:
+use copySnapshotFromTestToLib instead of changeSnapshotPath ?
+
+need refer to https://github.com/facebook/jest/issues/1650
+
+
+
+** TODO refactor
+*** TODO refactor(engine): change all render data to immutable
+**** TODO refactor(engine): change glslSenderType to immutable
+***** TODO init material,init no material shader now use immutable state
+
+***** TODO refactor(wonder.js):  use immutable
+
+
+
+**** TODO refactor(engine): init, render, sub(exclude this. this is read only) should merge to state(no worker/worker)
+
+
+
+**** TODO refactor(engine): RenderJobUtils->getOrCreateBuffer should return state and arrayBuffer 
+**** TODO refactor(engine): RenderJobUtils->sendUniformRenderObjectMaterialData->sendDataFunc should return state(shaderCacheMap changed)
+
+
+**** TODO refactor(engine): fix DrawOutlineJob->sendXXX:should return state???
+
+
 * TODO after v1.0.0
+** TODO [#A] UE
+*** TODO feat(picking): first select whole gameObject; if continue click the node, select next child node; then next,... then top parent; then next...
+refer to unity
+
+
+
+** TODO [#A] ci,cd workflow
+*** code review
+use Phabricator:
+https://secure.phabricator.com/book/phabricator/
+https://admin.phacility.com/book/phacility/
+
+
+*** TODO build test,pre-publish,online environment
+
+
 
 ** TODO package
 support isUseRenderWorker,isUseWebGL1/WebGL2 setting to user(so can provide corresponding engine package file(e.g.
@@ -1018,3 +1321,50 @@ material apply to sphere geometry data
 
 geometry apply default light material
 (use line mode instead of triangle mode)
+
+
+
+
+
+** TODO [#A] gizmo
+*** TODO add camera gizmo
+
+*** TODO add direction light gizmo
+
+*** TODO add point light gizmo
+
+*** TODO advanced transform gizmo
+**** TODO add detail gizmo when drag over translation/rotation gizmo(refer to playcanvas)
+**** TODO rotation gizmo add "big circle gizmo"
+
+
+
+
+** TODO [#A] imgui gizmo
+*** TODO support color
+e.g. direction light gizmo->color should equal to light color
+
+camera->color to mark the actived camera
+
+
+
+
+*** TODO camera gizmo add preview window(refer to unity)
+
+
+** TODO [#C] optimize outline effect
+how to make solid?
+
+
+////fix???:
+set is-render of outline gameObjects to be false;
+render it to color buffer(open depth test) when draw origin;
+
+
+
+
+
+
+////use scale instead of move out in normal?
+(the effect is worse!!!)
+
