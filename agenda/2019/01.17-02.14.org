@@ -1,8 +1,32 @@
 * 今日计划
 
 
+** TODO editor: support picking and add axis
+*** TODO editor: add mesh collision check
 
-** TODO improve UE
+source can refer to playcanvas
+
+*** TODO editor: add picking
+
+
+
+** TODO 买个新的服务器(内地)并备案
+
+
+** TODO write 迭代报告
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -16,306 +40,1746 @@
 
 
 
-** TODO write 迭代报告
+** DONE optimize export wpk: why wpk is so big than the zip(published)
+CLOSED: [2018-12-01 Sat 14:58]
 
 
-** TODO improve UE
+c51e78
 
 
 
-////*** TODO fix(import package): 1.load WDBAsset1.wdb; 2.drag to scene; 3.import package DemoPackage1_room.wpk;  4.drag wdb to scene;    the wdb change to room!!! but should be outdoor scene!!!
 
+optimize:
+fix optimize: not exlude (isInWDB), use wdb asset(arrayBuffer) to exclude extract assets:
 
+release(remove?) wdb arrayBuffer after load wdb->extract
 
 
 
 
-*** TODO fix: scene can be select or pick(should has transform inspector)
-**** TODO fix: scene can't add other component except transform(default component, can't remove)
 
 
 
+fix bug:
 
 
-*** TODO fix(redo-undo): 1.rotate; 2.undo;    transform inspector->rotate not undo!!!
+add more test cases:
+//use extracted texture
+//use extracted material
 
 
 
-*** TODO fix(scene-tree): change child should refresh
 
 
-*** TODO fix(left-header): dispose gameObject should refresh canvas
 
 
-*** TODO fix(left-header): clone gameObject should refresh canvas
+//remove comment
 
 
 
 
-*** TODO fix(dispose gameObject)
+//optimize export/import
 
-**** TODO fix: 0.open debug;1.dispose cube1;2.dispose cube2;3.add cube3; 4.select cube3;       error!!!
 
+** DONE if debug, not show console->button
+CLOSED: [2018-12-01 Sat 17:36]
 
 
-**** TODO fix(import package): 0.open debug; 1.dispose all gameObjects except one cube; 2.export package wpk1; 3.dispose the cube; 4.import wpk1;    error->"expect component alive, but actual not" 
+** DONE update online demo
+CLOSED: [2018-12-01 Sat 17:42]
 
 
-**** TODO fix(import package): 0.open debug; 1.dispose all cubes; 2.import package DemoPackage1_room.wpk;   error: "expect all wdb gameObjects->materials should be material assets or default materials, but actual not"
 
+** DONE publish editor
+CLOSED: [2018-12-01 Sat 18:07]
 
 
 
 
+** DONE 财务报告
+CLOSED: [2018-12-01 Sat 18:04]
 
-*** TODO fix(clone): clone point light gameObject: grid plane affected!!!
 
-*** TODO fix(clone): should remain transform->local position,rotation,scale
 
+** DONE learn fp
+CLOSED: [2018-12-10 Mon 19:35]
 
 
 
+** DONE rewrite asset tree
+CLOSED: [2018-12-26 Wed 18:49]
+not get nodeId from remove
 
-*** TODO fix(clone): clone direction light gameObject 
+////set isShow children to ui store?
 
 
-*** TODO fix(controller): stop not change the icon to stop icon at sometime!!!
 
+handle error:
+isTreeNodeRelationError should use Result type?
 
 
-*** TODO fix(event): when move game view->arcball camera, should update inspector->rotation and scale beside position!!!
+*** DONE pass demo
+CLOSED: [2018-12-13 Thu 17:47]
 
-*** TODO fix(engine): gameView-> arcball: when mouse wheel too close, the camera will phi down!!!???(but scene view->arcball not has this bug!!!???)
 
 
 
-*** TODO fix(inspector): inspector->material: 1.create material2 asset;2.change it's color to red in asset inspector; 3.gameObject1 select material2(color is red); but the color is still not change(white?);
+*** DONE pass compile
+CLOSED: [2018-12-26 Wed 07:42]
+//rename
 
-only after:
-select other gameObject;
-select the gameObject1 back;
+//nodeId
 
-the material color change to red!!!
+//texture
 
+//finish get unique name
 
+handle error:
+//assetChildren
 
 
 
-*** TODO fix(asset): fix "drag asset to folder node": should fail instead of rename
 
 
+//pass src compile
 
 
-////*** TODO fix(sceneTree, assetTree): if node relation check fail, shouldn't error(do nothing)
-*** TODO fix(sceneTree, assetTree): if node relation check fail, should warn instead of errorj
+//pass test compile
 
-*** TODO fix(viewport):0.open chrome debug; 1.run;2.change viewport(close chrome debug);3.stop;    should update canvas size change!!!
 
 
 
 
+operate:
+//relation, handle tree result: use module functor to use result module
 
 
 
 
+*** DONE pass test
+CLOSED: [2018-12-26 Wed 18:48]
 
 
 
+*** add tree_tester?
 
-*** TODO feat(picking): add pretab wdb
-**** TODO feat(picking): if picking pretab wdb->all children, select the rootGameObject of the wdb!
 
 
-**** TODO add "export scene as pretab wdb"(add checkbox)
+*** test performance
 
 
-**** TODO load asset->auto convert glb,gltf to pretab wdb
+*** DONE extract folder, wdb, ... node service(primitive service)
+CLOSED: [2018-12-26 Wed 18:48]
 
 
-**** TODO add online service for user: convert glb,gltf to wdb/pretab wdb
 
+** rewrite load asset(by type)
+rethink nodeResultType?
 
 
 
 
-*** TODO feat(setting): editor add setting
-setting:
-load glb/gltf as pretab
 
 
-should store setting in localStorage?
-
-
-
-
-*** TODO feat: MeshRenderer inspector: add "isRender" checkbox
-if gameObject is pretab, should add "isRender" checkbox to the pretab gameObject eveven if the gameObject not has
-meshRenderer!!!
-
-
-
-
-
-*** TODO feat(material): support side
-
-
-**** TODO replace basicMaterial->isDepthTest to side!!!???(remove isDepthTest)
-
-
-**** TODO set gl state->side when draw gameObject(front,basic render job; draw outline job)
-
-**** TODO wdb support side
-
-**** TODO clone,dispose should work with side
-
-**** TODO picking->intersect with triangle: support side
-
-
-////*** TODO feat(asset): wdb support isDepthTest
-
-
-
-
-
-
-
-*** TODO improve(console):should format string
-
+** refactor: rename XXXEngineService: remove prefix
 e.g.:
+rename getBasicSourceTextureName to getName
 
-445-61.2428.6
 
 
-should format to(refer to chrome console!!!) :
-[
-445, 
-[61.24, 28.6]
-]
+** rethink ExportAssetType
 
 
-*** TODO improve(console):should only show 99 messages at max
 
 
 
+** rewrite addGameObjectType?
 
 
-*** TODO fix(hotkey)
+** engine
 
-**** TODO should show setting ui(@mickey)
+*** rewrite convert,assemble,generate
 
+*** rewrite streamType
 
-**** TODO fix(hotkey): should consider event target??????? or not???????
-e.g. if target is SceneView, "f"(focus) can work
 
 
-**** TODO fix mac 
-should use command
-shouldn't use ctrl
+** rewrite "handle error"
+*** TODO rewrite DirectorEngineService->loopBody(tryCatch)
+can handle loopBody error outside?
 
 
+*** TODO rewrite Console
 
 
 
 
-*** TODO fix(event->error): if event error, the binded event should still work!!!
+*** TODO rewrite load asset->LoadError
 
+refer to:
+A functional approach to error handling (Railway oriented programming)
 
 
+*** TODO rewrite load stream->read error?
 
 
 
-*** TODO feat(run): show debug info(use imgui to show)
-show:
-time(render, loop), fps,memory, draw call count, face count, gameObject count, 
-engine version
-...
+** add type to int?(e.g. wonder.js->component index, gameObject uid)
 
-*** TODO feat(publish): add more config
-**** TODO cache
-stream load/common load support wdb cache
 
-setting.json add cache field?
-"Scene201812300750"?
+** rewrite module/folder!
 
-**** TODO use stream load
 
 
+** remove all utils
+////move to service->record->editor/ ?
+move to service->middle/ ?
 
-**** TODO debug
-open contract
+*** add ui store related service
 
-not compress
 
-show debug info:
-for no worker and worker
 
 
 
+** DONE fix drag bug
+CLOSED: [2018-12-27 Thu 11:37]
+*** DONE drag material to folder
+CLOSED: [2018-12-27 Thu 09:29]
 
 
+*** DONE drag material to scene tree node
+CLOSED: [2018-12-27 Thu 09:29]
 
-*** TODO add free camera
-*** TODO support click sceneTree node to focus(refer to unity)(shortcut: f)
-*** TODO "Add Component" should click other place to close
 
-*** TODO add "clone selected sceneTree node"
+*** DONE drag scene tree node
+CLOSED: [2018-12-27 Thu 11:37]
 
 
-*** TODO feat: inspector->map: add select list
+** DONE picking
+CLOSED: [2019-01-04 Fri 18:40]
+*** DONE add picking
+CLOSED: [2018-12-28 Fri 21:56]
+first check aabb
 
-*** TODO bind shortcut(not support edit)
 
-*** TODO feat(sceneTree): support drag to slibing
+then check mesh?
 
-*** TODO feat: add create sphere
-*** TODO feat: export,import add waiting modal?
 
-*** TODO improve: texture inspector: show image(big size)
-*** TODO fix: add gameObject should add to sceneTree node->children
+get top gameObject:
+sort by _getDistanceToCamera
 
-*** TODO refactor: remove antd library
 
-*** TODO set format when import texture asset
-jpg rgb
-png: rgba
 
-*** TODO asset->name: add "..."
 
-*** TODO change ui
-**** TODO run-stop height change to fixed value instead of percent? (@mickey)
 
-*** TODO [#C] fix "load asset wdb"->inspector order: arcball component, cameraGroup order has change
 
-*** TODO engine: imgui->slider: can't drag?
+select the top gameObject(sceneTree)
 
 
-*** TODO engine: firefox->arcball-> mouse scale not work
 
+*** DONE add mesh collision check
+CLOSED: [2018-12-28 Fri 21:56]
 
+source can refer to three.js
 
 
+*** DONE pass compile
+CLOSED: [2018-12-28 Fri 21:56]
 
 
 
 
-** TODO mickey
-*** TODO improve(sceneTree): need x rollbar
-*** TODO feat(sceneTree): when click current sceneTree node, scroll(y scroll) to it(make it top)
 
+*** TODO u,i test
 
-*** TODO feat: add scroll bar(x, y) for sceneTree, inspector, bottom, header
 
+intersect wrong:
+aabb:
+//zero position
+//not zero position
 
-*** TODO feat(pwa): add desktop icon
+mesh:
+change rotation
 
+change box vertices generate?
 
-*** TODO optimize: pick sometimes very slow(in linux)
 
+check aabb intersect:
+////draw debug
 
 
+check triangle intersect:
+draw ray
 
+draw triangles for test
 
-** TODO publish 1.0.0-beta.2
+
+
+
+
+re-implement:
+generate ray
+
+draw the ray(not add to scene)
+
+generate sphereo
+
+draw the sphere
+
+
+test intersect with sphere
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+optimize:
+check sphere instead of aabb(no need to transform!!!)
+
+(should cache center,radius of geometry in map!)
+
+
+
+
+
+
+test find one!
+
+
+dispatch scene tree first time not work!!!
+
+
+
+should dispatch the node which is scene tree->children node!
+
+
+
+
+
+
+
+
+
+*** DONE re-implement
+CLOSED: [2019-01-03 Thu 21:36]
+**** DONE generate ray
+CLOSED: [2019-01-03 Thu 08:20]
+
+**** TODO draw the ray(not add to scene; not affect editorState; add button to debug layer)
+
+**** DONE generate sphere
+CLOSED: [2019-01-03 Thu 10:21]
+
+**** TODO draw the sphere
+
+
+
+
+**** DONE test intersect with sphere
+CLOSED: [2019-01-03 Thu 10:22]
+
+**** TODO draw the intersect point
+
+**** TODO test intersect with triangle(not cull)
+
+**** TODO draw the intersect point
+
+
+
+**** TODO consider cull
+////***** TODO engine: support side(now is front cull(back side?))
+
+
+***** TODO test back side, front side, double side
+
+
+**** DONE remove comment
+CLOSED: [2019-01-03 Thu 21:36]
+
+
+
+
+
+
+
+
+
+*** DONE fix optimize:
+CLOSED: [2019-01-03 Thu 21:45]
+clear sphereShapeMap geometry->data when set geometry points!!!
+
+
+
+
+
+*** DONE unit test
+CLOSED: [2019-01-04 Fri 11:14]
+//intersect
+
+//select top
+
+//test cull
+
+//test sphereShapeMap optimize
+
+
+
+
+
+
+
+*** DONE fix select node bug
+CLOSED: [2019-01-04 Fri 18:34]
+
+
+//test dispatch 
+
+
+
+//all show
+
+
+
+
+*** DONE fix scene tree: parent; rename;  hierarchy wrong!
+CLOSED: [2019-01-04 Fri 18:34]
+
+
+
+*** DONE run test
+CLOSED: [2019-01-04 Fri 18:34]
+
+
+
+
+
+
+*** benchmark test
+
+////**** TODO optimize intersect with aabb
+transform ray to local coordinate instead of transform each point to world coordinate
+
+
+*** DONE refactor
+CLOSED: [2019-01-04 Fri 18:38]
+**** DONE remove print
+CLOSED: [2019-01-04 Fri 18:35]
+
+**** remove OptionService->andThenDefault, either
+
+
+*** DONE push dev
+CLOSED: [2019-01-04 Fri 18:39]
+
+
+** DONE fix bug
+CLOSED: [2019-01-07 Mon 14:07]
+*** DONE add scene tree node
+CLOSED: [2019-01-07 Mon 14:07]
+
+
+*** DONE dispose scene tree node
+CLOSED: [2019-01-07 Mon 14:07]
+
+
+
+*** DONE fix dispose->refresh
+CLOSED: [2019-01-07 Mon 14:07]
+
+
+
+
+** DONE refactor: Dispose->option duplicate
+CLOSED: [2019-01-07 Mon 14:48]
+
+
+
+
+** DONE refactor(shader)
+CLOSED: [2019-01-08 Tue 18:50]
+//extract data:
+////down sub state to all record
+
+
+
+
+
+//remove usedShaderIndexArray
+
+
+//clearShaderIndexCache:
+engine
+////editor
+
+
+
+//rename clearShaderCache to clearInitShaderCache
+
+
+
+
+
+//pass render test
+
+
+
+
+
+** DONE refactor: cloned add return type
+CLOSED: [2019-01-08 Tue 16:50]
+
+
+
+
+** DONE refactor: set render data: sub state not return
+CLOSED: [2019-01-14 Mon 12:13]
+
+
+
+
+
+
+** TODO show outline
+
+
+
+
+*** engine: add outline pass
+refer to three.js
+
+
+
+can set selectedObjects for the pass
+
+
+*** DONE init no material shaders(no worker)(engine)
+CLOSED: [2019-01-15 Tue 15:00]
+
+from: "shader"
+
+field
+
+
+////set shader func
+
+
+//draft
+
+
+//pass compile
+
+
+
+
+
+
+**** DONE test
+CLOSED: [2019-01-15 Tue 15:00]
+//pass current test
+
+
+
+//add test cases
+
+
+
+
+*** DONE engine: add outline pass(pipeline)
+CLOSED: [2019-01-17 Thu 20:01]
+//update wonder-webgl->gl
+
+
+engine: 
+//add stencil func
+//add depthMask func
+
+
+//test
+
+
+
+
+
+//draft :
+render
+add JobDataAPI:
+set,get api
+
+
+//pass compile
+
+
+
+
+
+
+
+
+
+
+add RenderJobAPI.re
+
+
+editor: define custom render origin gameObject func by RenderJobAPI
+
+
+shaders.json define noMaterialShaders:
+OutlineDrawOriginGameObject
+OutlineDrawExpandGameObject(need send outline color)
+
+
+
+
+
+should send normals to OutlineDrawOriginGameObject even if material is basicMaterial!!!
+
+
+**** DONE unit test
+CLOSED: [2019-01-17 Thu 13:12]
+
+//pass test
+
+
+//add test case
+
+
+
+
+**** DONE run test
+CLOSED: [2019-01-17 Thu 17:45]
+pass
+
+
+test stencil: true
+
+test fixed gl state
+
+
+send scale u_mMatrix???
+
+pass outline test
+
+
+
+
+
+
+**** fix: copy all map! 
+
+**** DONE refactor
+CLOSED: [2019-01-17 Thu 20:01]
+duplicate
+
+dead code
+
+
+
+
+*** DONE editor: use outline pass(pipeline)
+CLOSED: [2019-01-18 Fri 11:49]
+**** DONE update wonder.js version
+CLOSED: [2019-01-18 Fri 09:38]
+
+
+**** DONE set outline
+CLOSED: [2019-01-18 Fri 11:49]
+//logic
+
+//pass run test
+
+
+
+***** DONE fix: importPackage_test stuck
+CLOSED: [2019-01-18 Fri 11:11]
+
+
+
+
+***** DONE unit test
+CLOSED: [2019-01-18 Fri 11:49]
+test job:
+show it and its all children total outline
+
+
+
+test refresh
+
+
+test stencil:true
+
+
+** DONE fix: import room package; can't pick model expect the house!!!
+CLOSED: [2019-01-18 Fri 13:54]
+
+
+
+** DONE fix(picking->find top one): 
+CLOSED: [2019-01-18 Fri 16:36]
+////select by compare global position!!!
+
+////compare center(* mMatrix)!!!
+
+
+use intersected point!!!
+
+
+** DONE fix(outline): set front side when draw expanded
+CLOSED: [2019-01-18 Fri 16:47]
+TODO set each gameObject->material side
+
+pass pick AlphaBlendMode.glb
+
+
+////** TODO feat(picking): should set the whole one of the finded one to current scene tree node 
+
+
+** DONE optimize(picking): when mouse move, the fps drop very big!!!
+CLOSED: [2019-01-19 Sat 11:56]
+mouse move shouldn't refresh???
+
+
+rewrite controller dispose->re-render
+
+
+** DONE improve(sceneView->arcball camera):mouse-> left button should click, mouse->right button should controll camera!!!
+CLOSED: [2019-01-19 Sat 14:58]
+
+
+
+** DONE fix: fix arcball->scale event: to trigger refresh
+CLOSED: [2019-01-19 Sat 15:12]
+
+
+** DONE picking: add redo-undo
+CLOSED: [2019-01-19 Sat 17:40]
+*** DONE extract funcion between SceneTreeSelectCurrentNodeEventHandler(dispatch project)
+CLOSED: [2019-01-19 Sat 16:37]
+*** DONE add deep copy
+CLOSED: [2019-01-19 Sat 16:37]
+(but how to get store??????????):
+get last store!!!
+
+*** DONE test
+CLOSED: [2019-01-19 Sat 17:40]
+
+
+
+
+** DONE feat: support pick nothing
+CLOSED: [2019-01-20 Sun 09:45]
+
+write test
+
+
+** DONE refactor: remove "NotRestore"
+CLOSED: [2019-01-20 Sun 09:46]
+
+
+** DONE fix(picking): change trigger pick event from pointdown to pointtap
+CLOSED: [2019-01-20 Sun 10:44]
+
+
+
+
+
+
+** DONE refactor: add immutable SparseMap
+CLOSED: [2019-01-21 Mon 15:37]
+
+pass editor->test
+
+
+
+*** functor
+
+
+*** _SparseMapService
+
+
+
+
+
+** DONE refactor: add immutable HashMap
+CLOSED: [2019-01-21 Mon 17:04]
+
+
+
+
+
+** DONE refactor(engine, editor): remove Obj.magic
+CLOSED: [2019-01-21 Mon 21:11]
+*** DONE sparseMap(////hashmap)->nullable?
+CLOSED: [2019-01-21 Mon 16:54]
+*** DONE abstract indices(engine, editor)
+CLOSED: [2019-01-21 Mon 21:11]
+
+
+move:
+let hasIndices16 = (geometry, engineState) =>
+  GeometryType.(
+    switch (
+      IndicesGeometryMainService.unsafeGetIndicesType(geometry, engineState)
+    ) {
+    | Short => true
+    | _ => false
+    }
+  );
+
+let hasIndices32 = (geometry, engineState) =>
+  GeometryType.(
+    switch (
+      IndicesGeometryMainService.unsafeGetIndicesType(geometry, engineState)
+    ) {
+    | Int => true
+    | _ => false
+    }
+  );
+
+
+to engine
+
+
+
+
+
+
+
+
+
+
+** DONE refactor(engine->shader): GLSLLocation->getXXXLocation should rename to getAndCacheXxxLocation
+CLOSED: [2019-01-21 Mon 21:17]
+and should return (the immutable map, location)!!!
+
+
+
+** DONE refactor(engine): TransformAPI->unsafeGetTransformParent should return transform instead of Js.Undefined(transform)
+CLOSED: [2019-01-22 Tue 10:20]
+
+** refactor: move editor->TransformEngineService->changeChildOrder and its test to engine
+
+
+
+** DONE feat(undo-redo): "not picking" should only push to history stack once(if "not", "not"; only push once!!!)
+CLOSED: [2019-01-22 Tue 11:03]
+
+
+** DONE fix: pickingjob->get last store
+CLOSED: [2019-01-22 Tue 11:10]
+    should undo if ui stack is empty!!!
+
+
+** DONE fix: trigger refresh, pickingjob->not trigger event!!!
+CLOSED: [2019-01-22 Tue 11:30]
+
+
+
+** DONE feat(undo-redo): "picking the same one" should only push to history stack once
+CLOSED: [2019-01-22 Tue 11:39]
+
+
+** DONE drag translation
+CLOSED: [2019-02-01 Fri 12:27]
+
+////*** add render job in editor
+use wonder.js->RenderBasicJobUtils
+
+close depthTest when render
+
+////*** add depthTest in basic/lightMaterial?
+
+
+
+*** DONE add create cylinder, cone, plane geometrys
+CLOSED: [2019-01-23 Wed 14:37]
+//logic 
+
+//pass compile
+
+
+//run test
+
+
+//pass unit test
+
+
+*** "no material shader" support editor extend
+
+
+*** DONE support material->isDepthTest
+CLOSED: [2019-01-23 Wed 15:48]
+
+
+
+*** DONE add "init_transform_gameObjects", "show_transform_gameObjects",  "hide_transform_gameObjects" jobs
+CLOSED: [2019-01-24 Thu 12:26]
+
+//should render transform gameObjects at last!(set isDepthTest to false)
+
+
+//logic
+
+
+//pass compile
+
+
+run test:
+
+fix:
+//color error
+
+//isDepthTest should work
+
+
+
+//should rotate
+
+
+
+
+//update wonder.js version
+
+
+
+
+
+*** DONE support drag
+CLOSED: [2019-01-24 Thu 17:21]
+
+
+*** DONE fix:
+CLOSED: [2019-01-26 Sat 15:13]
+**** DONE fix "find plane for get intersect point"
+CLOSED: [2019-01-24 Thu 21:37]
+
+
+
+**** DONE handle "not get intersect point with plane" case
+CLOSED: [2019-01-25 Fri 07:36]
+
+move too far when the axis is almost perpendicular to the camera
+
+
+**** DONE draw order: should draw z,y,x
+CLOSED: [2019-01-25 Fri 07:41]
+
+
+
+**** DONE improve: should expand axis aabb
+CLOSED: [2019-01-25 Fri 07:50]
+
+
+**** DONE now if drag end, still show translation gameObjects and keep pick
+CLOSED: [2019-01-25 Fri 08:10]
+
+
+**** DONE should move in local
+CLOSED: [2019-01-26 Sat 11:16]
+
+
+
+
+**** change plane?
+
+
+**** fix group
+
+
+
+
+**** DONE right button->drag and down shouldn't work
+CLOSED: [2019-01-26 Sat 14:03]
+
+
+
+
+
+**** DONE feat(picking): fix: if select any transform gameObject when pointtap, not handle pick
+CLOSED: [2019-01-26 Sat 14:32]
+
+
+
+
+
+**** DONE scale translation gameObjects based on the distance between currentSceneTreeNode and camera
+CLOSED: [2019-01-26 Sat 15:10]
+
+
+
+**** DONE fix: select scene tree should update translation gizmos 
+CLOSED: [2019-01-26 Sat 15:13]
+
+
+
+*** DONE refactor: rename Transform/Translation gameObject to gizmo
+CLOSED: [2019-01-26 Sat 15:25]
+
+
+*** DONE fix: drag translation gizmos should refresh inspector
+CLOSED: [2019-01-26 Sat 15:29]
+
+
+*** DONE unit test
+CLOSED: [2019-01-28 Mon 15:27]
+//pass test
+
+
+//push to dev
+
+
+**** DONE test InitTransformGizmosJobUtils
+CLOSED: [2019-01-27 Sun 09:14]
+
+
+
+**** DONE update UpdateTransformGizmosJobUtils
+CLOSED: [2019-01-28 Mon 11:54]
+
+
+**** DONE test RenderTransformGizmosJobUtils
+CLOSED: [2019-01-28 Mon 15:04]
+
+
+
+**** DONE test picking->gizmo related logic
+CLOSED: [2019-01-28 Mon 15:27]
+
+
+*** DONE pass test coverage and push dev
+CLOSED: [2019-01-28 Mon 15:38]
+
+*** add no material shader->draw translation(editor)
+close depthTest
+
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2019-01-28 Mon 17:45]
+
+
+**** DONE refactor: rename "currentGameObject" to "currentSceneTreeNode"
+CLOSED: [2019-01-28 Mon 15:40]
+
+
+
+
+**** DONE refactor: rename KeyUp_editor to KeyXxx_SceneView, Keyxxx to KeyXxx_GameView
+CLOSED: [2019-01-28 Mon 15:54]
+
+**** DONE refactor: rename EventEditorService->getXXXEventName to EventSceneViewEditorService->xxx
+CLOSED: [2019-01-28 Mon 15:58]
+
+**** DONE refactor: rename NameEventEngineService to EventGameViewEditorService
+CLOSED: [2019-01-28 Mon 15:58]
+
+
+
+**** DONE refactor: rename XXXJobUtils to XXXJob
+CLOSED: [2019-01-28 Mon 16:12]
+
+
+
+**** DONE refactor: remove Wonderjs???
+CLOSED: [2019-01-28 Mon 17:26]
+ReallocateCPUMemoryJob->wonderjs->private: 
+ReallocateCPUMemoryJobUtils._reallocateGameObjectByDisposeCount
+
+**** DONE refactor: remove Wonderjs???
+CLOSED: [2019-01-28 Mon 17:26]
+extract RenderEngineService(wonder.js should extract RenderAPI?)
+
+
+TODO refactor: shouldn't operate renderState in editor!!!
+
+
+
+
+**** DONE refactor: _sendUniformRenderObjectModelData, _sendAttributeData ... not return state!
+CLOSED: [2019-01-28 Mon 16:56]
+
+**** DONE split InitTransformGizmosJob
+CLOSED: [2019-01-28 Mon 17:44]
+
+
+
+*** DONE feat: add redo-undo when drag end
+CLOSED: [2019-01-29 Tue 13:25]
+// (add drag start, drag drop event?)
+
+
+//fix twice
+
+
+//should push last pos
+
+
+
+*** DONE fix: should scale translation when compute aabb
+CLOSED: [2019-01-29 Tue 17:38]
+
+
+*** DONE optimize
+CLOSED: [2019-01-29 Tue 18:26]
+**** DONE optimize picking
+CLOSED: [2019-01-29 Tue 18:25]
+
+
+////**** optimize translation gizmo
+
+
+
+*** DONE fix: should scale translation when compute aabb
+CLOSED: [2019-01-30 Wed 09:35]
+
+
+
+*** DONE BasicMaterial add alpha
+CLOSED: [2019-01-31 Thu 15:31]
+
+
+
+*** DONE add translation plane
+CLOSED: [2019-01-31 Thu 17:34]
+**** DONE add
+CLOSED: [2019-01-31 Thu 16:34]
+
+
+**** DONE transparency
+CLOSED: [2019-01-31 Thu 16:34]
+
+gl.enable(gl.BLEND);
+
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+
+**** DONE move by camera
+CLOSED: [2019-01-31 Thu 16:34]
+
+
+
+**** DONE support drag
+CLOSED: [2019-01-31 Thu 17:34]
+
+
+
+
+*** DONE test
+CLOSED: [2019-02-01 Fri 12:27]
+
+pass test
+
+
+add cases
+
+
+
+** DONE drag rotation
+CLOSED: [2019-02-10 Sun 13:14]
+
+https://www.gamedev.net/forums/topic/683654-how-to-translate-mouse-movement-to-a-rotation-gizmo/
+
+https://computergraphics.stackexchange.com/questions/4535/how-to-translate-mouse-movement-to-a-rotation-gizmo
+
+
+
+https://www.gamedev.net/forums/topic/681053-opengl-how-to-draw-transformation-gizmos/
+
+
+
+*** learn the threejs->editor->rotation!!!
+
+
+**** DONE download newest threejs
+CLOSED: [2019-02-01 Fri 20:00]
+
+
+
+
+
+
+////*** TODO draw rings
+cull face
+
+
+
+*** DONE draw circle
+CLOSED: [2019-02-06 Wed 07:14]
+//draw
+
+
+//no material shader:
+"cull face"
+
+
+
+//commit
+
+//publish wonder.js
+//update wonder.js version
+
+
+
+
+*** DONE update transform
+CLOSED: [2019-02-06 Wed 07:24]
+
+
+
+
+
+
+
+
+
+
+*** DONE ray intersect with line
+CLOSED: [2019-02-06 Wed 09:06]
+get point intersect with circle;
+compare distance between the point and the radius of circle;
+
+
+
+test xy circle
+
+
+*** DONE rotate by axis
+CLOSED: [2019-02-06 Wed 13:52]
+
+fix rotate
+
+
+fix scale!!!???
+
+
+fix select:can't select
+
+
+
+fix can't intersect
+
+
+
+test xy circle
+
+
+
+
+*** DONE finish all circles
+CLOSED: [2019-02-07 Thu 11:18]
+
+
+
+
+*** rotate by sphere(local coord system)
+angle with xy,xz,yz plane
+ 
+
+
+*** DONE fix translation gizmo
+CLOSED: [2019-02-07 Thu 12:37]
+
+
+*** DONE set current gizmo(translation/rotation) to be white
+CLOSED: [2019-02-07 Thu 13:38]
+
+
+
+*** DONE add button to switch translation,rotation,scale
+CLOSED: [2019-02-07 Thu 16:41]
+
+
+*** DONE test
+CLOSED: [2019-02-08 Fri 19:24]
+//pass test
+
+
+add test cases:
+//init
+////update
+//render
+
+
+//set current gizmo
+
+////add button to switch
+
+*** DONE refactor: not set gizmoName
+CLOSED: [2019-02-09 Sat 07:52]
+
+
+*** DONE feat(scene-view): fix "select translation gizmo": intersect "with mesh" instead of "with aabb"
+CLOSED: [2019-02-09 Sat 08:16]
+
+
+
+
+
+*** DONE feat(scene-view): fix "select translation->axis gizmo": intersect "with aabb" instead of "with mesh"
+CLOSED: [2019-02-09 Sat 10:16]
+
+
+
+
+
+*** DONE optimize: not refresh when: drag, drop, drag and over!
+CLOSED: [2019-02-09 Sat 11:04]
+
+
+*** DONE feat: add world/local for translation/rotation
+CLOSED: [2019-02-09 Sat 20:16]
+default use world
+
+
+
+**** DONE support world
+CLOSED: [2019-02-09 Sat 13:21]
+
+
+
+**** DONE add switch ui
+CLOSED: [2019-02-09 Sat 13:21]
+
+
+
+**** DONE test
+CLOSED: [2019-02-09 Sat 20:16]
+//pass test
+
+
+//add test cases
+
+
+*** DONE fix(controller): first click not work???
+CLOSED: [2019-02-10 Sun 09:30]
+
+
+
+*** DONE fix(gizmo): should switch when run
+CLOSED: [2019-02-10 Sun 09:30]
+
+
+
+*** fix: limit translation->plane move far distance(refer to axis)
+
+
+*** DONE fix: should refresh inspector(update rotation)
+CLOSED: [2019-02-10 Sun 10:48]
+
+
+
+*** DONE redo-undo
+CLOSED: [2019-02-10 Sun 11:56]
+
+
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2019-02-10 Sun 13:12]
+
+
+**** remove render rotation gizmo(no material shader) duplicate code with draw outline job
+
+
+**** translation,rotation: remove function name->Translation/Rotation prefix
+
+
+**** DONE clear TODO
+CLOSED: [2019-02-10 Sun 13:12]
+**** remove print
+
+
+
+
+** DONE drag scale
+CLOSED: [2019-02-12 Tue 10:06]
+
+*** DONE add switch button
+CLOSED: [2019-02-11 Mon 09:23]
+
+
+*** DONE disable coordinate system button with scale
+CLOSED: [2019-02-11 Mon 09:23]
+
+
+*** DONE create axis
+CLOSED: [2019-02-11 Mon 10:27]
+
+*** DONE create center box
+CLOSED: [2019-02-11 Mon 10:27]
+
+
+*** DONE select axis
+CLOSED: [2019-02-11 Mon 16:10]
+
+
+
+
+
+
+
+
+
+
+*** DONE select center box
+CLOSED: [2019-02-11 Mon 16:10]
+
+
+*** DONE drag axis
+CLOSED: [2019-02-11 Mon 16:10]
+
+
+*** DONE drag center box
+CLOSED: [2019-02-11 Mon 16:10]
+
+
+
+
+
+
+
+
+*** DONE test
+CLOSED: [2019-02-12 Tue 09:56]
+//pass test
+
+
+
+add test cases:
+//create
+
+
+//event
+
+
+//render
+
+
+////update
+
+
+//coordinate
+
+
+//current gizmo color
+
+
+//snapshot: "disable coordinate system with scale"
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE redo-undo
+CLOSED: [2019-02-12 Tue 10:06]
+
+
+
+** DONE refactor
+CLOSED: [2019-02-12 Tue 10:10]
+
+
+
+
+** DONE fix: scale shouldn't be 0
+CLOSED: [2019-02-12 Tue 10:40]
+
+
+fix drag axis
+
+
+
+** fix: parent: pick parent; pick child;   child->translation plane should be moved!!!
+
+
+
+** DONE fix: arcball add key event
+CLOSED: [2019-02-12 Tue 11:26]
+(judge w,a,s,d):
+preventDefault
+
+renderWhenStop
+
+
+
+
+
+
+
+
+
+
+
+** DONE push
+CLOSED: [2019-02-12 Tue 11:49]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** handle group gameObjects
+
+*** TODO picking
+(if target gameObject has children)
+
+
+*** TODO show outline
+
+
+*** TODO drag translation
+
+
+
+
+
+
+
+
+
+** DONE fix bug
+CLOSED: [2019-02-13 Wed 09:35]
+*** DONE fix: scale direction light shouldn't affect light direction!!!
+CLOSED: [2019-02-13 Wed 08:48]
+
+
+*** DONE fix: why 0?
+CLOSED: [2019-02-13 Wed 09:35]
+
+
+
+
+
+** DONE all floatInput should support drag(include transform, light->intensity, ...)
+CLOSED: [2019-02-13 Wed 17:23]
+*** DONE finish logic
+CLOSED: [2019-02-13 Wed 12:04]
+drag
+
+
+css:pointer
+
+
+
+*** DONE fix: scale to 0.; continue drag!!!
+CLOSED: [2019-02-13 Wed 16:28]
+
+*** DONE test
+CLOSED: [2019-02-13 Wed 17:23]
+
+
+
+** transform inspector
+*** feat(inspector): transform: should only remain 3 digits
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE pick imgui gizmo
+CLOSED: [2019-02-13 Wed 20:02]
+
+
+*** DONE pick direction light
+CLOSED: [2019-02-13 Wed 19:22]
+
+
+*** DONE pick point light
+CLOSED: [2019-02-13 Wed 19:22]
+
+
+*** DONE pick camera
+CLOSED: [2019-02-13 Wed 19:22]
+
+
+
+
+*** DONE test
+CLOSED: [2019-02-13 Wed 20:02]
+
+
+
+
+
+
+** DONE pass all tests
+CLOSED: [2019-02-13 Wed 20:52]
+
+
+
+
+
+
+
+
+** DONE push
+CLOSED: [2019-02-13 Wed 20:57]
+
+
+
+
+** DONE publish engine
+CLOSED: [2019-02-14 Thu 13:35]
+
+*** DONE pass all u,i test
+CLOSED: [2019-02-14 Thu 09:05]
+
+
+
+*** DONE pass coverage
+CLOSED: [2019-02-14 Thu 09:10]
+
+
+*** DONE pass render test
+CLOSED: [2019-02-14 Thu 09:23]
+
+
+*** DONE pass pf test
+CLOSED: [2019-02-14 Thu 09:56]
+
+push benchmark data!
+
+
+
+*** DONE pass ci
+CLOSED: [2019-02-14 Thu 09:56]
+
+
+
+*** DONE code climate
+CLOSED: [2019-02-14 Thu 11:47]
+
+
+*** DONE publish
+CLOSED: [2019-02-14 Thu 13:35]
+//bumped release
+
+write release note
+
+
+
+** DONE publish editor
+CLOSED: [2019-02-14 Thu 17:46]
+
+*** DONE remove print
+CLOSED: [2019-02-14 Thu 11:52]
+
+*** DONE pass all u,i test
+CLOSED: [2019-02-14 Thu 13:38]
+
+
+
+*** DONE pass coverage
+CLOSED: [2019-02-14 Thu 13:38]
+
+
+*** DONE pass ci
+CLOSED: [2019-02-14 Thu 17:23]
+
+
+*** DONE clear TODO
+CLOSED: [2019-02-14 Thu 10:42]
+
+
+*** DONE code climate
+CLOSED: [2019-02-14 Thu 17:22]
+
+
+*** DONE update online demo
+CLOSED: [2019-02-14 Thu 17:32]
+
+
+
+
+*** DONE publish
+CLOSED: [2019-02-14 Thu 17:45]
+
+
+** DONE publish beta.1(engine,editor)
+CLOSED: [2019-02-14 Thu 17:55]
+
+
+
+*** DONE change editor to Apache Licene 2.0(editor)
+CLOSED: [2019-02-14 Thu 17:50]
+
+
+
+** DONE update online demo
+CLOSED: [2019-02-14 Thu 18:01]
+
+
+
+
+
+
+** DONE 买个新的服务器(内地)并备案
+CLOSED: [2018-12-26 Wed 20:15]
+
+
+
+** DONE summary collection
+CLOSED: [2019-02-14 Thu 18:29]
+
+
+
+** DONE push data
+CLOSED: [2019-02-14 Thu 18:29]
+
+
+
+
+
+
+
+** DONE write 版本报告
+CLOSED: [2019-02-14 Thu 18:34]
+
+
+
+
+
+
+
 
 
 
@@ -331,6 +1795,7 @@ png: rgba
 
 * 明日计划
 
+** TODO write 迭代报告
 
 
 * 中期研究
