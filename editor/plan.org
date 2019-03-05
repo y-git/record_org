@@ -941,6 +941,15 @@ meshRenderer!!!
 
 
 
+** TODO feat(ui): add show message ui(instead of antd->message ui)
+
+
+
+
+** TODO add cache
+*** TODO publish local->add cache(for stream load)
+
+
 
 
 
@@ -955,10 +964,6 @@ meshRenderer!!!
 
 
 
-*** TODO fix: set format when import texture asset
-jpg rgb
-png: rgba
-
 
 *** TODO change ui
 **** TODO run-stop height change to fixed value instead of percent? (@mickey)
@@ -971,14 +976,29 @@ png: rgba
 
 
 
+
+
 ** TODO [#A] ci,cd workflow
-*** code review
-use Phabricator:
+*** DONE code review
+CLOSED: [2019-03-05 Tue 10:09]
+////use Phabricator:
 https://secure.phabricator.com/book/phabricator/
 https://admin.phacility.com/book/phacility/
 
 
-*** TODO build test,pre-publish,online environment
+
+use github->pull request
+
+
+
+*** TODO distinguish .js and .min.js(engine, editor)
+
+
+*** TODO build test,online environment
+
+
+
+*** TODO build pre-publish environment
 
 
 
@@ -988,7 +1008,7 @@ wd.renderWorker.js, wd.webgl1.js, ...))
 
 
 
-** TODO add pf test, render test 
+////** TODO add pf test, render test 
 refer to Wonder.js
 ** TODO add canvas ui component
 http://docs.cocos.com/creator/manual/zh/components/canvas.html
@@ -1063,8 +1083,19 @@ action->before not worker???
 
 
 ** TODO [#A] pwa
+*** DONE feature(pwa): should update service worker if has new content
+CLOSED: [2019-03-05 Tue 07:36]
+user need click open F12->Application->service workers -> Upload on reload;
+(should add setting->button for user to open it!!!)
+
+(solved by judge service-worker.js->cacheName )
 
 
+
+
+
+*** TODO add to homescreen not work?
+not work at chrome 73?
 
 
 

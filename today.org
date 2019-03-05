@@ -50,6 +50,407 @@ give report
 * 完成事项
 
 
+** DONE renew ecs
+CLOSED: [2019-02-26 Tue 15:05]
+
+
+** DONE solve test ci
+CLOSED: [2019-02-26 Tue 17:29]
+
+
+
+** DONE fix wonder-commonlib version
+CLOSED: [2019-02-26 Tue 17:29]
+
+
+
+** DONE check code
+CLOSED: [2019-02-26 Tue 17:29]
+
+
+** DONE refactor: remove antd library
+CLOSED: [2019-02-26 Tue 20:58]
+
+remove from pwa service worker cache
+
+
+
+
+
+** DONE upgrade reason,bucklescript,reason-react,refmt
+CLOSED: [2019-02-27 Wed 19:45]
+
+//upgrade reason,bucklescript
+
+
+//pass test
+
+//pass snapshot
+
+
+
+//update wonder.js version
+
+
+
+
+
+//upgrade refmt
+
+
+
+
+//upgrade reason-react, react
+
+
+
+
+** DONE pass ci
+CLOSED: [2019-02-28 Thu 09:30]
+
+
+
+** DONE update editor->jest to 24.1.0
+CLOSED: [2019-02-28 Thu 10:45]
+
+
+
+
+** DONE fix install puppeteer
+CLOSED: [2019-02-28 Thu 15:21]
+fix test e2e test
+
+fix ci
+
+
+
+https://github.com/cnpm/cnpmjs.org/issues/1246:
+sudo cyarn config set puppeteer_download_host=https://npm.taobao.org/mirrors
+sudo cyarn install
+
+
+
+** DONE test performance
+CLOSED: [2019-03-03 Sun 16:57]
+
+
+
+*** DONE engine
+CLOSED: [2019-03-01 Fri 20:51]
+
+//fix pf->schedule test cases
+
+
+//optimize dispose
+
+//fix: handle isRootMap
+
+
+////if job isn't registered, should fatal!
+
+
+////add "wdb->create 1000 + clone 2000 + dispose all" benchmark and test case
+
+
+////solve dispose instance memory leak
+
+
+//give report
+
+
+//check pr
+
+
+*** DONE editor
+CLOSED: [2019-03-03 Sun 16:56]
+
+
+give report
+
+**** DONE find way to profile when pwa
+CLOSED: [2019-03-03 Sun 16:54]
+
+
+
+
+
+** DONE fix: fix bind buffer bug
+CLOSED: [2019-03-02 Sat 10:46]
+
+
+** DONE fix(scene-view): fix rotate vc by gizmo bug
+CLOSED: [2019-03-03 Sun 11:18]
+
+
+
+
+** DONE feat(hotkey): delete should remove asset
+CLOSED: [2019-03-03 Sun 17:33]
+
+
+
+
+
+** DONE improve(scene-tree): click between nodes; should reduce gap!
+CLOSED: [2019-03-03 Sun 17:43]
+
+
+
+////** TODO improve(event): arcball->keydown should move smooth
+
+
+
+
+
+** DONE check modal
+CLOSED: [2019-03-03 Sun 18:54]
+
+
+
+
+** DONE optimize editor->imgui->png, fnt
+CLOSED: [2019-03-03 Sun 18:44]
+
+
+
+
+** DONE update online demo
+CLOSED: [2019-03-03 Sun 19:24]
+*** DONE test pwa
+CLOSED: [2019-03-03 Sun 19:24]
+
+
+
+** TODO publish 1.0.0-beta.3
+*** DONE publish engine
+CLOSED: [2019-03-03 Sun 21:09]
+//pass coverage
+
+//code climate
+
+
+
+//pass pf test:
+//add param
+
+
+
+*** DONE publish editor
+CLOSED: [2019-03-03 Sun 22:00]
+//pass coverage
+
+//code climate
+
+
+
+//check online demo
+
+
+** DONE publish 1.0.0-beta.3.1
+CLOSED: [2019-03-04 Mon 07:30]
+
+
+
+** DONE update demo
+CLOSED: [2019-03-04 Mon 07:30]
+
+
+** DONE write publish report
+CLOSED: [2019-03-04 Mon 08:05]
+
+
+** TODO test work in windows7
+
+*** TODO clone wonder-editor
+**** TODO add "firstInstallInChina" npm script?
+
+
+
+
+*** TODO install vscode
+
+
+
+
+*** TODO open local
+
+
+
+
+*** TODO chrome,360,qq browser
+
+**** TODO test function
+
+create demo
+
+
+**** TODO test performance
+
+
+** TODO test demo in mac->chrome
+test publish
+
+
+** DONE fix:1.remove renderGroup component;2.export package w1;3.import w1;   error!
+CLOSED: [2019-03-04 Mon 16:54]
+publish wonder.js
+
+fix in editor
+
+
+
+test dispose removed material(added new material)
+
+test dispose removed geometry
+
+
+** DONE fix(shader): load texture->draw
+CLOSED: [2019-03-04 Mon 17:37]
+
+
+** DONE feat:should load jpeg texture
+CLOSED: [2019-03-04 Mon 17:38]
+
+
+
+** DONE fix: set format when import texture asset
+CLOSED: [2019-03-04 Mon 17:59]
+jpg/jpeg rgb
+png: rgba
+
+
+
+
+** DONE feat(test environment):  add editor_for_debug
+CLOSED: [2019-03-04 Mon 18:09]
+
+
+
+** DONE fix: export,import; material assets lost
+CLOSED: [2019-03-04 Mon 21:29]
+
+
+
+** perf: publish too slow(test in qq,360)
+already push test env
+
+
+(load data too slow, need compress publish files)
+
+
+
+
+** DONE fix: qq browser->drag
+CLOSED: [2019-03-04 Mon 19:38]
+caused by preventDefault mousemove
+
+
+
+////** TODO fix:import package-> should load ambient color(need confirm!)
+
+
+
+
+** feat(camera): forbidden arcball->keydown
+
+
+** DONE feat(focus): set speed
+CLOSED: [2019-03-05 Tue 08:09]
+
+
+
+
+
+
+
+
+
+
+** TODO mickey
+*** DONE add "updatePWACacheVersion" gulp task
+CLOSED: [2019-03-04 Mon 09:04]
+rename "updateVersion" gulp task to "updateEditorVersion"
+
+
+
+
+
+*** DONE add user info modal ui when user first enter editor
+CLOSED: [2019-03-04 Mon 09:04]
+
+
+*** DONE add upgrade info modal ui
+CLOSED: [2019-03-04 Mon 09:04]
+
+
+*** DONE add about modal ui(edit "header->version")
+CLOSED: [2019-03-04 Mon 09:04]
+
+
+
+
+
+
+////*** TODO optimize online editor->small image
+////1.consider use background-image css instead of <img>
+////2.pack all small image to one big image
+
+*** DONE online editor should use https(to support pwa)
+CLOSED: [2019-03-05 Tue 08:36]
+
+
+
+
+
+
+** DONE publish 1.0.0-rc.1(enter rc)
+CLOSED: [2019-03-05 Tue 11:23]
+
+*** DONE engine
+CLOSED: [2019-03-05 Tue 09:58]
+
+**** DONE switch wonder.js from gulp to webpack
+CLOSED: [2019-03-05 Tue 09:58]
+
+
+//add compress gulp task
+
+
+
+*** DONE editor
+CLOSED: [2019-03-05 Tue 11:23]
+**** DONE fix webpack
+CLOSED: [2019-03-05 Tue 10:44]
+
+**** DONE update wonder.js version
+CLOSED: [2019-03-05 Tue 10:45]
+
+
+**** DONE update publish->engine files
+CLOSED: [2019-03-05 Tue 10:51]
+
+
+**** DONE coverage
+CLOSED: [2019-03-05 Tue 10:53]
+
+
+**** DONE code climate
+CLOSED: [2019-03-05 Tue 10:57]
+
+
+
+**** DONE publish
+CLOSED: [2019-03-05 Tue 11:08]
+
+
+**** DONE update test env
+CLOSED: [2019-03-05 Tue 11:18]
+rename index/ to index_performance/
+
+**** DONE write report
+CLOSED: [2019-03-05 Tue 11:23]
+
+
 * won't fix
 
 
@@ -75,22 +476,15 @@ give report
 * TODO 未来7日计划
 
 
-** TODO test work in windows
-*** TODO chrome,360,qq browser
+
+
+
+** TODO prepare online editor zip for mickey
+create Wonder-Editor-Produce
 
 
 
 
-
-
-
-** TODO publish 1.0.0-rc.1(enter rc)
-
-
-
-
-** TODO add cache
-*** TODO publish local->add cache(for stream load)
 
 
 
@@ -104,11 +498,84 @@ give report
 
 
 *** TODO online editor
+**** TODO switch to production
+set setting.json->is_debug to false
+
+...
+
+
+
+**** TODO compress
+
+compress editor js
+
+
+compress editor->publish->engine files
 
 
 
 
-** TODO publish
+** TODO prepare github repo(wonder-editor, wonder.js)
+*** TODO prepare for clone
+
+
+
+
+
+
+
+
+** TODO fill content
+
+*** TODO website->image
+
+*** TODO editor
+**** TODO welcome,upgrade modal
+**** TODO about
+
+*** TODO write document
+
+
+** TODO fix gesture: try prevent and stop when mousemove and drag->mousemove
+*** TODO 360(10.0.0正式版)
+https://jingyan.baidu.com/article/76a7e409dafd52fc3b6e15d4.html
+
+
+*** TODO qq(10.4)
+https://jingyan.baidu.com/article/5225f26b9bc5efe6fb09084c.html
+
+
+
+
+
+
+
+
+
+
+
+** TODO mickey
+*** TODO push online editor
+
+*** TODO use http2
+
+
+
+
+
+
+
+
+** TODO publish rc
+
+
+
+** TODO test by others(friends, ...)
+should test in test environment(not compress, is_debug = true)
+
+
+
+** TODO publish 1.0.0-release
 
 
 
