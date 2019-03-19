@@ -1,799 +1,49 @@
-* TODO before v1.0.0-beta
+* TODO v1.1
+** TODO [#A] engine script
 
 
-** TODO import
-discard index.html, wd.js
 
 
 
-*** TODO import asset
-**** TODO import
+** TODO [#A] job script, data json
 
-each asset has description data(record data? store in map?)
 
 
-***** TODO texture
-texture asset:
-upload image file(.png, ...);
-create texture with the source;
-add description data(wrap, filter, format...)
 
 
 
-let (state, textureIndex ) = wd.createTexture()
 
 
 
-let state = wd.setTextureSource(textureIndex, image, state);
+** TODO [#A] add free camera
 
+** TODO feat(view): add button to switch: full scene view, full game view, half scene view and half game view
 
+** TODO feat(view): add separate ui to separate scene view and game view
 
 
-store engine->texture index + description data
+** TODO feat: add scroll bar(x, y) for sceneTree, inspector, bottom, header
 
 
 
+** TODO advanced asset
+*** TODO inspector add a canvas for show
+add engine state
 
 
-***** TODO mode(obj, gltf, wd)
+add default direction light
 
 
-refer to 
-https://docs.unity3d.com/Manual/ImportingModelFiles.html
-https://docs.unity3d.com/Manual/FBXImporter-Materials.html
+*** TODO material,geometry asset->icon should be show canvas->snapshot
+material apply to sphere geometry data
 
 
+geometry apply default light material
+(use line mode instead of triangle mode)
 
 
 
-inspector add "relate file" button:
-for obj: 
-should upload load .obj, .mtl
-relate texture files by image name
 
-
-
-
-for gltf: 
-should upload .gltf, .bin
-relate texture files by image name
-
-
-
-for wd
-should upload .wd, .bin
-
-relate texture files by src(root src, relate to asset/ folder)
-
-
-
-
-these related files should be imported before
-
-
-
-relate to the id of theses file, not the src in asset folder!
-
-
-
-
-
-
-
-related file is external
-
-
-
-
-
-
-****** TODO convert
-
-////add "convert" button:
-
-auto convert after load model:
-convert .obj,.gltf to .wd(no need to send to server)
-
-
-
-
-then asset panel show the .wd model file icon
-
-
-
-
-
-
-
-add "re-update" button: find texture and update description data and convert
-
-
-
-
-****** TODO store .wd+.bin content to map
-
-store texture id to .wd
-(instead of texture src)
-
-(replace texture id to src when export!)
-
-
-
-
-
-
-****** TODO advanced
-
-support embed related file
-
-
-
-show model thumbnail(in the right-down)(refer to unity)
-
-
-
-
-
-
-***** TODO data json
-shouldn't import new data json! only allow edit exist data json!
-(pacakge should has data json default!)
-
-
-
-
-
-***** TODO job script
-
-store script string in description data
-
-
-
-**** TODO apply to scene
-////***** TODO .obj, .gltf
-
-***** TODO support hot apply!
-
-***** TODO model
-1.button->create model
-(
-
-should select use which model data(.wd model)
-
-(if obj,gltf not converted yet, can't be used!)
-)
-
-2.load .wd file by engine api(async)
-
-
-
-wd.load("wd string", .bin )
-
-
-complete() can get the model uid
-
-
-
-
-
-
-
-
-3.wait it finish!
-
-
-4.add model uid to editor state->root
-
-
-
-***** TODO texture
-set map
-
-
-
-let state = wd.setBasicMaterialMap(materialIndex, textureIndex, state);
-
-
-
-
-***** TODO job script
-exec script string twice(inject edit, run engine state)
-
-
-
-
-***** TODO data json
-not support apply!
-
-
-
-
-*** TODO import project package
-
-- dispose current scene
-
-
-forEach editor state->root, dipose all children
-
-
-
-- unzip package, get .wd, .bin, asset/ folder files, ...
-  
-
-- create and init scene by read .wd
-
-
-wd.load(.wd string , .bin)
-
-
-
-
-
-
-- init asset/ folder files by read asset.json
-
-
-    - show in asset panel
-
-
-
-
-
-** TODO export project package
-
-keep folder structure not change
-
-
-
-.wonder_project_package/
-   .wd
-   .bin
-   wd.js
-   index.html
-   asset/
-       asset.json
-       ...
-
-
-
-*** TODO export assets
-
-
-**** TODO export all assets(include not used in scene(in .wd))
-
-put to asset/ folder in .wonder_project_package
-
-
-
-generate asset.json file:
-store all assets->description data
-
-
-
-
-
-
-**** TODO export model
-
-export .wd + .bin(not export textures!)
-
-
-
-**** TODO export texture
-
-export image file
-(texture info store in asset.json)
-
-
-
-
-**** TODO data json
-export file
-
-
-
-
-**** TODO job script
-
-generate script file
-
-
-
-
-
-
-*** TODO export other file
-
-
-
-**** TODO generate .wd+.bin from scene(engine do this)
-
-////merge loaded .wd files
-(no need to merge!  )
-
-
-
-no need to generate textures(include in asset folder)
-
-
-
-
-**** TODO generate index.html
-
-
-
-import job script;
-exec job script;
-
-
-
-
-**** TODO generate wd.js
-
-
-
-
-
-
-
-
-
-
-
-
-** TODO picking, axis
-
-
-
-
-
-** TODO ui
-
-
-
-
-** TODO server
-*** TODO for export package
-**** TODO get html, res, wd.min.js from server
-
-
-*** TODO login/register
-
-
-*** TODO pay
-
-
-*** TODO forum
-
-
-
-** TODO custom loading
-
-
-** DONE advanced transform
-CLOSED: [2018-09-20 Thu 11:15]
-support rotation
-
-support scale
-
-
-
-
-
-
-** TODO improve UE
-
-
-
-////*** TODO fix(import package): 1.load WDBAsset1.wdb; 2.drag to scene; 3.import package DemoPackage1_room.wpk;  4.drag wdb to scene;    the wdb change to room!!! but should be outdoor scene!!!
-
-
-
-
-
-
-*** TODO fix: scene can be select or pick(should has transform inspector)
-**** TODO fix: scene can't add other component except transform(default component, can't remove)
-
-
-
-
-
-*** TODO fix(redo-undo): 1.rotate; 2.undo;    transform inspector->rotate not undo!!!
-
-
-
-*** TODO fix(scene-tree): change child should refresh
-
-
-*** TODO fix(left-header): dispose gameObject should refresh canvas
-
-
-*** TODO fix(left-header): clone gameObject should refresh canvas
-
-
-
-
-*** TODO fix(dispose gameObject)
-
-**** TODO fix: 0.open debug;1.dispose cube1;2.dispose cube2;3.add cube3; 4.select cube3;       error!!!
-
-
-
-**** TODO fix(import package): 0.open debug; 1.dispose all gameObjects except one cube; 2.export package wpk1; 3.dispose the cube; 4.import wpk1;    error->"expect component alive, but actual not" 
-
-
-**** TODO fix(import package): 0.open debug; 1.dispose all cubes; 2.import package DemoPackage1_room.wpk;   error: "expect all wdb gameObjects->materials should be material assets or default materials, but actual not"
-
-
-
-
-
-
-*** TODO fix(clone): clone point light gameObject: grid plane affected!!!
-
-*** TODO fix(clone): should remain transform->local position,rotation,scale
-
-
-
-
-
-*** TODO fix(clone): clone direction light gameObject 
-
-
-*** TODO fix(controller): stop not change the icon to stop icon at sometime!!!
-
-
-
-*** TODO fix(event): when move game view->arcball camera, should update inspector->rotation and scale beside position!!!
-
-*** TODO fix(engine): gameView-> arcball: when mouse wheel too close, the camera will phi down!!!???(but scene view->arcball not has this bug!!!???)
-
-
-
-*** TODO fix(inspector): inspector->material: 1.create material2 asset;2.change it's color to red in asset inspector; 3.gameObject1 select material2(color is red); but the color is still not change(white?);
-
-only after:
-select other gameObject;
-select the gameObject1 back;
-
-the material color change to red!!!
-
-
-
-
-
-*** TODO fix(asset): fix "drag asset to folder node": should fail instead of rename
-
-
-
-
-////*** TODO fix(sceneTree, assetTree): if node relation check fail, shouldn't error(do nothing)
-*** TODO fix(sceneTree, assetTree): if node relation check fail, should warn instead of errorj
-
-*** TODO fix(viewport):0.open chrome debug; 1.run;2.change viewport(close chrome debug);3.stop;    should update canvas size change!!!
-
-
-
-
-
-
-
-
-
-
-*** TODO improve(console):should format string
-
-e.g.:
-
-445-61.2428.6
-
-
-should format to(refer to chrome console!!!) :
-[
-445, 
-[61.24, 28.6]
-]
-
-
-*** TODO improve(console):should only show 99 messages at max
-
-
-
-*** TODO feat(picking): add pretab wdb
-**** TODO feat(picking): if picking pretab wdb->all children, select the rootGameObject of the wdb!
-
-
-**** TODO add "export scene as pretab wdb"(add checkbox)
-
-
-**** TODO load asset->auto convert glb,gltf to pretab wdb
-
-
-**** TODO add online service for user: convert glb,gltf to wdb/pretab wdb
-
-
-
-
-
-*** TODO feat(setting): editor add setting
-setting:
-load glb/gltf as pretab
-
-
-should store setting in localStorage?
-
-
-
-
-*** TODO feat: MeshRenderer inspector: add "isRender" checkbox
-if gameObject is pretab, should add "isRender" checkbox to the pretab gameObject eveven if the gameObject not has
-meshRenderer!!!
-
-
-
-
-
-*** TODO feat(material): support side
-
-
-**** TODO replace basicMaterial->isDepthTest to side!!!???(remove isDepthTest)
-
-
-**** TODO set gl state->side when draw gameObject(front,basic render job; draw outline job)
-
-**** TODO wdb support side
-
-**** TODO clone,dispose should work with side
-
-**** TODO picking->intersect with triangle: support side
-
-
-////*** TODO feat(asset): wdb support isDepthTest
-
-
-
-*** TODO fix(hotkey)
-
-**** TODO fix(hotkey): should consider event target??????? or not???????
-e.g. if target is SceneView, "f"(focus) can work
-
-
-**** TODO fix mac 
-should use command
-shouldn't use ctrl
-
-
-
-
-
-
-*** TODO fix(event->error): if event error, the binded event should still work!!!
-
-
-
-
-
-
-*** TODO feat(run): show debug info(use imgui to show)
-show:
-time(render, loop), fps,memory, draw call count, face count, gameObject count, 
-engine version
-...
-
-*** TODO feat(publish): add more config
-**** TODO cache
-stream load/common load support wdb cache
-
-setting.json add cache field?
-"Scene201812300750"?
-
-**** TODO use stream load
-
-
-
-**** TODO debug
-open contract
-
-not compress
-
-show debug info:
-for no worker and worker
-
-
-
-
-
-
-*** TODO add free camera
-*** TODO support click sceneTree node to focus(refer to unity)(shortcut: f)
-*** TODO "Add Component" should click other place to close
-
-*** TODO add "clone selected sceneTree node"
-
-
-*** TODO feat: inspector->map: add select list
-
-
-*** TODO fix(ui): fix color picker->sketch-picker->height should be 100%
-
-
-*** TODO bind shortcut(not support edit)
-
-*** TODO feat(sceneTree): support drag to slibing
-*** TODO fix: change direction light to point light: when > 4 lights. the select option should still be direction light(test snapshot)(with @mickey)
-
-*** TODO feat: add create sphere
-*** TODO feat: export,import add waiting modal?
-
-*** TODO improve: texture inspector: show image(big size)
-*** TODO fix: add gameObject should add to sceneTree node->children
-
-*** TODO refactor: remove antd library
-
-*** TODO set format when import texture asset
-jpg rgb
-png: rgba
-
-*** TODO asset->name: add "..."
-
-*** TODO change ui
-**** TODO run-stop height change to fixed value instead of percent? (@mickey)
-
-*** TODO [#C] fix "load asset wdb"->inspector order: arcball component, cameraGroup order has change
-
-*** TODO engine: imgui->slider: can't drag?
-
-
-*** TODO engine: firefox->arcball-> mouse scale not work
-
-
-
-
-
-
-
-
-*** TODO mickey
-**** TODO improve(sceneTree): need x rollbar
-**** TODO feat(sceneTree): when click current sceneTree node, scroll(y scroll) to it(make it top)
-
-
-**** TODO feat: add scroll bar(x, y) for sceneTree, inspector, bottom, header
-
-
-**** TODO feat(pwa): add desktop icon
-
-
-**** TODO optimize: pick sometimes very slow(in linux)
-
-
-* TODO v1.0.0-beta
-** TODO upgrade reason,reason-react version
-
-** TODO remove antd ?(write custom message)
-
-
-
-
-
-
-
-** TODO extremely test 
-*** TODO scene has 10000 cloned lightMaterial gameObjects + 10000 cloned basicMaterial gameObjects
-*** TODO scene has 5000 new lightMaterial gameObjects + 5000 new basicMaterial gameObjects
-*** TODO ...
-
-
-
-** TODO add debug/production version
-*** for production
-**** TODO remove Console->debug button(e.g. add log, ...)
-**** TODO remove ...
-
-**** TODO compress and merge editor/engine->resources(e.g. lato.png)
-
-**** TODO add localStorage cache?
-
-
-**** TODO set config->setting.json->isDebug to false
-
-** TODO get resource from server
-*** TODO get wd.min.js,engine->config,res(publish)
-
-
-
-** TODO check online
-
-*** TODO fix:loading->css(test in macbook)("WONDER" is overlap with logo)
-
-
-*** TODO check more browser(e.g. qq, 360, ...)
-
-
-
-** TODO run in mobile
-*** TODO render static scene can work
-
-*** TODO arcball/fly camera can work
-
-
-
-
-** TODO more import/export
-*** TODO import scene
-*** TODO export/import asset
-
-
-
-
-
-** TODO redo-undo
-*** TODO select assetTree not redo-undo?
-
-
-
-////*** TODO should release memory when remove state from stack(need confirm)
-
-
-
-
-
-** TODO feat: add msaa
-
-
-
-
-
-* TODO v1.0.0-rc
-
-
-** TODO demo
-*** TODO picture show
-*** TODO room
-*** TODO outdoor
-
-
-
-
-
-** TODO engine: add examples to github(wonder.js)
-
-
-** TODO editor: add examples
-
-
-** TODO fix(ci->test): editor->ci test shouldn't update snapshot
-
-need fix can't find snapshot problem!!!:
-gulp changeSnapshotPath not work and will cause test fail even if all test case pass!!!
-
-
-solution:
-use copySnapshotFromTestToLib instead of changeSnapshotPath ?
-
-need refer to https://github.com/facebook/jest/issues/1650
-
-
-
-** TODO refactor
-*** TODO refactor(engine): change all render data to immutable
-**** TODO refactor(engine): change glslSenderType to immutable
-***** TODO init material,init no material shader now use immutable state
-
-***** TODO refactor(wonder.js):  use immutable
-
-
-
-**** TODO refactor(engine): init, render, sub(exclude this. this is read only) should merge to state(no worker/worker)
-
-
-
-**** TODO refactor(engine): RenderJobUtils->getOrCreateBuffer should return state and arrayBuffer 
-**** TODO refactor(engine): RenderJobUtils->sendUniformRenderObjectMaterialData->sendDataFunc should return state(shaderCacheMap changed)
-
-
-**** TODO refactor(engine): fix DrawOutlineJob->sendXXX:should return state???
 
 
 
@@ -926,7 +176,14 @@ meshRenderer!!!
 
 
 
-** TODO add free camera
+
+
+
+
+
+
+
+
 
 
 ** TODO feat: export,import add waiting modal?
@@ -941,30 +198,32 @@ meshRenderer!!!
 
 
 
-** TODO feat(ui): add show message ui(instead of antd->message ui)
+
 
 
 
 
 ** TODO add cache
 *** TODO publish local->add cache(for stream load)
+chrome already has cache???
 
 
 
+** TODO feat(publish): should support click in center(on logo) to rotate arcball
 
 
 
-* TODO after v1.0.0
+** TODO add "about us" page in website
+
+
+
+** TODO fix(forum): fix favicon.ico
+
+
+** TODO feat: add msaa
+
+
 ** TODO [#A] UE
-*** TODO asset->name: add "..."
-
-*** TODO decrease arcball->keydown speed??????(or not???)
-
-*** TODO improve(outline): improve cube outline!!!
-
-
-
-
 *** TODO change ui
 **** TODO run-stop height change to fixed value instead of percent? (@mickey)
 
@@ -978,6 +237,32 @@ meshRenderer!!!
 
 
 
+
+
+
+** TODO refactor
+*** TODO refactor(engine): change all render data to immutable
+**** TODO refactor(engine): change glslSenderType to immutable
+***** TODO init material,init no material shader now use immutable state
+
+***** TODO refactor(wonder.js):  use immutable
+
+
+
+**** TODO refactor(engine): init, render, sub(exclude this. this is read only) should merge to state(no worker/worker)
+
+
+
+**** TODO refactor(engine): RenderJobUtils->getOrCreateBuffer should return state and arrayBuffer 
+**** TODO refactor(engine): RenderJobUtils->sendUniformRenderObjectMaterialData->sendDataFunc should return state(shaderCacheMap changed)
+
+
+**** TODO refactor(engine): fix DrawOutlineJob->sendXXX:should return state???
+
+
+
+
+* TODO after v1.0.0
 ** TODO [#A] ci,cd workflow
 *** DONE code review
 CLOSED: [2019-03-05 Tue 10:09]
@@ -1032,43 +317,6 @@ http://docs.cocos.com/creator/manual/zh/extension/submit-to-store.html
 
 NPM 第三方库
 目前扩展包安装系统中没有包括安装 NPM 等包括管理系统的工作流程，因此使用了第三方库的扩展包应该将 node_modules 等文件夹也一起加入到 zip 包中。
-
-
-
-** TODO [#A] job script, data json
-
-*** TODO data json
-open/close worker setting
-
-
-
-**** TODO user can change setting.json->buffer
-1.editor->engine->setting.json
-2.publish->engine->setting.json
-
-
-
-
-
-*** TODO editor: support edit config json
-
-*** TODO job
-**** TODO fix bug:
-action->before not worker???
-**** TODO support import/export job script
-***** TODO wdb
-
-***** TODO generate
-
-
-
-*** TODO demo
-**** TODO 3d snake
-
-
-
-
-
 
 
 
@@ -1269,28 +517,6 @@ https://docs.unity3d.com/Manual/ProjectTemplates.html
 which are project starters with default settings already tuned, including a sample scene. Here are some samples of the HD RP and LW RP templates
 
 
-** TODO [#A] engine script
-
-*** TODO support change property in inspector(editor)
-
-在代码中我们不需要关心这些数值是多少，因为我们之后会直接在 属性检查器 中设置这些数值。
-
-这些数值都是建议，一会等游戏运行起来，您完全可以按照自己的喜好随时在 属性检查器 中修改这些数值，不需要改动任何代码，很方
-便吧！ 
-
-
-
-http://docs.cocos.com/creator/manual/zh/scripting/use-component.html
-
-
-*** 扩展 Inspector
-http://docs.cocos.com/creator/manual/zh/extension/extends-inspector.html
-
-editor can extend user script component's inspector!
-
-
-
-
 ** TODO support publish to native platform(ios, ..)
 compile reason to native?bsb-native?
 
@@ -1455,26 +681,6 @@ refer to unity
 
 
 
-** TODO advanced asset
-
-*** TODO inspector add a canvas for show
-add engine state
-
-
-add default direction light
-
-
-**** TODO material,geometry asset->icon should be show canvas->snapshot
-material apply to sphere geometry data
-
-
-geometry apply default light material
-(use line mode instead of triangle mode)
-
-
-
-
-
 ** TODO [#A] gizmo
 *** TODO add camera gizmo
 
@@ -1516,4 +722,6 @@ render it to color buffer(open depth test) when draw origin;
 
 ////use scale instead of move out in normal?
 (the effect is worse!!!)
+
+
 

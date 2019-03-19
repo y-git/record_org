@@ -1,73 +1,45 @@
 * 今日计划
+
+
+** TODO solve test ci
+
+** TODO refactor: remove antd library
+
+** TODO upgrade reason,bucklescript,reason-react
+
+
 ** TODO mickey
-*** TODO feat(website): add link for feature
 
-
-
-*** TODO feat(ui): write message ui
-
-
-** TODO engine script
-*** TODO support change property in inspector(editor)
-
-在代码中我们不需要关心这些数值是多少，因为我们之后会直接在 属性检查器 中设置这些数值。
-
-这些数值都是建议，一会等游戏运行起来，您完全可以按照自己的喜好随时在 属性检查器 中修改这些数值，不需要改动任何代码，很方
-便吧！ 
-
-
-
-http://docs.cocos.com/creator/manual/zh/scripting/use-component.html
-
-
-*** TODO 扩展 Inspector
-http://docs.cocos.com/creator/manual/zh/extension/extends-inspector.html
-
-editor can extend user script component's inspector!
-
-
-
-*** TODO support hot edit script
-
-
-*** TODO support js
-
-
-*** TODO support reason?
-can add compiler in front end for user to compile reason to js???
-
-
-
-
-** TODO job script, data json
-
-*** TODO data json
-open/close worker setting
-
-
-
-**** TODO user can change setting.json->buffer
-1.editor->engine->setting.json
-2.publish->engine->setting.json
+*** TODO feat(pwa): add desktop icon
 
 
 
 
 
-*** TODO editor: support edit config json
 
-*** TODO job
-**** TODO fix bug:
-action->before not worker???
-**** TODO support import/export job script
-***** TODO wdb
 
-***** TODO generate
+** TODO test performance
 
 
 
-*** TODO demo
-**** TODO 3d snake
+*** TODO engine
+
+
+give report
+
+*** TODO editor
+
+
+give report
+
+
+
+
+** TODO publish
+
+
+
+
 
 
 
@@ -78,38 +50,406 @@ action->before not worker???
 * 完成事项
 
 
-** TODO engine script
-*** TODO support change property in inspector(editor)
-
-在代码中我们不需要关心这些数值是多少，因为我们之后会直接在 属性检查器 中设置这些数值。
-
-这些数值都是建议，一会等游戏运行起来，您完全可以按照自己的喜好随时在 属性检查器 中修改这些数值，不需要改动任何代码，很方
-便吧！ 
+** DONE renew ecs
+CLOSED: [2019-02-26 Tue 15:05]
 
 
-
-http://docs.cocos.com/creator/manual/zh/scripting/use-component.html
-
-
-*** TODO 扩展 Inspector
-http://docs.cocos.com/creator/manual/zh/extension/extends-inspector.html
-
-editor can extend user script component's inspector!
+** DONE solve test ci
+CLOSED: [2019-02-26 Tue 17:29]
 
 
 
-*** TODO support hot edit script
+** DONE fix wonder-commonlib version
+CLOSED: [2019-02-26 Tue 17:29]
 
 
-*** TODO support js
+
+** DONE check code
+CLOSED: [2019-02-26 Tue 17:29]
 
 
-*** TODO support reason?
-can add compiler in front end for user to compile reason to js???
+** DONE refactor: remove antd library
+CLOSED: [2019-02-26 Tue 20:58]
+
+remove from pwa service worker cache
 
 
 
 
+
+** DONE upgrade reason,bucklescript,reason-react,refmt
+CLOSED: [2019-02-27 Wed 19:45]
+
+//upgrade reason,bucklescript
+
+
+//pass test
+
+//pass snapshot
+
+
+
+//update wonder.js version
+
+
+
+
+
+//upgrade refmt
+
+
+
+
+//upgrade reason-react, react
+
+
+
+
+** DONE pass ci
+CLOSED: [2019-02-28 Thu 09:30]
+
+
+
+** DONE update editor->jest to 24.1.0
+CLOSED: [2019-02-28 Thu 10:45]
+
+
+
+
+** DONE fix install puppeteer
+CLOSED: [2019-02-28 Thu 15:21]
+fix test e2e test
+
+fix ci
+
+
+
+https://github.com/cnpm/cnpmjs.org/issues/1246:
+sudo cyarn config set puppeteer_download_host=https://npm.taobao.org/mirrors
+sudo cyarn install
+
+
+
+** DONE test performance
+CLOSED: [2019-03-03 Sun 16:57]
+
+
+
+*** DONE engine
+CLOSED: [2019-03-01 Fri 20:51]
+
+//fix pf->schedule test cases
+
+
+//optimize dispose
+
+//fix: handle isRootMap
+
+
+////if job isn't registered, should fatal!
+
+
+////add "wdb->create 1000 + clone 2000 + dispose all" benchmark and test case
+
+
+////solve dispose instance memory leak
+
+
+//give report
+
+
+//check pr
+
+
+*** DONE editor
+CLOSED: [2019-03-03 Sun 16:56]
+
+
+give report
+
+**** DONE find way to profile when pwa
+CLOSED: [2019-03-03 Sun 16:54]
+
+
+
+
+
+** DONE fix: fix bind buffer bug
+CLOSED: [2019-03-02 Sat 10:46]
+
+
+** DONE fix(scene-view): fix rotate vc by gizmo bug
+CLOSED: [2019-03-03 Sun 11:18]
+
+
+
+
+** DONE feat(hotkey): delete should remove asset
+CLOSED: [2019-03-03 Sun 17:33]
+
+
+
+
+
+** DONE improve(scene-tree): click between nodes; should reduce gap!
+CLOSED: [2019-03-03 Sun 17:43]
+
+
+
+////** TODO improve(event): arcball->keydown should move smooth
+
+
+
+
+
+** DONE check modal
+CLOSED: [2019-03-03 Sun 18:54]
+
+
+
+
+** DONE optimize editor->imgui->png, fnt
+CLOSED: [2019-03-03 Sun 18:44]
+
+
+
+
+** DONE update online demo
+CLOSED: [2019-03-03 Sun 19:24]
+*** DONE test pwa
+CLOSED: [2019-03-03 Sun 19:24]
+
+
+
+** TODO publish 1.0.0-beta.3
+*** DONE publish engine
+CLOSED: [2019-03-03 Sun 21:09]
+//pass coverage
+
+//code climate
+
+
+
+//pass pf test:
+//add param
+
+
+
+*** DONE publish editor
+CLOSED: [2019-03-03 Sun 22:00]
+//pass coverage
+
+//code climate
+
+
+
+//check online demo
+
+
+** DONE publish 1.0.0-beta.3.1
+CLOSED: [2019-03-04 Mon 07:30]
+
+
+
+** DONE update demo
+CLOSED: [2019-03-04 Mon 07:30]
+
+
+** DONE write publish report
+CLOSED: [2019-03-04 Mon 08:05]
+
+
+** TODO test work in windows7
+
+*** TODO clone wonder-editor
+**** TODO add "firstInstallInChina" npm script?
+
+
+
+
+*** TODO install vscode
+
+
+
+
+*** TODO open local
+
+
+
+
+*** TODO chrome,360,qq browser
+
+**** TODO test function
+
+create demo
+
+
+**** TODO test performance
+
+
+** TODO test demo in mac->chrome
+test publish
+
+
+** DONE fix:1.remove renderGroup component;2.export package w1;3.import w1;   error!
+CLOSED: [2019-03-04 Mon 16:54]
+publish wonder.js
+
+fix in editor
+
+
+
+test dispose removed material(added new material)
+
+test dispose removed geometry
+
+
+** DONE fix(shader): load texture->draw
+CLOSED: [2019-03-04 Mon 17:37]
+
+
+** DONE feat:should load jpeg texture
+CLOSED: [2019-03-04 Mon 17:38]
+
+
+
+** DONE fix: set format when import texture asset
+CLOSED: [2019-03-04 Mon 17:59]
+jpg/jpeg rgb
+png: rgba
+
+
+
+
+** DONE feat(test environment):  add editor_for_debug
+CLOSED: [2019-03-04 Mon 18:09]
+
+
+
+** DONE fix: export,import; material assets lost
+CLOSED: [2019-03-04 Mon 21:29]
+
+
+
+** perf: publish too slow(test in qq,360)
+already push test env
+
+
+(load data too slow, need compress publish files)
+
+
+
+
+** DONE fix: qq browser->drag
+CLOSED: [2019-03-04 Mon 19:38]
+caused by preventDefault mousemove
+
+
+
+////** TODO fix:import package-> should load ambient color(need confirm!)
+
+
+
+
+** feat(camera): forbidden arcball->keydown
+
+
+** DONE feat(focus): set speed
+CLOSED: [2019-03-05 Tue 08:09]
+
+
+
+
+
+
+
+
+
+
+** DONE mickey
+CLOSED: [2019-03-05 Tue 11:23]
+*** DONE add "updatePWACacheVersion" gulp task
+CLOSED: [2019-03-04 Mon 09:04]
+rename "updateVersion" gulp task to "updateEditorVersion"
+
+
+
+
+
+*** DONE add user info modal ui when user first enter editor
+CLOSED: [2019-03-04 Mon 09:04]
+
+
+*** DONE add upgrade info modal ui
+CLOSED: [2019-03-04 Mon 09:04]
+
+
+*** DONE add about modal ui(edit "header->version")
+CLOSED: [2019-03-04 Mon 09:04]
+
+
+
+
+
+
+////*** TODO optimize online editor->small image
+////1.consider use background-image css instead of <img>
+////2.pack all small image to one big image
+
+*** DONE online editor should use https(to support pwa)
+CLOSED: [2019-03-05 Tue 08:36]
+
+
+
+
+
+
+** DONE publish 1.0.0-rc.1(enter rc)
+CLOSED: [2019-03-05 Tue 11:23]
+
+*** DONE engine
+CLOSED: [2019-03-05 Tue 09:58]
+
+**** DONE switch wonder.js from gulp to webpack
+CLOSED: [2019-03-05 Tue 09:58]
+
+
+//add compress gulp task
+
+
+
+*** DONE editor
+CLOSED: [2019-03-05 Tue 11:23]
+**** DONE fix webpack
+CLOSED: [2019-03-05 Tue 10:44]
+
+**** DONE update wonder.js version
+CLOSED: [2019-03-05 Tue 10:45]
+
+
+**** DONE update publish->engine files
+CLOSED: [2019-03-05 Tue 10:51]
+
+
+**** DONE coverage
+CLOSED: [2019-03-05 Tue 10:53]
+
+
+**** DONE code climate
+CLOSED: [2019-03-05 Tue 10:57]
+
+
+
+**** DONE publish
+CLOSED: [2019-03-05 Tue 11:08]
+
+
+**** DONE update test env
+CLOSED: [2019-03-05 Tue 11:18]
+rename index/ to index_performance/
+
+**** DONE write report
+CLOSED: [2019-03-05 Tue 11:23]
 
 
 * won't fix
@@ -140,10 +480,196 @@ can add compiler in front end for user to compile reason to js???
 
 
 
+** TODO prepare online editor zip for mickey
+create Wonder-Editor-Produce
 
 
 
 
+
+
+
+
+
+** TODO improve speed
+
+
+*** TODO website
+
+
+
+*** TODO online editor
+**** TODO switch to production
+set setting.json->is_debug to false
+
+...
+
+
+
+**** TODO compress
+
+compress editor js
+
+
+compress editor->publish->engine files
+
+
+
+
+** TODO prepare github repo(wonder-editor, wonder.js)
+*** TODO prepare for clone
+
+
+
+
+
+
+
+
+** TODO fill content
+
+*** TODO website->image
+
+*** TODO editor
+**** TODO welcome,upgrade modal
+**** TODO about
+
+*** TODO write document
+
+
+** TODO fix gesture: try prevent and stop when mousemove and drag->mousemove
+*** TODO 360(10.0.0正式版)
+https://jingyan.baidu.com/article/76a7e409dafd52fc3b6e15d4.html
+
+
+*** TODO qq(10.4)
+https://jingyan.baidu.com/article/5225f26b9bc5efe6fb09084c.html
+
+
+
+
+
+
+
+
+
+
+
+** TODO mickey
+*** TODO push online editor
+
+*** TODO use http2
+
+
+
+
+
+
+
+
+** TODO publish rc
+
+
+
+** TODO test by others(friends, ...)
+should test in test environment(not compress, is_debug = true)
+
+
+
+** TODO publish 1.0.0-release
+
+
+
+
+** TODO publish v1.0.0-beta.1
+(may not contain all feature of v0.x version!)
+
+author be company name
+author: add company website
+https://hexo.io/
+
+banner=>@link change to company repo link
+
+
+not use multi thread render defaultly(close it)
+(engine in editor should close it too!)
+
+
+update Wonder-Editor->wonder.js version
+
+**** TODO use baas to host editor, website server?
+https://www.firebase.com/docs/
+https://www.bmob.cn/
+https://z.wilddog.com/overview/realtime
+
+
+PRODUCT ANALYTICS FOR PRODUCT PEOPLE:
+https://mixpanel.com/
+
+
+
+BaaS服务平台有哪些？
+https://www.zhihu.com/question/22098754
+
+
+*** TODO refactor Wonder-Editor
+remove rollup -g, use local rollup(Wonder-Package, Wonder-Editor):
+remove rollup.config.js, use gulp rollup instead
+
+
+Wonder-Editor->.travis:
+remove npm install rollup -g
+remove more?
+
+
+
+
+rollup->config remove:
+    addNamedExports(namedExports, namedExportsData.immutable);
+    addNamedExports(namedExports, namedExportsData.bowser);
+    addNamedExports(namedExports, namedExportsData["wonder-expect.js"]);
+
+
+
+**** TODO travis add cache 
+Wonder-Editor add cache
+
+
+
+
+
+
+*** TODO fix package.json
+Wonder.js, Wonder-Editor, Wonder-XXX
+change package->authors/homepage to Wonder
+
+*** TODO publish types to definition repo
+publish wonder.js types
+publish wonder-fantancy-land types
+
+update wonder-commonlib, wonder-frp types
+
+*** TODO pass run in windows=>ie11
+fix:
+instance_xxx_shadow_xxx
+merge_model
+
+
+
+
+*** TODO other
+
+
+
+increase runtime test rate from 92% to 95%
+
+
+can work from the scratch
+(runtime, package, test, converter, height generater)
+(commonLib, frp)
+
+
+support full screen(refer to babylon.engine.ts=>450 line)
 
 
 ** TODO optimize
@@ -434,6 +960,27 @@ optimize model geometry
 
 
 
+** TODO engine document
+*** TODO new website
+
+*** TODO introduce(engine)
+
+*** TODO examples online(////render test)
+
+////*** TODO benchmarks online(pf test)
+
+
+*** TODO slogan:  for next generation webgl application
+
+
+*** TODO forum
+
+
+*** TODO js doc
+
+
+
+
 
 
 ** TODO support mobile
@@ -475,6 +1022,76 @@ Facebook Instant Games:
 http://gad.qq.com/article/detail/41976
 https://zhuanlan.zhihu.com/p/34565801
 https://developers.facebook.com/docs/games/instant-games
+
+
+
+
+
+** TODO publish v1.0.0-rc
+
+*** TODO test in more browsers
+pc browser:
+qq浏览器 
+360
+ie11+
+edge
+
+
+
+mobile browser
+
+
+
+** TODO publish v1.0.0
+
+
+*** TODO ci add pf test(optimize?)
+
+
+*** TODO add logo
+
+use "?" + "wonder" as logo
+
+*** TODO add more badge
+https://isitmaintained.com/
+
+
+
+
+*** TODO other
+
+
+
+
+can work from the scratch
+(runtime, package, test, converter, height generater)
+(commonLib, frp)
+
+
+add wonderjs website
+
+add wonderjs blog
+
+add wonderjs forum
+
+add wonderjs online demo
+
+
+write document, tutorials(use gitbook):
+https://www.gitbook.com/
+
+
+
+support full screen(refer to babylon.engine.ts=>450 line)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2321,6 +2938,7 @@ http://gad.qq.com/article/detail/40819
 
 
 * TODO unsolved problem
+** TODO how to ts compile worker file code?
 
 
 * TODO need improve

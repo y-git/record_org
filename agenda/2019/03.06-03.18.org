@@ -1,73 +1,94 @@
 * 今日计划
+** TODO prepare online editor zip for mickey
+create Wonder-Editor-Produce
+
+
+
+
+
+
+
+
+
+** TODO improve speed
+
+
+*** TODO website
+
+
+
+*** TODO online editor
+**** TODO switch to production
+set setting.json->is_debug to false
+
+...
+
+
+
+**** TODO compress
+
+compress editor js
+
+
+compress editor->publish->engine files
+
+
+
+
+** TODO prepare github repo(wonder-editor, wonder.js)
+*** TODO prepare for clone
+
+
+
+
+
+
+
+
+** TODO fill content
+
+*** TODO website->image
+
+*** TODO editor
+**** TODO welcome,upgrade modal
+**** TODO about
+
+*** TODO write document
+
+
+** TODO fix gesture: try prevent and stop when mousemove and drag->mousemove
+*** TODO 360(10.0.0正式版)
+https://jingyan.baidu.com/article/76a7e409dafd52fc3b6e15d4.html
+
+
+*** TODO qq(10.4)
+https://jingyan.baidu.com/article/5225f26b9bc5efe6fb09084c.html
+
+
+
+
+
+
+
+
+
+
+
 ** TODO mickey
-*** TODO feat(website): add link for feature
+*** TODO push online editor
 
-
-
-*** TODO feat(ui): write message ui
-
-
-** TODO engine script
-*** TODO support change property in inspector(editor)
-
-在代码中我们不需要关心这些数值是多少，因为我们之后会直接在 属性检查器 中设置这些数值。
-
-这些数值都是建议，一会等游戏运行起来，您完全可以按照自己的喜好随时在 属性检查器 中修改这些数值，不需要改动任何代码，很方
-便吧！ 
-
-
-
-http://docs.cocos.com/creator/manual/zh/scripting/use-component.html
-
-
-*** TODO 扩展 Inspector
-http://docs.cocos.com/creator/manual/zh/extension/extends-inspector.html
-
-editor can extend user script component's inspector!
-
-
-
-*** TODO support hot edit script
-
-
-*** TODO support js
-
-
-*** TODO support reason?
-can add compiler in front end for user to compile reason to js???
-
-
-
-
-** TODO job script, data json
-
-*** TODO data json
-open/close worker setting
-
-
-
-**** TODO user can change setting.json->buffer
-1.editor->engine->setting.json
-2.publish->engine->setting.json
+*** TODO use http2
 
 
 
 
 
-*** TODO editor: support edit config json
-
-*** TODO job
-**** TODO fix bug:
-action->before not worker???
-**** TODO support import/export job script
-***** TODO wdb
-
-***** TODO generate
 
 
 
-*** TODO demo
-**** TODO 3d snake
+** TODO publish rc
+
+
 
 
 
@@ -76,38 +97,668 @@ action->before not worker???
 
 
 * 完成事项
-
-
-** TODO engine script
-*** TODO support change property in inspector(editor)
-
-在代码中我们不需要关心这些数值是多少，因为我们之后会直接在 属性检查器 中设置这些数值。
-
-这些数值都是建议，一会等游戏运行起来，您完全可以按照自己的喜好随时在 属性检查器 中修改这些数值，不需要改动任何代码，很方
-便吧！ 
+** DONE prepare online editor zip for mickey
+CLOSED: [2019-03-05 Tue 15:33]
+create Wonder-Editor-Produce
 
 
 
-http://docs.cocos.com/creator/manual/zh/scripting/use-component.html
 
 
-*** TODO 扩展 Inspector
-http://docs.cocos.com/creator/manual/zh/extension/extends-inspector.html
-
-editor can extend user script component's inspector!
-
-
-
-*** TODO support hot edit script
+** TODO fill content
+*** TODO write document
+**** DONE add draft
+CLOSED: [2019-03-06 Wed 21:42]
 
 
-*** TODO support js
+**** DONE add img and add more content
+CLOSED: [2019-03-07 Thu 16:20]
 
 
-*** TODO support reason?
-can add compiler in front end for user to compile reason to js???
+
+**** DONE add example->resources
+CLOSED: [2019-03-07 Thu 16:20]
 
 
+
+
+
+**** DONE check content
+CLOSED: [2019-03-07 Thu 16:36]
+
+
+
+
+*** DONE push to document
+CLOSED: [2019-03-07 Thu 16:36]
+
+
+**** add version(v1.0)
+
+
+
+*** DONE release 1.0 blog
+CLOSED: [2019-03-07 Thu 17:58]
+
+
+*** DONE no footer
+CLOSED: [2019-03-07 Thu 18:01]
+
+
+
+*** TODO check
+////**** TODO suojin
+**** DONE 我们要不要专门介绍了wonder的几个文件是什么，glb,wpk,wdb
+CLOSED: [2019-03-07 Thu 20:01]
+
+
+*** TODO update online docs
+
+
+*** DONE editor
+CLOSED: [2019-03-07 Thu 20:41]
+**** DONE welcome,upgrade modal
+CLOSED: [2019-03-07 Thu 20:41]
+
+
+
+
+**** about
+
+
+*** DONE fix chinese
+CLOSED: [2019-03-08 Fri 08:24]
+
+
+*** DONE docs add wpk explain
+CLOSED: [2019-03-08 Fri 09:30]
+
+
+*** DONE add more FAQ
+CLOSED: [2019-03-08 Fri 09:45]
+
+
+
+*** DONE finish website->first page
+CLOSED: [2019-03-09 Sat 14:51]
+
+1.函数式编程
+
+使用Reason语言开发，提供高质量的产品
+
+
+2.易于上手和扩展
+
+组件化和数据驱动，方便用户使用
+
+
+3.高性能
+使用多线程和Data Oriented等技术，性能卓越
+
+
+4.开源
+引擎和编辑器在Github上开源
+
+
+
+*** DONE forum
+CLOSED: [2019-03-10 Sun 11:13]
+//can't register and login???
+
+**** TODO fix logo @mickey
+
+
+**** DONE need authority
+CLOSED: [2019-03-08 Fri 08:46]
+
+
+**** DONE add more threads add posts(placement information for the newer)
+CLOSED: [2019-03-10 Sun 11:13]
+all:
+resources
+
+
+
+
+anounce:
+1.0 report
+
+
+engine:
+
+write benchmark report(compare with threejs)
+
+
+
+
+** DONE merge pr
+CLOSED: [2019-03-09 Sat 09:16]
+
+//need resolve conflicts
+
+
+
+
+//refactor App.re:
+           <div className="">
+      }	            <Header uiState dispatchFunc />
+      {	            <Controller uiState dispatchFunc />
+        uiState.isEditorAndEngineStart ?	          </div> :
+          <Controller uiState dispatchFunc /> : ReasonReact.null	          <AppShell />
+
+
+** DONE fix(geometry): 1.remove geometry component of all cubes;  the default cube geometry name will be changed!!!(sphere also) 
+CLOSED: [2019-03-09 Sat 09:33]
+
+should remove instead of dispose geometry
+
+
+
+
+
+
+** DONE fix(copy): 1.pick gameObject; 2.keydown ctrl+d;    not work!!!
+CLOSED: [2019-03-09 Sat 11:15]
+
+
+
+
+
+
+
+** DONE fix(ui): the asset tree->folder shouldn't expand arrow if it has no children folder nodes but material nodes
+CLOSED: [2019-03-09 Sat 11:47]
+
+
+
+** DONE improve(ui): button add title
+CLOSED: [2019-03-09 Sat 11:59]
+
+
+
+** DONE test in macbook
+CLOSED: [2019-03-08 Fri 10:04]
+
+
+
+
+
+** DONE give wonder->tasks introduce doc for recruit
+CLOSED: [2019-03-08 Fri 11:39]
+
+
+
+** DONE increase wheel speed of no geometry imgui
+CLOSED: [2019-03-10 Sun 16:22]
+
+** DONE (fix) clone point light too bright(with ambient color)
+CLOSED: [2019-03-10 Sun 17:08]
+
+
+
+** DONE prepare github repo(wonder-editor, wonder.js)
+CLOSED: [2019-03-10 Sun 20:14]
+*** prepare for clone
+
+
+*** DONE write readme
+CLOSED: [2019-03-10 Sun 20:14]
+
+
+**** DONE wonder.js
+CLOSED: [2019-03-10 Sun 18:38]
+
+//give examples
+
+
+
+# Showcases
+
+
+# Feature
+
+
+# Usage
+
+
+# How to build
+
+
+# Useful links
+
+
+
+
+
+**** DONE wonder-editor
+CLOSED: [2019-03-10 Sun 20:14]
+
+
+snapshot[online editor link]
+
+[online editor link]
+
+
+feature
+
+
+
+how to build
+
+
+Useful links
+
+
+
+** DONE add FAQ
+CLOSED: [2019-03-10 Sun 20:25]
+publish no scene
+
+
+
+
+** DONE publish 1.0
+CLOSED: [2019-03-11 Mon 07:02]
+*** DONE engine
+CLOSED: [2019-03-11 Mon 07:02]
+
+
+
+*** DONE editor
+CLOSED: [2019-03-11 Mon 07:02]
+
+
+
+
+
+** DONE create example(in windows)
+CLOSED: [2019-03-09 Sat 18:26]
+
+
+
+** DONE improve: increase wheel speed
+CLOSED: [2019-03-09 Sat 19:53]
+
+////** TODO fix(clone): 1.clone point light gameObject to exceed max limits; 2.undo
+** DONE fix(clone): should limit clone gameObject which or its children has light component
+CLOSED: [2019-03-10 Sun 07:51]
+
+
+
+
+** DONE test in test env(@mickey)
+CLOSED: [2019-03-10 Sun 17:08]
+
+
+** DONE fix forum
+CLOSED: [2019-03-11 Mon 07:07]
+
+
+
+** DONE update tag
+CLOSED: [2019-03-11 Mon 07:11]
+
+
+
+
+** DONE write email to summary all accounts(in cmd)
+CLOSED: [2019-03-11 Mon 07:29]
+
+
+
+
+
+
+
+
+
+** DONE prepare accound to pronounce
+CLOSED: [2019-03-11 Mon 07:02]
+
+
+
+
+
+
+** DONE improve speed
+CLOSED: [2019-03-10 Sun 10:15]
+
+
+*** DONE website
+CLOSED: [2019-03-09 Sat 09:39]
+
+
+
+*** DONE online editor
+CLOSED: [2019-03-10 Sun 10:15]
+**** TODO switch to production
+set setting.json->is_debug to false
+
+...
+
+
+
+**** TODO compress
+
+compress editor js
+
+
+compress editor->publish->engine files
+
+
+** DONE fix gesture: try prevent and stop when mousemove and drag->mousemove
+CLOSED: [2019-03-08 Fri 09:55]
+*** 360(10.0.0正式版)
+https://jingyan.baidu.com/article/76a7e409dafd52fc3b6e15d4.html
+
+
+*** qq(10.4)
+https://jingyan.baidu.com/article/5225f26b9bc5efe6fb09084c.html
+
+
+
+
+
+
+** DONE mickey
+CLOSED: [2019-03-10 Sun 10:15]
+*** DONE push online editor
+CLOSED: [2019-03-08 Fri 08:30]
+
+*** DONE use http2
+CLOSED: [2019-03-08 Fri 08:30]
+
+
+*** DONE feat(docs): enable search
+CLOSED: [2019-03-10 Sun 10:15]
+
+
+
+
+** DONE update online
+CLOSED: [2019-03-11 Mon 08:15]
+
+
+
+
+
+
+
+** DONE replace showcase
+CLOSED: [2019-03-12 Tue 08:28]
+
+
+** DONE FAQ
+CLOSED: [2019-03-12 Tue 08:26]
+add compare
+
+
+update link(发布1.0)
+
+
+
+
+** DONE add compare to three.js
+CLOSED: [2019-03-12 Tue 08:26]
+
+
+
+
+** publish
+add stream load
+
+
+
+** DONE update online site
+CLOSED: [2019-03-12 Tue 08:42]
+
+
+
+** DONE edit Wonder.js->usage
+CLOSED: [2019-03-12 Tue 08:55]
+        return wd.loadConfig(["https://wonder-technology.github.io/wonder-demo.github.io/examples/config/setting.json", "https://wonder-technology.github.io/wonder-demo.github.io/examples/config/"]).forEach(function (state) {
+                return initSample(wd.unsafeGetState());
+            })
+
+add ";"
+
+
+
+** DONE replace showcase
+CLOSED: [2019-03-12 Tue 15:42]
+
+
+
+** give more benchmark case
+
+
+
+** DONE fix(export package): if import package p1 ;import package p2; export package.  the wpk size shouldn't contain p1!!!
+CLOSED: [2019-03-13 Wed 06:47]
+
+
+
+** DONE finish report
+CLOSED: [2019-03-13 Wed 06:47]
+
+
+
+** DONE add to cmd
+CLOSED: [2019-03-13 Wed 06:47]
+
+ssh登录：ssh root@47.99.200.210 
+进入项目: cd wonder/wonder-website
+git fetch and rebase
+cd website/ 
+yarn build
+pm2 restart 0(这个0代表website，1代表wonder-server,3代表wonder-editor)
+
+
+
+** DONE pronounce
+CLOSED: [2019-03-13 Wed 06:47]
+
+
+
+** DONE add more docs
+CLOSED: [2019-03-13 Wed 10:35]
+
+
+
+** DONE write qq announcement
+CLOSED: [2019-03-13 Wed 10:35]
+
+
+
+
+** DONE give a video
+CLOSED: [2019-03-13 Wed 15:31]
+1.editor ui
+
+
+2.make first scene
+
+
+
+3.get more models
+
+
+
+3.components
+
+
+
+
+** DONE edit docs
+CLOSED: [2019-03-13 Wed 20:53]
+
+fix doc1-5 link
+
+
+compress images
+
+
+** DONE solve forum->link jump to bottom
+CLOSED: [2019-03-13 Wed 20:59]
+
+
+
+** DONE publish 1.0.1
+CLOSED: [2019-03-14 Thu 08:13]
+*** DONE merge "empty GameObject" @mickey
+CLOSED: [2019-03-13 Wed 12:38]
+
+
+*** DONE add "update pwa cache" @mickey
+CLOSED: [2019-03-13 Wed 21:11]
+
+*** DONE update online
+CLOSED: [2019-03-14 Thu 08:13]
+
+
+
+** DONE write blogs
+CLOSED: [2019-03-15 Fri 18:33]
+
+
+*** DONE add to Wonder.js->How to build
+CLOSED: [2019-03-15 Fri 14:36]
+
+
+*** DONE write resource blog
+CLOSED: [2019-03-15 Fri 18:32]
+
+
+*** DONE add to blog
+CLOSED: [2019-03-15 Fri 18:32]
+
+
+
+
+** DONE create weixin gongzhouhao
+CLOSED: [2019-03-16 Sat 13:14]
+
+
+** DONE fix blog
+CLOSED: [2019-03-16 Sat 10:55]
+
+
+
+** DONE write editor->language
+CLOSED: [2019-03-16 Sat 21:35]
+
+
+add controller->transform gizmo->title
+
+
+** DONE update doc
+CLOSED: [2019-03-16 Sat 18:54]
+
+
+
+
+
+** DONE fix Wonder.js, Wonder-Editor->package.json: move jest to dev
+CLOSED: [2019-03-16 Sat 20:56]
+
+
+
+** DONE publish engine -> 1.0.2
+CLOSED: [2019-03-16 Sat 20:52]
+
+write release
+
+
+** DONE publish editor-> 1.0.2
+CLOSED: [2019-03-16 Sat 21:35]
+
+//update wonder.js to 1.0.2
+
+
+////** TODO feat(doc): support language
+
+
+
+** DONE create Wonder-CD project in gitlab
+CLOSED: [2019-03-19 Tue 07:47]
+
+
+*** DONE write gulp for push to online 
+CLOSED: [2019-03-19 Tue 07:12]
+
+
+
+*** DONE write gulp for push to pre-publish(editor)
+CLOSED: [2019-03-19 Tue 07:12]
+
+
+
+*** DONE write gulp for push to test environment
+CLOSED: [2019-03-19 Tue 07:12]
+
+
+
+*** DONE fix
+CLOSED: [2019-03-19 Tue 07:47]
+
+*** DONE write gulp for push website to online environment
+CLOSED: [2019-03-19 Tue 07:47]
+
+
+
+
+** DONE refactor:     
+CLOSED: [2019-03-18 Mon 20:25]
+MainEditor: isEngineStart: uiState.isEditorAndEngineStart,
+
+Index.re: need create editorState explicitly?
+
+
+** DONE make a fly demo
+CLOSED: [2019-03-19 Tue 15:13]
+
+
+
+** rongzi
+
+
+
+
+
+
+** zhongchou
+
+
+
+
+** write iteration report
+
+
+
+** TODO mickey
+*** DONE feat(scene-tree): add icon
+CLOSED: [2019-03-13 Wed 14:15]
+
+*** DONE add blog to website
+CLOSED: [2019-03-13 Wed 14:15]
+
+
+*** DONE make a detail tutorial
+CLOSED: [2019-03-13 Wed 22:36]
+
+
+*** DONE @Mickey(杨浩Mickey) add pre-publish environment
+CLOSED: [2019-03-14 Thu 11:47]
+
+*** DONE @Mickey(杨浩Mickey) fix pwa: should test in pre-publish environment
+CLOSED: [2019-03-14 Thu 11:47]
+
+
+*** TODO feat(website): add link for feature
+
+
+
+*** TODO feat(ui): write message ui
 
 
 
@@ -142,8 +793,111 @@ can add compiler in front end for user to compile reason to js???
 
 
 
+** TODO test by others(friends, ...)
+should test in test environment(not compress, is_debug = true)
 
 
+
+** TODO publish 1.0.0-release
+*** TODO update website->blog->date
+
+
+
+
+*** TODO pronounce in zhihu,bokeyuan,... (in china)
+
+
+
+
+** TODO publish v1.0.0-beta.1
+(may not contain all feature of v0.x version!)
+
+author be company name
+author: add company website
+https://hexo.io/
+
+banner=>@link change to company repo link
+
+
+not use multi thread render defaultly(close it)
+(engine in editor should close it too!)
+
+
+update Wonder-Editor->wonder.js version
+
+**** TODO use baas to host editor, website server?
+https://www.firebase.com/docs/
+https://www.bmob.cn/
+https://z.wilddog.com/overview/realtime
+
+
+PRODUCT ANALYTICS FOR PRODUCT PEOPLE:
+https://mixpanel.com/
+
+
+
+BaaS服务平台有哪些？
+https://www.zhihu.com/question/22098754
+
+
+*** TODO refactor Wonder-Editor
+remove rollup -g, use local rollup(Wonder-Package, Wonder-Editor):
+remove rollup.config.js, use gulp rollup instead
+
+
+Wonder-Editor->.travis:
+remove npm install rollup -g
+remove more?
+
+
+
+
+rollup->config remove:
+    addNamedExports(namedExports, namedExportsData.immutable);
+    addNamedExports(namedExports, namedExportsData.bowser);
+    addNamedExports(namedExports, namedExportsData["wonder-expect.js"]);
+
+
+
+**** TODO travis add cache 
+Wonder-Editor add cache
+
+
+
+
+
+
+*** TODO fix package.json
+Wonder.js, Wonder-Editor, Wonder-XXX
+change package->authors/homepage to Wonder
+
+*** TODO publish types to definition repo
+publish wonder.js types
+publish wonder-fantancy-land types
+
+update wonder-commonlib, wonder-frp types
+
+*** TODO pass run in windows=>ie11
+fix:
+instance_xxx_shadow_xxx
+merge_model
+
+
+
+
+*** TODO other
+
+
+
+increase runtime test rate from 92% to 95%
+
+
+can work from the scratch
+(runtime, package, test, converter, height generater)
+(commonLib, frp)
+
+
+support full screen(refer to babylon.engine.ts=>450 line)
 
 
 ** TODO optimize
@@ -430,6 +1184,27 @@ optimize model geometry
 
 
 
+
+
+
+
+** TODO engine document
+*** TODO new website
+
+*** TODO introduce(engine)
+
+*** TODO examples online(////render test)
+
+////*** TODO benchmarks online(pf test)
+
+
+*** TODO slogan:  for next generation webgl application
+
+
+*** TODO forum
+
+
+*** TODO js doc
 
 
 
