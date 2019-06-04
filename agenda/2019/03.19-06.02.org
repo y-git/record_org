@@ -1,230 +1,74 @@
 * 今日计划
-** TODO engine
+** TODO mickey
+*** TODO feat(website): add link for feature
 
-*** TODO skybox
-still need add MeshRenderer:
-add skyboxMaterialRenderGameObjectMap;
-get the first one of the render array to render;
-if render array's length > 1, warn;
 
 
-**** TODO fix: enable point scale
-refer to:
-http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
+*** TODO feat(ui): write message ui
 
 
+** TODO engine script
+*** TODO support change property in inspector(editor)
 
-**** TODO extract SkyboxMaterial
+在代码中我们不需要关心这些数值是多少，因为我们之后会直接在 属性检查器 中设置这些数值。
 
+这些数值都是建议，一会等游戏运行起来，您完全可以按照自己的喜好随时在 属性检查器 中修改这些数值，不需要改动任何代码，很方
+便吧！ 
 
-**** TODO extract SkyboxComponent
-add onlyRender api:
-set other skybox gameObjects' meshrenderer->isRender to false;
-set this one's  meshrenderer->isRender to true;
 
 
+http://docs.cocos.com/creator/manual/zh/scripting/use-component.html
 
 
+*** TODO 扩展 Inspector
+http://docs.cocos.com/creator/manual/zh/extension/extends-inspector.html
 
-**** TODO test
+editor can extend user script component's inspector!
 
 
 
+*** TODO support hot edit script
 
-**** TODO fix: not require skybox
 
+*** TODO support js
 
-**** TODO extract cubemap texture
 
-***** TODO optimize switch skybox
-switch cubemap texture, each one should only update once
+*** TODO support reason?
+can add compiler in front end for user to compile reason to js???
 
 
 
-**** TODO pass worker
 
+** TODO job script, data json
 
+*** TODO data json
+open/close worker setting
 
 
 
+**** TODO user can change setting.json->buffer
+1.editor->engine->setting.json
+2.publish->engine->setting.json
 
-*** TODO add 2d ui(script api? component?)
-line
 
-text
 
-////window
 
-////button
 
+*** TODO editor: support edit config json
 
+*** TODO job
+**** TODO fix bug:
+action->before not worker???
+**** TODO support import/export job script
+***** TODO wdb
 
+***** TODO generate
 
-**** TODO optimize(refer to threejs)
-use 3d line, text instead of 2d canvas?
 
-refer to:
-http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
-http://taobaofed.org/blog/2016/04/25/performance-composite/
-https://juejin.im/entry/59dc9aedf265da43200232f9
 
+*** TODO demo
+**** TODO 3d snake
 
-
-
-**** TODO pass worker
-
-
-
-*** TODO extend imgui(or add gameObject based ui???)
-**** TODO support set imgui
-
-
-
-api add add/remove/set/get/replace/clearIMGUIFunc
-(replace = remove + set + add)
-
-
-editor should set imgui data(load fnt, fnt image, custom images)
-(publish->should load imgui data at begin)
-
-
-
-**** TODO expand imgui:
-
-fix slider:
-change isSelected to isPointDown, isPointUp events!
-
-
-
-
-
-image add offset data
-add buttomImage
-
-
-
-add color picker
-
-
-
-add textarea
-
-
-
-
-**** TODO pass in mobile
-
-
-
-*** TODO handle jiehuo api
-e.g. ray, loadImageDataArr
-
-
-
-*** TODO add LoadManager for html
-should for loading bar
-
-
-
-
-**** TODO engine
-
-
-
-**** TODO editor->publish->index.html
-
-
-
-
-
-*** TODO fix jiehuo(by engine)
-use skybox
-
-use 2d ui
-
-use imgui instead of dom
-
-
-
-** TODO editor
-*** TODO feat: finish engine->wdb,asset bundle
-
-
-
-
-
-*** TODO add 2d ui(script api? component?)
-
-
-*** TODO add skybox
-
-
-
-
-*** TODO add imgui
-
-
-
-
-*** TODO run in mobile(publish)
-**** TODO feat(publish): for publish local to mobile: add try catch for initSample in html for debug
-
-
-
-*** TODO editor enhance
-**** TODO support set isRender
-
-**** TODO support set gameObject->isActive
-
-**** TODO support set script->isActive
-
-
-
-
-
-** TODO engine, editor
-*** TODO add debug info
-fps, memory, draw count, ...
-
-////show profile in mobile?
-
-
-
-
-
-** TODO feat: add setting->buffer for user
-e.g. :
-support load terrain.zip , show wdb inspector
-
-
-
-** TODO finish jiehuo demo in editor(run in pc/mobile)
-*** TODO use asset bundle
-
-
-
-** TODO fix bugs
-
-*** TODO fix: dispose with wdb asset
-1.load elf_girl.zip
-2.drag to scene
-3.dispose it in scene
-4.dispose its first material asset: lambert22SG
-
-
-scene will has it gameObject again!!!!
-
-
-
-
-
-
-
-** TODO publish
-
-*** TODO publish to online
-**** TODO add demo document
-**** TODO write script api document
 
 
 
@@ -232,235 +76,2443 @@ scene will has it gameObject again!!!!
 
 
 * 完成事项
+** DONE learn data
+CLOSED: [2019-03-23 Sat 09:29]
 
-** TODO engine
 
-*** TODO skybox
-still need add MeshRenderer:
-add skyboxMaterialRenderGameObjectMap;
-get the first one of the render array to render;
-if render array's length > 1, warn;
 
+** DONE implement engine script
+CLOSED: [2019-03-26 Tue 18:07]
+*** DONE draft
+CLOSED: [2019-03-24 Sun 17:16]
 
-**** TODO fix: enable point scale
-refer to:
-http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
+*** DONE pass run test
+CLOSED: [2019-03-24 Sun 17:16]
 
 
+*** DONE exec init event function
+CLOSED: [2019-03-24 Sun 17:36]
 
-**** TODO extract SkyboxMaterial
 
+*** DONE pass run test
+CLOSED: [2019-03-24 Sun 17:36]
 
-**** TODO extract SkyboxComponent
-add onlyRender api:
-set other skybox gameObjects' meshrenderer->isRender to false;
-set this one's  meshrenderer->isRender to true;
 
+*** DONE change transform in update
+CLOSED: [2019-03-25 Mon 09:20]
 
+pass run test
 
 
 
-**** TODO test
 
 
+*** DONE handle dispose
+CLOSED: [2019-03-26 Tue 10:23]
 
+add dispose event function
 
-**** TODO fix: not require skybox
 
+*** DONE handle clone
+CLOSED: [2019-03-26 Tue 11:19]
+not share script component
 
-**** TODO extract cubemap texture
+share attribte,event function(but with new instance)
 
-***** TODO optimize switch skybox
-switch cubemap texture, each one should only update once
 
+no need to clone script attribute, because it's immutable.
 
 
-**** TODO pass worker
 
 
 
+*** DONE worker
+CLOSED: [2019-03-26 Tue 11:56]
+exec script in main worker
 
 
 
-*** TODO add 2d ui(script api? component?)
-line
 
-text
+*** DONE pass u,i test
+CLOSED: [2019-03-26 Tue 18:06]
+//pass all tests
 
-////window
 
-////button
+//test init job
 
+//test update job
 
+//test change transform in update
 
 
-**** TODO optimize(refer to threejs)
-use 3d line, text instead of 2d canvas?
+//test dispose
 
-refer to:
-http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
-http://taobaofed.org/blog/2016/04/25/performance-composite/
-https://juejin.im/entry/59dc9aedf265da43200232f9
+////test update and dispose(job order related)
 
+//test clone:
+reset value
+add "test immutable change value case"
 
 
 
-**** TODO pass worker
 
 
 
-*** TODO extend imgui(or add gameObject based ui???)
-**** TODO support set imgui
 
 
+**** DONE test redo/undo
+CLOSED: [2019-03-26 Tue 17:38]
+***** TODO test change script attribute(immutable)
 
-api add add/remove/set/get/replace/clearIMGUIFunc
-(replace = remove + set + add)
 
 
-editor should set imgui data(load fnt, fnt image, custom images)
-(publish->should load imgui data at begin)
 
+**** DONE test worker
+CLOSED: [2019-03-26 Tue 18:00]
 
 
-**** TODO expand imgui:
 
-fix slider:
-change isSelected to isPointDown, isPointUp events!
 
+commit
 
 
 
 
-image add offset data
-add buttomImage
 
+** DONE implement editor script
+CLOSED: [2019-04-11 Thu 10:27]
 
 
-add color picker
 
 
+*** DONE engine
+CLOSED: [2019-03-29 Fri 08:00]
+//script attribute
 
-add textarea
 
 
+//script
 
 
-**** TODO pass in mobile
 
+script event function:
+//event function can be undefined
 
+////split ?
 
-*** TODO handle jiehuo api
-e.g. ray, loadImageDataArr
 
+//add get all
 
 
-*** TODO add LoadManager for html
-should for loading bar
 
+//add enable/disable script
 
 
 
-**** TODO engine
+//test
 
 
 
-**** TODO editor->publish->index.html
 
 
 
+//finish TODO
 
 
-*** TODO fix jiehuo(by engine)
-use skybox
+*** DONE fix jest
+CLOSED: [2019-03-29 Fri 10:58]
+not warn!
 
-use 2d ui
+upgrade jest to 24.3.1
 
-use imgui instead of dom
 
+*** TODO think
+two script node:
+name
+data
 
+add remove
 
-** TODO editor
-*** TODO feat: finish engine->wdb,asset bundle
+add enable/disable all script event function
 
+editor->engine service->init,dispose gameObject/script should disable
 
 
 
 
-*** TODO add 2d ui(script api? component?)
+show/edit script component->attribute fields in inspector:
+add set default value and value
 
+(check in editor: value should equal default value)
 
-*** TODO add skybox
 
 
+change asset->attribute fields:
+add/remove should affect script component->attribute
 
+edit shouldn't affect script component->attribute
 
-*** TODO add imgui
 
 
 
 
-*** TODO run in mobile(publish)
-**** TODO feat(publish): for publish local to mobile: add try catch for initSample in html for debug
+shouldn't add/remove script component->attribute fields (only allow edit)
 
 
 
-*** TODO editor enhance
-**** TODO support set isRender
 
-**** TODO support set gameObject->isActive
 
-**** TODO support set script->isActive
+change asset->event functions should update script component->event functions
 
 
 
 
+*** DONE add script asset
+CLOSED: [2019-03-29 Fri 16:47]
 
-** TODO engine, editor
-*** TODO add debug info
-fps, memory, draw count, ...
+should check name unique
 
-////show profile in mobile?
 
+*** DONE script asset->inspector
+CLOSED: [2019-03-30 Sat 21:27]
 
 
 
 
-** TODO feat: add setting->buffer for user
-e.g. :
-support load terrain.zip , show wdb inspector
+*** DONE test
+CLOSED: [2019-04-02 Tue 21:32]
+//pass script event function
 
 
+//fix material node
 
-** TODO finish jiehuo demo in editor(run in pc/mobile)
+
+
+pass script attribute:
+//fix field
+//submit field
+//remove field
+
+
+
+//commit
+
+*** DONE fix: rename script event function(not change, blur) shouldn't alert!
+CLOSED: [2019-04-03 Wed 09:00]
+
+
+
+*** DONE fix: rename script attribute(not change, blur) shouldn't alert!
+CLOSED: [2019-04-03 Wed 09:01]
+
+
+
+
+*** DONE field name should be unique(add check)
+CLOSED: [2019-04-03 Wed 10:14]
+
+
+
+*** DONE fix: rename script attribute field shouldn't change entries order
+CLOSED: [2019-04-03 Wed 10:14]
+should sort entries by field name
+
+
+
+
+
+
+
+*** DONE add check asset->inspector->jsObj(shouldn't fatal!)
+CLOSED: [2019-04-03 Wed 11:42]
+
+
+
+
+
+
+
+*** DONE add script component
+CLOSED: [2019-04-05 Fri 09:44]
+**** DONE event function
+CLOSED: [2019-04-04 Thu 16:34]
+
+draft:
+//select event function
+//refactor
+
+
+//should warn
+
+
+
+
+
+//test:
+//remove 
+
+
+
+
+
+//fix: should contain self
+
+
+//fix: should refresh
+
+
+
+//test
+
+
+//add remove 
+
+
+
+
+
+**** DONE attribute
+CLOSED: [2019-04-04 Thu 19:06]
+
+
+//select attribute
+
+
+show/edit fields:
+//draft
+
+
+//test set default value
+
+
+//fix: switch  should refresh
+
+
+
+
+
+
+
+
+
+
+
+**** DONE finish "update script component logic"
+CLOSED: [2019-04-04 Thu 22:07]
+if type equal, not change default value and value
+
+
+add should update
+
+
+remove should update
+
+
+rename should update
+
+
+fix: add field in asset should refresh
+
+
+test
+
+
+**** DONE finish "update script component logic with script event function"
+CLOSED: [2019-04-05 Fri 09:42]
+
+
+
+
+
+
+
+
+*** DONE refactor
+CLOSED: [2019-04-05 Fri 21:14]
+//pass all tests
+
+
+use SelectGroupXXX:
+
+//material
+
+
+////material->map->select texture
+
+
+//MainEditorScript->event function
+
+
+//commit
+
+
+
+
+
+
+//refactor: extract duplicate with ForAdd
+
+
+
+
+
+
+
+
+
+
+
+
+
+//split MainEditorScript:
+split event function(to be ui)
+split attribute(to be ui)
+
+
+
+extract more ui:
+//select group ui
+//MainEditorTextComponent(atom ui)
+...
+
+
+
+*** DONE refactor: rename Item to Asset
+CLOSED: [2019-04-06 Sat 09:39]
+
+
+
+*** DONE pass run/stop
+CLOSED: [2019-04-07 Sun 10:15]
+
+
+////change init to start
+
+
+draft:
+//shouldn't update when stop->loopBody
+
+
+////fix: unsafeGetScriptGameObject in update event function
+
+
+
+
+//api should update editor!(not redo-undo)
+
+
+////fix: other refresh(except getAndRefreshEngineStateForRunLoop) should disable and restore script!
+
+
+//test redo-undo when run/stop
+
+
+
+
+//refactor: change Controller_runStop_script_test to integration test
+
+
+
+
+
+//support change event function when run
+
+
+
+////test use attribute
+
+
+//support change script component->field->default when run
+
+
+
+
+
+
+
+
+
+
+
+
+**** TODO run test
+
+
+
+**** TODO u,i test
+
+//test worker when run
+
+
+//test redo-undo when run/stop
+
+//test:
+shouldn't change script component->field->default when run!
+
+
+
+//test initXXX,disposeXXX not work
+
+
+*** DONE remove script asset
+CLOSED: [2019-04-07 Sun 15:14]
+
+**** DONE finish "update script component logic by remove script event function/script attribute asset"
+CLOSED: [2019-04-07 Sun 15:14]
+
+
+
+
+*** DONE test
+CLOSED: [2019-04-07 Sun 15:14]
+
+
+
+
+*** DONE redo-undo
+CLOSED: [2019-04-08 Mon 10:01]
+**** DONE script asset inspector add redo-undo
+CLOSED: [2019-04-07 Sun 17:57]
+
+
+**** TODO script component add redo-undo
+***** DONE event function add redo-undo
+CLOSED: [2019-04-07 Sun 21:15]
+
+
+
+***** DONE attribute add redo-undo
+CLOSED: [2019-04-08 Mon 10:01]
+
+
+
+
+
+
+*** DONE fix clone gameObject which has script component
+CLOSED: [2019-04-07 Sun 20:19]
+
+
+
+*** DONE update wonder-commonlib
+CLOSED: [2019-04-08 Mon 10:49]
+
+
+
+
+*** DONE finish all TODOS
+CLOSED: [2019-04-08 Mon 11:33]
+//move to wonder.js
+
+
+
+*** DONE push to dev
+CLOSED: [2019-04-08 Mon 11:53]
+
+
+
+need test update
+
+
+
+*** DONE pass test coverage
+CLOSED: [2019-04-08 Mon 15:39]
+
+
+
+*** DONE store in wdb(engine)
+CLOSED: [2019-04-09 Tue 18:06]
+
+
+
+**** DONE test
+CLOSED: [2019-04-09 Tue 18:06]
+
+
+
+
+*** DONE store in asb
+CLOSED: [2019-04-10 Wed 12:12]
+
+
+*** DONE import packasge->relate script assets
+CLOSED: [2019-04-10 Wed 12:12]
+relate asset wdb
+
+relate scene wdb
+
+
+*** DONE load wdb->extract script assets
+CLOSED: [2019-04-10 Wed 12:12]
+
+should check name 
+
+
+
+
+*** DONE u,i test
+CLOSED: [2019-04-10 Wed 20:53]
+
+//test extract
+
+//publish and update wonder.js version
+
+
+
+
+
+*** DONE run test
+CLOSED: [2019-04-11 Thu 10:02]
+
+
+
+////** TODO feat(engine):  add clone between two state apis
+
+*** DONE fix: rename attribute name
+CLOSED: [2019-04-11 Thu 10:27]
+
+
+
+
+** TODO finish 3d snake by editor
+ui:
+dom?
+use imgui?
+
+
+
+level
+
+custom functions
+
+
+private function in event function?
+
+
+
+load prefab/asset when runtime
+
+
+
+sync load scene
+
+async load scene
+
+
+
+ManageSceneAssetBundle: 
+switch scene
+load scene
+unload scene
+preload scene/load scene async
+Additive/Single
+
+
+separate load and add logic
+
+loadScene is loadSceneAsync?return stream?
+
+
+can get gameObject of loaded scene result
+
+
+
+
+
+work with stream load?
+
+work with whole load?
+
+
+
+
+1.show/hide
+
+add active api
+
+
+2.switch scene
+show loading bar:
+http://www.alanzucconi.com/2016/03/30/loading-bar-in-unity/
+
+
+
+
+
+asset bundle:
+1.scene asset bundle(.sab)
+like wdb
+
+2.resource asset bundle(.rab):
+/*
+material
+texture(image)
+geometry?
+script event function
+script attribute
+*/
+like asb
+
+rab should contain geometry asset instead of wdb asset?
+
+
+
+
+assets add .sab, .rab assets
+
+
+
+asset bundle can dependent on other one:
+asset bundle = manifest + wdb/asb
+
+
+
+sab can dependent on rab
+
+rab can dependent on rab
+
+sab can't dependent on sab
+
+
+
+
+*** TODO load asset bundle
+loadFromLocal
+
+
+loadFromWeb
+
+
+
+when publish, should commit asset bundles(by path)
+
+
+
+
+*** TODO build asset bundle
+create SelectTree ui, to select target
+
+
+has option:
+collectionDependency
+
+
+*** TODO solve asset bundle->resource duplicate
+
+1.not collectionDependency;
+2.add total asset bundle(with manifest data->total dependencies data)
+
+
+
+
+
+*** TODO add editor script to extend header
+
+
+
+*** DONE how to reduce same data between scenes?
+CLOSED: [2019-04-12 Fri 11:02]
+use assetbundle?
+
+
+
+only support set current active scene(not allow mutli scene editing)
+
+
+
+
+SceneManager.loadScene will load all data????
+
+
+
+
+
+*** TODO learn unity
+
+
+*** TODO feat(engine): finish demo by load at once
+
+**** DONE add active/unactive gameObject
+CLOSED: [2019-04-13 Sat 18:23]
+//not render
+
+//not exec script
+
+
+
+***** DONE add isRender,isActive(script), isActive(gameObject) to asset
+CLOSED: [2019-04-13 Sat 18:23]
+
+
+
+**** TODO finish demo by engine
+
+
+***** DONE show first scene
+CLOSED: [2019-04-13 Sat 20:33]
+
+
+
+***** TODO show second scene->first level
+
+
+
+***** TODO show second scene->second level
+
+
+
+***** TODO show third scene
+
+
+
 *** TODO use asset bundle
 
+     TODO 
+     add to scene (wait for stream if not finish)
 
-
-** TODO fix bugs
-
-*** TODO fix: dispose with wdb asset
-1.load elf_girl.zip
-2.drag to scene
-3.dispose it in scene
-4.dispose its first material asset: lambert22SG
-
-
-scene will has it gameObject again!!!!
+     loading info
 
 
 
 
+**** TODO design
+
+for incremental load:
+load asset bundle should get arraybuffer(asset bundle raw data);
+use parseManifest, parseContent(not init, need user init);
+add md5;
+
+
+
+
+
+**** DONE build/import asset bundle in engine
+CLOSED: [2019-04-27 Sat 11:13]
+
+
+***** DONE finish logic
+CLOSED: [2019-04-18 Thu 11:04]
+
+
+
+***** DONE u,i test: test import case and pass whole test
+CLOSED: [2019-04-25 Thu 10:52]
+//pass all tests
+
+
+check all logic from begin to end
+
+
+add more client code
+
+
+
+
+begin test:
+//generateSingleRAB_test
+//generateSingleSAB_test
+//generateAllAB_test
+
+//assemble test
+
+load test:
+//incremental load
+
+...
+
+
+
+//add progress test
+
+
+
+
+***** DONE run test
+CLOSED: [2019-04-26 Fri 12:24]
+add to api
+
+
+add to script api
+
+
+
+//generate ab
+
+
+
+use sab
+
+
+
+
+
+
+run test:
+//pass simple one;
+
+//test merge->concat dependencies rabs;
+
+
+//texture flipY not right?
+//fix for generate wdb,sab,rab
+
+
+//add flipY to WDType
+
+
+
+
+//add addSABChildrenToScene
+
+
+
+//test progress info
+
+
+
+
+use rab:
+//test script
+
+////test material
+
+...
+
+
+
+
+
+
+***** DONE refactor:
+CLOSED: [2019-04-26 Fri 16:57]
+assemble sab
+
+
+***** DONE run test: cache
+CLOSED: [2019-04-26 Fri 22:11]
+use indexdb
+
+
+
+////***** TODO u,i test: add more detail tests
+
+
+
+////***** TODO run test
+
+
+
+////***** TODO refactor
+
+
+////***** TODO benchmark
+
+
+
+***** DONE merge load rabs and sab
+CLOSED: [2019-04-27 Sat 10:56]
+
+
+
+***** DONE rab,sab add isLoaded, isAssembled
+CLOSED: [2019-04-27 Sat 10:56]
+
+
+
+
+***** DONE test release rab/sab
+CLOSED: [2019-04-27 Sat 11:13]
+
+
+
+**** TODO editor
+build asset bundle in editor(map to the type for build in engine)
+
+
+
+
+***** DONE generate single rab
+CLOSED: [2019-05-05 Sun 18:31]
+select ui tree:
+//draft pass compile
+//show tree(with fake data)
+could generate single rab:
+    //show
+    //lightMaterial->maps should contain in resourceData->textures
+    //publish wonder.js npm and update version in editor
+
+
+
+
+
+***** DONE generate single sab
+CLOSED: [2019-05-06 Mon 09:40]
+
+
+***** DONE refactor
+CLOSED: [2019-05-06 Mon 10:05]
+//remove log
+
+//split
+
+
+***** DONE generate single rab add name
+CLOSED: [2019-05-06 Mon 11:20]
+
+
+
+***** DONE assets support asset bundle
+CLOSED: [2019-05-06 Mon 12:32]
+asset tree add
+
+load asset bundle
+
+
+***** DONE u,i test
+CLOSED: [2019-05-06 Mon 17:15]
+//pass all tests
+
+//add test cases:
+test load
+test inspector
+test asset children
+
+
+
+
+
+***** DONE run test
+CLOSED: [2019-05-06 Mon 17:15]
+
+
+
+***** DONE generate all abs
+CLOSED: [2019-05-06 Mon 21:41]
+draft
+(pass compile)
+
+
+
+
+
+***** DONE u,i test
+CLOSED: [2019-05-07 Tue 11:24]
+test generated all abs
+
+test handle error(stream):
+dependencyRelation str is wrong str
+...
+
+
+
+
+***** DONE run test
+CLOSED: [2019-05-07 Tue 11:40]
+
+
+***** DONE check in engine->run test
+CLOSED: [2019-05-07 Tue 11:40]
+
+
+
+
+***** DONE refactor
+CLOSED: [2019-05-07 Tue 12:08]
+duplicate
+
+...
+
+
+
+
+
+
+
+
+
+
+***** DONE pass "import ab at runtime when run"
+CLOSED: [2019-05-16 Thu 12:29]
+////finish draft
+
+
+****** DONE rewrite script api->getAssetBundlePath
+CLOSED: [2019-05-14 Tue 16:31]
+******* TODO editor->init_script_api job rewrite it
+add init_script_api job, rewrite it
+
+
+****** DONE rewrite script api->cache apis
+CLOSED: [2019-05-14 Tue 16:31]
+******* TODO editor->init_script_api job rewrite it
+
+
+****** DONE rewrite script api->load assetbundle
+CLOSED: [2019-05-14 Tue 16:31]
+
+
+
+
+****** DONE u,i test
+CLOSED: [2019-05-16 Thu 12:29]
+//rewrite addSABSceneGameObjectChildrenToScene, setSABSceneGameObjectToBeScene
+
+//rewrite disposeSceneAllChildren
+
+//rewrite setSABSceneGameObjectToBeScene:
+fix current camera
+pick in scene view
+
+
+
+
+//commit
+
+
+
+//add cache test cases
+
+
+
+//commit
+
+
+
+****** DONE run test
+CLOSED: [2019-05-16 Thu 12:25]
+pass run test
+
+//remove _assetbundle_test
+
+
+//update wonder.js version
+
+
+
+
+***** DONE publish
+CLOSED: [2019-05-17 Fri 19:03]
+
+****** DONE write asset bundle to zip(draft)
+CLOSED: [2019-05-17 Fri 11:34]
+through select tree
+
+****** DONE u,i test
+CLOSED: [2019-05-17 Fri 12:37]
+
+
+****** DONE run test
+CLOSED: [2019-05-17 Fri 12:37]
+
+
+****** DONE commit
+CLOSED: [2019-05-17 Fri 12:37]
+
+
+
+
+****** DONE refactor
+CLOSED: [2019-05-17 Fri 12:58]
+extract SelectTreeUtils.re
+
+
+
+****** DONE commit
+CLOSED: [2019-05-17 Fri 12:58]
+
+
+
+
+****** DONE rewrite script api->getAssetBundlePath
+CLOSED: [2019-05-17 Fri 16:55]
+******* TODO editor->publish
+add init_script_api job, rewrite it
+
+
+****** DONE rewrite script api->cache apis
+CLOSED: [2019-05-17 Fri 16:55]
+******* TODO editor->publish
+
+
+
+****** DONE need add scene wdb->root gameObject to scene
+CLOSED: [2019-05-17 Fri 16:56]
+
+
+
+****** DONE u,i test
+CLOSED: [2019-05-17 Fri 16:56]
+
+
+****** DONE pass run test
+CLOSED: [2019-05-17 Fri 18:44]
+//no worker
+
+//worker
+
+
+****** DONE commit
+CLOSED: [2019-05-17 Fri 18:44]
+
+
+****** DONE refactor:
+CLOSED: [2019-05-17 Fri 19:03]
+publish:
+add commonForNoWorkerAndWorker.js
+
+
+
+***** DONE fix import/export package
+CLOSED: [2019-05-18 Sat 07:19]
+****** DONE wpk support asset bundle
+CLOSED: [2019-05-18 Sat 07:05]
+
+
+****** DONE u,i test
+CLOSED: [2019-05-18 Sat 07:05]
+
+
+****** DONE pass run test
+CLOSED: [2019-05-18 Sat 07:05]
+
+
+****** DONE refactor
+CLOSED: [2019-05-18 Sat 07:19]
+split import package test
+
+
+
+
+
+
+
+*** DONE feat(asset-bundle): more
+CLOSED: [2019-05-19 Sun 09:16]
+**** DONE support load all-ab zip to asset
+CLOSED: [2019-05-19 Sun 09:16]
+
+
+
+*** DONE add "new scene"
+CLOSED: [2019-05-19 Sun 11:03]
+
+
+
+
+
+
+
+*** DONE full test
+CLOSED: [2019-05-19 Sun 15:08]
+////add all cases
+
+
+//finish "TODO test" in engine, editor
+
+
+
+
+
+*** TODO feat(asset-bundle): merge script pr from @mickey
+**** TODO check pr
+**** TODO merge pr
+
+
+
+
+
+*** TODO fix(editor): @mickey finded bug in new branch
+
+fix (wdb -> generated image): 1.upload two wdbs; 2.switch click a1,a2 11times;
+will lose texture!!!
+
+
+**** DONE feat: add dispose basic source texture
+CLOSED: [2019-05-20 Mon 13:22]
+
+//add to group
+
+
+
+
+
+
+**** DONE feat: add dispose array buffer view source texture 
+CLOSED: [2019-05-20 Mon 13:22]
+
+
+**** DONE u,i test
+CLOSED: [2019-05-21 Tue 17:03]
+
+/*!
+  not dispose texture when dispose material!
+  because different materials may use same texture, if dispose one material's texture which is shared, then will affect other materials!
+
+  so need user mannually dispose texture!
+  */
+
+
+//test redo-undo
+
+
+
+**** DONE pass worker
+CLOSED: [2019-05-21 Tue 17:03]
+
+//add needDisposedSourceArray?
+
+//test
+
+
+
+//fix arrayBufferViewSource texture
+
+
+
+**** DONE fix dispose texture
+CLOSED: [2019-05-23 Thu 17:56]
+
+
+
+
+
+**** DONE test(wonder.js): pass test
+CLOSED: [2019-05-24 Fri 08:25]
+
+
+
+
+
+**** DONE fix textureInTypeArr
+CLOSED: [2019-05-24 Fri 08:25]
+
+fix init texture-> arrayBufferViewSource
+
+fix more
+
+
+
+
+
+
+**** DONE fix(editor): upload alphablendmodal twice, the snapshot is different!!!
+CLOSED: [2019-05-24 Fri 16:34]
+
+
+***** DONE u,i test
+CLOSED: [2019-05-24 Fri 16:34]
+test clearRect
+
+
+**** DONE run test in editor
+CLOSED: [2019-05-24 Fri 16:34]
+//update dev branch to mickey:
+//pass compile
+////pass u,i test
+pass run test
+
+
+
+
+
+
+
+publish wonder.js version
+
+
+update wonder.js, wonder-webgl version
+
+
+
+run test
+
+
+*** DONE test(wdb): pass all tests
+CLOSED: [2019-05-24 Fri 16:34]
+
+
+
+*** DONE test: pass all u,i tests
+CLOSED: [2019-05-24 Fri 16:38]
+
+
+
+
+
+
+
+
+
+*** DONE finish jiehuo demo
+CLOSED: [2019-05-23 Thu 22:19]
+
+
+
+*** DONE fix: Error: function (param) {
+CLOSED: [2019-05-24 Fri 16:44]
+                  return _node_modules_wonder_log_lib_es6_global_src_Log_js__WEBPACK_IMPORTED_MODULE_0__["buildFatalMessage"](param, "_convertPosition", "convertWorldToScreen return undefined", "", "");
+                }
+
+
+
+*** DONE fix: finish all TODOs
+CLOSED: [2019-05-24 Fri 17:43]
+
+
+
+
+
+
+
+////*** TODO test(wdb): add test cases
+
+
+
+
+
+*** DONE fix: arcball: drag random
+CLOSED: [2019-05-24 Fri 18:28]
+
+
+
+*** DONE merge to dev
+CLOSED: [2019-05-24 Fri 19:00]
+//merge
+
+//pass u,i tests
+
+
+*** DONE fix(wdb inspector): click between elf_girl.zip,varina.zip : source is too large
+CLOSED: [2019-05-25 Sat 17:36]
+
+u,i test
+
+
+
+
+*** DONE fix(imgCanvas): handle error(try/catch)
+CLOSED: [2019-05-25 Sat 17:48]
+e.g. cloneValueByGetOptionValueFunc
+
+
+*** DONE fix(wdb inspector): should re-generate snapshot if material/texture change 
+CLOSED: [2019-05-25 Sat 19:15]
+in didMount
+
+
+
+u,i test
+
+
+
+*** DONE fix(material inspector): should re-generate snapshot
+CLOSED: [2019-05-25 Sat 20:51]
+in willUnMount
+
+
+u,i test
+
+
+
+////*** TODO fix: arcball: drag random(after drag wdb)
+
+*** DONE fix: jiehuo
+CLOSED: [2019-05-26 Sun 17:00]
+update wonder-webgl
+
+
+solve flipY
+
+
+*** DONE optimize(editor): material/wdb inspector canvas: texImage2D spends too much time!!!     ???????
+CLOSED: [2019-05-27 Mon 19:28]
+////cache gl texture by texture name + image name???
+
+
+
+
+**** DONE material inspector
+CLOSED: [2019-05-27 Mon 19:28]
+//cache texture 
+
+
+//add disposeGameObject(...): not dispose texture, use remove instead
+
+
+//publish and update wonder.js version
+
+
+
+
+
+
+//if change texture asset,clear its cache:
+wrap/filter / remove/dispose texture, import package, dispose single/all texture assets, 
+init script api
+
+
+**** DONE wdb inspector
+CLOSED: [2019-05-27 Mon 19:28]
+////cache wdb node id
+
+
+test
+
+
+
+
+
+**** DONE u,i test
+CLOSED: [2019-05-27 Mon 19:28]
+
+
+
+
+
+
+*** DONE fix(material->snapshot): remove wdb->material
+CLOSED: [2019-05-27 Mon 16:17]
+//should remove texture instead of dispose?
+(add test case)
+
+
+
+//fix bug:
+add test case
+
+
+
+*** DONE fix(asset): remove texture
+CLOSED: [2019-05-27 Mon 17:39]
+
+//dispose textures
+
+
+
+*** DONE fix(undo): basic/array->glTextureMap
+CLOSED: [2019-05-27 Mon 21:19]
+
+
+*** DONE test: pass engine,editor all test cases
+CLOSED: [2019-05-27 Mon 21:44]
+
+
+
+
+*** DONE feat: add progress
+CLOSED: [2019-05-29 Wed 07:28]
+//show:
+import package
+load wdb
+
+
+////export package
+
+
+
+////add more detail percent
+
+
+**** DONE refactor progress
+CLOSED: [2019-05-29 Wed 07:28]
+
+
+
+*** DONE feat(canvas-inspector): add camera for material, wdb
+CLOSED: [2019-05-29 Wed 11:13]
+**** DONE logic
+CLOSED: [2019-05-28 Tue 16:34]
+
+**** DONE u,i test
+CLOSED: [2019-05-28 Tue 17:05]
+////test arcball
+
+
+**** DONE run test
+CLOSED: [2019-05-28 Tue 17:05]
+
+
+**** DONE refactor:
+CLOSED: [2019-05-28 Tue 17:50]
+remove duplicate
+
+
+
+**** DONE fix:  focus before generate snapshot 
+CLOSED: [2019-05-29 Wed 11:08]
+
+//fix: wdb shouldn't affect material
+
+fix: wdb shouldn't affect other wdb
+
+////fix: add material; load wdb;  should correct
+
+
+
+////**** TODO fix: setEventTarget(_convertDomEventToMouseEvent(MouseDown, event)) when mousemove?
+
+
+
+**** DONE fix: totalLight += u_ambient;
+CLOSED: [2019-05-29 Wed 11:13]
+fix
+
+set ambient color
+
+*** DONE fix(inspectorCanvas):  1.load miku wdb 2.load miku wdb 3.load va wdb;   the va wdb in inspector canvas->material is wrong!
+CLOSED: [2019-05-29 Wed 12:22]
+
+
+
+
+
+
+
+
+*** TODO feat: finish demo by use asset bundle
+
+
+
+
+
+*** TODO finish demo by load at once
+**** TODO show first scene
+
+
+
+**** TODO show second scene->first level
+
+
+
+**** TODO show second scene->second level
+
+
+
+**** TODO show third scene
+
+
+
+
+**** TODO add more api
+add bind event api?
+
+add debug api, e.g.: 
+api##Console##log
+
+
+add get/set global function api?
+
+
+**** TODO add dom ui(api need operate dom!)
+
+
+
+
+** TODO finish jiehuo
+*** DONE draw line
+CLOSED: [2019-05-09 Thu 11:38]
+**** TODO use box instead of line for demo
+
+
+//TODO pass event target test
+
+
+
+//TODO fix: drag over
+
+
+
+
+**** TODO add line(canvas draw)
+////***** TODO add custom material?
+
+**** TODO dash line
+
+
+
+**** TODO alpha
+
+
+
+*** DONE test in mobile
+CLOSED: [2019-05-09 Thu 17:10]
+
+
+
+show slider
+
+
+
+
+
+
+*** DONE add skybox(cubemap)
+CLOSED: [2019-05-11 Sat 18:16]
+//add job
+
+
+//pass run test:
+//show skybox in engine
+
+
+
+
+
+
+
+
+
+
+
+
+*** DONE test in mobile
+CLOSED: [2019-05-11 Sat 18:16]
+////test line match problem
+
+
+*** DONE fix dash line
+CLOSED: [2019-05-11 Sat 19:06]
+
+
+
+
+*** DONE draw mark(text)
+CLOSED: [2019-05-12 Sun 08:10]
+
+
+*** DONE add button
+CLOSED: [2019-05-12 Sun 08:10]
+
+
+
+*** DONE test in mobile
+CLOSED: [2019-05-12 Sun 08:48]
+
+
+
+*** DONE jump skybox
+CLOSED: [2019-05-12 Sun 15:22]
+
+////draw image(like text)
+
+
+//click button, switch skybox
+
+
+
+save skybox data
+
+
+
+
+*** DONE test in mobile
+CLOSED: [2019-05-12 Sun 15:22]
+
+test in iphone
+
+
+*** DONE show demo to ma
+CLOSED: [2019-05-12 Sun 15:22]
+
+
+
+
+*** DONE fix(iphone 6): slider not work
+CLOSED: [2019-05-13 Mon 15:26]
+use imgui
+
+
+*** DONE optimize: loading
+CLOSED: [2019-05-14 Tue 10:31]
+print loading info
+
+**** DONE optimize skybox
+CLOSED: [2019-05-14 Tue 10:00]
+//reduce size
+
+//merge load
+
+
+**** DONE show loading bar
+CLOSED: [2019-05-14 Tue 10:31]
+show percent
+
+
+////add LoadManager?
+
+
+////**** TODO optimize loading speed
+change json to js object?
+
+
+
+////*** TODO fix: qq browser can't show
+
+
+
+
+
+
+
+
+////*** TODO fix: try to fix line rock...
+
+
+
+*** DONE send demo to ma
+CLOSED: [2019-05-14 Tue 10:49]
+
+
+
+
+*** DONE fix(iphone 6): should prevent default
+CLOSED: [2019-05-14 Tue 10:00]
+
+
+
+
+
+
+
+
+** DONE fix(rotation): 
+CLOSED: [2019-05-29 Wed 17:26]
+////switch to new branch(need merge by @mickey)
+
+
+180,90,180
+0,90,0
+
++y can't work!!!
+
+
+
+
+** DONE fix(inspectorCanvas): 1.add material. 2.select m1; 3.load wdb;   m1->snapshot is empty!!!
+CLOSED: [2019-05-29 Wed 18:06]
+
+
+
+
+** DONE fix(inspectorCanvas): fix default material snapshot
+CLOSED: [2019-05-29 Wed 18:16]
+
+
+
+
+
+
+
+
+
+
+
+
+
+** DONE refactor: rename "Scripts" to "Script"
+CLOSED: [2019-05-29 Wed 18:19]
+
+
+
+
+
+
+
+
+
+** DONE fix(script attribute-> inspector)(floatinput, intinput): drag field value(int/float) is wrong!!!
+CLOSED: [2019-05-29 Wed 20:34]
+
+
+** DONE fix(ui): mouse over FloatInput->drag zone should show handle cursor!
+CLOSED: [2019-05-29 Wed 20:41]
+
+
+
+
+
+////** TODO fix(console): expand error info, the arrow should change
+
+
+
+
+** fix: add fatal(in console);    canvas will has blank!!!(in mac book->100%)
+
+
+
+
+
+
+
+
+
+** DONE fix(asset): 1.dispose asset's folder; should dispose folder's all children assets!!!
+CLOSED: [2019-05-30 Thu 11:40]
+
+
+////** TODO fix: dispose wdb asset: the scene tree->cloned gameObjects should be removed!
+
+
+
+
+
+
+
+
+
+////** TODO perf(inspector): material inspector->DiffuseMap: 1.show texture group; 2.each time, texture will be reload???    should load and cache data!!!
+
+
+
+
+
+
+
+
+
+
+
+
+////** TODO benchmark
+
+
+** DONE refactor: rename Result->SameDataResult->either to map
+CLOSED: [2019-05-30 Thu 12:09]
+
+
+////** TODO refactor(engine): remove service/record/data->StateMainDataType
+
+
+** DONE find bugs
+CLOSED: [2019-05-30 Thu 17:32]
+*** DONE feat(inspector canvas): left button can drag
+CLOSED: [2019-05-30 Thu 17:30]
+
+////*** TODO feat(progress): show 100%
+
+////*** TODO feat(progress): add progress when publish
+
+
+*** DONE fix(new scene): 
+CLOSED: [2019-05-30 Thu 16:56]
+expect gameObject alive, but actual not
+
+
+
+
+should work when stop;
+
+
+                                                            
+
+
+** TODO mickey
+*** TODO generate asset image
+**** DONE cull center range to generate
+CLOSED: [2019-04-13 Sat 20:29]
+***** TODO wdb need compute camera to make sure that the model is always fixed size
+
+
+**** DONE optimize generate
+CLOSED: [2019-04-13 Sat 20:29]
+***** TODO compare save as base64 and uint8Array
+
+**** TODO fix: remove texture; undo;    bug
+
+
+**** TODO generate image for extracted materials from wdb
+
+
+
+**** TODO save generated image(material, wdb) in wpk->asb
+
+
+
+
+
+
+*** DONE code check
+CLOSED: [2019-04-08 Mon 14:45]
+
+
+**** DONE fix(resize): 1.enter editor;2.resize;3.show material inspector;    not render inspectorCanvas!
+CLOSED: [2019-04-06 Sat 18:15]
+
+
+
+**** DONE fix(setting): change setting.json(need commit)
+CLOSED: [2019-04-05 Fri 10:08]
+
+
+**** DONE fix(resize): 1.enter editor(small window);2.show material inspector;3.resize to big window;    shouldn't has blank!
+CLOSED: [2019-04-08 Mon 14:45]
+
+
+**** DONE feat: set ambient to (0.1,0.1,0.1)
+CLOSED: [2019-04-08 Mon 14:45]
+
+*** TODO feat: show progress bar when load asset, import package, export package, export wdb
+
+
+
+*** TODO code check
+**** TODO fix: should re-generate material image when remove its texture
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO engine script
+
+*** TODO design
+global:
+module(name)+function for user's functions
+
+engine state add userRecord for user's shared data
+
+set name+attribute/name+function for script attribute/file
+(store in engine state->scriptRecord->?)
+
+
+
+
+
+
+
+
+separate script attribute, function 
+
+
+////script component has name(unique)
+
+
+script component can attach multiple functions:
+just list
+
+
+
+function should be shared by name(global)
+
+
+
+script component can attach multiple attributes:
+each attribute is one instance for runtime
+
+
+
+editor inspector->script show attributes:
+if change "the same name attribute of different script component"->value, all of the name should be changed
+
+
+
+**** user data are all immutable:
+user's shared data are immutable
+attributes are immutable
+
+(convenient for redo/undo when run in editor)
+
+
+
+add get/set each type attribute functions?
+
+
+
+
+**** change attribute default value in editor
+should enter refresh button after change
+
+
+**** communicate runtime
+////1.can change value through gameObject->script component->attribute name:
+1.can change value through script component->attribute name:
+only affect that instance
+
+
+can find gameObject->get script component
+
+
+
+2.global event
+
+
+
+
+
+**** hot reload
+should press "reload" button to reload.
+
+add swap function:
+will be invoked when press button
+(no need to consider/restore about attribute)
+
+
+init function will not be invoked
+
+
+can change global->script functions/attributes or script component used which ones when run
+(shouldn't effect if not press button!: 
+
+editor should hold on these changes when run;
+effect when press button;
+)
+
+
+
+
+***** TODO should add Edit->Controller Setting->"keep script function/attribute change when stop" checkbox!
+
+
+
+
+
+
+
+
+*** TODO type:
+script component:
+attach script functions/attributes file/string?
+//attach script files
+show/edit attributes
+
+
+
+script file:
+
+
+script name(should be unique in script names)
+
+
+script functions: hash map of functions
+
+
+script attributes: hash map of any primitives type?(except function)
+
+
+
+
+
+/*
+script file: 
+
+
+return {
+name: 
+
+getAttributes:  (attributeMap, addAttributeFunc) => {
+////var attributeMap = createMap();
+
+var attributeMap = addAttributeFunc("", {}, attributeMap);
+
+return attributeMap;
+},
+
+
+init: (...) => {
+},
+update: (...) => {
+},
+
+
+};
+*/
+
+
+
+
+script function: 
+
+
+return {
+name: 
+
+init: (...) => {
+},
+update: (...) => {
+},
+postUpdate: (...) => {
+},
+dispose: (...) => {
+}
+
+};
+
+
+
+
+
+
+
+
+script attribute: 
+
+
+return {
+name: 
+
+getAttributes:  (attributeMap, addAttributeFunc) => {
+////var attributeMap = createMap();
+
+var attributeMap = addAttributeFunc("", {}, attributeMap);
+
+return attributeMap;
+},
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+type: "int",
+array: false,
+default: 0
+}
+
+
+
+
+
+
+
+
+*** TODO event functions
+init
+
+update
+
+dispose
+
+swap?
+
+
+
+function is pure function???
+(but operate engineState isn't pure!)
+
+
+////should inject gameObject, (editorState, engineState), (scriptAPI, editorAPI, engineAPI) to params? 
+
+should inject scriptComponent, (editorState, engineState), engineAPI to params? 
+
+
+scriptAPI: operate script. e.g. get/set attribute, use other script's functions/attributes
+
+
+
+
+
+
+
+
+
+*** TODO add initScript, updateScript jobs?
+init script components in :
+initScript job
+init gameObject(after init all other components)
+
+
+*** TODO attributes
+attributes can't be added/removed in editor, only can be change value
+
+
+
+
+
+*** TODO support one script import other one
+
+
+
+*** TODO support multiple script files attached to one script component
+
+
+
+
+*** TODO support script event?
+dispose
+
+
+*** TODO clone script component
+////should share the same script component?
+
+
+or only share the same script functions/attributes?
+
+
+should create different instance of attributes
+
+
+
+
+
+*** TODO support change property in inspector(editor)
+
+在代码中我们不需要关心这些数值是多少，因为我们之后会直接在 属性检查器 中设置这些数值。
+
+这些数值都是建议，一会等游戏运行起来，您完全可以按照自己的喜好随时在 属性检查器 中修改这些数值，不需要改动任何代码，很方
+便吧！ 
+
+
+
+http://docs.cocos.com/creator/manual/zh/scripting/use-component.html
+
+
+*** TODO 扩展 Inspector
+http://docs.cocos.com/creator/manual/zh/extension/extends-inspector.html
+
+editor can extend user script component's inspector!
+
+
+
+*** TODO support hot edit script
+
+
+
+
+
+*** TODO support worker
+add to main worker
+
+
+
+
+*** TODO add to wdb
+
+
+
+*** TODO support js
+
+
+*** TODO support reason?
+can add compiler in front end for user to compile reason to js???
+
+
+
+
+
+*** TODO editor: add script asset
+
+
+
+
+*** TODO optimize
+
+
+*** TODO future
+**** TODO add more attribute type
+e.g. asset type...
+https://developer.playcanvas.com/en/user-manual/scripting/script-attributes/
+
+
+
+
+**** TODO add online code editor
+
+
+
+
+
+
+
+** TODO demo
+*** TODO 3d snake
 
 
 
 ** TODO publish
+*** DONE engine
+CLOSED: [2019-05-31 Fri 21:02]
 
-*** TODO publish to online
-**** TODO add demo document
-**** TODO write script api document
+//pass coverage
 
 
+//pass climate
+
+
+//pass ci
+
+
+
+*** TODO editor
+**** DONE fix: wheel not work
+CLOSED: [2019-06-01 Sat 06:45]
+
+
+**** DONE feat: script component->support int
+CLOSED: [2019-06-01 Sat 07:29]
+
+**** DONE improve(ui): expand ab select zone
+CLOSED: [2019-06-01 Sat 08:00]
+
+
+
+
+
+
+
+*** TODO publish to pre-publish
+
+
+*** DONE publish to online
+CLOSED: [2019-06-02 Sun 09:39]
+
+
+
+
+
+*** DONE write 1.1 blog
+CLOSED: [2019-06-02 Sun 10:54]
+
+
+*** DONE video
+CLOSED: [2019-06-02 Sun 10:54]
+
+
+分p: 视频列表
+
+
+
+add 1.1版本新功能演示 video
+
+
+
+*** DONE update roadmap
+CLOSED: [2019-06-02 Sun 16:08]
+
+
+*** DONE website
+CLOSED: [2019-06-02 Sun 16:08]
+add zhihu link
+
+add blogs to blog
 
 
 
@@ -489,6 +2541,236 @@ scene will has it gameObject again!!!!
 
 
 * TODO 未来7日计划
+
+** TODO engine
+
+*** TODO skybox
+still need add MeshRenderer:
+add skyboxMaterialRenderGameObjectMap;
+get the first one of the render array to render;
+if render array's length > 1, warn;
+
+
+**** TODO fix: enable point scale
+refer to:
+http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
+
+
+
+**** TODO extract SkyboxMaterial
+
+
+**** TODO extract SkyboxComponent
+add onlyRender api:
+set other skybox gameObjects' meshrenderer->isRender to false;
+set this one's  meshrenderer->isRender to true;
+
+
+
+
+
+**** TODO test
+
+
+
+
+**** TODO fix: not require skybox
+
+
+**** TODO extract cubemap texture
+
+***** TODO optimize switch skybox
+switch cubemap texture, each one should only update once
+
+
+
+**** TODO pass worker
+
+
+
+
+
+
+*** TODO add 2d ui(script api? component?)
+line
+
+text
+
+////window
+
+////button
+
+
+
+
+**** TODO optimize(refer to threejs)
+use 3d line, text instead of 2d canvas?
+
+refer to:
+http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
+http://taobaofed.org/blog/2016/04/25/performance-composite/
+https://juejin.im/entry/59dc9aedf265da43200232f9
+
+
+
+
+**** TODO pass worker
+
+
+
+*** TODO extend imgui(or add gameObject based ui???)
+**** TODO support set imgui
+
+
+
+api add add/remove/set/get/replace/clearIMGUIFunc
+(replace = remove + set + add)
+
+
+editor should set imgui data(load fnt, fnt image, custom images)
+(publish->should load imgui data at begin)
+
+
+
+**** TODO expand imgui:
+
+fix slider:
+change isSelected to isPointDown, isPointUp events!
+
+
+
+
+
+image add offset data
+add buttomImage
+
+
+
+add color picker
+
+
+
+add textarea
+
+
+
+
+**** TODO pass in mobile
+
+
+
+*** TODO handle jiehuo api
+e.g. ray, loadImageDataArr
+
+
+
+*** TODO add LoadManager for html
+should for loading bar
+
+
+
+
+**** TODO engine
+
+
+
+**** TODO editor->publish->index.html
+
+
+
+
+
+*** TODO fix jiehuo(by engine)
+use skybox
+
+use 2d ui
+
+use imgui instead of dom
+
+
+
+** TODO editor
+*** TODO feat: finish engine->wdb,asset bundle
+
+
+
+
+
+*** TODO add 2d ui(script api? component?)
+
+
+*** TODO add skybox
+
+
+
+
+*** TODO add imgui
+
+
+
+
+*** TODO run in mobile(publish)
+**** TODO feat(publish): for publish local to mobile: add try catch for initSample in html for debug
+
+
+
+*** TODO editor enhance
+**** TODO support set isRender
+
+**** TODO support set gameObject->isActive
+
+**** TODO support set script->isActive
+
+
+
+
+
+** TODO engine, editor
+*** TODO add debug info
+fps, memory, draw count, ...
+
+////show profile in mobile?
+
+
+
+
+
+** TODO feat: add setting->buffer for user
+e.g. :
+support load terrain.zip , show wdb inspector
+
+
+
+** TODO finish jiehuo demo in editor(run in pc/mobile)
+*** TODO use asset bundle
+
+
+
+** TODO fix bugs
+
+*** TODO fix: dispose with wdb asset
+1.load elf_girl.zip
+2.drag to scene
+3.dispose it in scene
+4.dispose its first material asset: lambert22SG
+
+
+scene will has it gameObject again!!!!
+
+
+
+
+
+
+
+** TODO publish
+
+*** TODO publish to online
+**** TODO add demo document
+**** TODO write script api document
+
+
+
 
 ** TODO engine
 *** TODO add collider

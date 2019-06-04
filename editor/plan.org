@@ -28,22 +28,20 @@
 
 ** TODO advanced asset
 *** TODO inspector add a canvas for show
-add engine state
-
-
-add default direction light
-
 
 *** TODO material,geometry asset->icon should be show canvas->snapshot
-material apply to sphere geometry data
-
-
-geometry apply default light material
-(use line mode instead of triangle mode)
 
 
 
 
+** TODO imgui(refer to unity)
+*** TODO camera imgui(draw frustum)
+
+
+*** TODO point light imgui(draw point light range(sphere))
+
+
+*** TODO direction light imgui(draw picture)
 
 
 
@@ -263,6 +261,9 @@ chrome already has cache???
 
 
 * TODO after v1.0.0
+** TODO multi-selection for scene-tree and asset-tree
+*** TODO add "export as wdb" for multi-selection for scene-tree
+
 ** TODO [#A] ci,cd workflow
 *** DONE code review
 CLOSED: [2019-03-05 Tue 10:09]
@@ -424,6 +425,31 @@ use exist editor component(main_editor, inspector, number_input, ...)
 
 
 how can user create custom gameObject component?
+
+*** TODO add editor script to extend header
+e.g. build asset bundle
+
+
+or use message instead?(refer to cocos creator)
+
+
+should refer to:
+https://docs.unity3d.com/Manual/ExtendingTheEditor.html
+https://docs.cocos.com/creator/manual/zh/extension/
+
+
+
+
+**** TODO extract editor asset???
+so has runtime asset, editor asset?
+(editor script should belong to editor asset)
+
+
+so wpk only has runtime asset!?
+
+
+extract easb fo editor asset? rasb for wpk and runtime asset?
+
 
 
 *** TODO feat: add "add package wpk"(so now has "import package" and "add package")

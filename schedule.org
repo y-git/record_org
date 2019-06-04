@@ -243,6 +243,10 @@ user can use github api to write extensions
 
 
 
+** TODO improve 
+*** TODO feat: select texture asset:can continue select
+
+
 
 ** TODO [#A] script component
 http://docs.cocos.com/creator/manual/zh/scripting/
@@ -513,6 +517,7 @@ refer to http://www.jiazhengblog.com/blog/2017/03/20/3104/ -> comment:
 
 
 *** TODO defer shading
+https://zhuanlan.zhihu.com/p/62030747
 
 **** TODO point light
 add dirty?
@@ -872,56 +877,6 @@ build component repository?
 
 
 
-*** TODO [#A] advanced job
-**** TODO job(or all data) support hot loading
-setting.json add:
-debug: {
-    ...,
-    hot_update_data: true
-}
-
-
-
-add isDirty flag
-
-in each frame
-    if dirty, re-generate job graph
-
-**** TODO user can add/remove job
-***** TODO support before/after nth job(to solve "has multiple source jobs" problem)
-
-
-***** TODO worker
-****** TODO support user add/remove worker job(in render/cull/... worker)
-
-////***** TODO support user added worker job to new worker
-
-add worker pool
-
-
-
-window.navigator.hardwareConcurrency
-
-make sure only hardwareConcurrency jobs can be used(in each worker)!else jobs should be wait
-
-
-
-
-////***** TODO support add worker job at runtime(can add to different/new worker)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ** TODO [#A] add pbr
 https://seblagarde.wordpress.com/2015/07/14/siggraph-2014-moving-frostbite-to-physically-based-rendering/
 
@@ -1099,6 +1054,47 @@ https://www.browserstack.com/automate
 
 
 
+** TODO [#B] job script, data json
+
+*** TODO data json
+open/close worker setting
+
+
+
+**** TODO user can change setting.json->buffer
+1.editor->engine->setting.json
+2.publish->engine->setting.json
+
+
+
+
+
+*** TODO editor: support edit config json
+
+*** TODO job
+**** TODO fix bug:
+action->before not worker???
+**** TODO support import/export job script
+***** TODO wdb
+
+***** TODO generate
+
+
+**** TODO support worker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * 3.0.0
 ** Main Point
 *** Editor
@@ -1107,6 +1103,9 @@ https://www.browserstack.com/automate
 *** Engine
 - optimize
 - more main functions
+
+
+
 
 
 ** TODO [#B] add physics
@@ -1435,7 +1434,8 @@ take about 60 days to finish
 
 
 
-** TODO [#B] dynamic load asset
+** DONE [#B] dynamic load asset
+CLOSED: [2019-06-04 Tue 20:31]
 
 refer to unity->AssetBundle:
 https://docs.unity3d.com/Manual/AssetBundlesIntro.html
@@ -1739,6 +1739,85 @@ https://docs.unity3d.com/Manual/UnityIAP.html
 
 
 
+** TODO job script, data json
+
+*** TODO data json
+open/close worker setting
+
+
+
+**** TODO user can change setting.json->buffer
+1.editor->engine->setting.json
+2.publish->engine->setting.json
+
+
+
+
+
+*** TODO editor: support edit config json
+
+*** TODO job
+**** TODO fix bug:
+action->before not worker???
+**** TODO support import/export job script
+***** TODO wdb
+
+***** TODO generate
+
+
+
+
+
+*** TODO job(or all data) support hot loading
+setting.json add:
+debug: {
+    ...,
+    hot_update_data: true
+}
+
+
+
+add isDirty flag
+
+in each frame
+    if dirty, re-generate job graph
+
+*** TODO user can add/remove job
+**** TODO support before/after nth job(to solve "has multiple source jobs" problem)
+
+
+**** TODO worker
+***** TODO support user add/remove worker job(in render/cull/... worker)
+
+////***** TODO support user added worker job to new worker
+
+add worker pool
+
+
+
+window.navigator.hardwareConcurrency
+
+make sure only hardwareConcurrency jobs can be used(in each worker)!else jobs should be wait
+
+
+
+
+////***** TODO support add worker job at runtime(can add to different/new worker)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ** TODO [#B] advanced ui
@@ -1805,3 +1884,14 @@ e.g.
 
 * Tool
 ** TODO webgl inspector which can work with multi thread
+
+* TODO fix
+** TODO fix(reallocate): should judge reallocate geometry buffer when set geometry points
+*** TODO fix(reallocate): fix engineState
+
+
+*** TODO fix(reallocate): fix inspectorCanvasEngineState
+
+
+
+
