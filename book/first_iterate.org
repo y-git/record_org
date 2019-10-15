@@ -1,0 +1,674 @@
+* 今日计划
+** TODO 提出最小框架
+
+** TODO 支持用户扩展
+
+
+
+
+
+* 完成事项
+////** TODO 提出最小框架
+
+
+
+////** TODO 支持用户扩展
+*** TODO editor
+editor extend script, store in .wet file?
+
+
+**** TODO ui
+json?
+
+reason?
+(dynamic compile?)
+
+
+
+**** TODO asset
+refer to https://blog.csdn.net/LIQIANGEASTSUN/article/details/50510615
+
+
+
+
+
+*** TODO engine
+engine extend script, store in .wet file?
+
+
+**** TODO job
+
+
+**** TODO shader
+
+
+**** TODO component
+
+
+**** TODO service
+
+
+
+
+
+
+
+** DONE upgrade reason, reason-react, bucklescript
+CLOSED: [2019-10-03 Thu 07:09]
+*** DONE learn
+CLOSED: [2019-10-01 Tue 17:47]
+
+
+
+*** DONE prepare dev environment
+CLOSED: [2019-10-03 Thu 07:09]
+//pass demo(editor)
+
+
+
+** DONE write blog to say "begin to write book"
+CLOSED: [2019-10-03 Thu 14:26]
+write
+
+add to gitbook(invite reader to pre-read online)
+
+create qq group for feedback
+
+
+push to zhihu,bokeyuan,website->blog
+
+
+
+
+
+
+
+
+** DONE 快速写一个最小Demo(use webgl1)
+CLOSED: [2019-10-05 Sat 14:08]
+*** DONE 实现demo, and package?(Demo1,原型，但可以运行。如渲染一个三角形)
+CLOSED: [2019-10-05 Sat 14:07]
+render three triangles
+
+basic encapulate(refer to WebGL编程指南)
+
+exec in html
+
+
+*** DONE 分析代码
+CLOSED: [2019-10-05 Sat 14:08]
+
+代码组织结构(different npm? folder?)
+
+说明矩阵变化等
+
+
+** DONE refactor
+CLOSED: [2019-10-06 Sun 11:00]
+*** DONE separate type
+CLOSED: [2019-10-06 Sun 11:00]
+
+e.g. extract Vector3Type from Vector3?
+
+
+
+
+** DONE extract最小3d引擎
+CLOSED: [2019-10-08 Tue 14:12]
+*** TODO 分析 and extract
+
+analyze border:
+how can user use it?
+
+
+extract use api:
+init
+start
+
+
+give pseudo use code: (use api)
+
+
+
+move init logic to init
+
+
+move start logic to start
+
+
+utils logic
+
+
+
+extract draw logic
+
+
+
+package to dist file
+
+
+
+invoke dist file in .html for example
+
+
+
+
+
+
+
+
+** DONE 最小编辑器
+CLOSED: [2019-10-09 Wed 16:13]
+
+
+Q:
+//useReducer return dispatch func(like send), how to get real dispatch func?
+
+
+
+//commit and update,publish engine
+
+
+//clearColor
+
+
+//check re-render
+
+
+
+
+*** DONE 分析 and extract
+CLOSED: [2019-10-09 Wed 16:13]
+
+
+analyze border:
+how can user use it?
+
+give image (draft image with only one "start" button)
+
+start = loop
+
+
+
+
+give pseudo code: (use engine api)
+
+
+
+
+use reason-react to implement:
+extract App, Index
+(no MainEditor ui!!!???)
+import and use engine api
+
+
+
+
+
+
+package to dist file
+
+
+
+invoke dist file in .html for example
+
+
+
+////** TODO refactor
+////*** TODO extract common npm for engine, editor
+extract tiny-wonder-webgl npm
+
+
+
+////** TODO rewrite
+use webgl2
+
+glsl->2 add "u_alpha"
+
+
+
+
+
+
+
+
+
+
+** DONE 优化
+CLOSED: [2019-10-10 Thu 18:23]
+*** DONE engine
+CLOSED: [2019-10-10 Thu 18:23]
+//benchmark test: show triangles
+
+//find problem:
+profile
+timeline?
+memory
+
+
+
+
+optimize:
+get shader info only when debug
+
+
+
+
+cache location
+
+store send func when init shader
+
+cache uniform data
+
+
+
+////extract shader index
+
+
+
+set camera data only once
+
+////(split uniform data to camera data, model data)
+
+
+
+
+
+
+
+use vao
+
+just last vao, uniform data
+
+
+
+
+** DONE add request analyse word(compare)
+CLOSED: [2019-10-12 Sat 20:20]
+
+
+
+
+** DONE finish read "designing with types"
+CLOSED: [2019-10-14 Mon 10:39]
+
+
+** DONE test wrap type performance!!!
+CLOSED: [2019-10-14 Mon 11:35]
+
+
+
+
+** DONE finish 10 pages(need finish on Monday)
+CLOSED: [2019-10-14 Mon 21:06]
+
+
+
+
+
+
+
+** TODO learn <<Domain Model>>
+
+
+** TODO learn <<函数响应式领域建模>>
+
+
+
+
+** TODO fix: Book-Extract-Engine and after:  "use union type"
+*** TODO Engine use union type
+
+any performance problem???
+
+good perf!!!
+
+Render(especially the iterate) should use valueType!(convert wrap type to value type before render iterate!)
+
+
+
+*** TODO Editor use union type
+
+
+no performance problem!!!
+
+
+** TODO fix:  Book-Extract-Engine and after: "handle error"
+*** TODO Engine,Editor use Result?
+
+
+** TODO fix: Book-Extract-Engine and after: api should be : js api, reason api, common api???
+
+
+
+
+** TODO fix: Book-Demo and after: shader1: u_color, shader2: u_color1, u_color2!!!
+
+
+*** TODO fix
+
+
+
+*** TODO fix: Book-Extract-Engine and after: store send func when init shader
+need extract glsl sender data!
+
+
+if not exist , not add to send arr
+           AllGLSLLocationService.isUniformLocationExist(pos) ?
+           AllGLSLLocationService.isAttribLocationExist(pos) ?
+
+
+fix Wonder.js!(or record!!!)
+
+
+*** TODO feat: should  move "refactor: shader(lib, json)" before "refactor: gameObject and component"!!!???
+because if do "refactor: gameObject and component" first, then only has one shader(basic material->shader), can't show
+different shaders with different shader libs!
+
+
+
+
+** TODO fix(editor): Book-Extract-Editor: remove editor state
+can move editorState->loopId to uiState;
+mark loopId to mutable;
+
+
+
+
+(should verify: change loopId shouldn't cause re-render!!!)
+
+
+
+
+
+** TODO move microservice refactor after extract editor?
+so can extract domain model(e.g. GLSL)(not conflict with service(e.g. GLSL vs GLSL service))
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO 提出基本架构
+
+
+q1:
+"how to change the second gameObject->translation?"
+
+q2:
+"if different gameObject has different material(with different material data)?"
+
+
+qn...:
+"how to improve performance?"
+
+"how to set gl stats by user?"
+
+
+
+any more question...
+
+
+
+
+////*** TODO Wonder.js: merge dev to master
+
+*** TODO engine
+
+
+
+**** TODO shader(json???)
+
+
+- think q2:
+////  - store send func when init shader
+change glsl->2: add "u_alpha"
+need extract glsl sender data!
+
+
+if not exist , not add to send arr
+           AllGLSLLocationService.isUniformLocationExist(pos) ?
+           AllGLSLLocationService.isAttribLocationExist(pos) ?
+
+
+
+////extract render state, sub state?
+
+
+
+
+
+
+(
+refactor Wonder.js!
+e.g. 
+1. 
+   - cache location to glslLocationRecord
+   - set send data to glslSenderRecord(get pos from glslLocationRecord)
+     
+2.if not exist , not add to send arr
+
+
+
+
+)
+
+
+
+
+
+
+
+
+
+
+keep all immutable(because mutable improve performance very little!?)
+
+
+
+
+
+
+extract shader lib
+
+extract json???
+
+
+
+////set send data to glslSenderRecord
+
+
+**** TODO gameObject+component
+分析现有架构的问题:
+think q1,q2:
+now the architect is too rigid
+
+
+
+
+
+component:
+transform 
+basic material:
+    refactor: move glsl into engine
+geometry
+meshRenderer
+
+
+
+
+
+
+when implement "init gameObject"->init shader logic:
+extract shader index(should explain why!!!) 
+
+
+
+
+**** TODO data oriented
+
+
+
+0.设计数据
+
+immutable
+
+mutable
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** TODO draw command array
+
+
+
+
+
+
+**** TODO 引擎支持多种应用场景
+- 分析现有架构的问题
+
+- design
+
+
+give pseudo code
+
+
+- how to extend
+
+////加入defer shading job
+
+////加入ray tracing job
+
+////编辑器如何扩展job
+
+support mobile pipeline
+
+
+
+**** TODO 引擎支持多线程
+使用frp
+
+job
+
+how to run test without webgl inspector: 
+log
+
+
+- 分析现有架构的问题
+
+
+- design
+
+
+////- 给出领域模型图
+give pseudo code
+
+
+- how to extend
+
+展示通过增加job和修改json，来增加更多的worker或者worker job!
+
+
+
+
+
+**** TODO 其他
+- extract renderState, sendRenderDataSubState, ... from state
+(should reduce one renderState/... than many small data(e.g.glslSenderRecord, ...))
+- use frp for start loop
+- 契约检查
+- 错误处理
+
+
+
+
+
+
+
+*** TODO editor
+
+
+-2.update with new engine
+
+
+
+-1.分析现有架构的问题
+
+think q1!
+
+////implement new request: "edit transform->local position"
+
+
+0.设计数据
+
+all immutable
+
+
+
+1.basic
+
+- 给出领域模型图
+////- 给出测试用例
+- 明确提炼迭代方法：基于Type驱动设计？
+
+
+2.foler
+
+atom_component/
+composable_component/
+...
+
+
+3 其他
+- 契约检查
+- 错误处理
+
+
+
+
+
+**** TODO implement q1
+
+** TODO 提出微服务(or put after "add scene tree" for refactor to extract?)
+
+- 分析现有架构的问题
+  
+
+
+*** TODO engine
+
+
+*** TODO editor
+
+
+
+** TODO  编辑器增加场景管理功能(move this one before Redo/Undo!!!)
+need note:
+extract gameObject list data from engine state to ui state!!!
+
+
+
+** TODO 编辑器增加Redo/Undo功能
+
+
+
+
+
+* 明日计划
+

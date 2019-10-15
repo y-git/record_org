@@ -246,9 +246,13 @@ user can use github api to write extensions
 ** TODO improve 
 *** TODO feat: select texture asset:can continue select
 
+*** TODO feat(inspector canvas): texture inspector add canvas show:
+basic source texture
+cubemap texture
 
 
-** TODO [#A] script component
+** DONE [#A] script component
+CLOSED: [2019-06-27 Thu 09:27]
 http://docs.cocos.com/creator/manual/zh/scripting/
 
 now one script is one component(the type is user script component)
@@ -510,130 +514,7 @@ not judge "is transform" to compute aabb!!!
 
 
 
-** TODO [#A] support webgl2
-*** TODO improve instance
-refer to http://www.jiazhengblog.com/blog/2017/03/20/3104/ -> comment:
-事实上在 webgl2 当中，可以直接使用 gl.vertexAttribDivisor 来直接完成实例化数组了，
-
-
-*** TODO defer shading
-https://zhuanlan.zhihu.com/p/62030747
-
-**** TODO point light
-add dirty?
-
-
-
-
-**** TODO advanced
-refer to:
-klayge
-<<gpu gem2>> -> Chapter 9. Deferred Shading in S.T.A.L.K.E.R.
-<<gpu gem3>> -> 第19章 《Tabula Rasa》中的延迟着色（Deferred Shading in Tabula Rasa）
-
-
-*** TODO support webgl1 extensions which already are supported
-e.g. OES_element_index_uint
-
-
-
-*** TODO VAO
-
-(optimize: judge last sended vao buffer)
-
-
-
-webgl 2? just use extension in webgl 1!
-To save a lot of API calls, use vertex array objects (VAOs) or interleave static vertex data. 
-
-
-
-
-that can significantly improve per- formance on mobile devices
-
-VAOs are available in WebGL 1.0 with the OES_ vertex_array_object
-extension, which is widely supported on mobile devices. As of early
-2015, more than 80% of smartphone and tablet clients recorded by
-WebGL Stats have it 
-
-
-
-If vertex array objects (VAOs) are supported, then we build one for
-each combination of vertex buffers and index buffer present in the
-DrawParameters objects. As we share the buffers between many different
-geometries, the actual number of combinations is usually quite
-low. This allows us at dispatch time to simplify all the buffer checks
-to a single equality comparison between the current VAO and the
-previous one. Even when the VAOs are dif- ferent, setting them with
-WebGL is cheaper on the CPU than setting all the different buffers and
-vertex pointer attributes, which makes them a big win for complex
-scenes.
-
-
-Adding a fallback for devices without VAO support is also
-straightforward. Let’s call the code that binds buffers and sets
-vertex attrib pointers related to a specific mesh the binding
-block. If VAOs are supported, the code should initialize the VAO of
-each mesh using the binding block. Then, when the mesh is drawn, the
-code either binds the VAO if VAOs are supported, or executes the
-binding block if VAOs are not supported. The only case where this
-becomes more complicated is when there’s a different number of active
-vertex attribute arrays for different meshes—then the code should add
-disable- VertexAttribArray calls where appropriate. For a complete
-code example, see an explanation of VAOs* or an implementation of a
-fallback path in SceneJS
-(https://github.com/xeolabs/scenejs/blob/v4.0/src/core/display/chunks/geometryChunk.js)
-
-
-
-
-Lowering the number of vertex buffers helps to reduce CPU usage if
-VAOs are not a good fit for the code for some reason. This can be done
-by interleaving different types of vertex data for the same object: If
-we have, for example, positions, texture coordinates, and normals for
-each vertex, they can all be stored in the same vertex buffer in an
-interleaved fashion. In our CPU-bound drawing test that uses four
-vertex attributes, interleaving the attributes increased the FPS
-around 4%. The downside is that interleaving the data needs to be
-either handled by the content creation pipeline or done at load time;
-the latter may marginally slow down loading. Interleaving three
-attributes for a million vertices in a tight JS loop had a cost of
-around 200 ms on a Nexus 5 (2013 phone). 
-
-
-
-
-http://blog.tojicode.com/2012/10/oesvertexarrayobject-extension.html
-
-http://www.openglsuperbible.com/2013/12/09/vertex-array-performance/
-
-
-*** TODO ubo
-*** TODO glsl 3.0
-
-no need to compile!? but need to learn babyonjs compiler firstly!!!
-/*
-wonder-glsl-compiler should support convert glsl 2.0 to 3.0!!!???
-
-refer to babylonjs(source code):
-http://doc.babylonjs.com/features/webgl2#multisample-render-targets
-Shaders
-When WebGL2 is enabled, the shaders are automatically converted to GLSL v3.0. Babylon.js will then automatically take
-advantage of extended instruction/uniform counts. 
-
-*/
-
-
-
-
-*** TODO Occlusion Queries
-*** TODO more?
-
-
-
-
-
-
+** TODO [#A] skybox
 
 ** date
 2018.10.16
@@ -692,7 +573,300 @@ invoke service api
 
 
 
+** TODO [#A] add pbr
+https://seblagarde.wordpress.com/2015/07/14/siggraph-2014-moving-frostbite-to-physically-based-rendering/
+
+*** TODO [#A] add pbr material
+https://zhuanlan.zhihu.com/p/21376124
+
+https://learnopengl.com/PBR/Theory
+
+https://developer.playcanvas.com/en/user-manual/graphics/physical-rendering/
+
+https://interplayoflight.wordpress.com/2013/12/30/readings-on-physically-based-rendering/
+
+http://bitsquid.blogspot.com/2017/07/validating-materials-and-lights-in.html
+
+https://cesium.com/blog/2017/08/08/physically-based-rendering-in-cesium/
+https://github.com/KhronosGroup/glTF-WebGL-PBR
+
+
+[[https://zhuanlan.zhihu.com/p/25314364][【Unity Shader实践】基于MatCap实现适于移动平台的“次时代”车漆Shader]]
+
+
+
+
+[[https://gamedev.autodesk.com/blogs/1/post/2287972226151420438][Validating materials and lights in Stingray]]
+
+[[https://gamedev.autodesk.com/blogs/1/post/5917432056362215813][Physical Cameras in Stingray]]
+
+
+
+https://zhuanlan.zhihu.com/p/28827026
+
+
+https://zhuanlan.zhihu.com/p/20091064
+
+
+**** TODO add pbr material
+
+
+
+**** TODO fix .wd by using pbr instead of brdf
+
+**** TODO .wd: support texCoord_1, ...
+
+**** TODO add IBL
+
+**** TODO pbr in mobile
+https://www.zhihu.com/question/62965225
+
+
+
+
+
+
+
+
+
+
+
+*** TODO [#A] remove basic material
+
+
+*** TODO [#C] add pbr light
+
+*** TODO [#C] add pbr camera
+https://placeholderart.wordpress.com/2014/11/16/implementing-a-physically-based-camera-understanding-exposure/
+
+
+
+
+
+
+** TODO [#A] shadow
+
+** TODO [#A] advanced ci/cd
+*** DONE use ci for deploy and pf(performance) test
+CLOSED: [2018-01-06 Sat 17:53]
+write gulp task
+
+ci test pf:
+allow fail
+deploy to github(ci pf data json):
+    not pass pf test
+
+
+
+use build stages:
+parallel job(e.g. test)
+
+
+
+
+
+
+
+refactor:
+wonder-benchmark: add "local" folder for data json files
+
+
+
+main branch:
+master, test, dev
+
+dev push: unit test
+no deploy
+
+test push: unit test + pf test(all must pass)
+deploy to test environment(on tag)
+
+master push: unit test + pf test(all must pass)
+deploy to produce environment(on tag)
+deploy to github release(on tag)(file: wd.js)
+
+
+
+
+
+(in test branch)
+deploy to test/pre-pubilish environment:
+should pass all test(pf,unit test)
+
+deploy to AWS Lambda?
+(user can run engine example online)
+
+
+
+(in mater branch)
+deploy to produce environment
+
+
+*** TODO add publish to page gulp task
+add task
+
+
+add to bumped
+
+
+*** TODO auto run render test and pf test in every day
+send report email to developer
+
+
+*** TODO auto generate samples from render test/pf test
+render test
+
+
+
+pf test
+
+
+
+
+
+
+
+
+
+**** TODO ci deploy samples to github page?
+
+
+
+
+
+*** TODO improve ci->pf test
+cache benchmark;
+
+reduce pf test case test time;
+
+
+*** TODO test in diferent browser/mobiles
+https://www.browserstack.com/automate
+
+
+
+
+
+
+
+
+
+* 3.0.0
+** Main Point
+
+*** Editor
+- more editor?
+- support more engine functions
+*** Engine
+- optimize
+- more main functions
+
+
+
+
+
+** TODO [#B] job script, data json
+
+*** TODO data json
+open/close worker setting
+
+
+
+**** TODO user can change setting.json->buffer
+1.editor->engine->setting.json
+2.publish->engine->setting.json
+
+
+
+
+
+*** TODO editor: support edit config json
+
+*** TODO job
+**** TODO fix bug:
+action->before not worker???
+**** TODO support import/export job script
+***** TODO wdb
+
+***** TODO generate
+
+
+**** TODO support worker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO [#A] learn and support webgpu?
+so support webgl1, webgl2, webgpu at same time?
+
+
+https://www.youtube.com/watch?v=K2JzIUIHIhc
+
+https://github.com/gpuweb/gpuweb/wiki/Implementation-Status
+
+https://doc.babylonjs.com/extensions/webgpu
+
+
+
+
 ** TODO [#A] extend
+
+*** TODO 支持用户扩展
+**** TODO editor
+editor extend script, store in .wet file?
+
+
+***** TODO ui
+json?
+
+reason?
+(dynamic compile?)
+
+
+
+***** TODO asset
+refer to https://blog.csdn.net/LIQIANGEASTSUN/article/details/50510615
+
+
+
+
+
+**** TODO engine
+engine extend script, store in .wet file?
+
+
+***** TODO job
+
+
+***** TODO shader
+
+
+***** TODO component
+
+
+***** TODO service
+
+
+
+
+
+
+
+*** TODO extend ui
+**** TODO extend imgui
+
 
 *** TODO extend files
 
@@ -874,235 +1048,6 @@ build component repository?
 
 
 
-
-
-
-** TODO [#A] add pbr
-https://seblagarde.wordpress.com/2015/07/14/siggraph-2014-moving-frostbite-to-physically-based-rendering/
-
-*** TODO [#A] add pbr material
-https://zhuanlan.zhihu.com/p/21376124
-
-https://learnopengl.com/PBR/Theory
-
-https://developer.playcanvas.com/en/user-manual/graphics/physical-rendering/
-
-https://interplayoflight.wordpress.com/2013/12/30/readings-on-physically-based-rendering/
-
-http://bitsquid.blogspot.com/2017/07/validating-materials-and-lights-in.html
-
-https://cesium.com/blog/2017/08/08/physically-based-rendering-in-cesium/
-https://github.com/KhronosGroup/glTF-WebGL-PBR
-
-
-[[https://zhuanlan.zhihu.com/p/25314364][【Unity Shader实践】基于MatCap实现适于移动平台的“次时代”车漆Shader]]
-
-
-
-
-[[https://gamedev.autodesk.com/blogs/1/post/2287972226151420438][Validating materials and lights in Stingray]]
-
-[[https://gamedev.autodesk.com/blogs/1/post/5917432056362215813][Physical Cameras in Stingray]]
-
-
-
-https://zhuanlan.zhihu.com/p/28827026
-
-
-https://zhuanlan.zhihu.com/p/20091064
-
-
-**** TODO add pbr material
-
-
-
-**** TODO fix .wd by using pbr instead of brdf
-
-**** TODO .wd: support texCoord_1, ...
-
-**** TODO add IBL
-
-**** TODO pbr in mobile
-https://www.zhihu.com/question/62965225
-
-
-
-
-
-
-
-
-
-
-
-*** TODO [#A] remove basic material
-
-
-*** TODO [#C] add pbr light
-
-*** TODO [#C] add pbr camera
-https://placeholderart.wordpress.com/2014/11/16/implementing-a-physically-based-camera-understanding-exposure/
-
-
-
-
-
-
-** TODO [#A] shadow
-
-** TODO [#A] skybox
-
-** TODO [#A] advanced ci/cd
-*** DONE use ci for deploy and pf(performance) test
-CLOSED: [2018-01-06 Sat 17:53]
-write gulp task
-
-ci test pf:
-allow fail
-deploy to github(ci pf data json):
-    not pass pf test
-
-
-
-use build stages:
-parallel job(e.g. test)
-
-
-
-
-
-
-
-refactor:
-wonder-benchmark: add "local" folder for data json files
-
-
-
-main branch:
-master, test, dev
-
-dev push: unit test
-no deploy
-
-test push: unit test + pf test(all must pass)
-deploy to test environment(on tag)
-
-master push: unit test + pf test(all must pass)
-deploy to produce environment(on tag)
-deploy to github release(on tag)(file: wd.js)
-
-
-
-
-
-(in test branch)
-deploy to test/pre-pubilish environment:
-should pass all test(pf,unit test)
-
-deploy to AWS Lambda?
-(user can run engine example online)
-
-
-
-(in mater branch)
-deploy to produce environment
-
-
-*** TODO add publish to page gulp task
-add task
-
-
-add to bumped
-
-
-*** TODO auto run render test and pf test in every day
-send report email to developer
-
-
-*** TODO auto generate samples from render test/pf test
-render test
-
-
-
-pf test
-
-
-
-
-
-
-
-
-
-**** TODO ci deploy samples to github page?
-
-
-
-
-
-*** TODO improve ci->pf test
-cache benchmark;
-
-reduce pf test case test time;
-
-
-*** TODO test in diferent browser/mobiles
-https://www.browserstack.com/automate
-
-
-
-
-
-
-** TODO [#B] job script, data json
-
-*** TODO data json
-open/close worker setting
-
-
-
-**** TODO user can change setting.json->buffer
-1.editor->engine->setting.json
-2.publish->engine->setting.json
-
-
-
-
-
-*** TODO editor: support edit config json
-
-*** TODO job
-**** TODO fix bug:
-action->before not worker???
-**** TODO support import/export job script
-***** TODO wdb
-
-***** TODO generate
-
-
-**** TODO support worker
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* 3.0.0
-** Main Point
-*** Editor
-- more editor?
-- support more engine functions
-*** Engine
-- optimize
-- more main functions
 
 
 
@@ -1424,6 +1369,11 @@ add 3d mode(vs 2d mode)?
 
 refer to unity->gizmo:
 https://docs.unity3d.com/Manual/GizmosMenu.html#GizmosIcons
+
+* 4.0
+** TODO [#A] multiplayer
+https://developer.playcanvas.com/en/tutorials/real-time-multiplayer/
+
 
 
 * more
@@ -1855,12 +1805,6 @@ refer to http://ourmachinery.com/post/ui-rendering-using-primitive-buffers/
 http://ourmachinery.com/post/one-draw-call-ui/
 
 
-*** TODO [#C] particles
-**** TODO optimize
-refer to:
-https://developer.nvidia.com/gpugems/GPUGems3/gpugems3_ch23.html
-data oriented
-gpu based?
 
 
 
@@ -1881,6 +1825,496 @@ e.g.
     ...
   }
 }
+
+* 4.0.0
+
+** TODO add ray trace demo
+*** TODO implement path trace in webgl2 (one pixel one ray)
+**** TODO basic
+***** TODO path tracer in cpu
+//refer to <<ray trace in one week>>, ...
+
+implement:
+//add two spheres, one ground sphere
+////add light
+//add texture
+
+
+
+cornell box:
+one box
+one sphere
+
+translate
+
+
+
+
+texelFetch?
+
+glsl 3.0:
+layout
+
+
+
+pt use webgl2 gpu
+
+
+***** TODO design
+
+gbuffer
+
+
+direct
+
+
+shadow
+
+
+ao
+
+
+indirect
+
+
+reflection
+
+
+refraction
+
+
+
+
+
+intersection
+
+
+
+
+sample
+
+
+
+accumulation
+
+
+
+filter
+
+
+
+
+***** TODO denoise
+****** TODO taa
+
+****** TODO Edge-avoiding à-trous wavelet
+
+
+****** TODO tone mapping
+
+
+****** TODO svgf
+not move sphere
+
+
+
+move camera
+
+
+
+move sphere
+
+
+******* TODO without reconstruction filter
+learn:
+http://cwyman.org/code/dxrTutors/dxr_tutors.md.html
+
+
+render to gbuffer:
+direct, indirect light
+position, depth, ...
+
+
+tone map
+
+
+demodule + module
+
+
+
+
+
+******** TODO TAA
+
+hitory buffers?
+
+move vector buffer?
+
+
+
+
+******* TODO with reconstruction filter
+******** TODO learn image denoising
+
+
+******** TODO ...
+
+
+
+
+
+**** TODO fix bug
+***** TODO when sphere move, the texture of the sphere shouldn't move!!!
+
+
+
+**** TODO advanced
+***** TODO move camera
+arcball camera
+
+
+fly camera
+
+
+
+***** TODO skybox
+https://zhuanlan.zhihu.com/p/37040545
+
+
+***** TODO model
+https://zhuanlan.zhihu.com/p/37177546
+
+
+
+***** TODO model transform
+translate
+
+rotate
+
+scale
+
+
+***** TODO add bvh
+
+
+
+
+***** TODO learn and implement
+[[http://www.realtimerendering.com/raytracing/Ray%2520Tracing_%2520the%2520Rest%2520of%2520Your%2520Life.pdf][Ray Tracing: The Rest of Your Life]]
+
+[[https://www.cnblogs.com/lv-anchoret/p/10327692.html][【RAY TRACING THE REST OF YOUR LIFE 超详解】 光线追踪 3-1 蒙特卡罗 (一)]]
+
+
+
+****** TODO learn more
+https://www.scratchapixel.com/
+
+
+
+http://www.raytracegroundup.com/index.html
+
+https://blog.csdn.net/libing_zeng/article/details/72625390
+
+
+
+***** TODO support pbr material
+
+
+
+**** TODO optimize
+***** TODO use compute shader
+
+
+
+*** TODO add to engine
+
+
+*** TODO upgrade reason && bs-platform(to 5.x)
+
+
+*** TODO publish v1.2
+
+
+*** TODO write blogs
+<<implement path trace in webgl>>
+
+
+
+*** TODO optimize
+refer to Deferred Hybrid Path Tracing:
+http://on-demand.gputechconf.com/gtc-eu/2017/presentation/23026-thomas-schander-real-time-path-tracing-using-a-hybrid-deferred-approach.pdf
+http://www.realtimerendering.com/raytracinggems/unofficial_RayTracingGems_v1.5.pdf -> Deferred Hybrid Path Tracing
+
+http://www.thomasschander.com/
+
+
+
+ray trace in screen space(ss):
+http://www.thomasschander.com/2016/01/08/screen-space-cubemap-occlusion/
+http://www.thomasschander.com/2016/05/21/screen-space-acceleration-structure/
+
+
+
+
+
+***** TODO optimize ads
+https://www.scratchapixel.com/lessons/advanced-rendering/introduction-acceleration-structure
+
+
+
+
+bvh:
+two-level BVHs, where a large number of BVHs, usually one per object, are sorted into a top-level BVH. 
+
+
+stackless
+
+
+
+optimize bvh?
+https://www.highperformancegraphics.org/wp-content/uploads/2017/Papers-Session2/HPG2017_EfficientIncoherentRayTraversal.pdf
+https://ingowaldblog.files.wordpress.com/2018/06/paper.pdf
+
+
+
+
+
+use Irregular Grid?
+https://dl.acm.org/citation.cfm?id=3129019
+
+
+
+
+use svo?gpu voxelization?
+https://www.zhihu.com/question/269610419
+https://developer.nvidia.com/gvdb
+https://on-demand.gputechconf.com/siggraph/2016/presentation/sig1664-rama-hoetzlein-rendering-gvdb-sparse-volumes-designworks.pdf
+https://sergeneren.com/2019/05/02/integrating-gvdb-future-plans/
+
+
+
+
+***** TODO more...
+
+
+
+sort ray
+
+bidirection path trace
+
+梅特波利斯光照传输，以及光子映射
+
+那么这三种方法能不能被组合在一起呢，答案当然是可以的，因为上述每一种方法都是一种路径采样的方法，让我们得到一个样本时，我
+们能够按照复合重要性采样的思路把他们全部组合在一起，这样我们的整个渲染流程就有了一个统一的算法架构。  
+
+
+
+因此路径采样的另一个方向是分析图像的频率分布，使得我们仅需要对高频的区域适应更密集的路径样本，而在平滑的区域减少路径采样
+的样本，这种方法显然能够大大提高路径追踪的效率。:
+
+
+...
+
+
+
+
+*** TODO improve denoise
+**** TODO a-svgf
+
+
+**** TODO beyond svgf
+
+
+
+**** TODO BLOCKWISE MULTI-ORDER FEATURE REGRESSION FOR REAL-TIME PATH TRACING RECONSTRUCTION
+http://www.tut.fi/vga/publications/Blockwise_Multi-Order_Feature_Regression_for_Real-Time_Path_Tracing_Reconstruction.html
+
+
+
+
+*** product
+http://raytracey.blogspot.com/2019/06/lighttracer-first-webgl-path-tracer-for.html
+
+
+
+*** apply situation
+online e-commerce stores offering their clients a fully photorealistic preview of an article (be it jewellery,  cars,
+wristwatches, running shoes or handbags):
+
+Up until now, online shops have been trying several ways to offer their clients "photorealistic" previews with the
+ability to configure the product's materials and colours. These previews were either precomputed 360 degree videos,
+interactive 3D using WebGL rasterization and even using server-side rendering via cloud based ray tracing streamed to
+the browser (e.g. Clara.io and Lagoa Render) which requires expensive servers and is tricky to scale. 
+
+
+
+
+
+
+make film in web
+
+
+...
+
+
+
+*** advantage 
+web vs pc, offline render
+
+https://www.zhihu.com/question/28694086/answers/updated
+
+https://www.zhihu.com/question/29977669/answers/updated
+
+
+
+in web:
+
+LightTracer:
+https://www.youtube.com/watch?v=DZ01nne5Q50
+LightTracer uses normal OpenGL - not even proper WebGL. The raytracer was written in C and auto-converted to JavaScript using emscripten.
+There's no support for any special hardware features whatsoever. I'm also not sure how RT core support would work in
+general - there's just so many different was to implement raytracing and NVIDIA doesn't say anything about what RT cores
+actually do ... 
+
+
+
+
+
+
+
+
+
+path tracer vs ray tracer in unreal:
+For artists and programmers, the unbiased nature of the Path Tracer’s ground truth image makes it invaluable to have
+built right into the Engine for comparison. It also removes the need for additional third-party software or plugins to
+generate these comparison results. For artists, it means being able to fine-tune materials and lighting setups more
+quickly. For programmers, it improves workflow and iteration times when tuning and validating the look of their
+real-time algorithms for techniques like Denoising. 
+
+https://docs.unrealengine.com/en-US/Engine/Rendering/RayTracing/PathTracer/index.html
+
+
+
+*** improve
+
+use path tracer or hiby ray trace?
+
+
+
+
+path tracer in webgl2
+
+
+improve fps
+improve ray count
+(multi thread for ray trace?, move to gpu, use web gpu...)
+
+
+
+
+big scene:
+(use normal map + ray trace, lod, ...)
+outdoor scene: voxel terrain, water, ...
+
+
+
+make animation film:
+Enscape2.2版本制作动画非常直观方便，通过设置关键帧的方式来设定动画路径，并且可以在关键帧调整日照时间、镜头景深和广角参数
+做成动画效果展示可以将文件快速打包成exe格式，直接发给甲方无需安装其他软件就可直接开启展示全方位模型效果； 
+
+
+
+
+
+
+
+support more materials:
+pbr, vray material, ...
+
+
+
+Volumetric path tracing(e.g. render smoke, fog, ...)
+
+
+
+work with art editor(e.g. 3d max)
+
+
+
+add post process
+
+
+
+bake tool by ray trace:
+e.g. bake normal map, light map, ...
+
+
+
+add defer shading pipeline for render pre-compute scene?
+(use baked light map?)
+
+
+
+
+
+add interaction:
+pick
+collision
+ui
+...
+
+
+
+
+procedural approach
+
+
+
+
+extend:
+custom glsl
+...
+
+
+
+*** TODO add demo
+
+
+*** TODO improve
+
+
+*** TODO implement voxel cone trace?
+
+
+*** TODO add to editor?
+
+
+*** TODO add ray trace pipeline to engine?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO [#C] editor support worker
+*** TODO imgui
+e.g. support customData for execData
+
+
+*** TODO script
+
+*** TODO run in worker
+
+
 
 * Tool
 ** TODO webgl inspector which can work with multi thread

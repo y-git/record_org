@@ -1,3 +1,5 @@
-* TODO need fix
+* TODO fix Engine
+
+* TODO fix Editor
 ** TODO editor->asset: recursive type
 XXXNode(.e.g. FolderNode) functions should in domain model folder instead of service folder!

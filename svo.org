@@ -1,0 +1,115 @@
+implement svo
+
+
+improve svo
+
+efficient
+
+dag
+computer shader
+
+
+
+svo+triangle:
+march cube
+
+cuda
+
+
+
+
+
+
+
+
+
+svo cone tracing
+
+
+svo lod
+
+
+animation
+
+
+
+
+collision and physics
+
+
+* implement
+** TODO implement svo
+implement:
+voxelization
+build svo
+render
+svo gi:
+    svo cone tracing
+
+
+*** TODO improve svo
+
+out of core
+
+
+dag
+
+
+color 
+
+shadow
+
+
+computer shader
+
+...
+
+
+
+** TODO gi
+
+svo cone tracing
+
+
+
+
+svo+dag ray tracing:
+https://www.youtube.com/watch?v=YWNKGXVBsjY
+
+
+
+** TODO Voxelization
+in cpu
+
+pre voxelization
+
+
+
+** TODO build triangle from voxel data
+
+march cube
+
+
+
+improved:
+等值面提取
+
+
+*** TODO need solve
+**** TODO generate uv
+1.triplanar texturing(can for terrain)
+2.others...(can for model)
+
+
+
+** TODO more
+
+svo lod
+
+
+animation
+
+
+
+
+collision and physics

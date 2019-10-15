@@ -68,6 +68,8 @@ http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz
 http://taobaofed.org/blog/2016/04/25/performance-composite/
 https://juejin.im/entry/59dc9aedf265da43200232f9
 
+https://zhuanlan.zhihu.com/p/72222549
+
 
 
 
@@ -232,60 +234,327 @@ scene will has it gameObject again!!!!
 
 
 * 完成事项
-
 ** TODO engine
+*** DONE refactor texture
+CLOSED: [2019-06-17 Mon 11:14]
+//map unit:
+//logic:
+   fix light
+   fix basic:
+      basic material remove map
 
-*** TODO skybox
+//test
+
+//pass worker
+
+
+
+
+
+////split buffer
+
+
+*** DONE fetch rebase master
+CLOSED: [2019-06-17 Mon 11:36]
+
+
+
+*** DONE switch to dev
+CLOSED: [2019-06-17 Mon 11:36]
+
+
+@mickey
+
+
+*** DONE refactor service
+CLOSED: [2019-06-17 Mon 13:32]
+//move sub into render
+
+//record->render,all,main, should add posfix
+
+
+
+
+
+*** DONE add cubemap texture
+CLOSED: [2019-06-18 Tue 20:00]
+////in the same buffer, not split!
+
+in different buffer
+
+
+**** DONE logic
+CLOSED: [2019-06-18 Tue 17:48]
+//buffer
+//create
+//dispose
+
+//init
+//bind
+//update
+
+//api
+
+//render worker
+
+
+
+//pass compile
+
+
+**** DONE u,i test
+CLOSED: [2019-06-18 Tue 20:00]
+//pass 
+
+
+add cases
+
+
+
+
+
+
+*** DONE skybox
+CLOSED: [2019-06-26 Wed 21:10]
+
+
+/*
 still need add MeshRenderer:
 add skyboxMaterialRenderGameObjectMap;
 get the first one of the render array to render;
 if render array's length > 1, warn;
 
 
-**** TODO fix: enable point scale
-refer to:
-http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
 
 
 
-**** TODO extract SkyboxMaterial
 
 
-**** TODO extract SkyboxComponent
+////**** TODO extract SkyboxComponent
 add onlyRender api:
 set other skybox gameObjects' meshrenderer->isRender to false;
 set this one's  meshrenderer->isRender to true;
 
 
+*/
 
 
-
-**** TODO test
-
-
-
-
-**** TODO fix: not require skybox
+**** DONE use cubemap texture
+CLOSED: [2019-06-20 Thu 07:58]
+add to scene api
 
 
-**** TODO extract cubemap texture
+***** TODO feat: support switch skybox of the scene
 
 ***** TODO optimize switch skybox
 switch cubemap texture, each one should only update once
 
 
+**** DONE u,i test
+CLOSED: [2019-06-23 Sun 11:31]
+***** DONE skybox u,i test
+CLOSED: [2019-06-20 Thu 16:42]
 
-**** TODO pass worker
+***** DONE cubemap u,i test
+CLOSED: [2019-06-23 Sun 11:22]
+add more test cases:
+//dispose
+//init:
+   init texture
+   init gameObject
+//bind and update
 
 
+
+//worker:
+initTextureRenderWorkerJob_test
+initTextureForRenderRenderWorkerJob_test
+////hot change
+
+...
+
+
+
+
+
+////***** TODO other test
+drawoutlinejob:
+
+             /* TODO test */
+             let state =
+               OperateAllTextureRenderService.resetActivedTextureUnitIndex(
+                 state,
+               );
+
+**** DONE refactor
+CLOSED: [2019-06-23 Sun 16:26]
+//remove disposeCubemapMaps
+
+////renderskyboxjob:
+/* TODO refactor: duplicate with DrawOutlineJob */
+
+
+
+
+
+
+
+**** DONE fix
+CLOSED: [2019-06-20 Thu 08:00]
+fix map unit
+
+should active texture before bind texture
+
+
+
+should bind(set binded map unit) before send map uniform
+
+
+
+
+
+**** DONE run test
+CLOSED: [2019-06-23 Sun 16:49]
+
+
+
+
+**** DONE fix: not require skybox
+CLOSED: [2019-06-23 Sun 16:50]
+
+
+////**** TODO fix: enable point scale
+refer to:
+http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
+
+
+
+
+
+
+
+**** DONE pass worker
+CLOSED: [2019-06-23 Sun 18:02]
+
+
+
+
+**** TODO fix convert,assemble,generate
+***** DONE basic source texture add format
+CLOSED: [2019-06-23 Sun 21:26]
+GLTFType->textureExtra add format?
+
+
+***** DONE basic source texture add type_
+CLOSED: [2019-06-23 Sun 21:26]
+
+
+
+
+
+***** DONE cubemap texture, skybox
+CLOSED: [2019-06-26 Wed 11:46]
+//assemble cubemap
+//assemble skybox
+
+//fix stream assemble 
+
+//fix AssembleABSystem
+
+
+//generate cubemap, sampler, images
+//generate skybox
+
+
+
+//fix asset bundle->sab
+//assembleABXXX?
+
+
+
+//pass compile
+
+
+
+
+
+
+
+
+
+
+****** DONE u,i test
+CLOSED: [2019-06-26 Wed 11:42]
+//pass test
+
+
+add cases:
+//convert
+//assemble
+//generate
+
+//stream
+
+
+//asset bundle
+
+
+
+
+
+////****** TODO run test
+whole
+
+
+stream
+
+
+
+
+
+
+
+**** DONE asset bundle
+CLOSED: [2019-06-26 Wed 20:40]
+***** DONE rab add cubemap texture:
+CLOSED: [2019-06-26 Wed 19:11]
+//assemble
+//generate
+//remove duplicate
+
+
+
+//u,i test
+
+
+
+***** DONE asset bundle should add version data in header:
+CLOSED: [2019-06-26 Wed 20:40]
+logic
+
+
+
+
+u,i test
+
+
+**** DONE merge to dev
+CLOSED: [2019-06-26 Wed 21:10]
 
 
 
 
 *** TODO add 2d ui(script api? component?)
+gameObject based
+
+
 line
+https://zhuanlan.zhihu.com/p/59541559
+
+https://docs.unity3d.com/Manual/class-LineRenderer.html
 
 text
+https://zhuanlan.zhihu.com/p/65421383
 
 ////window
 
@@ -309,44 +578,2130 @@ https://juejin.im/entry/59dc9aedf265da43200232f9
 
 
 
-*** TODO extend imgui(or add gameObject based ui???)
-**** TODO support set imgui
+** TODO editor
+*** DONE merge engine,editor->pr
+CLOSED: [2019-06-26 Wed 21:10]
+////solve error
+
+
+*** DONE checkout to dev
+CLOSED: [2019-06-27 Thu 17:13]
+**** TODO update wonder.js version
+
+
+**** TODO pass all u,i tests
+
+
+**** TODO pass basic run test
 
 
 
+*** DONE fix(focus): calc fly speed
+CLOSED: [2019-06-27 Thu 17:26]
+
+
+*** DONE add cubemap texture asset
+CLOSED: [2019-07-15 Mon 17:47]
+**** DONE add asset
+CLOSED: [2019-07-10 Wed 09:44]
+***** DONE logic
+CLOSED: [2019-07-09 Tue 10:55]
+//tree
+
+
+////load asset
+
+
+
+texture inspector
+
+
+create asset->cubemap
+
+
+
+refactor: 
+cubemap should use image source directly, not use basic source texture
+
+
+
+pass compile
+
+
+
+***** DONE u,i test
+CLOSED: [2019-07-09 Tue 18:51]
+//pass all tests
+
+
+//create asset
+
+
+//asset children
+
+
+
+//dispose cubemap asset
+
+
+
+
+
+
+
+
+//inspector
+
+//add more face source
+
+
+
+//node name
+
+
+
+
+//test redo,undo:
+//load and set face source should redo,undo;
+
+
+
+
+
+
+
+
+***** DONE refactor
+CLOSED: [2019-07-10 Wed 09:44]
+////rename MainEditorMaterialMap to MainEditorBasicSourceTextureMap?
+
+rename materialNodeData->imageDataIndex to snapshotImageDataIndex
+
+
+
+
+
+////**** TODO feat(inspector): texture, cubemap add "flipY", "generate mip map" set
+
+
+**** DONE redo-undo
+CLOSED: [2019-07-09 Tue 18:48]
+RestoreStateEngineService add logic
+
+
+
+**** DONE add skybox
+CLOSED: [2019-07-10 Wed 14:33]
+***** DONE logic
+CLOSED: [2019-07-10 Wed 11:07]
+
+move ambient color, skybox to Header->Scene
+
+
+***** DONE u,i test
+CLOSED: [2019-07-10 Wed 14:03]
+
+
+
+
+***** DONE fix dispose cubemap->test case
+CLOSED: [2019-07-10 Wed 14:07]
+
+
+***** DONE redo-undo
+CLOSED: [2019-07-10 Wed 14:33]
+set skybox->cubemap
+
+
+
+
+**** DONE run test
+CLOSED: [2019-07-11 Thu 10:34]
+//finish css:
+skybox
+inspector
+
+
+refactor:
+//rename asset tree inspector to asset inspector
+
+
+
+//fix ambient
+
+//fix remove:
+add to redo/undo
+
+
+//fix color pick->css
+pass all tests
+
+
+
+//pass skybox:
+add init/render skybox
+should loopBody when stop
+
+
+
+
+
+
+
+
+
+
+
+//fix cubemap:
+change face source:
+need mark update
+render?
+
+
+////if not has all face sources, not bind
+
+
+
+
+
+//improve:
+if run skybox wrong, should message;
+if run skybox wrong, can recovery
+
+    handle set cubemap error
+
+
+
+
+
+
+
+
+//redo/undo:
+cubemap->needupdate
+
+//fix:restore when stop->should update face source
+
+
+
+
+**** DONE fix 
+CLOSED: [2019-07-11 Thu 11:06]
+add width != height check(engine)
+
+
+
+**** DONE fix publish
+CLOSED: [2019-07-11 Thu 11:06]
+add skybox job:
+no worker
+worker
+
+
+
+**** DONE extract cubemap
+CLOSED: [2019-07-11 Thu 17:46]
+
+
+//fix cubemapTextureImageUint8ArrayDataMap in wonder.js:
+update assemblewholewdbsystem to wonder.js
+fix
+
+
+extract skybox->cubemap:
+update wonder.js version
+init extracted cubemap texture
+not relate!:
+    test unique name if exist one
+
+
+
+
+run test
+
+
+
+**** DONE wpk->asb
+CLOSED: [2019-07-15 Mon 10:17]
+dispose asset
+
+remove cubemap
+
+
+
+
+generate cubemap:
+fix engine:    BuildSkyboxDataSystem.build->imageDataMap
+
+
+
+asb: add cubemap assets
+
+
+
+publish and update wonder.js  version
+
+
+//test set package->skybox->cubemap
+
+
+
+test:
+import package->cubemap->face sources
+
+
+commit
+
+
+
+
+
+
+
+
+
+
+//refactor:
+rename ImageDataMap to BasicSourceTextureImageDataMap
+////rename imageUint8ArrayMap to basicSourceTextureImageUint8ArrayMap 
+
+
+
+//add TODO : optimize cubemap by save face source image to image map(also for export wpk/asb/wdb and import wpk)
+
+
+
+
+
+
+
+pass run test:
+//exclude not used cubemap
+
+//export package add try catch
+
+
+
+
+cubemap node save face source image to image data map:
+logic
+    //add cubemap:add test case
+    //dispose cubemap: should remove from image data map(add test case)
+    //set face source: add test case
+
+
+    //relate extract wdb asset->cubemap assaet: add test case
+        simple relate(only by name)
+
+
+    //fix: shouldn't set to scene skybox!
+
+     ////texture wrong?
+
+
+
+
+
+    export asb->generate
+    generate scene wdb?
+
+
+pass tests
+
+update/publish wonder.js version
+
+commit
+
+
+
+run test:
+load wdb->extract cubemap asset
+
+
+
+
+
+
+
+scene relate cubemap asset
+
+add test case
+
+
+run test
+
+
+
+commit
+
+
+
+
+//basicSourceTexture use uint8Array?
+
+
+
+
+
+
+
+
+
+
+
+////**** TODO feat(inspector): texture, cubemap add "flipY" set
+
+
+
+
+
+
+
+**** DONE feat(asset bundle)
+CLOSED: [2019-07-15 Mon 17:46]
+engine:
+pass u,i tests
+
+
+
+
+
+add cubemap,skybox logic:
+generate ab
+
+add cubemap imageDataMap
+
+
+publish with asset bundle
+
+
+
+
+fix:
+assemble sab shouldn't set cubemap to scene
+
+
+
+u,i test
+
+
+
+** TODO engine&&editor
+*** TODO improve imgui
+**** TODO extend imgui
+geometry
+
+css
+
+
+
+
+////layout
+
+
+***** DONE add custom control
+CLOSED: [2019-08-13 Tue 11:05]
+
+
+custom controls can use custom style from skin
+
+
+custom controls can get/set data to imgui record
+
+
+
+custom control is asset(like script event function?)
+
+
+can use io data
+
+
+
+
+add custom data
+
+
+registerCustomControl():
+button
+checkbox
+
+
+getCustomControl
+
+
+
+
+add unit test
+
+
+
+
+***** DONE add skin
+CLOSED: [2019-08-13 Tue 15:25]
+
+
+add multi skins
+
+skin has custom styles
+
+
+skin is asset
+
+
+
+
+
+
+
+
+
+
+useSkins()
+
+
+
+
+add unit test
+
+
+pass run test
+
+
+
+***** DONE add button add image
+CLOSED: [2019-08-14 Wed 10:25]
+****** DONE add image
+CLOSED: [2019-08-13 Tue 18:40]
+should be one of custom image
+
+
+****** DONE u,i test
+CLOSED: [2019-08-13 Tue 18:40]
+
+
+****** DONE run test
+CLOSED: [2019-08-13 Tue 18:40]
+
+
+****** DONE add as  build-in
+CLOSED: [2019-08-14 Wed 10:25]
+//pass compile
+
+
+
+//pass button test
+
+
+
+////test init
+
+////test default skin
+
+//test with group
+
+
+
+//pass run test
+
+
+
+***** DONE add remain tests
+CLOSED: [2019-08-14 Wed 10:26]
+
+
+
+***** TODO compose draw imgui api(to a function?)
+
+primitives:
+(e.g. box, circle, image, text, textfield/textarea)
+add geometry data
+
+custom shader?
+
+texture
+
+add event
+
+basic style
+
+
+
+
+compounds:
+
+compose style
+
+
+
+
+
+
+
+
+////extend primitive,compound
+
+extend compound
+
+
+
+
+
+fix io data?:
+pointUpPosition
+pointDownPosition
+
+
+
+
+
+***** TODO compose style?
+
+
+
+***** TODO extract event?
+
+
+
+
+
+***** TODO user can extend imgui
+https://docs.unity3d.com/Manual/gui-Extending.html
+
+
+user can compose draw imgui api(to a function?)
+
+
+can publish to host platform?
+
+
+***** DONE fix wonder-imgui
+CLOSED: [2019-08-20 Tue 16:38]
+****** DONE remove fontTexUvForWhite
+CLOSED: [2019-08-15 Thu 22:44]
+add second shader
+
+
+pass u,i tests
+
+
+add u,i tests
+
+
+
+
+
+
+
+****** DONE improve label
+CLOSED: [2019-08-16 Fri 15:06]
+******* DONE add textColor
+CLOSED: [2019-08-16 Fri 15:06]
+////******* TODO add text size
+
+
+****** DONE remove setSetting
+CLOSED: [2019-08-16 Fri 15:06]
+
+
+
+
+****** DONE update engine
+CLOSED: [2019-08-16 Fri 15:36]
+
+
+****** DONE update editor
+CLOSED: [2019-08-16 Fri 15:48]
+
+****** DONE add set asset
+CLOSED: [2019-08-16 Fri 18:42]
+
+
+****** DONE imgui func
+CLOSED: [2019-08-20 Tue 16:38]
+//logic:
 api add add/remove/set/get/replace/clearIMGUIFunc
 (replace = remove + set + add)
 
 
+imgui func data:
+
+zIndex
+
+name
+
+func
+
+customData
+
+
+
+
+test:
+//pass test
+
+add/remove
+
+zIndex
+
+sort
+
+getExecFuncDataArr
+
+
+
+run test
+
+
+
+
+***** DONE update engine
+CLOSED: [2019-08-21 Wed 15:42]
+****** DONE pass u,i test
+CLOSED: [2019-08-14 Wed 11:26]
+
+
+
+
+
+****** DONE add extend
+CLOSED: [2019-08-15 Thu 08:12]
+//add operate logic
+
+initimgui:
+
+//no worker job
+
+worker job:
+send extend data in send init job
+register and skin here
+add test:
+    init job
+    extend 
+
+
+
+******* DONE logic
+CLOSED: [2019-08-14 Wed 17:49]
+
+
+******* DONE u,i test
+CLOSED: [2019-08-15 Thu 08:12]
+******** DONE pass no worker
+CLOSED: [2019-08-14 Wed 17:51]
+
+******** DONE pass worker
+CLOSED: [2019-08-15 Thu 08:12]
+
+
+****** DONE update wonder-imgui version
+CLOSED: [2019-08-15 Thu 08:14]
+
+****** DONE commit
+CLOSED: [2019-08-15 Thu 08:14]
+
+****** DONE pass run test
+CLOSED: [2019-08-15 Thu 09:04]
+******* DONE pass no worker
+CLOSED: [2019-08-15 Thu 09:04]
+button
+
+extend
+
+******* DONE pass worker
+CLOSED: [2019-08-15 Thu 09:04]
+button
+
+extend
+
+
+
+
+
+****** DONE commit
+CLOSED: [2019-08-15 Thu 09:05]
+
+
+****** DONE assets
+CLOSED: [2019-08-15 Thu 11:33]
+//logic
+
+
+//pass tests
+
+
+add u,i tests
+
+
+
+
+
+
+
+
+
+
+
+
+****** DONE pass all u,i tests
+CLOSED: [2019-08-15 Thu 11:41]
+
+****** DONE IMGUIAsset
+CLOSED: [2019-08-20 Tue 08:23]
+add set IMGUIAsset api(stream, async):
+set custom images by key
+
+
+
+////remove loadIMGUIAsset
+
+
+******* TODO set asset
+******** TODO no worker
+
+
+******** TODO worker
+
+
+******* TODO wdb add it
+
+//assemble:
+    whole
+    stream
+
+
+
+//convert
+
+
+
+//generate
+
+
+
+
+
+test:
+//convert
+
+assemble:
+    //finish whole
+
+//fix ab?
+
+
+//generate
+
+
+//pass extend data
+
+//fix assetData
+
+assemble:
+    stream: handle imgui when done
+
+////t1: assemble
+
+//t2: done
+
+
+//pass assemble whole test!!!
+
+//fix assemble whole, ab, stream by drain?
+
+
+
+
+//commit wonder-imgui
+
+//update wonder-imgui version
+
+//commit wonder.js
+
+
+****** DONE refactor
+CLOSED: [2019-08-20 Tue 08:27]
+handle TODOs in bookmarks
+
+
+
+
+****** TODO imgui func
+api add add/remove/set/get/replace/clearIMGUIFunc
+(replace = remove + set + add)
+
+
+imgui func data:
+
+zIndex
+
+name
+
+func
+
+customData
+
+
+
+******* DONE pass compile
+CLOSED: [2019-08-20 Tue 19:28]
+
+
+******* DONE scene graph
+CLOSED: [2019-08-21 Wed 08:11]
+//pass test
+
+
+//add test cases
+
+
+
+******* DONE pass imgui test
+CLOSED: [2019-08-21 Wed 15:34]
+
+//no worker
+
+
+//worker
+
+
+
+//add test cases
+
+
+
+******* DONE run test
+CLOSED: [2019-08-21 Wed 15:34]
+
+
+
+
+******* DONE commit
+CLOSED: [2019-08-21 Wed 15:42]
+commit wonder-imgui
+
+update wonder-imgui version
+
+commit wonder.js
+
+
+***** TODO update editor
+****** TODO add imgui func asset
+
+//update wonder.js, wonder-imgui
+
+
+//api add add/remove/set/get/replace/clearIMGUIFunc
+(replace = remove + set + add)
+
+
 editor should set imgui data(load fnt, fnt image, custom images)
+
+
+
+
+pass draw box, draw image, draw button
+
+
+
+
+
+
+Header->imgui:
+asset
+exec
+extend
+
+
+
+
+
+******* TODO set imgui data(load fnt, fnt image, custom images)
+******** TODO fnt, fnt image
+********* TODO add fnt asset
+can't edit, only show name
+
+
+********* TODO set fnt, image
+
+
+
+******** TODO imgui asset meta
+
+******** TODO custom images
+
+********* TODO add json asset
+customImage_meta.json: store key->value
+
+
+can edit json data
+
+
+
+
+********* TODO set custom image meta json
+
+
+
+********* TODO set custom images
+
+
+******* DONE create assets
+CLOSED: [2019-08-26 Mon 12:51]
+
+
+******* DONE asset children
+CLOSED: [2019-08-27 Tue 15:50]
+
+
+
+******* DONE fix texture node
+CLOSED: [2019-08-30 Fri 09:33]
+
+fix find all ...
+
+******* DONE asset inspector
+CLOSED: [2019-08-30 Fri 12:56]
+
+//button data
+
+//custom style
+
+//skin inspector
+
+
+//refactor MaterialMap
+
+//refactor UserInputJs
+
+
+////text inspector
+
+
+
+//add to AssetInspector
+
+
+
+******* DONE update version
+CLOSED: [2019-08-30 Fri 12:56]
+update and publish wonder-imgui, wonder.js version
+
+
+******* DONE commit
+CLOSED: [2019-08-30 Fri 12:56]
+
+
+
+
+
+******* DONE remove json node
+CLOSED: [2019-08-30 Fri 15:21]
+
+
+******* DONE add text inspector
+CLOSED: [2019-08-30 Fri 16:06]
+
+
+******* DONE add add event handler
+CLOSED: [2019-08-30 Fri 16:15]
+
+
+******* DONE language data
+CLOSED: [2019-08-30 Fri 16:21]
+
+
+
+******* DONE refactor: rename zIndex to execOrder
+CLOSED: [2019-08-30 Fri 16:30]
+
+
+////******* TODO restart computer
+      
+
+******* DONE u,i test
+CLOSED: [2019-09-09 Mon 07:43]
+//pass all test
+
+
+create assets
+
+
+
+
+asset inspector:
+//test all custom style data
+...
+
+
+////SelectTextureNode test
+
+
+//fnt inspector
+
+
+
+//fix: not has name in state! get name in editorState when need???
+(fnt inspector is already fixed!)
+
+
+
+
+
+
+test texture node->type, content:
+//feat(change type): should update engine state(if add to engine)
+
+//feat(dispose texture node with type:imgui custom image): should update engine state(if add to engine)
+//dispose tree
+
+
+//pass all tests
+
+
+
+
+//commit:
+pubish wonder-imgui(already add package->version and commit!)
+update wonder-imgui version
+update wonder.js version
+
+
+
+
+
+
+
+    
+//asset children
+
+
+////test rename
+
+//redo/undo:
+change type
+set id 
+
+
+//test
+
+
+
+******* DONE run test
+CLOSED: [2019-09-09 Mon 12:44]
+
+//fix 3 bugs
+
+
+
+fix all custom style data
+
+fix asset bundle->textareainput
+
+
+custom control func
+
+
+
+
+
+
+
+
+      //add test cases
+
+      pass run test
+
+      commit
+
+
+
+
+
+
+
+
+////******* TODO extract TextureComponentDataForInspector ui(cubemap, texture node)
+
+
+******* DONE refactor: change editorState->defaultCubeGeometryComponent: (-1),defaultSphereGeometryComponent: (-1) to None
+CLOSED: [2019-09-09 Mon 16:12]
+
+
+
+******* DONE use TextAreaInput instead of FileInput?
+CLOSED: [2019-09-09 Mon 16:16]
+
+
+
+******* DONE pass all tests
+CLOSED: [2019-09-09 Mon 16:22]
+
+
+******* TODO use assets in header->imgui
+******** DONE add logic0
+CLOSED: [2019-09-17 Tue 08:17]
+//extract SelectAssetNode ui
+
+
+//pass u,i test
+
+//pass run test
+
+
+
+
+
+
+
+
+
+
+//add fnt
+
+//add bitmap
+
+
+//add customImage
+
+
+extract SelectAssetByText:
+geometry, material, ...
+fnt
+
+
+******** TODO add logic1
+extract SelectAssetByText:
+script attribute
+
+script event function
+
+
+extract and add "add custom image" ui
+
+
+******** TODO pass compile
+
+
+******** TODO pass all u,i test
+
+
+******** TODO commit
+
+
+
+******** TODO add logic2
+extract SelectDataArray ui???
+
+
+
+
+add exec
+
+add skin
+
+add customControl
+
+
+add language data
+
+
+
+******** TODO pass compile
+
+
+******** TODO pass all u,i test
+
+
+******** TODO commit
+
+
+
+
+
+******** TODO u,i test
+
+
+******** TODO run test
+
+
+******** TODO commit
+
+
+
+******* TODO fix bug
+******** TODO fix(asset): 1.add material asset; 2.change type to basic;     error!!!
+
+
+
+******** TODO fix(material component): if material type is light, select material group should only has light material!!!! 
+
+
+
+******** TODO fix(redo-undo): 1.select fnt; 2.remove; 3.undo;   should refresh ui!!!
+
+after 3, SelectAssetNode->render->state.currentAssetDataOpt is none(while make->currentAssetDataOpt is Some)!
+(not exec initialState when dispatchFunc?)
+
+
+******* TODO run(game view)
+******** TODO logic and compile
+
+
+******** TODO u,i test
+
+
+
+******** TODO run test
+
+
+
+
+******* TODO fix style
+
+
+
+
+
+
+
+******* TODO extract assets from loaded wdb
+
+
+
+******* TODO remove duplicate imgui->assets when export wpk???
+remove duplicate image data?(texture data?)
+
+
+
+******* TODO u,i test
+
+
+
+******* TODO run test
+
+
+
+******* TODO import/export package
+
+
+
+
+
+******* TODO u,i test
+
+
+
+******* TODO run test
+
+
+
+******* TODO publish
 (publish->should load imgui data at begin)
 
 
 
-**** TODO expand imgui:
+******* TODO u,i test
 
-fix slider:
+
+
+******* TODO run test
+
+
+
+
+******* TODO dispose assets
+
+
+
+******* TODO u,i test
+
+
+
+******* TODO run test
+
+
+
+
+
+
+******* TODO ...
+
+
+******* TODO u,i test
+
+
+
+******* TODO replace images(find on web)
+
+
+
+******* TODO asset inspector add redo/undo?
+
+
+
+
+
+
+
+******* TODO u,i test
+
+
+
+******* TODO run test
+
+
+
+
+
+
+
+
+******* TODO fix asset bundle
+add/remove exec func
+
+
+
+////******* TODO support import/export assets(.asb)
+
+
+
+
+******* TODO u,i test
+
+
+
+******* TODO run test
+
+
+
+
+
+******* TODO refactor
+******** TODO remove submit?
+
+
+////****** TODO support import/export assets(.asb)
+
+
+
+
+
+////****** TODO pass mobile
+
+
+
+**** DONE prepare webgl demo
+CLOSED: [2019-09-09 Mon 18:39]
+
+
+
+**** TODO add sdf font
+***** TODO generate by string
+
+
+
+****** TODO perf: generate when load
+******* TODO no stream
+
+
+******* TODO stream
+
+
+****** TODO feat: generate default
+
+
+
+
+////***** TODO generate sdf image,font
+
+
+////***** TODO load sdf font
+
+
+
+
+***** TODO config use which one as default font
+
+
+
+***** TODO add bitmapLabel, sdfLabel instead of label?
+
+
+
+
+***** TODO support change font size(show size)
+
+////***** TODO fix default font uv(use default sdf?)
+
+
+
+
+
+
+
+
+
+
+
+***** TODO pass mobile
+**** TODO update engine
+
+
+
+***** TODO pass worker
+
+
+**** TODO update editor
+
+
+
+////**** TODO add basic animation?
+
+
+
+
+
+**** TODO add textfield
+
+
+
+**** TODO engine: add script api js obj(for operate script attribute?)
+
+
+
+
+**** TODO editor: support export and add .asb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** TODO add HorizontalScrollbar, VerticalScrollbar
+
+
+
+**** TODO add textarea
+
+
+
+
+
+**** TODO update engine
+
+
+
+***** TODO pass worker
+
+
+
+
+**** TODO update editor
+
+
+
+
+**** TODO add auto layout
+https://docs.unity3d.com/Manual/gui-Layout.html
+
+
+
+**** TODO update engine
+
+
+
+***** TODO pass worker
+
+
+
+
+**** TODO update editor
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** TODO add scrollview
+
+
+
+
+**** TODO add color picker
+
+
+
+
+
+**** TODO add checkbox
+
+
+
+
+add unit test
+
+
+
+**** TODO add slider
+
+
+
+**** TODO add radio button
+
+
+
+**** TODO improve image
+image add offset data
+
+
+**** TODO add button image
+
+
+**** TODO fix slider
 change isSelected to isPointDown, isPointUp events!
 
 
-
-
-
-image add offset data
-add buttomImage
-
-
-
-add color picker
-
-
-
-add textarea
+***** TODO add horizontal, vertical
 
 
 
 
-**** TODO pass in mobile
+
+**** TODO update engine
+
+
+
+***** TODO pass worker
+
+
+**** TODO update editor
+
+
+
+
+**** TODO engine: add script api js obj(for operate script attribute?)
+
+
+
+
+**** TODO editor: support export and add .asb
+
+
+
+
+**** TODO add more imgui for 3d management system:
+refer to [[https://zhuanlan.zhihu.com/p/38794744][基于 HTML5 的 3D 工业互联网展示方案]]
+
+https://www.hightopo.com/blog/
+
+
+
+
+**** TODO support set rotation
+
+
+
+
+**** TODO pass mobile
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** TODO add gameObject based ui?
+
+
+
+
+
+
+
+
+
+
+https://blog.playcanvas.com/introducing-element-screen-components/
+https://developer.playcanvas.com/en/user-manual/user-interface/user-interface-basics/
+
+
+https://docs.unity3d.com/Manual/UISystem.html
+
+http://docs.cocos.com/creator/manual/zh/ui/
+
+
+
+
+
+
+
+////learn and use UIElements???: 
+https://docs.unity3d.com/Manual/UIElements.html
+
+
+
+
+use 3d line, text instead of 2d canvas?
+
+refer to:
+http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
+http://taobaofed.org/blog/2016/04/25/performance-composite/
+https://juejin.im/entry/59dc9aedf265da43200232f9
+
+https://zhuanlan.zhihu.com/p/72222549
+
+
+
+
+
+
+
+
+build ui like ugui!
+
+
+
+
+use picking + script(ui script?) for button transition???
+
+uiScript:
+onPointDown, onPointOver, ...
+
+
+**** DONE learn: why canvas  slow?
+CLOSED: [2019-07-24 Wed 10:36]
+[[https://github.com/mrdoob/three.js/issues/1959][HUD over render in webgl #1959]]
+
+[[https://stackoverflow.com/questions/10703212/recommended-way-to-make-a-2d-hud-in-webgl][recommended way to make a 2d HUD in webgl]]
+
+
+
+
+
+use 3d line, text instead of 2d canvas?
+
+refer to:
+http://www.yulistudio.top/demo/FullPhotoMgr/?nsukey=aDk%2FzSXdrECENsIg0GSycTQEwz3CCzQpCHmrTrvDZQL5VOa3m2IPmzqZj%2Fg3QJrbv%2BdOEkL3MmM1AgDKeV32kKlC4x%2Bn9JuFYZUDX5XTq0%2FR3LXK1FKCdSYsgIRuqergfE8zPDs%2BHM7PfsnYBXp0c4XSyEp2EVtQmrfgXswOUyhKwoVZ8Ndt%2Fvqt%2FrwFMbNcnnlFP5mag7R7IXyvIN9QSQ%3D%3D
+http://taobaofed.org/blog/2016/04/25/performance-composite/
+https://juejin.im/entry/59dc9aedf265da43200232f9
+
+https://zhuanlan.zhihu.com/p/72222549
+
+
+**** DONE blog
+CLOSED: [2019-08-01 Thu 13:44]
+frontend
+
+classic
+
+index
+
+
+**** DONE demo: text
+CLOSED: [2019-08-02 Fri 18:34]
+//generate sdf when run
+
+//generate .fnt
+
+
+
+
+////***** TODO load .fnt,.sdf
+
+
+
+**** DONE demo: text area
+CLOSED: [2019-08-07 Wed 17:34]
+delete
+move cursor
+
+newline
+
+show cursor by div
+
+
+move textarea under cursor
+
+
+
+
+
+
+test in mobile
+
+
+
+generate all chinese char string in GB2312
+
+
+
+
+**** TODO optimize update sdf
+
+
+
+
+**** TODO add ui layout
+
+***** TODO group layout
+
+
+***** TODO 2d/3d
+
+2d layout
+
+3d layout
+
+***** TODO design
+
+draw text together
+
+draw no image together
+
+draw each image each program
+
+
+
+separate collection vao data and draw
+
+
+
+**** TODO demo: draw text based on draw imgui->font
+
+***** TODO text layout
+
+refer to wonder-imgui -> font:
+extract to wonder-commonlib?
+
+
+
+
+
+
+prepare fntCharData
+
+
+calcLayoutData
+
+
+
+consider space/newline char;
+
+
+
+
+draw
+
+
+
+perf: generate indices
+
+
+***** TODO generate default Atlas
+
+
+
+
+***** TODO generate dynamic Atlas at run time(rewrite one texture)
+
+
+
+
+**** TODO demo: draw box
+
+
+**** TODO demo: draw input
+draw box
+
+draw text
+
+
+
+////**** TODO demo: draw textarea
+
+
+**** TODO demo: image
+
+
+**** TODO demo: button
+draw image
+
+draw box
+
+draw text
+
+
+**** TODO demo: color picker
+
+
+
+**** TODO add to engine
+
+
+***** TODO add ui components 
+
+
+
+**** TODO radio, slider, check box
+
+
+
+**** TODO add to engine
+
+
+
+
+**** TODO pass worker
+
+
+
+
+
+
+**** TODO editor
+
+***** TODO tool
+
+provide generate sdf tool
+
+
+
+** TODO refactor
+*** TODO refactor: rename Vbo to VBO
+
+
+
+** TODO fix bugs
+*** TODO fix Wonder.js-> gulpfile.js
+gulp.task("generateIndex", function (done) {
+    var generate = require("wonder-generate-index");
+    var rootDir = path.join(process.cwd(), "src"),
+        destDir = "./src/";
+
+    TODO fix this:
+    //generate.generate("/", rootDir, ["**/api/*.re", "**/api/**/*.re"], destDir, {
+    generate.generate("/", rootDir, ["**/api/**/*.re"], destDir, {
+        exclude: ["System.re", "Utils.re", "Common.re"]
+    });
+
+    done();
+});
+
+
+*** TODO fix(Matrix4->setLookAt): fix
+
+
+use this as new one!: 
+
+```reason
+let _getEpsilon = () => 0.000001;
+
+let setLookAt =
+    (
+      (eyeX, eyeY, eyeZ) as eye,
+      (centerX, centerY, centerZ) as center,
+      (upX, upY, upZ) as up,
+    ) =>
+  Js.Math.abs_float(eyeX -. centerX) < _getEpsilon()
+  && Js.Math.abs_float(eyeY -. centerY) < _getEpsilon()
+  && Js.Math.abs_float(eyeZ -. centerZ) < _getEpsilon() ?
+    createIdentityMatrix4() :
+    {
+      let (z1, z2, z3) as z =
+        Vector3.sub(Vector3.Float, eye, center) |> Vector3.normalize;
+
+      let (x1, x2, x3) as x = Vector3.cross(up, z) |> Vector3.normalize;
+
+      let (y1, y2, y3) as y = Vector3.cross(z, x) |> Vector3.normalize;
+
+      Float32Array.make([|
+        x1,
+        y1,
+        z1,
+        0.,
+        x2,
+        y2,
+        z2,
+        0.,
+        x3,
+        y3,
+        z3,
+        0.,
+        -. Vector3.dot(x, eye),
+        -. Vector3.dot(y, eye),
+        -. Vector3.dot(z, eye),
+        1.,
+      |]);
+    };
+
+```
+
+
+add test case:
+
+    expect(Matrix4Service.setLookAt((0., 0.0, 5.), (0., 0., (-100.)), (0., 1., 0.))) |> toEqual(
+Float32Array.make([|
+1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0, -0, -5, 1
+|])
+)
+
+
+
+
+
+*** TODO fix(inspector->script->attribute(eventFunction) ): change inspector->field should judge engine whether has this data first!(if has, then change in engine; else, not)
+
+
+
+*** TODO fix(skybox): 1.add cubemap;  (replace cubemap->-z image); 2.publish local; 3. run local. error: "expect all sources' size equal, but actual not"
+
+
+*** TODO fix(inspector canvas): 1.drag texture to material inspector->map; 2.first drag arcball.   should skip?
+
+
+*** TODO fix(progress bar): load wdb: if error, should hide bar
+
+
+
+*** TODO fix(load asset): 1. load varina.zip; 2.drag to scene; 3.export wpk w1; 4.import wpk w1;  error!!!
+
+
+*** TODO fix: dispose with wdb asset
+1.load elf_girl.zip
+2.drag to scene
+3.dispose it in scene
+4.dispose its first material asset: lambert22SG
+
+
+scene will has it gameObject again!!!!
+
+
+*** TODO fix(asset): 1.load truck glb;  2. dispose Textures/texture_0 asset; 3.load truck glb in Textures/ folder;    lose texture!!!
+
+
+
+
+*** TODO fix(load asset): 1. load bad_vibes_in_ny.zip;      error!!!
+
+
+
+
+*** TODO fix(event): pointer lock no need to skip!(newest chrome has fix it!!!???)
+
+
+
+** TODO perf: optimize generate scene wdb from cubemapImageUint8ArrayMap
+
+
+
+** TODO feat(progress bar): add loading bar with only text for no progress info situation
+e.g. 进行中，请等候
+
+
+export,import,load wdb,publish local use this one
+
+
+publish to host use progress bar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO finish host platform
+*** TODO learn the code!!!
+
+
+
+
+*** TODO perf: optimize load wpk from host platform
+refer to playcanvas
+
+**** TODO perf: stream load wpk->wdb
+**** TODO perf: async load wpk->asb
+
+***** TODO advance perf(async load wpk->asb): only async load the assets in the current folder of asset
+
+
+
+
+**** TODO perf: reduce texture asset->size when edit in editor!
+***** TODO overwrite texture assets to small one(e.g. thumbnail)
+
+
+***** TODO feat(setting): add asset setting->overwrite texture
+refer to https://developer.playcanvas.com/en/user-manual/assets/import-pipeline/ -> Overwrite Textures
+
+***** TODO should keep origin texture in production!
+(e.g. published local package should has origin textures!)
+
+how to implement it??? should learn from playcanvas!
+
+
+
+
+
+
+
+*** TODO fix bug
+**** TODO fix(imgui in stream load in host platform -> run in new tab): init setted asset error?(@mickey)
+
+
+**** TODO fix(host platform -> run in new tab): should handle asset bundle!
+
+
+
+
+**** TODO fix(host platform->language): add language data in editor related code(e.g. App.re, MainEditor.re)
+
+
+
+
+
+** TODO engine&&editor
+*** TODO fix jiehuo(by engine)
+use skybox
+
+use 2d ui
+
+use imgui instead of dom
 
 
 
@@ -371,33 +2726,12 @@ should for loading bar
 
 
 
-*** TODO fix jiehuo(by engine)
-use skybox
 
-use 2d ui
 
-use imgui instead of dom
 
 
 
 ** TODO editor
-*** TODO feat: finish engine->wdb,asset bundle
-
-
-
-
-
-*** TODO add 2d ui(script api? component?)
-
-
-*** TODO add skybox
-
-
-
-
-*** TODO add imgui
-
-
 
 
 *** TODO run in mobile(publish)
@@ -405,48 +2739,21 @@ use imgui instead of dom
 
 
 
-*** TODO editor enhance
-**** TODO support set isRender
 
-**** TODO support set gameObject->isActive
-
-**** TODO support set script->isActive
-
-
-
-
-
-** TODO engine, editor
-*** TODO add debug info
-fps, memory, draw count, ...
-
-////show profile in mobile?
-
-
-
-
-
-** TODO feat: add setting->buffer for user
-e.g. :
-support load terrain.zip , show wdb inspector
 
 
 
 ** TODO finish jiehuo demo in editor(run in pc/mobile)
 *** TODO use asset bundle
+**** TODO run test(skybox + cubemap + basic source texture)
+***** TODO test asset bundle(should run test cubemap here!!!! not run test it before!!!)
+
+
+***** TODO test stream load
 
 
 
-** TODO fix bugs
-
-*** TODO fix: dispose with wdb asset
-1.load elf_girl.zip
-2.drag to scene
-3.dispose it in scene
-4.dispose its first material asset: lambert22SG
-
-
-scene will has it gameObject again!!!!
+***** TODO test more...
 
 
 
@@ -454,14 +2761,48 @@ scene will has it gameObject again!!!!
 
 
 
-** TODO publish
 
+
+
+
+
+
+
+** TODO optimize
+
+
+
+** TODO e2e test
+
+
+** TODO pass code climate
+
+
+
+////** TODO publish v1.2-alpha.1
+
+
+
+** TODO feat(fly): move the camera to high in scene view
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO publish v1.2
 *** TODO publish to online
 **** TODO add demo document
 **** TODO write script api document
-
-
-
 
 
 
@@ -490,30 +2831,53 @@ scene will has it gameObject again!!!!
 
 * TODO 未来7日计划
 
+
+** TODO upgrade reason, bs-platform
+
+** TODO refactor editor
+*** TODO remove editor->ui-> local state?
+////*** TODO remove editor state? only one ui state?
+*** TODO move editor state->ui data to ui state?
+
+
+
+** TODO engine support webgl2(and still support webgl1)
+glsl 3.0
+ubo
+vao
+
+
+
+** TODO publish v1.3
+
+
+
+
+
+https://hightopo.com/demo/firecontrol/
+
+https://hightopo.com/demo/TransportCenter/
+
+https://hightopo.com/demo/ht-subway/index.html
+
+
 ** TODO engine
 *** TODO add collider
 
-*** TODO add physics
-
 *** TODO add picking
+
+////*** TODO add physics
 
 
 
 ** TODO editor
 *** TODO add collider
 
-*** TODO add physics
 
 *** TODO add picking
 
 
-
-** TODO engine
-*** TODO add articulated animation
-
-
-** TODO editor
-*** TODO add articulated animation
+////*** TODO add physics
 
 
 
@@ -530,20 +2894,29 @@ scene will has it gameObject again!!!!
 
 
 
-** TODO finish manager system application(run in pc)
-can switch scene(use assetbundle)
-
-can browser by first-person camera(no character)
-
-can't go through wall(collider)
-
-can pick gameObject and show its outline and info(picking, outline, imgui)
-
-use imgui as ui
+** TODO e2e test
 
 
 
-*** TODO use asset bundle
+** TODO pass code climate
+
+
+
+
+** TODO add draw line(as imgui->primitive?)
+https://zhuanlan.zhihu.com/p/59541559
+
+https://docs.unity3d.com/Manual/class-LineRenderer.html
+
+
+
+*** TODO pass worker
+
+
+
+
+
+
 
 
 ** TODO finish scene demo(can has animation(transform) by script) in editor(run in pc/mobile)
@@ -561,6 +2934,101 @@ click door to enter inner scene
 3.inner scene
 click door to enter outer scene
 (add 2d ui(e.g. mark text) to mark door)
+
+
+*** TODO use asset bundle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** TODO engine
+*** TODO blend
+
+
+** TODO editor
+*** TODO blend
+
+
+
+/*
+** TODO engine
+*** TODO add render to texture
+
+
+** TODO editor
+*** TODO add render to texture
+*/
+
+
+
+
+** TODO engine
+*** TODO add articulated animation
+
+
+*** TODO add skin animation
+
+
+** TODO editor
+https://www.bilibili.com/video/av56968319?share_medium=android&share_source=qq&bbid=XZ088410DF4D7754980EF42F5E38E848F4009&ts=1561695554049
+
+*** TODO add articulated animation
+
+*** TODO add skin animation
+
+
+
+
+
+
+
+** TODO editor
+*** TODO editor enhance
+**** TODO support set isRender
+
+**** TODO support set gameObject->isActive
+
+**** TODO support set script->isActive
+
+
+
+
+
+
+** TODO feat: add setting->buffer for user
+e.g. :
+support load terrain.zip , show wdb inspector
+
+
+
+
+** TODO finish manager system application(run in pc)
+refer to https://www.hightopo.com/blog/
+
+
+
+can switch scene(use assetbundle)
+
+can browser by first-person camera(no character)
+
+can't go through wall(collider)
+
+can pick gameObject and show its outline and info(picking, outline, imgui)
+
+use imgui as ui
+
 
 
 *** TODO use asset bundle
@@ -638,22 +3106,17 @@ https://www.zhihu.com/question/325261675
 
 
 
-
-
-
-
 ** TODO engine
 
 
-*** TODO add skin animation
 
 
 
-*** TODO add gameObject based ui?
 
 
 
 *** TODO add sound(webaudio)
+https://blog.playcanvas.com/new-and-improved-sound-component/
 
 
 ////** TODO charge fee
@@ -662,10 +3125,8 @@ publish,asset bundle
 
 ** TODO editor
 
-*** TODO add skin animation
 
 
-*** TODO add gameObject based ui?
 
 *** TODO add sound(webaudio)
 
@@ -675,54 +3136,40 @@ publish,asset bundle
 *** TODO publish to weixin
 
 
-** TODO finish game(run in pc and mobile)
+
+
+
+
+** TODO engine, editor
+*** TODO add debug info
+fps, memory, draw count, ...
+
+////show profile in mobile?
+
+
+
+
+
+
+
+
+
+
+** TODO finish single player game(run in pc and mobile)
 *** TODO use asset bundle
 
 
 
+** TODO finish multiplayer game(run in pc and mobile)
+https://zhuanlan.zhihu.com/p/42116055
+
+https://www.matchvs.com/
 
 
 
 ** TODO publish
 
 
-
-
-** TODO support pbr
-
-** TODO add more map
-*** TODO add normal map
-
-*** TODO add displace map?
-
-*** TODO add light map
-
-*** TODO add emission map
-
-
-
-*** TODO add compressed texture map?
-
-
-/*
-** TODO support blend
-
-
-
-** TODO support reflection, refraction, fresnel
-
-
-
-** TODO add mirror
-*/
-
-
-** TODO feat(demo): add scene demo which use these render techs
-add first-person camera to look
-
-
-
-** TODO publish
 
 
 
@@ -741,6 +3188,274 @@ add first-person camera to look
 
 
 ** TODO support publish to host platform
+
+
+
+** TODO publish
+
+
+
+
+
+** TODO support pbr
+
+** TODO add more map
+*** TODO add normal map
+
+*** TODO add compressed texture map?
+https://docs.unity3d.com/Manual/class-TextureImporterOverride.html
+
+http://www.jiazhengblog.com/blog/2017/02/16/3076/
+
+https://blog.playcanvas.com/webgl-texture-compression-made-easy/
+
+
+/*
+*** TODO add displace map?
+
+*** TODO add light map
+
+*** TODO add emission map
+*/
+
+
+
+
+** TODO optimize image
+[[http://www.jiazhengblog.com/blog/2019/03/24/3407/][高性能 WebGL —— 使用 ImageBitmap 提升纹理性能]]
+
+
+
+** TODO publish
+
+
+
+** TODO bake and add light map/shadow map
+use path trace?
+
+Bake  场景静态阴影
+
+
+
+refer to:
+http://www.realtimerendering.com/raytracinggems/unofficial_RayTracingGems_v1.5.pdf -> Interactive Light Map and Irradiance
+Volume Preview in Frostbite
+
+
+
+
+** TODO publish
+
+
+
+
+
+
+** TODO [#A] support webgl2
+mainly implement defer shading
+
+
+*** TODO [#A] defer shading
+https://zhuanlan.zhihu.com/p/62030747
+
+**** TODO point light
+add dirty?
+
+
+
+
+**** TODO advanced
+refer to:
+klayge
+<<gpu gem2>> -> Chapter 9. Deferred Shading in S.T.A.L.K.E.R.
+<<gpu gem3>> -> 第19章 《Tabula Rasa》中的延迟着色（Deferred Shading in Tabula Rasa）
+*** TODO shadow
+http://www.html5gamedevs.com/topic/36473-webgl-2-shadows/
+
+Hardware PCF
+*** TODO improve instance
+refer to http://www.jiazhengblog.com/blog/2017/03/20/3104/ -> comment:
+事实上在 webgl2 当中，可以直接使用 gl.vertexAttribDivisor 来直接完成实例化数组了，
+
+
+*** TODO support webgl1 extensions which already are supported
+e.g. OES_element_index_uint
+
+
+
+*** TODO VAO
+
+(optimize: judge last sended vao buffer)
+
+
+
+webgl 2? just use extension in webgl 1!
+To save a lot of API calls, use vertex array objects (VAOs) or interleave static vertex data. 
+
+
+
+
+that can significantly improve per- formance on mobile devices
+
+VAOs are available in WebGL 1.0 with the OES_ vertex_array_object
+extension, which is widely supported on mobile devices. As of early
+2015, more than 80% of smartphone and tablet clients recorded by
+WebGL Stats have it 
+
+
+
+If vertex array objects (VAOs) are supported, then we build one for
+each combination of vertex buffers and index buffer present in the
+DrawParameters objects. As we share the buffers between many different
+geometries, the actual number of combinations is usually quite
+low. This allows us at dispatch time to simplify all the buffer checks
+to a single equality comparison between the current VAO and the
+previous one. Even when the VAOs are dif- ferent, setting them with
+WebGL is cheaper on the CPU than setting all the different buffers and
+vertex pointer attributes, which makes them a big win for complex
+scenes.
+
+
+Adding a fallback for devices without VAO support is also
+straightforward. Let’s call the code that binds buffers and sets
+vertex attrib pointers related to a specific mesh the binding
+block. If VAOs are supported, the code should initialize the VAO of
+each mesh using the binding block. Then, when the mesh is drawn, the
+code either binds the VAO if VAOs are supported, or executes the
+binding block if VAOs are not supported. The only case where this
+becomes more complicated is when there’s a different number of active
+vertex attribute arrays for different meshes—then the code should add
+disable- VertexAttribArray calls where appropriate. For a complete
+code example, see an explanation of VAOs* or an implementation of a
+fallback path in SceneJS
+(https://github.com/xeolabs/scenejs/blob/v4.0/src/core/display/chunks/geometryChunk.js)
+
+
+
+
+Lowering the number of vertex buffers helps to reduce CPU usage if
+VAOs are not a good fit for the code for some reason. This can be done
+by interleaving different types of vertex data for the same object: If
+we have, for example, positions, texture coordinates, and normals for
+each vertex, they can all be stored in the same vertex buffer in an
+interleaved fashion. In our CPU-bound drawing test that uses four
+vertex attributes, interleaving the attributes increased the FPS
+around 4%. The downside is that interleaving the data needs to be
+either handled by the content creation pipeline or done at load time;
+the latter may marginally slow down loading. Interleaving three
+attributes for a million vertices in a tight JS loop had a cost of
+around 200 ms on a Nexus 5 (2013 phone). 
+
+
+
+
+http://blog.tojicode.com/2012/10/oesvertexarrayobject-extension.html
+
+http://www.openglsuperbible.com/2013/12/09/vertex-array-performance/
+
+
+*** TODO ubo
+*** TODO glsl 3.0
+
+no need to compile!? but need to learn babyonjs compiler firstly!!!
+/*
+wonder-glsl-compiler should support convert glsl 2.0 to 3.0!!!???
+
+refer to babylonjs(source code):
+http://doc.babylonjs.com/features/webgl2#multisample-render-targets
+Shaders
+When WebGL2 is enabled, the shaders are automatically converted to GLSL v3.0. Babylon.js will then automatically take
+advantage of extended instruction/uniform counts. 
+
+*/
+
+
+
+
+*** TODO Occlusion Queries
+*** TODO more?
+
+
+
+
+
+
+** TODO publish
+
+
+
+
+
+
+** TODO implement TAA
+
+
+
+** TODO publish
+
+
+
+** TODO ssao
+
+
+
+** TODO bake and add ao map
+use path trace?
+
+
+[[https://zhuanlan.zhihu.com/p/28625038][基于GPU的快速烘焙AO贴图]]
+
+
+
+** TODO publish
+
+
+
+
+** TODO add particles
+
+
+
+** TODO publish
+
+
+** TODO particles
+*** TODO optimize
+refer to:
+https://developer.nvidia.com/gpugems/GPUGems3/gpugems3_ch23.html
+data oriented
+gpu based?
+
+
+
+** TODO publish
+
+
+
+** TODO add custom glsl(glsl asset)
+user can use glsl to implement reflection, refraction, fresnel:
+https://blog.csdn.net/v_xchen_v/article/details/79474193
+
+
+*** TODO engine
+
+
+*** TODO editor
+
+
+*** TODO support reflection, refraction, fresnel
+
+
+
+*** TODO add mirror
+
+
+
+** TODO add render to texture?
+
+
+** TODO feat(demo): add scene demo which use these render techs
+add first-person camera to look
 
 
 
