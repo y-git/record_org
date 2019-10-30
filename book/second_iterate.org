@@ -1,0 +1,8 @@
+* TODO need fix program
+** TODO [Book-Demo,  Book-Improve-Engine-ContractCheck)
+*** TODO Null->isEmpty remove Obj.magic
+*** TODO refactor: change Gl->getUniformLocation return value type to Js.Null.t
+
+
+** TODO Book-Improve-Engine-ContractCheck, Book-Improve-Editor-ContractCheck
+rename repo to Book-Improve-ContractCheck-XXX

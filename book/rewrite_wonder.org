@@ -1,0 +1,15 @@
+/*
+* TODO rewrite after finish book
+based on book repo!
+
+** TODO add test
+
+
+** TODO add 2.0 features and corresponding tests
+e.g. stream load, asset bundle
+
+
+*** TODO each feature has independent repo!
+(for Book2)
+
+*/

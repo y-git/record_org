@@ -308,16 +308,46 @@ CLOSED: [2019-10-14 Mon 21:06]
 
 
 
-** TODO learn <<Domain Model>>
-
-
-** TODO learn <<函数响应式领域建模>>
-
+** DONE learn <<Domain Model>>
+CLOSED: [2019-10-19 Sat 17:15]
 
 
 
-** TODO fix: Book-Extract-Engine and after:  "use union type"
-*** TODO Engine use union type
+** DONE read his series and think how to use!
+CLOSED: [2019-10-19 Sat 17:15]
+
+
+
+** DONE read bucklescript->all docs
+CLOSED: [2019-10-19 Sat 18:32]
+
+
+
+////** TODO learn <<函数响应式领域建模>>
+
+
+
+
+** DONE summary and collect optimize references for mickey
+CLOSED: [2019-10-21 Mon 10:00]
+
+
+
+** DONE rename package.json->name to extract-tiny-wonder-engine
+CLOSED: [2019-10-24 Thu 10:20]
+*** DONE fix Book-Extract-Engine
+CLOSED: [2019-10-24 Thu 10:20]
+
+*** DONE fix Book-Extract-Editor correspondingly
+CLOSED: [2019-10-24 Thu 10:20]
+
+
+** DONE fix: Book-Extract-Engine and after:  "use wrap type"
+CLOSED: [2019-10-24 Thu 13:01]
+(TODO record: fix Wonder.js, Wonder-Editor)
+
+*** DONE Engine use wrap type
+CLOSED: [2019-10-23 Wed 13:08]
 
 any performance problem???
 
@@ -326,30 +356,124 @@ good perf!!!
 Render(especially the iterate) should use valueType!(convert wrap type to value type before render iterate!)
 
 
-
-*** TODO Editor use union type
-
-
-no performance problem!!!
-
-
-** TODO fix:  Book-Extract-Engine and after: "handle error"
-*** TODO Engine,Editor use Result?
-
-
-** TODO fix: Book-Extract-Engine and after: api should be : js api, reason api, common api???
+Init->init shader(the iterate) should use valueType!
 
 
 
 
-** TODO fix: Book-Demo and after: shader1: u_color, shader2: u_color1, u_color2!!!
+*** DONE Editor use wrap type
+CLOSED: [2019-10-24 Thu 13:01]
+//update editor
+
+//add wrap type:
+(no performance problem!!!)
+type loopId;
 
 
-*** TODO fix
+** DONE fix:  Book-Extract-Engine and after: "handle error"
+CLOSED: [2019-10-24 Thu 13:01]
+(TODO record: fix Wonder.js, Wonder-Editor)
+
+
+*** DONE Engine use Result?
+CLOSED: [2019-10-23 Wed 18:49]
+
+explain why use Result against "throw exception":
+
+the advantage of use result:
+1.explictly show "it may has error" in type
+
+e.g. 
+for setTransformTranslation api, if throw exception, the editor not know it throw from the type and compile and the func
+name! so editor not handle it(how should editor handle the exception: catch it and log error message)!
+
+
+*** DONE Editor use Result
+CLOSED: [2019-10-24 Thu 13:01]
 
 
 
-*** TODO fix: Book-Extract-Engine and after: store send func when init shader
+** DONE fix: Book-Extract-Engine and after:  use list instead of array(use gameObject list)
+CLOSED: [2019-10-24 Thu 08:20]
+need test perf!!!
+
+or still use array?
+(but can alwawys use list in editor)
+
+
+https://2ality.com/2018/01/lists-arrays-reasonml.html
+
+
+** DONE fix: Book-Extract-Engine and after: api should be : js api, editor api
+CLOSED: [2019-10-24 Thu 13:02]
+
+
+(TODO record: fix Wonder.js, Wonder-Editor)
+
+
+
+
+** DONE fix(editor): Book-Extract-Editor: rename editor state to PersistentState
+CLOSED: [2019-10-24 Thu 16:14]
+////** TODO fix(editor): Book-Extract-Editor: remove editor state
+
+should add discuss to text.md:
+editor data can separate to:
+1.show data
+2.persistent data
+
+
+we can have only one state(named show state instead of ui state???):
+can move editorState->loopId to uiState;
+mark loopId to mutable;
+
+(should verify: change loopId shouldn't cause re-render!!!)
+
+
+(disadvantage:
+1.not all immutable
+2.mix the two logic!
+)
+
+
+or we can have two states!
+
+
+we choose "two states" design!!!
+
+
+
+
+
+(TODO record: fix Wonder-Editor)
+
+
+
+
+
+
+
+** DONE fix: Book-Demo and after: shader1: u_color, shader2: u_color1, u_color2!!!
+CLOSED: [2019-10-24 Thu 18:28]
+*** DONE refactor
+CLOSED: [2019-10-22 Tue 16:44]
+//TODO remove MatrixType
+
+//TODO refactor Matrix->setLookAt: should accept "resultFloat32Arr" param
+
+(
+    TODO feat(Wonder.js): Matrix4Service->setLookAt: should accept "resultFloat32Arr" param
+)
+
+
+
+
+*** DONE fix
+CLOSED: [2019-10-22 Tue 16:44]
+
+
+
+////*** TODO fix: Book-Extract-Engine and after: store send func when init shader
 need extract glsl sender data!
 
 
@@ -361,28 +485,20 @@ if not exist , not add to send arr
 fix Wonder.js!(or record!!!)
 
 
-*** TODO feat: should  move "refactor: shader(lib, json)" before "refactor: gameObject and component"!!!???
-because if do "refactor: gameObject and component" first, then only has one shader(basic material->shader), can't show
-different shaders with different shader libs!
+*** DONE fix: Book-Optimize1 and after: cache send material uniform data->location
+CLOSED: [2019-10-24 Thu 18:27]
+
+remove vbo buffer wrap type?
 
 
+** DONE update Book-Optimize1
+CLOSED: [2019-10-24 Thu 18:28]
+test perf:
+addGameObject
 
+render
 
-** TODO fix(editor): Book-Extract-Editor: remove editor state
-can move editorState->loopId to uiState;
-mark loopId to mutable;
-
-
-
-
-(should verify: change loopId shouldn't cause re-render!!!)
-
-
-
-
-
-** TODO move microservice refactor after extract editor?
-so can extract domain model(e.g. GLSL)(not conflict with service(e.g. GLSL vs GLSL service))
+initAll
 
 
 
@@ -395,7 +511,11 @@ so can extract domain model(e.g. GLSL)(not conflict with service(e.g. GLSL vs GL
 
 
 
-** TODO 提出基本架构
+
+
+
+
+** TODO 改进
 
 
 q1:
@@ -403,6 +523,7 @@ q1:
 
 q2:
 "if different gameObject has different material(with different material data)?"
+(e.g. contain u_color(float, float, float), u_data1(float))
 
 
 qn...:
@@ -419,17 +540,69 @@ any more question...
 
 ////*** TODO Wonder.js: merge dev to master
 
-*** TODO engine
+*** TODO engine and editor
+**** DONE add contract check
+CLOSED: [2019-10-29 Tue 18:58]
+//return Result type
+
+
+//use sequence
+
+
+
+//test Shader->shader, program err->info
+
+
+//test perf
+
+
+////need split repo to two!!!
+
+
+//need split repo to two!!!
+
+
+//add editor repo!
+
+//add clearColor when stop!
+
+
+
+
+
+////createWithoutCheck don't need contract check which should throw exception!!!
+
+
+
+//fix HashMap->unsafeGet
+
+
+**** DONE fix(all): Gl -> getXXXLocation should return Js.Nullable.t
+CLOSED: [2019-10-29 Tue 18:58]
+
+fix Shader->check location
 
 
 
 **** TODO shader(json???)
 
+shaders,
+groups,
 
-- think q2:
-////  - store send func when init shader
-change glsl->2: add "u_alpha"
+
+feat: should  move "refactor: shader(lib, json)" before "refactor: gameObject and component"!!!???
+because if do "refactor: gameObject and component" first, then only has one shader(basic material->shader), can't show
+different shaders with different shader libs!
+
+
+***** TODO think q2: need extract glsl sender data!
+store send func when init shader
+can define abstract type("material data") for different material data(e.g. u_color, u_data1) for send uniform data!
+
 need extract glsl sender data!
+
+
+
 
 
 if not exist , not add to send arr
@@ -474,10 +647,21 @@ keep all immutable(because mutable improve performance very little!?)
 
 
 
+***** TODO extract shader lib
 
-extract shader lib
 
-extract json???
+***** TODO fix(Render): move "create vaos" to render iterate?
+
+because the "a_position" is unknown!(maybe not exist!)
+
+
+***** TODO extract json
+
+（note: Dto type, domain type, serialization, deserialization
+
+refer to 《Domain Modeling》－》 serialization
+）
+
 
 
 
@@ -495,6 +679,9 @@ now the architect is too rigid
 
 component:
 transform 
+    extract translation,rotation,scale wrap type
+
+
 basic material:
     refactor: move glsl into engine
 geometry
@@ -505,8 +692,11 @@ meshRenderer
 
 
 
-when implement "init gameObject"->init shader logic:
-extract shader index(should explain why!!!) 
+
+***** TODO think q2:
+should remove abstract type("material data") for different material data(e.g. u_color, u_data1) for send uniform data!
+(get data from material data by material index instead!)
+
 
 
 
@@ -528,6 +718,7 @@ mutable
 
 
 
+need compare perf by benchmark
 
 
 
@@ -586,14 +777,56 @@ give pseudo code
 
 
 
+***** TODO extract shader index
+because when init material in render worker:
+1.if use shaderIndices(shader index), can directly share it! but if use shaderNameMap(shader name), should send it to
+   render worker! 
+2.use "shader index" as key  instead of shader name(String type) is more fast for get shader data in map
+e.g. get program, get glsl sender data
+
+
+
+
+(
+add "shader" type:
+
+type shaderIndex = int;
+type shader = Shader(shaderIndex);
+)
+
+
+
+***** TODO refactor: extract initShaderState, renderState from state
+(should reduce one renderState/... than many small data(e.g.glslSenderRecord, ...))
+
+
+cqrs: refer to <<Domain>> -> Command-Query Responsibility Segregation, Bounded Contexts Must Own Their Data Storage
+
+
+**** TODO 提出“基于数据的服务”(////微服务)(or put after "add scene tree" for refactor to extract?)
+////so can extract domain model(e.g. GLSL)(not conflict with service(e.g. GLSL vs GLSL service))
+
+  
+
+
+***** TODO engine
+
+分析现有架构的问题:
+1.model依赖多个state，职责不明
+
+
+
+
+***** TODO editor
+
+
 
 
 **** TODO 其他
-- extract renderState, sendRenderDataSubState, ... from state
-(should reduce one renderState/... than many small data(e.g.glslSenderRecord, ...))
+
 - use frp for start loop
-- 契约检查
-- 错误处理
+
+
 
 
 
@@ -637,7 +870,7 @@ composable_component/
 
 3 其他
 - 契约检查
-- 错误处理
+////- 错误处理
 
 
 
@@ -645,22 +878,26 @@ composable_component/
 
 **** TODO implement q1
 
-** TODO 提出微服务(or put after "add scene tree" for refactor to extract?)
-
-- 分析现有架构的问题
-  
+** TODO optimize: tail-recursive
 
 
-*** TODO engine
-
-
-*** TODO editor
 
 
 
 ** TODO  编辑器增加场景管理功能(move this one before Redo/Undo!!!)
-need note:
-extract gameObject list data from engine state to ui state!!!
+*** TODO extract show state from engine state
+extract gameObject list data from engine state to show state!!!
+
+
+update show state from engine state when re-render;
+update persistent state or engine state when handle store->action(not update show state, because it is only for show!);
+
+
+
+
+use "acl" layer(folder) for "extract show state from engine state" logic???
+(refer to <<Domain_Modeling>>->p61)
+
 
 
 

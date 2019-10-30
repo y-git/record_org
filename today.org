@@ -2650,6 +2650,31 @@ publish to host use progress bar
 
 
 
+*** TODO rewrite
+use Domain Model
+
+use onion Architecture?
+https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
+https://pragatisoftware.com/functional-programming-and-software-architecture/
+https://blog.ploeh.dk/2016/03/18/functional-architecture-is-ports-and-adapters/
+https://www.slideshare.net/CodelyTV/towards-functional-programming-through-hexagonal-architecture
+
+
+use event sourcing + graphql?
+https://zhuanlan.zhihu.com/p/38968012
+https://medium.com/@marcusstenbeck/part-2-implementing-event-sourcing-for-dummies-ffc11dc3dcc
+[[https://www.google.com.hk/search?newwindow=1&safe=strict&sxsrf=ACYBGNTJxMd2_C63JU5Wa7d3X2HXJdu46Q%253A1571125556358&ei=NHmlXaS6FcPYhwPM4LrADQ&q=event+sourcing+functional+programming&oq=event+sourcing+f&gs_l=psy-ab.3.0.35i39i19j0l3j0i30l6.3438119.3438119..3439325...0.0..0.131.131.0j1......0....1..gws-wiz.vmo1SGEeP0M][event sourcing functional programming]]
+https://www.jdon.com/49501
+[[https://leanpub.com/esversioning/read][Versioning in an Event Sourced System]]
+
+
+use microservice?
+https://www.infoq.cn/article/microservices-aggregates-events-cqrs-part-1-richardson/
+https://www.infoq.cn/article/microservices-aggregates-events-cqrs-part-2-richardson
+
+
+
+
 
 *** TODO perf: optimize load wpk from host platform
 refer to playcanvas

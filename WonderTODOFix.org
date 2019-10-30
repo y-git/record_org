@@ -1,5 +1,53 @@
 * TODO fix Engine
+** TODO fix Matrix4->setLookAt
+** TODO refactor:  change Shader->linkProgram, compileShader -> debug to asset
+refer to Book Repo
+** TODO feat: unsafe get XXX for render add contract check
+*** TODO feat(shader): unsafe get glsl->field location add check
+unsafeGetXXXLocation
+
+change setXXXLocation->check location to require check
+
+
+*** TODO feat(program): unsafe get program add check
+
+
+*** TODO feat(more): unsafe get ... add check
+
+
+** TODO refactor: rewrite WonderCommonlib->NullService->isEmpty
+
+** TODO refactor: change Gl->getUniformLocation return value type to Js.Null.t
+
 
 * TODO fix Editor
 ** TODO editor->asset: recursive type
 XXXNode(.e.g. FolderNode) functions should in domain model folder instead of service folder!
+
+
+
+** TODO fix Console.tryCatch
+try (
+  Js.Exn.raiseError("oops!")
+) {
+| Js.Exn.Error(e) =>
+  switch (Js.Exn.message(e)) {
+  | Some(message) => Js.log({j|Error: $message|j})
+  | None => Js.log("An unknown error occurred")
+  }
+};
+
+
+
+** TODO improve state
+*** TODO remove local ui state, use global ui store instead!
+*** TODO rename editor state to PersistentState, move persistent data to it
+
+
+* TODO fix all
+** TODO move DomExtendType, GlType, ... to DomExtend, Gl, ...
+** TODO function->params: move dependency func first(before variables)!(but other func param still remain in the last!?)
+** TODO use wrap type
+** TODO use Result
+** TODO api should be : js api, editor api
+** TODO update Wonder-Log -> Contract: use Book Repo
