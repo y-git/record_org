@@ -1,0 +1,22 @@
+/* 不写该书？
+* name
+《3D编程之旅－从0开发生态环境》
+
+* Step
+
+
+publish to weixin;
+host platform;
+publish to host platform;
+add asset store;
+
+*/
+
+
+* name
+《3D编程之旅－实现全局光照》
+
+* Step
+svo
+
+raytracing

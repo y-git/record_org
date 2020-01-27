@@ -1,8 +1,284 @@
 * TODO need fix program
-** TODO [Book-Demo,  Book-Improve-Engine-ContractCheck)
-*** TODO Null->isEmpty remove Obj.magic
-*** TODO refactor: change Gl->getUniformLocation return value type to Js.Null.t
+** TODO remove comment
+
+** DONE upgrade bucklescript, reason
+CLOSED: [2020-01-27 Mon 12:38]
+
+https://bucklescript.github.io/blog/
 
 
-** TODO Book-Improve-Engine-ContractCheck, Book-Improve-Editor-ContractCheck
+
+** DONE need extract repo from wonder-bs-json, wonder-bs-most
+CLOSED: [2020-01-27 Mon 12:26]
+
+
+** DONE use tiny-wonder-generate-index
+CLOSED: [2020-01-27 Mon 12:26]
+fix gulpfile.js->generateIndex
+
+
+
+
+** TODO Book-Demo-UBO
+*** TODO first step: add one gameObject for program2
+so render 2 gameObjects for program1 and 2 gameObjects for program2
+
+
+** DONE [Book-Demo,  Book-Improve-Shader-Engine]
+CLOSED: [2020-01-27 Mon 12:38]
+*** DONE package.json:
+CLOSED: [2020-01-27 Mon 12:26]
+**** DONE move bs-platform to dependencies
+CLOSED: [2020-01-27 Mon 12:26]
+
+**** DONE remove "bsb: "
+CLOSED: [2020-01-27 Mon 12:26]
+
+**** DONE add start
+CLOSED: [2020-01-27 Mon 12:26]
+
+
+*** DONE move index.html to /
+CLOSED: [2020-01-27 Mon 12:33]
+
+
+
+** DONE (Book-Optimize1-Engine,  Book-Improve-Shader-Engine]
+CLOSED: [2020-01-27 Mon 12:38]
+*** DONE rename index.html to triangle.html
+CLOSED: [2020-01-27 Mon 12:38]
+
+
+*** DONE remove benchmark.html
+CLOSED: [2020-01-27 Mon 12:38]
+
+
+** DONE [Book-Extract-Engine,  Book-Improve-Shader-Engine]
+CLOSED: [2020-01-27 Mon 12:41]
+*** DONE move "init gl state" to render
+CLOSED: [2020-01-27 Mon 12:41]
+
+
+** DONE (Book-Demo,  Book-Improve-Shader-Engine]
+CLOSED: [2020-01-27 Mon 12:53]
+*** DONE Gl add for getArrayBuffer, getElementArrayBuffer
+CLOSED: [2020-01-27 Mon 12:52]
+type bufferTarget =
+  | ArrayBuffer
+  | ElementArrayBuffer;
+
+type usage =
+  | Static;
+
+** DONE (Book-Demo,  Book-Improve-Shader-Engine]
+CLOSED: [2020-01-27 Mon 16:49]
+*** DONE glsl: remove webgl1_ prefix
+CLOSED: [2020-01-27 Mon 12:57]
+*** DONE add MutableHashMap
+CLOSED: [2020-01-27 Mon 13:07]
+
+
+
+
+
+////*** TODO run test in mobile
+
+////*** TODO webgl1 use vbo instead of vao
+
+
+
+////** TODO move "upgrade to webgl2" before "improve shader"
+
+
+
+*** DONE change StateDataType->state->allGameObjectData to gameObjectData: list(singleGameObjectData)
+CLOSED: [2020-01-27 Mon 13:14]
+**** TODO change
+
+**** TODO rename gameObjectDataList to allGameObjectData,  getGameObjectDataList/setGameObjectDataList to getAllGameObjectData,  rename _changeGameObjectDataListToRenderDataList to _changeAllGameObjectDataToRenderDataList
+
+
+
+** DONE Book-Improve-Shader-Engine
+CLOSED: [2020-01-27 Mon 16:49]
+*** DONE fix Shader->buildGLSLSource to:
+CLOSED: [2020-01-27 Mon 13:15]
+    (
+      {
+        ...vs,
+        top: vs.top ++ precision,
+        body: _buildBody(vs, getWebgl1MainEnd()),
+        varDeclare:
+          "\n"
+          ++ vs.varDeclare
+          ++ _generateAttributeSource(shaderLibs)
+          ++ "\n"
+          ++ _generateUniformSource(
+               shaderLibs,
+               vs.varDeclare,
+               vs.funcDefine,
+               vs.body,
+             ),
+      }
+      |> _addAlllParts,
+      {
+        ...fs,
+        top: fs.top ++ precision,
+        body: _buildBody(fs, getWebgl1MainEnd()),
+        varDeclare:
+          fs.varDeclare
+          ++ "\n"
+          ++ _generateUniformSource(
+               shaderLibs,
+               fs.varDeclare,
+               fs.funcDefine,
+               fs.body,
+             ),
+      }
+      |> _addAlllParts,
+    );
+
+
+*** DONE fix "glsl sender data"
+CLOSED: [2020-01-27 Mon 13:56]
+////**** TODO sendDataFunc directly accept the ultimately data by get data in render
+e.g. shader data->sendDataFunc accept vMatrixValue, pMatrixValue instead of state!!!
+////**** TODO glsl sender data
+////remove camera, model sender data;
+store camera, model sender data in one!
+(not in map, directly store in sender data) 
+(
+use each program, send camera data!
+
+because only has one kind of model data!
+)
+
+
+
+////**** TODO rename allSendUniformDataLists to allSendUniformData
+
+
+
+**** DONE rename addAllData to judgeAndAddData
+CLOSED: [2020-01-27 Mon 13:53]
+
+////**** TODO refactor: rename addAllData to addData
+
+
+|> GLSLSender.AttributeSendData.addAllData(
+                             (shaderName, shaderLibs),
+                             gl,
+                             program,
+                           )
+                        |> GLSLSender.UniformSendData.addAllData(
+
+
+////**** TODO refactor: move GLSLSender to be model
+
+
+
+** DONE (Book-Demo,  Book-Improve-Engine-ContractCheck)
+CLOSED: [2020-01-27 Mon 13:58]
+*** DONE Null->isEmpty remove Obj.magic
+CLOSED: [2020-01-27 Mon 13:57]
+*** DONE refactor: change Gl->getUniformLocation return value type to Js.Null.t
+CLOSED: [2020-01-27 Mon 13:58]
+
+
+
+
+** DONE (Book-Demo,  Book-Improve-Editor-ContractCheck]
+CLOSED: [2020-01-27 Mon 16:49]
+*** DONE remove editor api, move js/ to api/
+CLOSED: [2020-01-27 Mon 13:59]
+
+*** DONE rename utils->Xxx to XxxUtils
+CLOSED: [2020-01-27 Mon 14:02]
+
+
+////*** TODO Shader->init: only use Result, not use TryCatch!
+
+////*** TODO rename _changeGLSLDataArrToInitShaderDataArr to _changeAllGLSLDataToInitShaderDataArr
+
+
+////*** TODO use webgl2
+
+
+
+
+*** DONE rename unsafeGetXXX to unsafeGetXXXByThrow
+CLOSED: [2020-01-27 Mon 14:20]
+(except js api, because js api only unsafe get by throw, not by result)
+
+if throw, rename to ByThrow;
+if return result, remain unsafeGetXXX(as default);
+
+
+
+e.g. Shader->unsafeGetProgram
+
+
+
+*** DONE rename HashMap unsafeGetXXX to unsafeGetXXXByNull
+CLOSED: [2020-01-27 Mon 16:44]
+
+
+*** DONE fix GameObject->addGameObjectData: use @
+CLOSED: [2020-01-27 Mon 16:45]
+let addGameObjectData =
+    (mMatrix, (vertices, indices), (shaderName, colors), state) =>
+  setAllGameObjectData(
+    getAllGameObjectData(state)
+    @ [
+      {
+        transformData: Transform.createTransformData(mMatrix),
+        geometryData:
+          Geometry.createGeometryDataWithGeometryPoints(vertices, indices),
+        materialData: Material.createMaterialData(shaderName, colors),
+        },
+    ],
+    state,
+  );
+
+
+*** DONE fix ListWT->traverseResultM: use @
+CLOSED: [2020-01-27 Mon 16:46]
+t @ [h]
+
+
+** DONE [ Book-Improve-Engine-ContractCheck, ...)
+CLOSED: [2020-01-27 Mon 12:26]
+*** DONE tiny-wonder-glsl-compiler: rename ShaderChunkSystem to ShaderChunk?
+CLOSED: [2020-01-27 Mon 12:26]
+
+
+
+////** TODO  Book-Improve-Shader-Engine
+////*** TODO should "rename Contract->xxxCheck, xxxCheckXxx" at the begin!
+
+** DONE Book-Demo
+CLOSED: [2020-01-24 Fri 07:30]
+*** DONE rename to Book-Demo-Triangle
+CLOSED: [2020-01-24 Fri 07:30]
+
+
+
+** DONE Book-Improve-Engine-ContractCheck
+CLOSED: [2020-01-27 Mon 17:39]
 rename repo to Book-Improve-ContractCheck-XXX
+
+
+** TODO Book-Improve-Editor-ContractCheck
+rename repo to Book-Improve-ContractCheck-XXX
+
+
+** DONE Book-Improve-Shader-Engine
+CLOSED: [2020-01-27 Mon 17:39]
+*** DONE Config use Result
+CLOSED: [2020-01-27 Mon 17:35]
+
+
+
+
+*** DONE rename ArrayWT unsafeGetXXX to unsafeGetXXXByNull
+CLOSED: [2020-01-27 Mon 17:39]

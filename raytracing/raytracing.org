@@ -1,0 +1,59 @@
+https://zhuanlan.zhihu.com/p/102397700
+
+* TODO references
+
+http://advances.realtimerendering.com/s2019/Benyoub-DXR%20Ray%20tracing-%20SIGGRAPH2019-final.pdf
+
+
+
+** TODO bake and add light map/shadow map
+use path trace?
+
+Bake  场景静态阴影
+
+
+
+refer to:
+http://www.realtimerendering.com/raytracinggems/unofficial_RayTracingGems_v1.5.pdf -> Interactive Light Map and Irradiance
+Volume Preview in Frostbite
+
+
+
+
+** TODO bake and add ao map
+use path trace?
+
+
+[[https://zhuanlan.zhihu.com/p/28625038][基于GPU的快速烘焙AO贴图]]
+
+
+
+** TODO [#C] add ray tracing pipeline
+
+refer to DXR: 
+https://blogs.msdn.microsoft.com/directx/2018/03/19/announcing-microsoft-directx-raytracing/
+https://www.zhihu.com/question/269149582
+https://devblogs.nvidia.com/introduction-nvidia-rtx-directx-raytracing/
+
+
+
+
+* TODO plan(2.1-3.0)
+** TODO implement svoci
+
+
+
+** TODO implement denoising
+
+
+
+
+** TODO implement hybrid pipeline
+gbuffer + ray tracing + rasterization
+
+
+light = direct + indirect + mirror + refract + shadow
+
+
+** TODO implement raytracing pipeline in engine
+upgrade to webgl2(compatible webgl1)

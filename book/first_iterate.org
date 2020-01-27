@@ -526,6 +526,13 @@ q2:
 (e.g. contain u_color(float, float, float), u_data1(float))
 
 
+q3:
+"support add gameObject after init"
+
+
+
+
+
 qn...:
 "how to improve performance?"
 
@@ -584,10 +591,22 @@ fix Shader->check location
 
 
 
-**** TODO shader(json???)
+**** DONE shader(json???)
+CLOSED: [2019-11-13 Wed 13:50]
 
-shaders,
-groups,
+
+
+glsl sender data
+
+shader lib
+
+json
+
+load config
+
+move "create vaos" to render iterate?
+
+
 
 
 feat: should  move "refactor: shader(lib, json)" before "refactor: gameObject and component"!!!???
@@ -595,7 +614,79 @@ because if do "refactor: gameObject and component" first, then only has one shad
 different shaders with different shader libs!
 
 
-***** TODO think q2: need extract glsl sender data!
+
+
+***** DONE add glsl and createShaderChunkSystemFile gulp task
+CLOSED: [2019-10-30 Wed 17:19]
+//pass
+
+//add chunkData to state
+
+//use commonlib
+
+
+//record
+
+
+***** DONE add shaders.json, shader_libs.json and load shader json
+CLOSED: [2019-10-31 Thu 11:07]
+
+shaders.json:
+shaders,
+groups
+
+
+（note: Dto type, domain type, serialization, deserialization
+
+refer to 《Domain Modeling》－》 serialization
+）
+
+
+
+
+
+***** DONE fix init shader
+CLOSED: [2019-11-13 Wed 11:56]
+
+
+
+
+
+init all shader:shader1, shader2(iterate shaders?)
+//material data store shader name(change ShaderName to Shader)
+
+
+
+////****** TODO move glsl to engine
+shader1
+shader2
+
+****** DONE refactor: rename ShaderName to Shader
+
+
+****** DONE get shader lib data arr
+CLOSED: [2019-11-11 Mon 12:43]
+
+****** DONE build glsl source
+CLOSED: [2019-11-11 Mon 12:43]
+
+
+
+
+
+
+****** DONE extract glsl sender data!
+CLOSED: [2019-11-13 Wed 11:57]
+////******* TODO move init vao to init shader!
+
+
+remove attributeLocationMap
+
+
+
+
+******* DONE 
+CLOSED: [2019-11-13 Wed 11:56]
 store send func when init shader
 can define abstract type("material data") for different material data(e.g. u_color, u_data1) for send uniform data!
 
@@ -604,8 +695,7 @@ need extract glsl sender data!
 
 
 
-
-if not exist , not add to send arr
+if not exist, not add to send arr
            AllGLSLLocationService.isUniformLocationExist(pos) ?
            AllGLSLLocationService.isAttribLocationExist(pos) ?
 
@@ -618,19 +708,6 @@ if not exist , not add to send arr
 
 
 
-(
-refactor Wonder.js!
-e.g. 
-1. 
-   - cache location to glslLocationRecord
-   - set send data to glslSenderRecord(get pos from glslLocationRecord)
-     
-2.if not exist , not add to send arr
-
-
-
-
-)
 
 
 
@@ -641,36 +718,268 @@ e.g.
 
 
 
-keep all immutable(because mutable improve performance very little!?)
+
+
+
+////****** TODO move createEmpty to Tinywondercommonlib->ArrayUtils
+
+
+
+****** TODO fix Wonder.js:
+key: use shader name as key instead of join shader lib?
+    (make sure the material and no material shaders->name are unique!)
+use one initMaterialJob instead of ... ?
+
+
+
+build glsl source:
+1.change these to be func:
+let webgl1_main_begin: string = "void main(void){\n";
+
+let webgl1_main_end: string = "}\n";
+
+
+2.not use isJsonSerializedValueNone?
+
+3.use reduceOneParam instead of Js.Array.reduce
 
 
 
 
 
-***** TODO extract shader lib
 
 
-***** TODO fix(Render): move "create vaos" to render iterate?
+shader_libs.json:
+remove "from"?
+(because the field is unique!?)
+
+
+
+***** DONE example: pass run test
+CLOSED: [2019-11-13 Wed 12:49]
+
+
+
+***** DONE wrap type:
+CLOSED: [2019-11-13 Wed 13:26]
+remove FieldName,Vs,Fs 
+
+
+
+
+***** DONE fix(glsl): add "detect precision" + "preget precision"
+CLOSED: [2019-11-13 Wed 13:48]
+
+
+
+
+////***** TODO fix(Render): move "create vaos" to render iterate?
 
 because the "a_position" is unknown!(maybe not exist!)
 
 
-***** TODO extract json
-
-（note: Dto type, domain type, serialization, deserialization
-
-refer to 《Domain Modeling》－》 serialization
-）
 
 
 
 
-////set send data to glslSenderRecord
+
+
+
+
+////***** TODO rename Contract->xxxCheck, xxxCheckXxx to xxxByThrow, xxx?
+////need record: fix before!
+
+
+////***** TODO fix editor
+
+
+**** TODO use webgl2
+***** DONE vao
+CLOSED: [2019-11-14 Thu 10:42]
+
+***** DONE GLSL v3.0
+CLOSED: [2019-11-14 Thu 10:42]
+
+***** TODO ubo
+camera ubo
+model ubo
+shader1/material1 ubo
+shader2/material2 ubo
+
+For example, you could have 4 uniform blocks defined in a shader.
+
+A global matrix uniform block that contains matrices that are the same for all draw calls like the projection matrix, view matrix, etc.
+
+A per model uniform block that contains matrices that are different per model for example the world matrix and normal matrix.
+
+A material uniform block that contains the material settings like diffuse, ambient, specular, etc..
+
+A lighting uniform block that contains the lighting data like light color, light position, etc..
+
+
+
+
+camera update once in one draw:
+no need camera sender data
+
+model 
+
+
+
+
+
+add MutableSparseMap,ImmutableSparseMap
+
+
+
+
+update material->typearrays:
+judge last value
+flag
+
+
+
+//pass compile
+
+
+
+
+
+
+****** TODO pass run test:
+(shouldn't check material ubo->typeArray:
+because the colors->float precision < float32Array->float precision
+)
+
+test perf!!!(compare gameObject and material!not the camera!!!)
+
+
+
+
+TODO Shader continue here:
+      fix ubo->model:
+        ////only has one buffer and one typeArray;
+        Render->first pass: fill camera,model typeArray and bufferSubData per buffer
+        second pass: draw
+
+      fix ubo->material
+
+
+
+
+
+
+****** TODO refactor: rename
+e.g. uboName to uniformBlockName
+
+Model to GameObject
+
+
+******* TODO refactor: remove struct
+
+******* TODO refactor
+rename shader1 glsl to material1 glsl:
+include ubo;
+
+
+
+****** TODO perf: merge all ubo buffer to one single buffer!
+use bindBufferRange
+
+
+
+***** TODO test perf
+
+memory leak???
+
+
+
+
+
+****** TODO perf: check ubo value cache and judge whether to update typeArray or not
+
+
+
+***** TODO refactor: move GLSLSender to be model
+
+
+***** TODO refactor: Result add t2
+type t2('a) = t('a, Js.Exn.t);
+
+
+***** TODO refactor: move sparsemap to commonlib
+
+
+***** TODO refactor: move ArrayWT->reduceOneParami to commonlib
+let reduceOneParami = (func, param, arr) => {
+  let mutableParam = ref(param);
+  for (i in 0 to Js.Array.length(arr) - 1) {
+    mutableParam := func(. mutableParam^, Array.unsafe_get(arr, i), i);
+  };
+  mutableParam^;
+};
+
+
+////***** TODO support webgl1
+****** TODO support
+
+****** TODO run test in mobile(test webgl1)
+
+
+
+**** TODO finish voxel demo
+
+
+
+
+
+**** TODO rewrite all programs by use svo!
+e.g. Book-Demo use ray cast!
+
+***** TODO implement
+
+***** TODO add test after each chapter
+
+
+
+**** TODO if use old tech, should remove features as many as possible(only remain 物联网 related features!)
+only add pbr
+
+
+
+
+**** TODO give Catalog of the two books
+
+
+
+**** TODO engine support light
+
+basic material data
+light material data + direction/point light data
+
+***** TODO extract basic material
+
+
+
+
+***** TODO add light material
+
+***** TODO geometry:add normal
+
+***** TODO add direction light
+
+
+***** TODO add point light
+
+
+
+
+***** TODO send shader data(cache data): light
 
 
 **** TODO gameObject+component
 分析现有架构的问题:
-think q1,q2:
+think q1,q2,q3:
 now the architect is too rigid
 
 
@@ -680,15 +989,32 @@ now the architect is too rigid
 component:
 transform 
     extract translation,rotation,scale wrap type
+    fix ubo: model ubo(should rename to transform ubo) should per transform
 
 
-basic material:
+material:
     refactor: move glsl into engine
+    judge last material(judge last shader index???)
+    fix ubo: material ubo should per material
+
+
 geometry
 meshRenderer
 
 
 
+
+extract setting.json:
+refactor maxGameObjectCount
+
+
+
+
+
+
+think q3:
+init gameObject->init shader:
+should judge whether the shader has been inited!
 
 
 
@@ -698,10 +1024,36 @@ should remove abstract type("material data") for different material data(e.g. u_
 (get data from material data by material index instead!)
 
 
+***** TODO extract setting.json(engine, editor)
+
+
+
+**** TODO add test
+only unit test?
 
 
 
 **** TODO data oriented
+
+note:
+gameObject, component all store primitive data in state;
+init shader, render context use those primitive data directly;
+add wrap api to operate wrap data;
+editor api use wrap api, js api use primitive data operators;
+
+(this can improve perf in init shader, render context!!!)
+(
+need fix: Render->change gameObject data list;
+need fix: glslsender data: add getDataFunc;
+)
+
+
+
+
+
+
+
+
 
 
 
@@ -718,7 +1070,8 @@ mutable
 
 
 
-need compare perf by benchmark
+***** TODO optimize by benchmark: render 7000 boxes(not clone)
+compare with wonder.js
 
 
 
@@ -777,6 +1130,15 @@ give pseudo code
 
 
 
+
+***** TODO editor support multi-thread or single-thread?
+need verify how editor to support multi-thread?
+(
+loopBody is async?
+can register worker job! 
+)
+
+
 ***** TODO extract shader index
 because when init material in render worker:
 1.if use shaderIndices(shader index), can directly share it! but if use shaderNameMap(shader name), should send it to
@@ -809,15 +1171,15 @@ cqrs: refer to <<Domain>> -> Command-Query Responsibility Segregation, Bounded C
   
 
 
-***** TODO engine
 
 分析现有架构的问题:
 1.model依赖多个state，职责不明
 
 
 
+***** TODO extract render state, sub state(sub state for shader data, sub state for model data, ...)
 
-***** TODO editor
+
 
 
 
@@ -880,6 +1242,41 @@ composable_component/
 
 ** TODO optimize: tail-recursive
 
+
+
+
+
+** TODO begin second iterate!!! refactor first iterate!!!
+
+
+
+** TODO add test
+
+code coverage: > 95%
+
+
+
+** TODO refactor all
+
+
+** TODO pass travis
+
+
+
+** TODO pass code climate
+
+
+
+
+** TODO add dispose, clone
+*** TODO add dispose
+
+**** TODO optimize by benchmark: create and dispose 1000 boxes
+
+
+*** TODO add clone
+
+**** TODO optimize by benchmark: clone 7000 boxes
 
 
 

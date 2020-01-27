@@ -1,3 +1,10 @@
+/*
+* TODO fix Wondercommonlib
+** TODO refactor: rewrite WonderCommonlib->NullService->isEmpty
+
+** TODO feat: HashMap, SparseMap->unsafeGet add contract check
+
+
 * TODO fix Engine
 ** TODO fix Matrix4->setLookAt
 ** TODO refactor:  change Shader->linkProgram, compileShader -> debug to asset
@@ -19,6 +26,52 @@ change setXXXLocation->check location to require check
 
 ** TODO refactor: change Gl->getUniformLocation return value type to Js.Null.t
 
+** TODO refactor(shader):
+(
+e.g. 
+1. 
+   - cache location to glslLocationRecord
+   - set send data to glslSenderRecord(get pos from glslLocationRecord)
+     
+2.if not exist , not add to send arr
+
+
+3.keep all immutable(because mutable improve performance very little!?)
+
+
+)
+
+
+(
+key: use shader name as key instead of join shader lib?
+    (make sure the material and no material shaders->name are unique!)
+use one initMaterialJob instead of ... ?
+
+
+
+build glsl source:
+1.change these to be func:
+let webgl1_main_begin: string = "void main(void){\n";
+
+let webgl1_main_end: string = "}\n";
+
+
+2.not use isJsonSerializedValueNone?
+
+3.use reduceOneParam instead of Js.Array.reduce
+
+
+
+
+
+
+
+shader_libs.json:
+remove "from"?
+(because the field is unique!?)
+
+
+)
 
 * TODO fix Editor
 ** TODO editor->asset: recursive type
@@ -43,6 +96,11 @@ try (
 *** TODO remove local ui state, use global ui store instead!
 *** TODO rename editor state to PersistentState, move persistent data to it
 
+** TODO rename editor state to PersistentState
+
+
+** TODO use engine with multi thread???
+
 
 * TODO fix all
 ** TODO move DomExtendType, GlType, ... to DomExtend, Gl, ...
@@ -51,3 +109,62 @@ try (
 ** TODO use Result
 ** TODO api should be : js api, editor api
 ** TODO update Wonder-Log -> Contract: use Book Repo
+
+*/
+
+
+
+* TODO add features after first book
+** TODO engine
+*** TODO publish to Wonder.js
+
+
+/*
+*** TODO add instance
+
+
+*** TODO add stream load
+
+
+*** TODO add assetbundle
+
+
+*** TODO add draw line
+
+*/
+
+
+*** TODO implement ray tracing gi
+**** TODO learn <<ray tracing gems>>
+
+
+
+**** TODO taa
+https://community.arm.com/developer/tools-software/graphics/b/blog/posts/temporal-anti-aliasing
+
+
+
+**** TODO ssr?
+
+
+**** TODO scene space shadow?
+
+
+* TODO add features after second book
+** TODO editor
+*** TODO publish to Wonder-Editor
+
+*** TODO support instance
+
+
+*** TODO support stream load
+
+
+*** TODO support assetbundle
+
+*** TODO support draw line
+
+
+
+* TODO update Wonder-Showcase repo
+https://github.com/Wonder-Technology/Wonder-Showcase

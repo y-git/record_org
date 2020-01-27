@@ -1,0 +1,755 @@
+* DONE learn webgpu demo  
+CLOSED: [2019-12-03 Tue 19:47]
+
+how to use index buffer? 
+
+drawIndexed?
+
+
+optimize get image data(uint8 array) from image src?
+
+
+
+
+dynamic offset is more slow than bind group cache!
+
+
+
+
+* DONE learn native file api https://web.dev/native-file-system/ 
+CLOSED: [2019-12-04 Wed 12:37]
+
+
+* TODO implement webgpu demo->triangles use index buffer 
+* TODO implement webgpu demo->offscreen canvas
+
+
+CLOSED: [2019-12-03 Tue 09:37]
+
+
+* TODO implement webgpu demo->offscreen canvas(with texture)
+
+
+
+* TODO implement webgpu demo->ray tracing->spheres
+use compute shader!
+
+
+
+* TODO write <<学习函数式编程系列>>
+
+
+
+* TODO improve engine: support both situations!
+
+
+
+
+
+* TODO write <<学习webgpu系列>>
+** DONE prepare
+CLOSED: [2019-12-03 Tue 22:00]
+
+
+** TODO learn https://zhuanlan.zhihu.com/ragnarok
+
+** TODO learn demos, ask questions
+*** DONE triangle
+CLOSED: [2019-12-05 Thu 09:25]
+
+
+
+
+*** DONE trianglemsaa
+CLOSED: [2019-12-07 Sat 22:31]
+
+https://gitmemory.com/issue/gpuweb/gpuweb/267/485604065
+
+https://vulkan-tutorial.com/Multisampling
+
+
+
+*** DONE cude
+CLOSED: [2019-12-22 Sun 16:58]
+
+
+
+*** TODO learn
+**** DONE Parallelism
+CLOSED: [2019-12-08 Sun 16:25]
+learn http://advances.realtimerendering.com/destiny/gdc_2015/Tatarchuk_GDC_2015__Destiny_Renderer_web.pdf 
+
+
+https://github.com/gpuweb/gpuweb/issues?utf8=%E2%9C%93&q=web+worker
+https://github.com/gpuweb/gpuweb/issues/403
+https://github.com/gpuweb/gpuweb/issues/491
+
+
+***** DONE memory barrier
+CLOSED: [2019-12-08 Sun 16:38]
+https://zhuanlan.zhihu.com/p/60975148
+https://github.com/gpuweb/gpuweb/issues/27
+https://github.com/gfx-rs/gfx/issues/1498
+
+
+https://github.com/gpuweb/gpuweb/issues/64 -> Synchronization and validation
+
+
+now not has api to control memory barrier 
+
+
+***** DONE multiple queues
+CLOSED: [2019-12-08 Sun 16:38]
+refer to https://github.com/gpuweb/gpuweb/pull/95, not support in webgpu mvp:
+At this point I think we should resolve here on 1) how you request and get queues, 2) what single queue is exposed in
+the MVP. We can also record that for "webbiness" reasons multi-queue barriers / ownership transfers should be implicit +
+hints. Discussion of exactly what the hints are and how multiple queues interact together could be left for later. 
+
+
+****** TODO async queues
+
+
+****** TODO copy queues
+
+
+
+***** DONE fence
+CLOSED: [2019-12-08 Sun 16:25]
+https://github.com/gpuweb/gpuweb/blob/master/design/TimelineFences.md
+
+
+
+
+**** DONE Multi threaded command buffer generation
+CLOSED: [2019-12-09 Mon 05:24]
+  https://github.com/SaschaWillems/Vulkan/tree/master/examples/multithreading
+
+  https://www.google.com.hk/search?q=Multi+threaded+command+buffer+generation&oq=Multi+threaded+command+buffer+generation&aqs=chrome..69i57j69i60l2.326j0j7&sourceid=chrome&ie=UTF-8
+
+https://github.com/gpuweb/gpuweb/issues/403
+
+https://github.com/gpuweb/gpuweb/issues/354
+
+
+https://docs.google.com/document/d/1_SZqLdSaG1I3Pwe2SJFqrcXtAvH4aIDcXbf5kEple88/edit#heading=h.u4znwge7pulf
+
+
+
+
+
+https://github.com/gpuweb/gpuweb/issues/354 :
+1.Asynchronous texture & buffer uploads
+2.Asynchronous shader compilation
+3.Asynchronous pipeline state creation
+4.Using MTLParallelRenderEncoder
+5.Each thread in a thread pool records into its own command buffer
+6.Using multiple queues on the same device
+7.Using multiple devices on the same machine
+
+
+
+based on https://docs.google.com/document/d/1_SZqLdSaG1I3Pwe2SJFqrcXtAvH4aIDcXbf5kEple88/edit#heading=h.u4znwge7pulf :
+1,2,3 is implementing, and 4, 5 will be done
+
+
+now the async buffer uploads is done(createBufferMappedAsync, mapXXXAsync): 
+https://github.com/gpuweb/gpuweb/issues/138
+
+but other async are not done!!!(i don't find the "async shader compilation" is done!!!)
+https://github.com/gpuweb/gpuweb/issues/6
+https://github.com/gpuweb/gpuweb/issues/486
+
+
+
+
+update:
+https://github.com/gpuweb/gpuweb/pull/422
+
+device can be shared to worker!
+
+https://gpuweb.github.io/gpuweb/#gpudevice :
+
+> A device is the logical instantiation of an adapter, through which internal objects are created. It can be shared across multiple agents (e.g. dedicated workers).
+
+>
+[Exposed=(Window, Worker), Serializable]
+interface GPUDevice : EventTarget {
+
+
+
+
+
+
+
+GPUBuffer,GPUShaderModule, ...(Serializable) can be used for worker!!!
+
+WorkerNavigator.gpu
+
+
+
+
+
+
+
+
+
+
+
+
+note:
+>
+Threading use cases encouraged in Vulkan
+•Threaded updates of resources (Buffers)
+• CPU vertex data or instance data animations (e.g. morphing)
+• CPU uniform buffer data updates (e.g. transform updates)
+•Parallel pipeline state creation
+• “shader compilation” and state validation
+•Threaded rendering / draw calls
+• Generation of command buffers in multiple threads 
+
+
+
+
+
+***** DONE Parallelizing the Naughty Dog Engine using Fibers 
+CLOSED: [2019-12-09 Mon 05:25]
+  https://zhuanlan.zhihu.com/p/36309461
+
+
+
+
+**** DONE learn all meetings
+CLOSED: [2019-12-09 Mon 08:01]
+
+
+
+**** DONE memory manage
+CLOSED: [2019-12-09 Mon 08:01]
+
+webgpu not require memory manage!!!
+
+
+refer to [[CL
+https://github.com/WebAssembly/WASI/issues/53][WebGPU as low level graphics API]] :
+>
+WebGPU compares closest to Metal (probably since Apple is the one that originally proposed it)--both don't require manual memory management while DX12 and Vulkan do
+
+
+
+
+more references:  [[http://twvideo01.ubm-us.net/o1/vault/gdc2018/presentations/Sawicki_Adam_Memory%2520management%2520in%2520Vulkan.pdf][memory management in d3d12 and vulkan]]
+
+
+
+
+**** DONE Push Constants
+CLOSED: [2019-12-09 Mon 08:15]
+not support yet, may support after mvp?
+
+https://github.com/gpuweb/gpuweb/issues/75
+
+
+
+
+
+
+
+
+
+
+**** DONE gpu driven render pipeline
+CLOSED: [2019-12-12 Thu 11:04]
+
+
+learn from https://www.zhihu.com/people/maxwellgeng/posts?page=2
+
+https://zhuanlan.zhihu.com/p/33881505
+
+https://www.slideshare.net/CassEveritt/approaching-zero-driver-overhead
+
+
+ExecuteIndirect
+
+***** TODO use indirect
+indirect buffer, drawindirect, ...
+
+
+https://github.com/gpuweb/gpuweb/issues/31
+
+
+https://github.com/SaschaWillems/Vulkan/tree/master/examples/indirectdraw
+
+
+
+****** TODO MultiDrawIndirect?
+
+not support?
+
+
+
+****** TODO index buffer in gpu?
+https://github.com/gpuweb/gpuweb/issues/117 :
+In an actual 1.0 release we'll absolutely need to support GPU-generated indices
+
+mvp not support?
+
+
+
+
+****** TODO ExecuteIndirect
+
+https://github.com/gpuweb/gpuweb/issues/431 :
+> issue draw calls and resource updates on the GPU
+
+may support in webgpu extension
+
+
+
+
+
+***** TODO mesh shader
+
+if use mesh shader, no need to use indirect!!!
+https://devblogs.nvidia.com/introduction-turing-mesh-shaders/
+
+
+wait for support mesh shader?
+
+
+***** DONE bindless texture
+CLOSED: [2019-12-11 Wed 17:07]
+https://github.com/gpuweb/gpuweb/issues/380
+
+
+https://docs.google.com/document/d/18Ze0h9InJN5QWXe0iN9UzEebfiEIg8HYo-aX9rKvhuk/edit#heading=h.d3fou7jjp88m :
+may after 1.0 version
+may be extension
+not decided!
+
+
+
+references:
+http://cpp-rendering.io/opengl-azdo-bindless-textures/
+
+
+
+****** TODO could use texture array if not support bindless texture
+https://www.zhihu.com/question/56015505
+
+https://www.slideshare.net/CassEveritt/approaching-zero-driver-overhead
+
+
+
+
+
+***** DONE defer texture
+CLOSED: [2019-12-12 Thu 07:35]
+
+
+https://www.zhihu.com/question/40108592
+
+https://mynameismjp.wordpress.com/2016/03/25/bindless-texturing-for-deferred-rendering-and-decals/
+
+http://www.reedbeta.com/blog/deferred-texturing/
+
+https://forum.beyond3d.com/threads/modern-textureless-deferred-rendering-techniques.57611/
+
+
+
+
+***** DONE continue persistent map(operate buffer???)
+CLOSED: [2019-12-12 Thu 08:59]
+https://www.slideshare.net/CassEveritt/approaching-zero-driver-overhead
+
+
+
+***** DONE learn from zhihu
+CLOSED: [2019-12-12 Thu 11:04]
+https://www.zhihu.com/people/maxwellgeng/posts?page=2
+
+
+
+***** DONE gpu cull
+CLOSED: [2019-12-12 Thu 09:49]
+– „Indirect“ GPU to GPU
+ Set DrawIndirect‘s instanceCount to 0 or 1 
+
+
+////****** TODO with depth pass for early z cull?
+
+
+https://www.zhihu.com/people/maxwellgeng/posts?page=2
+
+
+****** DONE frustum cull
+CLOSED: [2019-12-12 Thu 09:49]
+https://zhuanlan.zhihu.com/p/41910737
+
+
+
+****** DONE cluster cull
+CLOSED: [2019-12-12 Thu 11:04]
+https://zhuanlan.zhihu.com/p/44411827
+
+
+****** DONE occlusion cull
+CLOSED: [2019-12-12 Thu 09:49]
+
+https://www.google.com.hk/search?q=HiZ+for+GPU+Culling&oq=HiZ+for+GPU+Culling&aqs=chrome..69i57.239j0j7&sourceid=chrome&ie=UTF-8
+
+https://zhuanlan.zhihu.com/p/47615677
+
+https://interplayoflight.wordpress.com/2017/11/15/experiments-in-gpu-based-occlusion-culling/
+https://interplayoflight.wordpress.com/2018/01/15/experiments-in-gpu-based-occlusion-culling-part-2-multidrawindirect-and-mesh-lodding/
+
+***** DONE gpu lod
+CLOSED: [2019-12-12 Thu 09:51]
+
+https://www.google.com.hk/search?q=gpu+lod&oq=gpu+lod&aqs=chrome..69i57j69i60l4j69i65.1071j0j7&sourceid=chrome&ie=UTF-8
+
+http://rastergrid.com/blog/2010/10/gpu-based-dynamic-geometry-lod/
+
+
+
+***** DONE virtual texture
+CLOSED: [2019-12-12 Thu 10:58]
+https://zhuanlan.zhihu.com/p/66567332
+
+https://zhuanlan.zhihu.com/p/83831633
+
+
+**** DONE ray tracing with compute shader
+CLOSED: [2019-12-12 Thu 16:53]
+
+
+gbuffer with cull???
+
+
+
+
+*** DONE write article to summary
+CLOSED: [2019-12-22 Sun 08:51]
+
+
+
+
+*** DONE update webgpu current state
+CLOSED: [2019-12-22 Sun 08:51]
+
+before mvp
+
+
+*** DONE link webgpu learn to 分享Web 3D资料 blog
+CLOSED: [2019-12-22 Sun 08:51]
+
+
+
+
+
+*** DONE two cudes
+CLOSED: [2019-12-22 Sun 16:58]
+
+**** DONE persistent map buffer(use createBufferMapped instead of buffer->setSubData ???)
+CLOSED: [2019-12-22 Sun 16:58]
+
+https://github.com/gpuweb/gpuweb/blob/master/design/BufferOperations.md#updating-data-to-an-existing-buffer-like-webgls-buffersubdata
+
+https://developers.google.com/web/updates/2019/08/get-started-with-gpu-compute-on-the-web
+
+https://github.com/gpuweb/gpuweb/pull/418
+
+
+
+use createBufferMapped
+
+use mapWriteAsync(use await???)
+
+
+
+
+*** DONE texture cude
+CLOSED: [2019-12-24 Tue 16:49]
+read https://github.com/gpuweb/gpuweb/blob/master/design/ImageBitmapToTexture.md
+
+read https://github.com/gpuweb/gpuweb/issues/79
+
+
+TODO learn decode api
+
+
+use copyImageBitmapToTexture instead of copyBufferToTexture in helper.ts??
+(need check support in chrome)
+
+
+
+*** DONE <<WebGPU学习（一）: 开篇>> add：
+CLOSED: [2019-12-24 Tue 16:49]
+webgl，webgpu和opengl他们之间有什么样得关系呢？
+
+
+*** DONE fractal cude
+CLOSED: [2019-12-27 Fri 07:47]
+
+
+*** DONE compute boid
+CLOSED: [2019-12-27 Fri 07:47]
+
+
+
+
+*** DONE answer
+CLOSED: [2019-12-27 Fri 10:12]
+
+
+*** DONE fork and replace link
+CLOSED: [2019-12-27 Fri 10:25]
+
+
+*** DONE reuse command buffer and dynamic offset
+CLOSED: [2019-12-29 Sun 22:11]
+////refactor example
+
+
+
+
+
+
+
+
+
+////*** TODO add sample: compute shader to compute matrix multiply
+read https://github.com/gpuweb/gpuweb/blob/master/design/BufferOperations.md
+
+add to WebGPU-Sample Repo!!!
+
+
+refer to:
+https://github.com/gpuweb/gpuweb/issues/154
+https://github.com/gpuweb/gpuweb/pull/418
+
+https://github.com/gpuweb/gpuweb/issues/138
+
+
+
+
+
+
+**** TODO need Clarify GPUBufferUsage validation rules
+Chromium WebGPU implementation forces two rules for GPUBufferUsage:
+
+Only COPY_SRC is allowed with MAP_WRITE
+Only COPY_DST is allowed with MAP_READ
+
+
+https://github.com/gpuweb/gpuweb/issues/426
+
+https://docs.google.com/document/d/1opv8MIK94DNIKU5qbgeqlkkTK8cwa9oWJKKPob2pjk8/edit#heading=h.ptu3o09e2ce5
+
+
+
+
+
+
+** TODO learn carefully
+learn vulkan tutorial
+
+
+
+** TODO write simple demo to solve questions(e.g. use index buffer; optimize get image data;...)
+refer to https://github.com/SaschaWillems/Vulkan
+
+
+*** TODO use index buffer and multi shaders and perf: separate camera, model, material data?
+https://vulkan-tutorial.com/Vertex_buffers/Index_buffer
+
+
+
+
+
+*** TODO use indirect
+indirect buffer, drawindirect, ...
+
+
+https://github.com/gpuweb/gpuweb/issues/31
+
+
+https://www.google.com.hk/search?newwindow=1&safe=strict&biw=1280&bih=617&sxsrf=ACYBGNSJFyKSSLGA2IXQ7UNhAfdhtukOaA%3A1576034462291&ei=nmDwXZ6vEYOVr7wPvai0qAQ&q=indirect+draw&oq=indirect+draw&gs_l=psy-ab.12..35i39j0i203l2j0i30l6j0i67.0.0..2252508...0.0..0.203.396.0j1j1......0......gws-wiz.......0i7i30.eZcgkybgSSg&ved=0ahUKEwie9pzy0azmAhWDyosBHT0UDUU4FBDh1QMICw
+
+http://cpp-rendering.io/indirect-rendering/
+https://www.g-truc.net/post-0518.html
+
+
+*** TODO gpu cull
+
+**** TODO frustum cull
+
+
+
+////**** TODO cluster cull
+
+////**** TODO occlusion cull
+
+
+
+
+*** TODO defer shading
+
+multiple color attachment
+
+
+perf:the second pass can directly read gbuffer generated on the first pass(not support yet in  webgpu):
+https://github.com/gpuweb/gpuweb/issues/435
+https://github.com/gpuweb/gpuweb/issues/393
+https://docs.google.com/document/d/1vjEeT_CO2zlHZ2K5SiNMdROVDk6ag8skSgN-ZEO4evg/edit#heading=h.vakh3hkqixgj
+
+
+**** TODO use compute shader
+https://www.google.com.hk/search?q=light+compute+shader&oq=light+compute+shader&aqs=chrome..69i57j0l4j69i65.3271j0j7&sourceid=chrome&ie=UTF-8
+
+
+
+**** TODO use indirect draw
+
+
+
+**** TODO use gpu cull
+
+
+
+
+
+
+
+** TODO implement ray tracing
+*** TODO implement webgpu demo->ray tracing->spheres
+
+reflect + refract + transparent
+
+render 20 spheres
+
+1 direction light
+
+add area light?
+
+add point light?
+
+
+*** TODO implement webgpu demo->ray tracing->spheres: use compute shader!
+
+
+*** TODO implement webgpu demo->ray tracing->spheres: hybrid render
+
+gbuffer:
+use indirect draw + gpu frustum cull
+
+
+
+
+
+
+*** TODO denoise
+apply denoise for hybrid render to see effect and perf!
+
+
+**** TODO taa
+
+
+**** TODO tone map
+
+
+**** TODO edge avoid filter
+
+
+
+**** TODO svgf
+
+
+
+
+
+*** TODO bvh and render model
+
+
+
+
+*** TODO optimize
+**** TODO refer to hybrid path trace
+screen space
+
+sort rays
+
+optimize bvh
+
+...
+
+
+**** TODO to voxel space?
+
+
+
+*** TODO more...
+
+
+
+** TODO parallel
+
+
+
+** TODO perf: optimize 
+learn https://github.com/ARM-software/vulkan_best_practice_for_mobile_developers
+
+write samples for optimize!!!
+
+
+
+
+** TODO develop engine
+refer to https://ourmachinery.com/post/a-modern-rendering-architecture/
+
+https://zhuanlan.zhihu.com/p/98615378
+
+
+** TODO more
+
+*** TODO compressed texture
+https://github.com/gpuweb/gpuweb/issues/144
+
+https://github.com/gpuweb/gpuweb/issues/363
+
+
+https://github.com/gfx-rs/wgpu-rs/issues/141
+
+
+*** TODO load model
+https://vulkan-tutorial.com/Loading_models
+
+
+
+
+
+
+
+
+*** TODO use fence
+read https://github.com/gpuweb/gpuweb/blob/master/design/TimelineFences.md
+https://docs.google.com/presentation/d/1URnqb1Vuf2jPieHnt_eqXsPV_Es9Oog00_8LKZUdo6g/edit#slide=id.g482a63b4f5_0_1261
+
+
+
+
+*** TODO render to texture
+
+
+
+*** TODO Run-time mip-map generation
+https://docs.google.com/document/d/18Ze0h9InJN5QWXe0iN9UzEebfiEIg8HYo-aX9rKvhuk/edit#heading=h.wq05zundh3bw
+
+
+https://github.com/gpuweb/gpuweb/issues/386
+
+
+
+
+*** TODO  Occlusion queries
+
+

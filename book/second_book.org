@@ -1,0 +1,424 @@
+* name
+《3D编程之旅－从0开发3D编辑器》
+
+
+不与具体的平台（如微信小游戏）耦合
+
+
+注意实现扩展！
+
+
+
+* Step
+/*
+add remain features in 1.0;
+add [1.0-2.0) features;
+
+
+use tiny wonder in:
+host platform;
+be used to make webapp in pc;
+*/
+
+
+
+
+add editor related features in [0.0-2.0) version!
+
+use tiny wonder in:
+editor;
+////host platform;
+be used to make webapp in pc;
+////publish to weixin;
+
+
+
+
+第5章  Reason-React和Redux基础
+
+5.1  Reason-React基础知识
+
+5.2  Redux基础知识
+
+5.3  Reason-React 和 Redux综合应用示例
+
+
+第7章  编写一个最小的编辑器
+（
+／＊
+在编辑器的角度，对引擎的wrap type分类：
+1.公共的
+e.g. Result, ////HashMap
+2.
+＊／
+
+
+editor dependent on engine-. Ed api 
+and wrap type（loose coupling？ 依赖集中在engine adapter-.wrap type；其它地方只依赖wrap type的类型，不依赖它相关的functions（如ShaderName-.create函数））
+）
+
+（
+refactor:change loopId from int to abstract type
+）
+
+（
+should add discuss to text.md:
+editor data can separate to:
+1.show data
+2.persistent data
+
+
+we can have only one state(named show state instead of ui state???):
+can move editorState->loopId to uiState;
+mark loopId to mutable;
+
+(should verify: change loopId shouldn't cause re-render!!!)
+
+
+(disadvantage:
+1.not all immutable
+2.mix the two logic!
+)
+
+
+or we can have two states!
+
+
+we choose "two states" design!!!
+
+）
+
+
+
+
+
+
+（
+# explain why need editor
+
+explain why
+
+explain the relation between editor and engine
+
+
+）
+7.4.1  设计边界
+（
+
+analyze border:
+how can user use it?
+
+give image (draft image with only one "start" button)
+
+start/stop button + canvas
+
+
+package editor to one dist file;
+import it in html page;
+）
+7.4.2  提炼数据
+（
+
+## whether to use redux
+
+discuss: global data(store) vs local data(state)
+
+
+only use global data, no local data?
+
+
+## design data
+
+
+state:
+
+ui state(redux store)
+
+engine state
+
+
+
+////note: no editor state!!!!
+
+still need editor state for not show data(which not affect ui)!!!
+(
+by dicuss "where to store loopId" and avoid re-render!
+)
+
+
+why?
+no need to update All, Inspector, ...
+just update ui state->all, inspector state, ...
+
+
+
+need extract ui data from engine state to ui state!
+
+
+should update engine state and ui state in store->reducer?
+）
+7.4.3  引入引擎
+（
+use adapter
+
+invoke engine file according to namespace
+(work by es6 module)
+
+
+）
+7.4.4  使用编辑器
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+第10章  增加Redo/Undo功能
+
+
+ 
+第11章  增加“场景管理”功能
+
+11.1  需求分析
+
+11.2  查看场景中的所有GameObject
+
+11.3  操作GameObject
+
+
+
+extract show state from engine state:
+extract gameObject list data from engine state to show state!!!
+
+update show state from engine state when re-render;
+update persistent state or engine state when handle store->action(not update show state, because it is only for show!);
+
+use "acl" layer(folder) for "extract show state from engine state" logic???
+(refer to <<Domain_Modeling>>->p61)
+
+
+
+
+
+
+
+
+
+
+
+
+11.3  加入测试
+(
+unit test, integration test;
+
+no e2e test;
+)
+
+
+ 
+第12章  增加Inspector功能
+
+12.1  需求分析
+
+12.2  显示选中的GameObject的所有组件
+
+12.3  操作组件
+
+
+
+ 
+第13章  增加相机功能
+
+13.1  需求分析
+
+////13.2  给引擎增加相机组件
+
+13.3  更新编辑器
+
+ 
+第14章  给编辑器增加“运行”/“停止”功能
+14.1  需求分析
+
+14.2  初步设计
+
+14.3  重构：提炼新设计
+
+14.4  具体实现
+
+ 
+第15章  给编辑器增加“资产管理”功能
+
+15.1  需求分析
+
+15.2  增加Material资产
+
+15.3  重构：使用Recursive Type
+
+15.4  具体实现
+
+15.4.1  实现Asset Tree
+
+15.4.2  实现Asset Children
+
+15.4.3  实现Asset Inspector
+
+ 
+
+ 
+第18章  增加“导入”／“导出”功能
+
+（note: Dto type, domain type, serialization, deserialization
+
+refer to 《Domain Modeling》－》 serialization
+）
+
+
+18.1  需求分析
+
+18.2  更新引擎
+
+18.2.1  增加Scene Graph文件（.wdb）
+（加更多标题，不能只有一个标题）
+
+（支持indices type -. Short and Int）
+
+18.3  给编辑器增加导出功能
+
+
+
+18.3.1  增加“导出场景”功能
+
+
+18.3.1  增加“导出包”功能
+
+
+18.4  给编辑器增加导入功能
+
+
+18.4.1  增加“导入模型资产”功能
+
+
+18.4.2  增加“导入包”功能
+
+
+ 
+第19章  给编辑器增加“发布本地包”功能
+
+
+
+
+ 
+第 5 篇  增加更多功能
+
+
+ 
+第20章  给编辑器增加“控制台”功能
+
+
+
+第21章  增强编辑器的Scene View的渲染 
+
+
+21.1  总体需求分析
+
+
+21.2  给编辑器增加“网格平面”功能
+
+
+21.3  给编辑器增加“Icon Gizmo”功能
+
+21.3.1  需求分析
+
+21.3.2  实现IMGUI
+
+21.3.3  实现相机Gizmo
+
+
+
+第23章  支持picking
+
+
+
+
+第23章  支持轮廓
+
+
+
+第23章  加入transform gizmo
+
+
+
+
+/*
+第23章  支持instance
+
+
+第23章  支持pbr
+
+
+第23章  支持脚本组件
+
+
+第23章  支持job脚本
+
+
+第23章  支持skybox
+
+
+第23章  支持AssetBundle
+
+
+第23章  支持碰撞
+
+
+第23章  支持物理
+
+
+第23章  支持imgui
+
+
+第23章  支持keyframe动画
+
+
+第23章  支持skeleton动画
+
+
+第23章  支持声音
+
+
+第23章  支持粒子
+
+
+
+第23章  发布手机端的本地包
+*/
+ 
+
+ 
+第23章  让编辑器支持PWA 
+
+
+
+
+
+第6篇 增强扩展性
+
+
+
+
+
+
+
+ 
+
+第7篇 应用
+

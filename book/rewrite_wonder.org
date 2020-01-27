@@ -1,4 +1,3 @@
-/*
 * TODO rewrite after finish book
 based on book repo!
 
@@ -12,4 +11,3 @@ e.g. stream load, asset bundle
 *** TODO each feature has independent repo!
 (for Book2)
 
-*/

@@ -1,0 +1,83 @@
+* TODO features
+** TODO build svo
+
+** TODO voxelization
+
+** TODO ray cast render
+dag
+material
+texture
+
+
+
+** TODO lod
+
+
+** TODO space partition
+
+
+** TODO picking
+
+
+
+** TODO physics
+
+
+
+** TODO user create new geometry
+
+
+
+
+** TODO gi
+svogi
+
+
+[[http://blog.tuxedolabs.com/2018/10/17/from-screen-space-to-voxel-space.html][From screen space to voxel space]]
+
+
+
+
+** TODO animation
+
+
+
+** TODO optimize
+compute shader
+webgpu
+
+
+* TODO Demo
+** TODO show two cubes
+no material data
+
+
+*** TODO by simple voxel?(minecraft style)
+
+*** TODO by svo
+
+
+*** TODO by dag
+
+
+
+** TODO add material
+
+
+** TODO add texture
+
+
+** TODO lod
+
+** TODO add/dispose gameObject
+
+
+** TODO clone gameObject
+
+
+** TODO show model
+
+
+
+
+** TODO picking

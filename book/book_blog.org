@@ -1,0 +1,175 @@
+* DONE 发文章：哲学书籍推荐
+CLOSED: [2019-12-30 Mon 19:57]
+
+
+
+
+////* TODO 在“WebGPU学习”系列中发布公告，暂停发文
+
+
+* DONE 去重庆考察下
+CLOSED: [2020-01-06 Mon 16:35]
+需要开发引擎吗？
+开发编辑器吗？
+
+...
+
+
+
+
+知乎：
+内容推荐
+
+
+
+////* TODO 继续“从0开发3D引擎和编辑器”博文系列
+* TODO 新开“从0开发3D引擎和编辑器”博文系列
+
+把书的内容写到系列博文中，作为第一遍的预览稿。
+
+
+////使用word写！转markdown/html
+
+
+
+////** TODO 修改博文1-3
+
+
+
+
+** DONE update word
+CLOSED: [2020-01-01 Wed 08:46]
+
+
+
+
+** DONE test convert word to markdown/html
+CLOSED: [2020-01-01 Wed 09:20]
+
+
+
+should use markdown instead of word!!!
+
+
+
+** DONE answer question, link to article catalogue
+CLOSED: [2020-01-02 Thu 17:46]
+*** DONE write 一：开篇
+CLOSED: [2020-01-02 Thu 16:59]
+
+
+
+*** DONE 写目录
+CLOSED: [2020-01-02 Thu 17:19]
+
+
+*** DONE fix webgpu
+CLOSED: [2020-01-02 Thu 17:46]
+
+**** DONE 在开篇中，更新“X部分”完成情况
+CLOSED: [2020-01-02 Thu 17:23]
+
+
+
+**** DONE 在目录中，加入“第一部分”及其说明，加上完成情况
+CLOSED: [2020-01-02 Thu 17:23]
+
+
+
+*** DONE update Wonder暂停开发，开始写书
+CLOSED: [2020-01-02 Thu 17:46]
+
+
+
+** DONE 修改 分享Web 3D资源
+CLOSED: [2020-01-04 Sat 08:54]
+
+加入 OpenGL超级宝典
+
+
+
+** DONE 回答问题
+CLOSED: [2020-01-04 Sat 10:08]
+
+
+
+
+** DONE add data to editor tech
+CLOSED: [2020-01-04 Sat 12:58]
+
+
+
+** DONE 整理资料，看代码，重构架构，交付
+CLOSED: [2020-01-06 Mon 16:35]
+
+
+
+
+** DONE 发布第二篇博文
+CLOSED: [2020-01-06 Mon 16:35]
+
+
+
+
+
+
+** DONE 写准备部分
+CLOSED: [2020-01-09 Thu 17:17]
+
+
+** DONE 写基础部分
+CLOSED: [2020-01-23 Thu 18:36]
+*** DONE 函数式编程
+CLOSED: [2020-01-09 Thu 19:02]
+
+
+
+*** DONE 函数式反应式编程
+CLOSED: [2020-01-10 Fri 11:03]
+
+
+*** DONE 发文：为什么不需要wasm
+CLOSED: [2020-01-10 Fri 18:03]
+
+
+////*** TODO 发文：为什么编译为js的强类型语言（如Reason）适合Chrome浏览器v8引擎的JIT优化？
+
+
+*** DONE 修改 wasm文章，并回复
+CLOSED: [2020-01-20 Mon 18:01]
+
+一次-》多次
+
+
+
+
+////*** TODO 魔改glb的格式
+
+
+
+*** DONE 增加“yarn安装”
+CLOSED: [2020-01-20 Mon 18:01]
+
+
+
+*** DONE upgrade bucklescript in Reason-Example
+CLOSED: [2020-01-23 Thu 18:34]
+
+
+
+*** DONE 写博文: 介绍Reason
+CLOSED: [2020-01-23 Thu 18:34]
+
+简单介绍语法
+
+主要链接相关资料
+
+
+
+
+
+
+
+** TODO 写雏形部分
+
+*** TODO 写博文: 实现最小的3D程序-“绘制三角形”
