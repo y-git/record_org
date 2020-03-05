@@ -1,4 +1,5 @@
-* TODO need fix program
+* DONE need fix program
+CLOSED: [2020-01-27 Mon 17:39]
 ** TODO remove comment
 
 ** DONE upgrade bucklescript, reason

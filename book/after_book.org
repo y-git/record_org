@@ -1,0 +1,43 @@
+* TODO write "领域驱动设计和函数式编程在3D引擎中的实践"
+提炼引擎的DDD
+
+重点突出改进时对应的领域模型和视图（如数据视图）的变化：
+洋葱架构
+GameObject+Component
+Data Oriented
+job pipeline
+render array
+多线程
+WDB
+支持WebGL1、WebGL2
+支持WebGL1、WebGL2 + WebGpu
+
+
+
+
+
+
+
+
+
+
+投稿至 cnblog, zhihu, infoq
+
+文末推广书
+
+
+
+////* TODO write "函数式编程在3D引擎中的实践"
+投稿至 cnblog, zhihu, infoq
+
+文末推广书
+
+* TODO 参加各种大会，宣传“DDD”，“FP” in 3D engine
+e.g. QCon, 游戏开发相关的大会等
+
+
+
+
+* TODO 完成 WebGPU学习 系列
+
+加入 voxel, svogi 内容？？？

@@ -1,3 +1,4 @@
+/*
 * TODO rewrite after finish book
 based on book repo!
 
@@ -11,3 +12,11 @@ e.g. stream load, asset bundle
 *** TODO each feature has independent repo!
 (for Book2)
 
+
+
+
+
+*/
+
+* TODO rewrite after finish book
+learn[[https://azure.microsoft.com/zh-cn/services/devops/pipelines/][ Azure Pipelines]] 

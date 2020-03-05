@@ -1,32 +1,32 @@
-/*
-* TODO fix Wondercommonlib
-** TODO refactor: rewrite WonderCommonlib->NullService->isEmpty
+* no need to do!!!
+** TODO fix Wondercommonlib
+*** TODO refactor: rewrite WonderCommonlib->NullService->isEmpty
 
-** TODO feat: HashMap, SparseMap->unsafeGet add contract check
+*** TODO feat: HashMap, SparseMap->unsafeGet add contract check
 
 
-* TODO fix Engine
-** TODO fix Matrix4->setLookAt
-** TODO refactor:  change Shader->linkProgram, compileShader -> debug to asset
+** TODO fix Engine
+*** TODO fix Matrix4->setLookAt
+*** TODO refactor:  change Shader->linkProgram, compileShader -> debug to asset
 refer to Book Repo
-** TODO feat: unsafe get XXX for render add contract check
-*** TODO feat(shader): unsafe get glsl->field location add check
+*** TODO feat: unsafe get XXX for render add contract check
+**** TODO feat(shader): unsafe get glsl->field location add check
 unsafeGetXXXLocation
 
 change setXXXLocation->check location to require check
 
 
-*** TODO feat(program): unsafe get program add check
+**** TODO feat(program): unsafe get program add check
 
 
-*** TODO feat(more): unsafe get ... add check
+**** TODO feat(more): unsafe get ... add check
 
 
-** TODO refactor: rewrite WonderCommonlib->NullService->isEmpty
+*** TODO refactor: rewrite WonderCommonlib->NullService->isEmpty
 
-** TODO refactor: change Gl->getUniformLocation return value type to Js.Null.t
+*** TODO refactor: change Gl->getUniformLocation return value type to Js.Null.t
 
-** TODO refactor(shader):
+*** TODO refactor(shader):
 (
 e.g. 
 1. 
@@ -73,13 +73,13 @@ remove "from"?
 
 )
 
-* TODO fix Editor
-** TODO editor->asset: recursive type
+** TODO fix Editor
+*** TODO editor->asset: recursive type
 XXXNode(.e.g. FolderNode) functions should in domain model folder instead of service folder!
 
 
 
-** TODO fix Console.tryCatch
+*** TODO fix Console.tryCatch
 try (
   Js.Exn.raiseError("oops!")
 ) {
@@ -92,79 +92,269 @@ try (
 
 
 
-** TODO improve state
-*** TODO remove local ui state, use global ui store instead!
-*** TODO rename editor state to PersistentState, move persistent data to it
+*** TODO improve state
+**** TODO remove local ui state, use global ui store instead!
+**** TODO rename editor state to PersistentState, move persistent data to it
 
-** TODO rename editor state to PersistentState
-
-
-** TODO use engine with multi thread???
+*** TODO rename editor state to PersistentState
 
 
-* TODO fix all
-** TODO move DomExtendType, GlType, ... to DomExtend, Gl, ...
-** TODO function->params: move dependency func first(before variables)!(but other func param still remain in the last!?)
-** TODO use wrap type
-** TODO use Result
-** TODO api should be : js api, editor api
-** TODO update Wonder-Log -> Contract: use Book Repo
+*** TODO use engine with multi thread???
 
-*/
+
+*** TODO add DTO?
+e.g. transform: first get engine state and convert to dto; then transform using DTO; then convert DTO to state and store
+in engine?
 
 
 
-* TODO add features after first book
-** TODO engine
-*** TODO publish to Wonder.js
+** TODO fix all
+*** TODO move DomExtendType, GlType, ... to DomExtend, Gl, ...
+*** TODO function->params: move dependency func first(before variables)!(but other func param still remain in the last!?)
+*** TODO use wrap type
+*** TODO use Result
+*** TODO api should be : js api, editor api
+*** TODO update Wonder-Log -> Contract: use Book Repo
+
+
+
+
+** TODO add features after first book
+*** TODO engine
+**** TODO publish to Wonder.js
 
 
 /*
-*** TODO add instance
+**** TODO add instance
 
 
-*** TODO add stream load
+**** TODO add stream load
 
 
-*** TODO add assetbundle
+**** TODO add assetbundle
 
 
-*** TODO add draw line
+**** TODO add draw line
 
 */
 
 
-*** TODO implement ray tracing gi
-**** TODO learn <<ray tracing gems>>
+**** TODO implement ray tracing gi
+***** TODO learn <<ray tracing gems>>
 
 
 
-**** TODO taa
+***** TODO taa
 https://community.arm.com/developer/tools-software/graphics/b/blog/posts/temporal-anti-aliasing
 
 
 
-**** TODO ssr?
+***** TODO ssr?
 
 
-**** TODO scene space shadow?
+***** TODO scene space shadow?
 
 
-* TODO add features after second book
-** TODO editor
-*** TODO publish to Wonder-Editor
+** TODO add features after second book
+*** TODO editor
+**** TODO publish to Wonder-Editor
 
-*** TODO support instance
-
-
-*** TODO support stream load
+**** TODO support instance
 
 
-*** TODO support assetbundle
-
-*** TODO support draw line
+**** TODO support stream load
 
 
+**** TODO support assetbundle
 
-* TODO update Wonder-Showcase repo
+**** TODO support draw line
+
+
+
+** TODO update Wonder-Showcase repo
 https://github.com/Wonder-Technology/Wonder-Showcase
+
+
+
+
+
+
+
+* TODO learn webgpu 
+
+
+
+* TODO learn ray tracing
+
+* TODO 使用事件溯源
+
+
+
+
+TODO event sourcing:
+
+read data is last frame data?
+
+update statics in each frame last?
+
+
+
+事件结构发生变化:
+Version
+
+
+
+give prototype!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+在“基础”->响应式编程 后面，加入“事件溯源”：
+事件是数据
+事件是一等公民
+
+
+引擎的非功能性需求中加入：
+高并发性
+
+
+
+
+
+
+加入下面的实现：
+删除gameObject（为了测试“修改gameObject数据事件触发时，该gameObject已被删除”的情况）
+redo/undo
+
+为什么使用：
+https://www.infoq.cn/article/2017/09/How-understand-event-traceabilit
+优点：
+1、方便redo/undo
+2、多线程优化
+（
+所有线程可一起执行；
+
+Actor Model;
+
+事件读写设计：
+每帧触发事件时，将其写入自己线程的存储中；
+每帧最后按照事件顺序（不同的线程有不同的顺序，每个线程的事件顺序是一样的（依次插入）），插入到一个事件队列中；
+每帧开始时，更新视图
+
+）
+
+3、支持基于事件来扩展
+如：
+对于js、editor等用户，可以注册事件（如gameObject uid:1 被删除事件），触发指定逻辑
+
+缺点：
+1、 最终一致性
+如：
+所有线程使用上一帧的数据
+
+
+优化：
+使用视图
+加入批处理事件（如批量创建GameObject）
+
+https://blog.csdn.net/u011537073/article/details/78439667
+https://www.cnblogs.com/netfocus/p/4055346.html
+:
+	1.遵守一个原则：一个命令只允许修改一个聚合根；
+	2.命令或事件在分布式MQ的路由根据聚合根ID来路由，也就是同一个聚合根的命令和事件都在一个队列里；
+	3.引入Command Mailbox，Event Mailbox这两个概念，将聚合根需要处理的命令和产生的事件都队列化，去并发；做到架构上最大的并行，将并发降低到最低；
+	4.引入Group Commit技术，做到整个C端的架构层面支持批量提交聚合根产生的事件，从而极大的提高C端的整体吞吐量；比如可以实现对同一个聚合根的每秒修改TPS达到5W？这个在传统的架构下是很难做到的。而在这个架构下，框架就可以提供支持。
+	5.通过引入Saga（不了解的同学可以网上搜一下什么是CQRS Saga）的概念，做到基于事件驱动的最终一致性，大家可以回想一下前面介绍的Node通过Event连接的架构；整个系统的所有节点的交互通过消息来驱动；
+
+第4点也符合Data oriented的思想，因为事件就是数据Data
+
+
+
+
+Todo 待解决：
+1、如何让用户基于引擎事件来扩展？
+
+2、Command and event ???
+
+
+
+设计：
+加入 Process Manager，负责管理各个线程/各个聚合/上下文的事件通信？
+
+Saga:
+每帧最后插入各个mailbox中事件到事件队列时，用Process Manager，保证最终一致性：
+如果某个事件失效（如修改gameObject），则丢弃后续事件？
+https://docs.microsoft.com/en-us/previous-versions/msp-n-p/jj591569(v=pandp.10)?redirectedfrom=MSDN
+
+https://www.cnblogs.com/netfocus/p/3149156.html
+
+https://www.cnblogs.com/netfocus/p/4055346.html
+
+
+参考：
+通过Saga，我们可以用最终一致性的方式最终实现对多个聚合根的修改。对于一次涉及多个聚合根修改的业务场景，一般总是可以设计为一个业务流程，也就是可以定义出要先做什么后做什么。
+
+我们会把整个转账过程定义为一个业务流程。然后，流程中会包括多个参与该流程的聚合根以及一个用于协调聚合根交互的流程管理器（ProcessManager，无状态），流程管理器负责响应流程中的每个聚合根产生的领域事件，然后根据事件发送相应的Command，从而继续驱动其他的聚合根进行操作。
+
+如果流程中的任何一步出现了异常，那我们可以在流程中定义补偿机制实现回退操作。或者不回退也没关系，因为Transaction聚合根记录了流程的当前状态，这样我们可以很方便的后续排查有状态没有正常结束的转账交易。
+
+
+
+
+
+
+
+
+
+
+
+相关概念：
+Event store
+
+视图
+
+聚合
+
+强一致性
+最终一致性
+
+In Memory
+
+Saga
+https://www.cnblogs.com/netfocus/p/3149156.html
+https://docs.microsoft.com/en-us/previous-versions/msp-n-p/jj591569(v=pandp.10)?redirectedfrom=MSDN
+
+
+Actor Model
+
+CQRS
+
+Command, command handler, event, event handler
+https://docs.microsoft.com/en-us/previous-versions/msp-n-p/jj591577%28v%3dpandp.10%29
+
+
+幂等
+https://juejin.im/post/5c05f233e51d4524860fc51a
+
+
+
+扩展事件：
+如果用了事件溯源，则用户可通过监听引擎事件来加入自己的逻辑（观察者）
+引擎要暴露指定的事件给用户
+
+
+
+
+* TODO write engine demo

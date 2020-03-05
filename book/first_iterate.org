@@ -951,32 +951,6 @@ only add pbr
 **** TODO give Catalog of the two books
 
 
-
-**** TODO engine support light
-
-basic material data
-light material data + direction/point light data
-
-***** TODO extract basic material
-
-
-
-
-***** TODO add light material
-
-***** TODO geometry:add normal
-
-***** TODO add direction light
-
-
-***** TODO add point light
-
-
-
-
-***** TODO send shader data(cache data): light
-
-
 **** TODO gameObject+component
 分析现有架构的问题:
 think q1,q2,q3:
@@ -1028,7 +1002,33 @@ should remove abstract type("material data") for different material data(e.g. u_
 
 
 
-**** TODO add test
+**** TODO engine support light
+
+basic material data
+light material data + direction/point light data
+
+***** TODO extract basic material
+
+
+
+
+***** TODO add light material
+
+***** TODO geometry:add normal
+
+***** TODO add direction light
+
+
+////***** TODO add point light
+
+
+
+
+***** TODO send shader data(cache data): light
+
+
+
+////**** TODO add test
 only unit test?
 
 

@@ -172,4 +172,1494 @@ CLOSED: [2020-01-23 Thu 18:34]
 
 ** TODO 写雏形部分
 
-*** TODO 写博文: 实现最小的3D程序-“绘制三角形”
+*** DONE 写博文: 实现最小的3D程序-“绘制三角形”
+CLOSED: [2020-01-27 Mon 17:57]
+
+
+
+
+*** TODO 写博文: 从0开发3D引擎（十）：从最小的3D程序中提炼引擎
+1: finish draft
+
+//rename createTriangleGeometryData to createTriangleVertexData
+
+////位置 -> 位移
+
+
+
+//加入一个GameObject和它的Transform、Geometry、Material数据 加入一个GameObject到场景中
+
+////最小3D程序  当前场景
+
+//add more 思考
+
+
+//update gameobject to scene
+
+//data layer
+
+
+//update 9 in zhihu
+
+////'a 
+
+'s
+
+传入、设置
+
+API逻辑
+
+
+
+//从顶层入手，识别底层
+
+解决5不足之处
+
+
+
+
+
+
+根据API，提出领域模型，分配API
+JsAPI - Model
+
+
+
+
+
+
+
+
+1.改程序并记录
+
+
+
+
+TODO job only pass needed dependencies?
+no
+
+
+
+
+TODO write all API in one file?
+no
+
+TODO webpack support multi entries?(so not need generateIndex)
+?
+
+TODO change generateIndex, so api should remove prefix:
+module SceneJsAPI = {
+  let xxx = SceneJsAPI.xxx;
+};
+
+
+
+//TODO how to design API?
+according to demo, recognize use case?
+according to use case, design API?
+
+
+//TODO how to design Application Service?
+according to API, design AS?
+
+
+
+
+
+
+
+
+
+application service:XXXApService
+domain service:XXXDoService
+
+
+
+
+folder structure:
+(从上层往下层的顺序)
+
+src/
+   ui_layer/
+    api/
+        js_api/
+  (e.g. XXXJSAPI.re)
+   application_layer/
+      service/(XXXApService.re)
+e.g. CameraApService.re
+   domain_layer/
+      domain/
+        domain文件夹(e.g. scene_graph/)/
+          上下文文件夹/(e.g. scene_graph/)
+////  (e.g. SceneGraphDoService.re -> module Scene, ..., 
+
+  SceneGraphEntity.re -> module Scene, ...
+  )
+
+service等不需要放到一个大module文件中，因为:
+1.一般来说不同上下文中的领域服务和领域模型不会重名！
+2.会导致大module文件过大，不易维护
+
+          service/
+////XXXDoService.re
+XXXSceneGraphDoService.re
+          entity/
+XXXSceneGraphEntity.re
+          value_object/
+XXXSceneGraphVO.re
+
+      dependency/
+        repository/
+  XXXSingleWorkerRepo.re
+        graphics/
+  XXXWebGLGraphics.re
+  (e.g. DeviceWebGLGraphics.re, VBOWebGLGOGraphics.re)
+        external/
+  XXXExternal.re
+   infrastructure_layer/
+      ffi/(XXXFFI.re, include GlFFI.re)
+      webgl/(WebGLType.re, WebGLGOType.re)
+      data/(StatePOType.re)
+
+
+
+entity add Render, GLSL, GLSLManager, Program, ProgramManager
+move type（e.g. move ShaderName to Shader.t）
+remove GLSLVO, ...
+
+
+
+add Material,Geometry,Transform,Camera value object
+
+
+////add dto
+
+
+
+
+api should convert vo to dto and dto to vo
+(e.g.
+
+api should load wdb path string and convert it to json(record type)!
+
+
+then convert dto to do in domain service!
+////then convert dto to do in application service!
+
+
+
+)
+
+if vo to do or do to vo, convert it in api:
+only api should know vo, application service shouldn't know vo!
+
+
+
+
+/*
+(
+dto:
+use list instead of array
+use primitive type
+)
+*/
+
+
+
+
+api should invoke application service!
+
+
+
+
+/*
+domain service should convert dto to do:
+e.g. convert mMatrix to CoordinateTransformationMatrix.Model.t
+*/
+
+
+
+api should remove state:
+user shouldn't know state!(api shouldn't get and set state! should get and set state in domain!)
+remove createState api!
+(should create state when define Data.stateData!!!)
+
+
+
+
+
+now use layer architect:
+use unsafeGetState, setState to get/set state instead of pass state param!!!
+use four layers:
+https://www.jianshu.com/p/a775836c7e25
+move Director to application layer, change it to DirectorService
+
+
+
+
+
+
+separate DomExtend's FFI and service
+
+
+TODO change init shader to domain service???
+yes
+
+
+data shouldn't dependent on scene graph context, ...:
+state type should dependent on primitive type(e.g. change CoordinateTransformationMatrix.Model.t to Js.Typed_array.Float32Array.t)
+
+
+
+////TODO recognize command?
+
+TODO how to support webgl 1 and webgpu?
+change pipeline and web graphics context
+
+
+TODO move data, webgl as outer?
+move data,webgl,ffi out to infrastructure layer
+
+repository
+graphics
+external
+
+
+e.g.:
+SceneStateRepo.re
+(SceneMainStateRepo.re)
+
+ContextWebGL1Graphics.re
+
+DomExternal.re
+
+
+
+so need add repo!!!
+
+
+
+////Domain should convert do to po when invoke repo!
+Repo should convert do to po!
+
+
+
+repo and domain are circle dependent!
+
+repo, graphics, external is in domain layer!
+
+
+graphics has its own type
+////("GO"!)
+
+
+
+
+////TODO how to support wdb, stream load, asset bundle?
+
+
+
+
+
+
+
+
+
+ByNull:
+只允许hash map, array等structure 有ByNull函数；
+上一层函数都要ByThrow
+ByThrow的上层公有函数（除了API函数），都要有ByThrow后缀
+ByThrow要抛出异常
+
+Render->changeGameObjectDataListToRenderDataList should move to tryCatch!
+
+
+Result and throw:
+Option, View, 等大部分的ByThrow改成Result
+
+
+
+
+
+
+
+
+
+
+rename api:
+e.g. addGLSL -> GLSL.addGLSL
+
+
+
+change generateIndex, so api should remove prefix:
+//是Scene,不是SceneJsAPI!!!
+module Scene = {
+  let xxx = SceneJsAPI.xxx;
+};
+change index.html:
+wd.Scene.xxx
+
+
+
+
+
+
+
+
+
+2.修改文章
+
+
+
+
+
+
+
+
+
+
+////extract DTO（Data Transfer Object）：数据传输对象
+e.g. init shader data, render data
+
+extract 上下文：用户Js代码 引擎：init shader, render, clearCanvas, ...
+////（some context has no dto, just use state）
+画图（只给出数据DTO和所在限界上下文，不给出设计的领域模型）：如开始（含state）->clearCanvas（含gl,颜色）->...->render(render data)->结束（含state）
+(活动图)
+
+////only init shader, render has DTO
+(DTO是贫血模型)
+
+////e.g. dto: createGl: 
+input and output data: {canvas, gl:option}
+need convert it to state
+
+
+
+no dto!!!
+init shader data, render data is the temp data by domain service!!!
+
+
+
+////4类数据：用户数据、state、init shader data、render data
+
+initAll, loopBody can go through some contexts （画图，用箭头表示？用活动图？）
+
+未来可抽象上下文为job
+
+
+
+
+
+
+
+本文开始，先进行架构选择：
+决定设计方法：DDD
+使用的架构：六边形架构？Onion Architecture？
+(func param has state, return state)
+(替代“设计数据”中对参数state的设计！)
+(rewrite 分层！)
+IO -> pure func -> IO
+
+
+////TODO learn Onion Architecture:
+API is application service?
+remove Director?
+
+
+TODO learn http://zhangyi.xyz/how-to-identify-application-service/
+
+
+
+
+CQS:
+
+Applied to functional programming, the CQS principle proposes that:
+• Functions that return data should not have side-effects.
+• Functions that have side-effects (updating state) should not return data.
+That is, they should be unit-returning functions.
+
+
+
+
+
+
+////TODO how to add event?
+
+
+
+////TODO move gl and DeviceManager out to be outer?
+
+
+
+////TODO context map?
+
+
+
+
+
+
+
+//第5篇:
+//函数：
+增加“公有/私有函数”
+
+
+////after discrimini type:
+add Single Case Unions
+
+type a = A(int);
+
+only has engine example!!!
+
+
+
+
+//在第9篇:
+
+识别“通用语言”：
+////1.在第9篇中，识别“通用语言”（头脑风暴后？）
+
+参考第9篇的功能需求和代码实现：
+事件风暴
+
+重写第9篇的头脑风暴？使其直接给出到通用语言？？？
+yes!!!
+
+通用语言包括了用户和引擎模型
+
+
+1.识别领域事件
+
+
+2.识别命令
+
+
+////3.识别应用服务和领域服务
+
+3.寻找聚合，识别领域对象
+e.g. Scene -> 第一个三角形， 。。。。。。
+(change camera, move it to scene)
+
+4.边界划分
+识别“创建场景”？、“初始化”、“主循环”
+
+
+5.识别“通用语言”
+（如Shader、GLSL、Program（以及他们的对应关系）、主循环、初始化等）
+////（如GameObject,Scene等）
+（如Scene,Triangle,Camera等）
+////（Material,Geometry,Transform是Triangle的值对象数据！！！)
+////（Transform,Camera是Camera的数据！！！)(修改Camera!)
+（如：
+/*
+- 用户。。。。。。引擎。。。。。（描述顶层上下文）
+- 着色器是。。。。。。
+- Shader、GLSL、Program的关系
+- 主循环。。。。。。
+*/
+使用图来表示！
+）
+////第二次设计中，不断地识别“通用语言”（如GameObject,Scene,Material,Geometry,Transform等)，然后加入到“通用语言中”
+
+
+
+////2.根据“通用语言”，修改“划分顶层上下文”
+
+
+
+
+
+
+
+修改不足之处：
+只包含下文（第十篇）要改进的不足之处（移除性能不足，将其放到第十篇）
+////（增加“没有用DDD设计”的不足之处）
+
+
+
+
+
+
+
+
+
+
+
+第十篇：
+
+
+
+根据通用语言中“用户”的模型和Demo，识别用例，给出用例图:
+角色
+用例
+
+
+
+
+
+////第二次设计：
+
+////识别领域：
+用户
+引擎
+
+
+////修改通用语言，把模型移到对应的领域中
+
+
+////- 处理“用户”领域：
+根据通用语言中“用户”的模型和Demo，识别用例，给出用例图
+
+
+
+
+////- 处理“引擎”领域：
+
+
+
+
+
+
+
+
+给出架构视图:
+分层架构
+设计ui层API:
+  给出引擎的调用方式：
+  API调用
+
+如何设计API：
+API好味道：
+隔离知识：
+用户不需要知道内部数据（如state）
+用户不需要知道unsafeGet
+
+用户不需要处理错误
+
+
+
+
+根据用例来设计API:
+确定type:
+
+
+划分module:
+API是放到module（UML以package来表示）中，不跟领域模型对应
+(划分module:
+Director, Shader, Scene, View, ...
+
+)
+////（如addGLSL本来在GLSLManager中，但api是在GLSLJsAPI中！）
+（如addGLSL本来在GLSLManager中，但api是在ShaderJsAPI中！）
+
+
+移动api到module中
+
+
+
+
+
+
+
+根据API，设计APService
+（一一对应？
+与api module对于
+）
+识别domain layer:
+repo:
+与数据一一对应 
+e.g. singleWorkerRepo, mainWorkerRepo, renderWorkerRepo, webgl1Repo
+
+graphics:
+与图形API一一对应
+e.g. webgl1, webgl2
+
+external: 负责与外部的交互
+(ffi, throw error)
+
+（好味道：与API一样）
+
+
+识别infrastructer中的图形,持久化,ffi,抛出异常等
+“抛出异常”应该放到infrastructure的External
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.识别引擎的“子域”：
+////如“初始化”、“主循环”、“场景”、“着色器”、。。。。。。
+
+
+
+“初始化”、“主循环”、“场景”、“着色器”、“数据结构”、“页面”
+
+
+识别核心子域、支撑子域、。。。。。。
+
+
+
+识别“子域”中的“限界上下文”：
+如：
+“相机上下文” + "场景上下文" + 。。。。。。；
+“创建WebGL上下文上下文” + 。。。。。。；
+“渲染上下文” + 。。。。。。；
+
+“数据结构”:
+////Matrix,Vector,ImmutableHashMap, MutableHashMap, ArrayDoService, OptionDoService
+Matrix,Vector
+
+()
+
+////“其它”:
+ObjMagicDoService
+
+
+////画图（只给出数据DTO和所在限界上下文，不给出设计的领域模型）：如开始（含state）->clearCanvas（含gl,颜色）->...->render(render data)->结束（含state）
+
+
+画图:
+说明下context map
+
+
+3.根据“通用语言”和Demo，识别“领域概念”（如场景图scene graph），建立初步的领域模型（需要表达所有的“通用语言”！），放到“子域”中（有一些是“子域”共用的，如Shader等）：
+////（如Scene,Material,Geometry,Transform等)
+（如Scene,Triangle,Camera等)
+
+(不提出组件和GameObject!!!)
+
+(Triangle, Camera为值对象！)
+
+////不提出Geometry等，而是作为Triangle的Geometry数据！
+
+
+
+
+操作容器:
+XXXHashMapDoService
+ArrayDoService
+
+
+
+
+
+(
+提出领域模型Triangle时，需要解决三角形颜色数据不一致的问题！
+)
+
+
+
+
+
+
+
+
+
+
+聚合
+
+实体
+
+值对象
+
+
+
+
+(
+WebGL 聚合 VBO等
+)
+
+
+////Triangle的Geometry使用自己的数据，不由用户传入
+
+
+////说明是贫血模型！
+
+
+
+区分实体、值对象
+
+
+////使用“single Union case类型”来加强领域模型中数据的类型约束
+
+
+
+识别更多的值对象
+
+
+
+
+
+
+
+
+给出领域视图（包含领域服务、领域模型，以及context map）
+context map:D, U, ACL, ...
+(标注聚合根、实体、。。。。。。)
+（
+给出基础层的子域，表明与引擎子域的关系
+e.g. 图形, 数据
+
+）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+给出数据视图:
+设计数据:
+////graphics state, repo state
+////go, po
+po:
+包含main po和graphics po
+
+////webgl1State, singleWorkerState
+singleWorkerPO, webgl1PO
+
+////修改“设计数据”，说明singleWorkerState是PO, webgl1State是GO(graphics object)
+
+数据库：内存的数据容器：
+one po container:
+store mainPO, graphicsPO
+
+////e.g.
+singleWorkerPOContainer
+webgl1POContainer
+
+
+说明为什么要两个仓库和两个PO
+
+
+
+
+表示出init,loop的子上下文之间的dto
+
+转换为render dto时：
+引擎逻辑：
+    |> 计算view matrix和projection matrix
+    |> 计算三个三角形的model matrix
+
+
+
+
+
+设计main po, graphic po的字段:
+type singleWorkerPO = {
+  (remove "Data"!!!)
+  chunkManager: GLSLChunkManager.t
+
+  聚合
+  scene,
+  ...
+};
+
+
+说明VBO用id(int)
+说明Shader用name(string)
+glslMap, programMap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+使用“Discriminated Union类型”来加强领域模型的数据的类型约束
+
+
+
+
+
+
+
+关于错误处理的设计：
+使用Result处理错误
+
+
+
+
+Result and throw:
+性能热点用throw, 否则...
+
+
+////在“数据结构”子域中加入限界上下文：“异常”
+////在其中加入Result领域模型
+
+Result不属于领域模型!!!
+
+
+
+////“抛出异常”应该放到infrastructure的External
+
+
+
+
+
+//TODO:实现setClearColor
+
+
+//TODO:only one PO?
+
+思考图形是否依赖数据（Graphics PO）？
+Geometry是否依赖VBO？
+ClearColorDoService是否依赖Color4？
+clearColor的数据如何表现在 图形->上下文 中？
+
+
+
+//TODO fix
+
+
+
+//TODO add CanvasMainPOType.re
+
+
+//TODO implement setClearColor API
+
+//TODO 泳道
+//TODO add init render data
+
+
+
+//TODO 说明ShaderManager、实体Shader的数据设计！
+
+
+
+//TODO Shader name
+
+
+//TODO remove HashMAp
+
+
+//TODO xiugai
+
+
+
+
+
+
+
+//TODO design:
+separate shader name for material design!!!
+
+MaterialSceneGraphVO->shaderName or shader???
+
+Material PO->shaderName or shader???
+
+
+let addTriangle = (position, (vertices, indices), (shaderName, colors)) => {
+  SceneSceneGraphEntity.addTriangle(
+    position |> VectorContainerVO.create |> PositionSceneGraphVO.create,
+    (
+      VerticesSceneGraphVO.create(vertices),
+      IndicesSceneGraphVO.create(indices),
+    ),
+    (
+说明这里！！！
+      ShaderShaderEntity.create(shaderName),
+      colors |> List.map(color => Color3ContainerVO.create(color)),
+    ),
+  );
+};
+
+
+
+
+
+
+
+
+
+////TODO 共享内核、webgl1 library
+
+//TODO webgl1 library
+
+
+
+//TODO 实现渲染->Program相关部分时，说明：
+hashMap
+shaderName作为Shader的Id
+
+
+
+
+
+但是，因为前面还识别了的引擎逻辑：
+根据三角形的Shader名称，获得关联的Program
+
+所以需要将Shader的DO的Shader名称提出来，与GLSL的DO分离：
+修改Shader的DO为：
+```re
+type shaderName = string;
+
+type t =
+  | Shader(shaderName);
+```
+修改ShaderManager的DO为：
+```re
+type t = {glsls: list((Shader.t, GLSL.t))};
+```
+
+
+
+
+
+
+
+//TODO DoService directly invoke repo for init shader data for optimize!
+
+
+
+
+//TODO infrastructure->data shouldn't dependent on ImmutableHashMapContainerVO!!!
+add ImmutableHashMap to infrastructure->data
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TODO test fail
+update handleFail
+
+
+remove failWith
+test tryCatch
+
+
+initShader should tryCatch
+
+
+
+
+//remove errorandreturn?
+
+
+
+//TODO fix init :
+tryCatch
+
+add Error
+
+
+
+
+
+//TODO 解决“渲染”的不足之处 及 防腐设计等！
+
+引擎逻辑、优化相关修改
+
+
+
+//TODO 主循环 request
+
+
+
+
+//TODO DomExtend add requestXXX
+
+
+
+
+
+//TODO
+fix hash map, sparse map
+update hash map in article!!!
+
+fix unsafeGetProgram!!!
+
+
+
+
+
+
+
+
+
+
+
+//TODO 设计值对象Render
+分离camera data
+
+
+
+
+
+//TODO add matrix
+说明createWithoutCheck
+
+vector add functions
+
+
+
+//TODO init vbo
+
+explain:
+本来在build render data时，需要获得vbo，但是读写分离！
+
+
+
+
+////TODO 说明哪里tryCatch
+
+BuildRenderDataRenderDoService.build需要tryCatch（因为buffer）
+
+1、在RenderDoService中tryCatch
+2、在BuildRenderDataRenderDoServicee中tryCatch
+
+选择2！！！
+
+
+
+//TODO IndicesVO add:
+let map = (f, indices) => indices |> value |> f;
+
+let length = indices => indices |> map(Uint16Array.length);
+
+
+TODO ShaderManager entity add:
+let getProgram = (shader) => {
+
+};
+
+
+
+
+//TODO 设计geometry->vbo id
+与Material统一修改！
+
+
+
+//VBO 加入 + id?
+
+
+
+//加入sparse map
+
+//infrastructure_layer加入sparse map
+
+
+
+
+
+//TODO 思考如何set vbo！！！
+
+说明为什么把setVBO放到scene entity中！（而不是triangle或者geometry）
+
+let setVBO = (vbo, geometry) => {
+
+};
+
+
+//explain triangleIndex:
+because triangle is vo, ...
+
+
+
+
+//TODO 实现RenderDoService.re时，解决“存在重复代码”的不足之处
+
+
+
+
+
+
+////TODO fix send colors bug???
+
+
+
+
+
+
+
+
+
+
+实现：
+
+备份和清空src/文件夹 
+
+
+
+先给出项目结构（文件夹结构）
+
+创建文件夹的空文件，反应领域模型、服务等
+e.g. XXXDoService.re
+
+介绍命名规则
+
+
+
+
+
+
+
+实现“XXX模块的API”（多个标题）：
+////(会增加值对象HashMap和领域服务等)
+////(
+ByNull:
+只允许hash map, array等structure有ByNull函数；
+上一层函数都要ByThrow
+ByThrow的上层公有函数（除了API函数），都要有ByThrow后缀
+ByThrow要抛出异常
+
+OptionDoService返回Result
+)
+
+
+从顶层开始实现，从用例粒度垂直开发（从上到下深度遍历，实现每个用例）：
+////（先垂直设计（类型签名 and 伪代码），再垂直实现）
+（垂直实现）
+api：
+   ////根据一个用例，设计API
+   实现一个API
+(
+move api:
+e.g. addGLSL -> GLSL.addGLSL
+)
+
+
+APService:
+实现APService
+
+domain:
+use type:e.g. Camera.re, CameraType.re
+
+(实现InitShaderDoService.re时，解决“存在重复代码”的不足之处)
+(实现RenderDoService.re时，解决“存在重复代码”的不足之处)
+
+(实现Matrix时说明：
+不过为了程序更加简单，在后面的实现中并没有在创建矩阵时进行检查，而是直接包装为Matrix.t类型。
+)
+
+(
+实现Shader和VBO时，分析可能的数据方案（两种方案），给出使用的方案：
+shadername/id
+
+  (说明VBO用id(int)
+  说明Shader用name(string)
+  glslMap, programMap
+  )
+
+)
+
+
+(
+init shader data, render data:
+remove list, the data is list!!!
+add singleXXXData!
+)
+
+(抛出异常 在“外部对象”中)
+
+
+实现Repo时：
+实现HashMapRepoService, ArrayRepoService
+
+异常在内部处理(API调用时？)，或者返回Result
+
+
+
+
+
+...
+
+
+
+
+用户index.html:
+1.实现generateIndex
+change generateIndex, so api should remove prefix:
+module SceneJsAPI = {
+  let xxx = SceneJsAPI.xxx;
+};
+change index.html:
+
+
+explain why extract generateindex project more:
+because one project can only has one .bsconfig ->one module package
+
+
+
+
+2.调用wd.XXX.xxx
+e.g. wd.Scene.xxx
+
+
+
+运行测试：
+截图，验证成功
+
+
+////注：应该提一下：垂直设计完后，应该写测试用例，调用API测试（不具体写测试）
+注：应该提一下：垂直开发前，应该写测试用例，调用API测试（不具体写测试）
+
+
+
+////最后，引入GenerateIndex。。。。。。
+
+////实现index.html
+
+
+
+
+
+
+
+
+
+
+
+
+//split to 2 articles
+
+
+
+//TODO change PO中Scene to Scene PO
+//TODO change to Scene DO
+
+
+//finish All TODOs:
+//TODO 跳链接的地方加上TODO！
+
+
+
+
+
+//删除运行测试的代码
+
+
+//push 9,10 program
+
+
+
+
+
+
+//add supply article!
+
+
+
+
+
+
+
+//update 5,9 in bokeyuan、zhihu
+
+
+
+//完成 跳链接的地方 TODO！
+
+
+
+//TODO update 星球、公众号
+
+
+
+//TODO 发博客园
+
+
+
+fix context map
+
+add flow active chart
+
+
+
+
+
+修改九和十：
+伪代码中，代码用英文，注释用中文
+
+
+
+
+增加博文：介绍DDD
+对应修改文章编号！
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////根据API逻辑，提出更多领域模型，分配逻辑
+
+
+
+
+
+重新分层:
+实体
+值对象
+
+
+
+使用Result处理错误
+
+
+////使用“Discriminated Union类型”来加强值对象的类型约束:
+使用“Discriminated Union类型”来加强领域模型的数据的类型约束:
+
+
+
+明确“实体层”的实体和“API层”的映射模型的职责：
+API层处理Result,包装。。。。。。
+
+
+
+
+
+提出更多的值对象
+解决“存在重复代码”的不足之处
+  解决第二个重复代码
+  解决第一个重复代码
+
+
+划分底层上下文:
+DTO
+entity add ShaderInit(ShaderManager)
+Render
+
+
+
+领域模型
+
+
+
+
+
+
+
+move 用伪代码的方式，调用引擎的API，实现index.html to 第二次设计（直接绘制三个三角形）
+
+//move 初步设计数据 to 第一次设计
+
+
+### 用伪代码的方式，调用引擎的API，实现index.html:
+伪代码：抽象用户逻辑glsl（伪代码：输入、输出）、参数
+remove dom and script
+
+### 重写index.html
+实现index.html的用户逻辑
+
+
+从上往下，以“深度遍历”的方式实现index.html的每一个API的调用:
+用伪代码实现XXXJsAPI的API；
+逐层实现，提出XXX和数据等（移动API的逻辑到XXX中）;
+
+
+
+
+
+rewrite initAll:
+用伪代码实现DirectorJsAPI的API；
+逐层实现，提出XXX和数据等（移动API的逻辑到XXX中）;
+
+finish initAll
+
+
+
+
+finish loop, render
+
+
+
+2: finish TODO
+
+3: adjust structure, flat it
+
+4: check program
+
+5: 圆润语句
+
+6: check all
+
+
+update 5,9 in bokeyuan、zhihu
+push 9 program!!!
+
+
+
+7: split extract engine article to 2 articles:
+上篇和下篇
+
+
+
+
+use online img in process on!!!!
+
+
+
+** TODO upgrade bucklescript

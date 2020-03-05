@@ -1,0 +1,162 @@
+* TODO all
+** TODO rename model/ folder to entity/ folder
+
+
+
+** TODO rename wrap type to value object
+rename wrap_type folder to value_object folder;
+rename XXXWT to XXXVO;
+
+
+** TODO rename utils to service
+rename XXXUtils to XXXService
+rename utils/ to service/
+
+
+
+** TODO update Tiny-Wonder-GenerateIndex version
+
+** TODO Data API：remove unsafeGetState, setState
+
+** TODO DeviceManager
+use:
+
+ let enableDepthTest = gl => gl |> Gl.enable(Gl.getDepthTest(gl));
+
+let enableBackCullFace = gl => {
+  Gl.enable(Gl.getCullFace(gl), gl);
+  Gl.cullFace(Gl.getBack(gl), gl);
+};
+
+
+instead of initGlState
+
+
+fix Render.re
+
+** TODO change ArrayVO,Option to service and rename to XXXService
+
+** TODO remove src/value_object/enhance/ folder, move src/value_object/new/ files to src/value_object/
+
+
+** TODO HashMapType remove arrayNullableToArrayNotNullable(tiny-wonder-commonlib, ...)
+
+** TODO update Vector.re to:
+
+type t =
+  | Vector(float, float, float);
+
+let create = (x, y, z) => Vector(x, y, z);
+
+let value = vec =>
+  switch (vec) {
+  | Vector(x, y, z) => (x, y, z)
+  };
+
+let dot = (v1, v2) => {
+  let (x, y, z) = value(v1);
+  let (vx, vy, vz) = value(v2);
+
+  x *. vx +. y *. vy +. z *. vz;
+};
+
+let sub = (v1, v2) => {
+  let (x1, y1, z1) = value(v1);
+  let (x2, y2, z2) = value(v2);
+
+  create(x1 -. x2, y1 -. y2, z1 -. z2);
+};
+
+let scale = (scalar, v) => {
+  let (x, y, z) = value(v);
+
+  create(x *. scalar, y *. scalar, z *. scalar);
+};
+
+let cross = (v1, v2) => {
+  let (x1, y1, z1) = value(v1);
+  let (x2, y2, z2) = value(v2);
+
+  create(y1 *. z2 -. y2 *. z1, z1 *. x2 -. z2 *. x1, x1 *. y2 -. x2 *. y1);
+};
+
+let normalize = v => {
+  let (x, y, z) = value(v);
+
+  let d = Js.Math.sqrt(x *. x +. y *. y +. z *. z);
+
+  d === 0. ? create(0., 0., 0.) : create(x /. d, y /. d, z /. d);
+};
+
+
+
+
+** TODO extract Scene, sceneData, change singleGameObjectData to gameObject
+
+** TODO rename createTriangleGeometryData to createTriangleVertexData
+
+** TODO remove ArrayService.push
+
+** TODO rename api->unsafeGetXXX to getXXX, XXXByThrow to XXX
+
+
+
+** TODO remove tiny-wonder-commonlib
+
+
+** TODO extract ShaderManager
+
+
+** TODO Book-Optimize1-Engine
+*** TODO remove convertToMagicType
+*** TODO fix initAll, loopBody, Shader->init, Render->render: use tryCatch
+let initAll = (contextParam, state) =>
+  state
+  |> Result.tryCatch(state => {View.unsafeGetCanvasByThrow(state)})
+  |> Result.bind(canvas => {
+       state
+       |> DeviceManager.setGl(Gl.getWebgl1Context(canvas, contextParam))
+       |> Shader.init
+     });
+
+let loopBody = state => {
+  state
+  |> Result.tryCatch(state => {DeviceManager.unsafeGetGlByThrow(state)})
+  |> Result.bind(gl => {
+       DeviceManager.clearColor(gl, state);
+
+       Gl.clear(Gl.getColorBufferBit(gl) lor Gl.getDepthBufferBit(gl), gl);
+
+       Render.render(gl, state);
+     });
+};
+
+
+let init = (state: DataType.state): Result.t(DataType.state, Js.Exn.t) => {
+  state
+  |> Result.tryCatch(state => {DeviceManager.unsafeGetGlByThrow(state)})
+  |> Result.bind(gl => {
+     });
+
+
+
+let render = (gl, state) => {
+  _initGlState(gl);
+
+  state
+  |> Result.tryCatch(state => {
+       let (vMatrix, pMatrix) = (
+         Camera.unsafeGetVMatrixByThrow(state),
+         Camera.unsafeGetPMatrixByThrow(state),
+       );
+       let (vMatrix, pMatrix) = (
+         vMatrix |> CoordinateTransformationMatrix.View.getMatrixValue,
+         pMatrix |> CoordinateTransformationMatrix.Projection.getMatrixValue,
+       );
+
+       let state = _initVBOs(gl, state);
+
+       ((vMatrix, pMatrix), state);
+     })
+  |> Result.bind((((vMatrix, pMatrix), state)) => {
+     });
